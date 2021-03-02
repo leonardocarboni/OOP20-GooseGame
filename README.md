@@ -38,7 +38,6 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -80,21 +79,18 @@
 
 ### Built With
 * [Intellij Idea Community Edition](https://www.jetbrains.com/idea/)
-* [Motore Grafico Boh](https://example.com)
 * [SceneBuilder](https://gluonhq.com/products/scene-builder/)
+* [JavaFX](https://openjfx.io/)
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Per ottenere una copia del prodotto, scaricare in modo da definire
-
-### Prerequisites
-Java
+Per ottenere una copia del prodotto, scaricare l'ultima release.
 
 ### Installation
-1. Clone the repo
+* Clone the repo for the code
    ```sh
    git clone https://github.com/leonardocarboni/OOP20-GooseGame.git
    ```
@@ -111,7 +107,6 @@ _Please refer to the [Documentation](https://example.com)_
 Distributed under the MIT License. See `LICENSE` for more information.
 
 
-
 <!-- CONTACT -->
 ## Contact
 * Leonardo Carboni - [@leonardocarbony](https://twitter.com/leonardocarbony) - leonardo.carboni2@studio.unibo.it
@@ -119,21 +114,15 @@ Distributed under the MIT License. See `LICENSE` for more information.
 * Davide De Nicolò - davide.denicolo@studio.unibo.it
 * Endri Domi - endri.domi@studio.unibo.it
 
-* Project Link: [https://github.com/leonardocarboni/OOP20-GooseGame_name](https://github.com/leonardocarboni/OOP20-GooseGame_name)
+* Project Link: [https://github.com/leonardocarboni/OOP20-GooseGame_name](https://github.com/leonardocarboni/OOP20-GooseGame)
 
 * README.MD Template seen [here](https://github.com/othneildrew/Best-README-Template)
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/leonardocarboni/OOP20-GooseGame.svg?style=for-the-badge
 [contributors-url]: https://github.com/leonardocarboni/OOP20-GooseGame/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/leonardocarboni/OOP20-GooseGame.svg?style=for-the-badge
 [forks-url]: https://github.com/leonardocarboni/OOP20-GooseGame/network/members
 [stars-shield]: https://img.shields.io/github/stars/leonardocarboni/OOP20-GooseGame.svg?style=for-the-badge
 [stars-url]: https://github.com/leonardocarboni/OOP20-GooseGame/stargazers
-[issues-shield]: https://img.shields.io/github/issues/leonardocarboni/OOP20-GooseGame.svg?style=for-the-badge
-[issues-url]: https://github.com/leonardocarboni/OOP20-GooseGame/issues
 [license-shield]: https://img.shields.io/github/license/leonardocarboni/OOP20-GooseGame.svg?style=for-the-badge
 [license-url]: https://github.com/leonardocarboni/OOP20-GooseGame/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username
