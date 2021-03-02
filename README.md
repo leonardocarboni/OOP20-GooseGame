@@ -9,7 +9,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/leonardocarboni/OOP20-GooseGame">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="app/res/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">GooseGame</h3>
@@ -114,13 +114,14 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <!-- CONTACT -->
 ## Contact
-Leonardo Carboni - [@leonardocarbony](https://twitter.com/leonardocarbony) - leonardo.carboni2@studio.unibo.it
-Andrea Ongaro - andrea.ongaro@studio.unibo.it
-Andrea Ongaro - davide.denicolo@studio.unibo.it
-Andrea Ongaro - endri.domi@studio.unibo.it
-Project Link: [https://github.com/leonardocarboni/OOP20-GooseGame_name](https://github.com/leonardocarboni/OOP20-GooseGame_name)
+* Leonardo Carboni - [@leonardocarbony](https://twitter.com/leonardocarbony) - leonardo.carboni2@studio.unibo.it
+* Andrea Ongaro - andrea.ongaro2@studio.unibo.it
+* Davide De Nicolò - davide.denicolo@studio.unibo.it
+* Endri Domi - endri.domi@studio.unibo.it
 
-README.MD Template seen [here](https://github.com/othneildrew/Best-README-Template)
+* Project Link: [https://github.com/leonardocarboni/OOP20-GooseGame_name](https://github.com/leonardocarboni/OOP20-GooseGame_name)
+
+* README.MD Template seen [here](https://github.com/othneildrew/Best-README-Template)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
