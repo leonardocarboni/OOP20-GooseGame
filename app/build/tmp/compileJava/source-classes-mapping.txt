@@ -1,0 +1,4 @@
+it/goosegame/App.java
+ it.goosegame.App
+it/goosegame/AppLauncher.java
+ it.goosegame.AppLauncher
