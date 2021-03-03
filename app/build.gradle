@@ -22,7 +22,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'it.goosegame.AppLauncher'
+    mainClass = 'applicationapplication.AppLauncher'
 }
 
 javafx {
@@ -30,7 +30,7 @@ javafx {
 	modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-mainClassName = "it.goosegame.AppLauncher"
+mainClassName = "applicationapplication.AppLauncher"
 
 jar {
 	manifest {
