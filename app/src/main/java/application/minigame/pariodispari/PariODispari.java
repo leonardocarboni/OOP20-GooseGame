@@ -1,2 +1,4 @@
-package application.minigame.pariodispari;public class PariODispari {
+package application.minigame.pariodispari;
+
+public class PariODispari {
 }
