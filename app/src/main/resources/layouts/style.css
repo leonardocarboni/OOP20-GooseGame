@@ -6,7 +6,8 @@
 
 .button:hover{
     -fx-background-color:  linear-gradient(#D98452, #D9965B);
-    -fx-border-color: #f2f2f2;
-    -fx-border-width: 1;
-    -fx-border-radius: 10;
+}
+
+.button:pressed {
+    -fx-effect: innershadow( three-pass-box , rgba(15, 0, 0, 0.247) , 20, 0.0 , 0 , 1);
 }
