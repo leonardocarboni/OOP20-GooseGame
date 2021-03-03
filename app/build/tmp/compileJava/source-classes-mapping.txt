@@ -1,6 +1,0 @@
-application/MenuController.java
- application.MenuController
-application/AppLauncher.java
- application.AppLauncher
-application/App.java
- application.App
