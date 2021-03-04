@@ -58,17 +58,17 @@
             </AnchorPane>
             <HBox alignment="CENTER" prefHeight="200.0" prefWidth="600.0" spacing="50.0">
                <children>
-                  <Button fx:id="play_button" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" style="-fx-pref-width: 120; -fx-pref-height: 50;" stylesheets="@style.css" text="Play" textAlignment="CENTER" textFill="#f2f2f2">
+                  <Button fx:id="play_button" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" style="-fx-pref-width: 120; -fx-pref-height: 50;" stylesheets="@menustyle.css" text="Play" textAlignment="CENTER" textFill="#f2f2f2">
                      <font>
                         <Font name="Candara Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="settings_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-pref-width: 120; -fx-pref-height: 50;" stylesheets="@style.css" text="Settings" textAlignment="CENTER" textFill="#f2f2f2">
+                  <Button fx:id="settings_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-pref-width: 120; -fx-pref-height: 50;" stylesheets="@menustyle.css" text="Settings" textAlignment="CENTER" textFill="#f2f2f2">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="credits_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-pref-width: 120; -fx-pref-height: 50;" stylesheets="@style.css" text="Credits" textAlignment="CENTER" textFill="#f2f2f2">
+                  <Button fx:id="credits_button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-pref-width: 120; -fx-pref-height: 50;" stylesheets="@menustyle.css" text="Credits" textAlignment="CENTER" textFill="#f2f2f2">
                      <font>
                         <Font name="Candara" size="16.0" />
                      </font>
