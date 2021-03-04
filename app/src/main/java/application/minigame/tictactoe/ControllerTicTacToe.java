@@ -1,24 +1,51 @@
 package application.minigame.tictactoe;
 
 
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ControllerTicTacToe {
+
+    BackgroundImage bi = new BackgroundImage(new Image("TicTacToe/Sfondo.png",200,170,false,true),
+            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+    BackgroundImage bi2 = new BackgroundImage(new Image("TicTacToe/SfondoClicked.png",200,170,false,true),
+            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+    //creo un hanlder
+    Handler handler = new Handler(bi, bi2);
 
     //faccio iniziare il giocatore umano per primo
     private boolean isPlayerOneTurn = true;
 
     //appean creo la classe genero 9 bottoni
     public ControllerTicTacToe(){
+
         for(int i = 0; i < 9; i++){
             Button btn = new Button();
+            btn.setBackground(new Background(bi));
             btn.setPrefSize(200,200);
+            btn.setFont(new Font("MV Boli", 50));
+            btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.eh);
+            btn.addEventFilter(MouseEvent.MOUSE_PRESSED, handler.click);
+            btn.addEventFilter(MouseEvent.MOUSE_RELEASED, handler.released);
             listButton.add(btn);
         }
+
+        handler.setListButton(listButton);
+
     }
+
+
 
     //lista di bottoni
     private List<Button> listButton = new ArrayList<>();
