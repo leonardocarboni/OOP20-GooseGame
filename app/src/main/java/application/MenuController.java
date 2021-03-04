@@ -1,6 +1,7 @@
 package application;
 
 import application.minigame.cableconnect.CableConnect;
+import application.minigame.sassocartaforbici.SassoCartaFrobici;
 import application.minigame.tictactoe.TicTacToe;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,15 +40,25 @@ public class MenuController implements Initializable {
         });
         settings_button.setOnMouseClicked((event) -> {
             //System.out.println("Settings Cliccato");
+            Stage newStage = new Stage();
+            newStage.initModality(Modality.APPLICATION_MODAL);
             TicTacToe ticTacToe = new TicTacToe();
             try {
-                ticTacToe.start(new Stage());
+                ticTacToe.start(newStage);
             } catch (Exception e){
                 System.out.println("Errore nell'apertura");
             }
         });
         credits_button.setOnMouseClicked((event) -> {
             //System.out.println("Credits Cliccato");
+            Stage newStage = new Stage();
+            newStage.initModality(Modality.APPLICATION_MODAL);
+            SassoCartaFrobici sassoCartaFrobici = new SassoCartaFrobici();
+            try {
+                sassoCartaFrobici.start(newStage);
+            } catch (Exception e){
+                System.out.println("Errore nell'apertura");
+            }
         });
     }
 
