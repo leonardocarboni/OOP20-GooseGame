@@ -23,6 +23,6 @@
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="279.0" layoutY="419.0" mnemonicParsing="false" stylesheets="@textmg_style.css" text="Submit" />
+      <Button layoutX="279.0" layoutY="419.0" mnemonicParsing="false" stylesheets="@minigamestyle.css" text="Submit" />
    </children>
 </AnchorPane>
