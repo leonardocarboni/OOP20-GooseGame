@@ -3,8 +3,6 @@ package application.minigame.tictactoe;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +22,7 @@ public class ControllerTicTacToe {
 
     //lista di bottoni
     private List<Button> listButton = new ArrayList<>();
+    private List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
 
     //funzione che in base al turno mi dice a chi tocca
     private boolean checkPlayerOneTurn(){
@@ -37,17 +36,10 @@ public class ControllerTicTacToe {
 
     //creo una griglia di bottoni e la ritorno
     //viola 103i123912803180293890 principi ma per ora okay
-    public GridPane createList(){
+    public GridPane createButton(){
         GridPane root = new GridPane();
-            root.add(listButton.get(0), 0,0,1,1);
-            root.add(listButton.get(1), 1,0,1,1);
-            root.add(listButton.get(2), 2,0,1,1);
-            root.add(listButton.get(3), 0,1,1,1);
-            root.add(listButton.get(4), 1,1,1,1);
-            root.add(listButton.get(5), 2,1,1,1);
-            root.add(listButton.get(6), 0,2,1,1);
-            root.add(listButton.get(7), 1,2,1,1);
-            root.add(listButton.get(8), 2,2,1,1);
+        listButton.stream()
+                .forEach(i -> root.add(i, listButton.indexOf(i) % 3, number.get(listButton.indexOf(i)), 1 , 1));
         return  root;
     }
 

@@ -28,7 +28,7 @@ public class TicTacToe extends Application {
         /* Stage configuration */
         primaryStage.setTitle("TicTacToe");
         //uso un contoller per creare la griglia
-        primaryStage.setScene(new Scene(controller.createList(), SCENE_WIDTH, SCENE_HEIGHT));
+        primaryStage.setScene(new Scene(controller.createButton(), SCENE_WIDTH, SCENE_HEIGHT));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
