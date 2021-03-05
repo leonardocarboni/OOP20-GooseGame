@@ -2,11 +2,18 @@ package application.minigame.tictactoe;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.layout.Background;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.Shadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BackgroundImage;
+import javafx.scene.paint.Color;
 
 public class Handler {
 
@@ -40,7 +47,10 @@ public class Handler {
             for(int i = 0; i < 9 ; i++){
                 if(event.getSource().equals(listButton.get(i))){
                     if(listButton.get(i).getText() == ""){
-                        listButton.get(i).setBackground(new Background(b2));
+                        DropShadow shadow = new DropShadow();
+
+                        listButton.get(i).setBackground(new Background(bi));
+                        listButton.get(i).setEffect(shadow);
                     }
                 }
             }

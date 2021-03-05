@@ -2,17 +2,23 @@ package application.minigame.tictactoe;
 
 
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class ControllerTicTacToe {
 
-    BackgroundImage bi = new BackgroundImage(new Image("TicTacToe/Sfondo.png",200,170,false,true),
+
+
+    BackgroundImage bi = new BackgroundImage(new Image("TicTacToe/Sfondo.png",200,170,false,false),
             BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
     BackgroundImage bi2 = new BackgroundImage(new Image("TicTacToe/SfondoClicked.png",200,170,false,true),
@@ -23,12 +29,13 @@ public class ControllerTicTacToe {
 
     //appean creo la classe genero 9 bottoni
     public ControllerTicTacToe(){
-
+        DropShadow shadow = new DropShadow();
         for(int i = 0; i < 9; i++){
             Button btn = new Button();
+            btn.setEffect(shadow);
             btn.setBackground(new Background(bi));
             btn.setPrefSize(200,200);
-            btn.setFont(new Font("MV Boli", 80));
+            btn.setFont(Font.font("Arial", FontPosture.ITALIC,80));
             btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.eh);
             btn.addEventFilter(MouseEvent.MOUSE_PRESSED, handler.click);
             btn.addEventFilter(MouseEvent.MOUSE_RELEASED, handler.released);
