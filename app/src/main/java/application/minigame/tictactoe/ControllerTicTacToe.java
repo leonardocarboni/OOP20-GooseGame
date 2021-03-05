@@ -21,9 +21,6 @@ public class ControllerTicTacToe {
     //creo un hanlder
     Handler handler = new Handler(bi, bi2);
 
-    //faccio iniziare il giocatore umano per primo
-    private boolean isPlayerOneTurn = true;
-
     //appean creo la classe genero 9 bottoni
     public ControllerTicTacToe(){
 
@@ -57,15 +54,6 @@ public class ControllerTicTacToe {
     private List<Button> listButton = new ArrayList<>();
     private List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
 
-    //funzione che in base al turno mi dice a chi tocca
-    private boolean checkPlayerOneTurn(){
-        return isPlayerOneTurn;
-    }
-
-    //cambia il turno del player
-    private void changeTurn(){
-        isPlayerOneTurn = !isPlayerOneTurn;
-    }
 
     //creo una griglia di bottoni e la ritorno
     //viola 103i123912803180293890 principi ma per ora okay
