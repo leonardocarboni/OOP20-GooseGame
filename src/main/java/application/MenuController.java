@@ -14,19 +14,19 @@ import java.util.ResourceBundle;
 public class MenuController implements Initializable {
 
     @FXML
-    Button play_button;
+    private Button playButton;
     @FXML
-    Button settings_button;
+    private Button settingsButton;
     @FXML
-    Button credits_button;
+    private Button creditsButton;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        play_button.setOnMouseClicked((event) -> {
+    public void initialize(final URL url, final ResourceBundle resourceBundle) {
+    	playButton.setOnMouseClicked((event) -> {
             //System.out.println("Play Cliccato");
-            Stage newStage = new Stage();
+            final Stage newStage = new Stage();
             newStage.initModality(Modality.APPLICATION_MODAL);
-            CableConnect cc = new CableConnect();
+            final CableConnect cc = new CableConnect();
             try {
                 cc.start(newStage);
             } catch (Exception e){
@@ -34,22 +34,22 @@ public class MenuController implements Initializable {
             }
 
         });
-        settings_button.setOnMouseClicked((event) -> {
+    	settingsButton.setOnMouseClicked((event) -> {
             //System.out.println("Settings Cliccato");
-            Stage newStage = new Stage();
+            final Stage newStage = new Stage();
             newStage.initModality(Modality.APPLICATION_MODAL);
-            TicTacToe ticTacToe = new TicTacToe();
+            final TicTacToe ticTacToe = new TicTacToe();
             try {
                 ticTacToe.start(newStage);
             } catch (Exception e){
                 System.out.println("Errore nell'apertura");
             }
         });
-        credits_button.setOnMouseClicked((event) -> {
+    	creditsButton.setOnMouseClicked((event) -> {
             //System.out.println("Credits Cliccato");
-            Stage newStage = new Stage();
+            final Stage newStage = new Stage();
             newStage.initModality(Modality.APPLICATION_MODAL);
-            SassoCartaFrobici sassoCartaFrobici = new SassoCartaFrobici();
+            final SassoCartaFrobici sassoCartaFrobici = new SassoCartaFrobici();
             try {
                 sassoCartaFrobici.start(newStage);
             } catch (Exception e){

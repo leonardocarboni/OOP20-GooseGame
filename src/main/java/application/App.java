@@ -12,7 +12,7 @@ public class App extends Application{
     private static final int SCENE_HEIGHT = 480;
 
     @Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(final Stage primaryStage) throws Exception {
         final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/menu.fxml"));
         final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
 
@@ -24,7 +24,7 @@ public class App extends Application{
 		
 	}
 	
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
         launch(args);
     }
 }

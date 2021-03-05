@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 public class SassoCartaForbiciController implements Initializable {
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
 
     }
     //quando si clicca uno dei tre pulsanti, gli altri si disattivano

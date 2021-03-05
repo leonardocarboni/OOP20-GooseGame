@@ -17,7 +17,7 @@ public class TicTacToe extends Application {
 
     //avvio della finestra del programma
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
 
         /* Stage configuration */
         primaryStage.setTitle("TicTacToe");
@@ -27,7 +27,7 @@ public class TicTacToe extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         launch(args);
     }
 
