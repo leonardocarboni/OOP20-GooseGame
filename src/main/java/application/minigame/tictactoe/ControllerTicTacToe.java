@@ -26,6 +26,7 @@ public class ControllerTicTacToe {
     
     private final List<Button> listButton = new ArrayList<>();
     private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
+    private final List<String> sign = List.of("X", "O");
     static private final int BOARD_SIZE = 9;
     
     public ControllerTicTacToe(){
@@ -56,33 +57,37 @@ public class ControllerTicTacToe {
     }
 
     protected boolean checkWin(){
-        for(int i = 0; i < 6; i+=3){
-            if(listButton.get(i).getText() == "X"
-                && listButton.get(i+1).getText() == "X"
-                && listButton.get(i+2).getText() == "X")
-            {
-                return true;
+        for(int i = 0; i < 7; i+=3){
+            for(int j = 0; j < 2; j++){
+                if(listButton.get(i).getText() == sign.get(j)
+                        && listButton.get(i+1).getText() == sign.get(j)
+                        && listButton.get(i+2).getText() == sign.get(j))
+                {
+                    return true;
+                }
             }
         }
         for(int i = 0; i < 3; i++){
-            if(listButton.get(i).getText() == "X"
-                    && listButton.get(i+3).getText() == "X"
-                    && listButton.get(i+6).getText() == "X")
-            {
-                return true;
+            for(int j = 0; j < 2; j++){
+                if(listButton.get(i).getText() == sign.get(j)
+                        && listButton.get(i+3).getText() == sign.get(j)
+                        && listButton.get(i+6).getText() == sign.get(j))
+                {
+                    return true;
+                }
             }
         }
-        if(listButton.get(0).getText() == "X"
-                && listButton.get(4).getText() == "X"
-                && listButton.get(8).getText() == "X")
-        {
-            return true;
-        }
-        if(listButton.get(2).getText() == "X"
-                && listButton.get(4).getText() == "X"
-                && listButton.get(6).getText() == "X")
-        {
-            return true;
+        for(int j = 0; j < 2; j++) {
+            if (listButton.get(0).getText() == sign.get(j)
+                    && listButton.get(4).getText() == sign.get(j)
+                    && listButton.get(8).getText() == sign.get(j)) {
+                return true;
+            }
+            if (listButton.get(2).getText() == sign.get(j)
+                    && listButton.get(4).getText() == sign.get(j)
+                    && listButton.get(6).getText() == sign.get(j)) {
+                return true;
+            }
         }
         return false;
     }
