@@ -1,17 +1,14 @@
 package application.minigame.tictactoe;
 
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ControllerTicTacToe {
 
@@ -34,7 +31,7 @@ public class ControllerTicTacToe {
             Button btn = new Button();
             btn.setBackground(new Background(bi));
             btn.setPrefSize(200,200);
-            btn.setFont(new Font("MV Boli", 50));
+            btn.setFont(new Font("MV Boli", 80));
             btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.eh);
             btn.addEventFilter(MouseEvent.MOUSE_PRESSED, handler.click);
             btn.addEventFilter(MouseEvent.MOUSE_RELEASED, handler.released);
@@ -45,7 +42,16 @@ public class ControllerTicTacToe {
 
     }
 
-
+    protected void drawO(){
+        for(int i = 0; i < 9; i++){
+            Random rnd = new Random();
+            int numCase = rnd.nextInt(9);
+            if(listButton.get(numCase).getText() == ""){
+                listButton.get(numCase).setText("O");
+                return;
+            }
+        }
+    }
 
     //lista di bottoni
     private List<Button> listButton = new ArrayList<>();

@@ -18,7 +18,7 @@ public class TicTacToe extends Application {
 
 
     //creo un istanza del controller
-    ControllerTicTacToe controller = new ControllerTicTacToe();
+    public static ControllerTicTacToe controller = new ControllerTicTacToe();
 
 
     //avvio della finestra del programma

@@ -27,6 +27,7 @@ public class Handler {
                 if(event.getSource().equals(listButton.get(i))){
                     if(listButton.get(i).getText() == ""){
                         listButton.get(i).setText("X");
+                        TicTacToe.controller.drawO();
                     }
                 }
             }
