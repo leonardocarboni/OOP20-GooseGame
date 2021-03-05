@@ -1,0 +1,13 @@
+.button{
+    -fx-background-color:  linear-gradient(#D9965B, #D98452);
+    -fx-background-radius:  10;
+    -fx-font-size: 16;
+}
+
+.button:hover{
+    -fx-background-color:  linear-gradient(#D98452, #D9965B);
+}
+
+.button:pressed {
+    -fx-effect: innershadow( three-pass-box , rgba(15, 0, 0, 0.247) , 20, 0.0 , 0 , 1);
+}

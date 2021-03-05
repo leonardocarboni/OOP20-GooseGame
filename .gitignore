@@ -1,11 +1,9 @@
 .gradle/
+.metadata/
 .idea/
-app/build/
-app/bin/
-app/out/
-app/build/*
-app/bin/*
-app/out/*
+build/
+bin/
+out/
 
 # Compiled class file
 *.class

@@ -1,0 +1,11 @@
+.button{
+    -fx-background-color:  #f0f0f0;
+}
+
+.button:hover{
+    -fx-background-color:  #ffffff;
+}
+
+.button:pressed {
+    -fx-effect: innershadow( three-pass-box , rgba(15, 0, 0, 0.247) , 20, 0.0 , 0 , 1);
+}
