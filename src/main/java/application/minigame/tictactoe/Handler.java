@@ -7,17 +7,28 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 
 import java.util.List;
+import java.util.function.Consumer;
+
 import javafx.scene.control.Button;
 
 public class Handler {
 
     private List<Button> listButton;
     private final BackgroundImage bi;
-    private final BackgroundImage b2;
-    
-    public Handler(final BackgroundImage bi,final BackgroundImage b2) {
+
+    Consumer<Boolean> winCondition = x -> {
+        if(x == true){
+            System.exit(1);
+        } else{
+
+        }
+    };
+
+    public Handler(final BackgroundImage bi) {
         this.bi = bi;
-        this.b2 = b2;
+
+
+
     }
 
     EventHandler<Event> eh = new EventHandler<Event>() {
@@ -25,9 +36,10 @@ public class Handler {
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
                 if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText() == ""){
-                        listButton.get(i).setText("X");
-                        TicTacToe.controller.drawO();
-                    }
+                    listButton.get(i).setText("X");
+                    winCondition.accept(TicTacToe.controller.checkWin());
+                    TicTacToe.controller.drawO();
+                }
                 }
             }
     };

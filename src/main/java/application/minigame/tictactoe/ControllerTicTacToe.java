@@ -20,11 +20,9 @@ public class ControllerTicTacToe {
     private final BackgroundImage bi = new BackgroundImage(new Image("TicTacToe/Sfondo.png",200,170,false,false),
             BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
-    private final BackgroundImage bi2 = new BackgroundImage(new Image("TicTacToe/SfondoClicked.png",200,170,false,true),
-            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
     //creo un hanlder
-    private final Handler handler = new Handler(bi, bi2);
+    private final Handler handler = new Handler(bi);
     
     private final List<Button> listButton = new ArrayList<>();
     private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
@@ -46,10 +44,10 @@ public class ControllerTicTacToe {
         handler.setListButton(listButton);
     }
 
-    protected void drawO(){
+    protected void drawO() {
         for(int i = 0; i < 9; i++){
             final Random rnd = new Random();
-            final int numCase = rnd.nextInt(BOARD_SIZE);
+            final int numCase = rnd.nextInt(9);
             if(listButton.get(numCase).getText() == ""){
                 listButton.get(numCase).setText("O");
                 return;
@@ -57,6 +55,37 @@ public class ControllerTicTacToe {
         }
     }
 
+    protected boolean checkWin(){
+        for(int i = 0; i < 6; i+=3){
+            if(listButton.get(i).getText() == "X"
+                && listButton.get(i+1).getText() == "X"
+                && listButton.get(i+2).getText() == "X")
+            {
+                return true;
+            }
+        }
+        for(int i = 0; i < 3; i++){
+            if(listButton.get(i).getText() == "X"
+                    && listButton.get(i+3).getText() == "X"
+                    && listButton.get(i+6).getText() == "X")
+            {
+                return true;
+            }
+        }
+        if(listButton.get(0).getText() == "X"
+                && listButton.get(4).getText() == "X"
+                && listButton.get(8).getText() == "X")
+        {
+            return true;
+        }
+        if(listButton.get(2).getText() == "X"
+                && listButton.get(4).getText() == "X"
+                && listButton.get(6).getText() == "X")
+        {
+            return true;
+        }
+        return false;
+    }
 
     //creo una griglia di bottoni e la ritorno
     //viola 103i123912803180293890 principi ma per ora okay
