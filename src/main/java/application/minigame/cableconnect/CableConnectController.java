@@ -45,6 +45,7 @@ public class CableConnectController implements Initializable {
     private void initializeEventHandlers() {
         // disable other buttons and generates a starting point for the line.
         startButtonsMap.forEach((button, color) -> button.setOnMouseClicked(e -> {
+            button.setOpacity(1);
             disableOtherButtons(color);
             if (currentLine == null) {
                 currentLine = new Line(e.getSceneX(), e.getSceneY(), e.getSceneX(), e.getSceneY());
@@ -66,6 +67,7 @@ public class CableConnectController implements Initializable {
 
         // set the definitive line end point.
         endButtonsMap.forEach((button, color) -> button.setOnMouseClicked(e -> {
+            button.setOpacity(1);
             enableOtherButtons(color);
             if (currentLine != null) {
                 currentLine = null;
