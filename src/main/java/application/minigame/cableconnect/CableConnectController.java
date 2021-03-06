@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -15,21 +17,11 @@ import java.util.Set;
 
 public class CableConnectController implements Initializable {
     @FXML
-    Button startButton0;
+    private Button startButton0, startButton1, startButton2, startButton3;
     @FXML
-    Button startButton1;
+    private Button endButton0, endButton1, endButton2, endButton3;
     @FXML
-    Button startButton2;
-    @FXML
-    Button startButton3;
-    @FXML
-    Button endButton0;
-    @FXML
-    Button endButton1;
-    @FXML
-    Button endButton2;
-    @FXML
-    Button endButton3;
+    private AnchorPane pane;
 
     final private Random rand = new Random();
     final private Colors[] colorsArray = Colors.getColors();
@@ -37,6 +29,7 @@ public class CableConnectController implements Initializable {
     final private Map<Button, Colors> startButtonsMap = new HashMap<>();
     final private Map<Button, Colors> endButtonsMap = new HashMap<>();
     final private Set<Colors> colorsDone = new HashSet<>();
+    private Line currentLine;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,28 +37,58 @@ public class CableConnectController implements Initializable {
         initializeStartButtons();
         initializeEndButtons();
         initializeEventHandlers();
-
     }
 
     /**
-     * Initializes start and end buttons' onClick handlers.
+     * Initializes start and end buttons onClick handlers for line drawing.
      */
     private void initializeEventHandlers() {
-        //should draw a line tho [TBI]
-        startButtonsMap.forEach((button, color) -> button.setOnMouseClicked(e -> disableOtherButtons(color)));
-        endButtonsMap.forEach((button, color) -> button.setOnMouseClicked(e -> enableOtherButtons(color)));
+        // disable other buttons and generates a starting point for the line.
+        startButtonsMap.forEach((button, color) -> button.setOnMouseClicked(e -> {
+            disableOtherButtons(color);
+            if (currentLine == null) {
+                currentLine = new Line(e.getSceneX(), e.getSceneY(), e.getSceneX(), e.getSceneY());
+                currentLine.setStrokeWidth(5);
+                currentLine.setStyle("-fx-stroke: " + color);
+                pane.getChildren().add(currentLine);
+            } else {
+                currentLine = null ;
+            }
+        }));
+
+        // updates the line end point.
+        pane.setOnMouseMoved(e -> {
+            if (currentLine != null) {
+                currentLine.setEndX(e.getX());
+                currentLine.setEndY(e.getY());
+            }
+        });
+
+        // set the definitive line end point.
+        endButtonsMap.forEach((button, color) -> button.setOnMouseClicked(e -> {
+            enableOtherButtons(color);
+            if (currentLine != null) {
+                currentLine = null;
+            }
+        }));
     }
 
+    /**
+     * re enable the buttons whom color is not contained in the list
+     * @param color - the color which doesn't need to be re enabled
+     */
     private void enableOtherButtons(Colors color) {
         colorsDone.add(color);
-        //enable the buttons whom color is not contained in the list
         startButtonsMap.forEach((b, c) -> b.setDisable(colorsDone.contains(c)));
         endButtonsMap.forEach((b, c) -> b.setDisable(colorsDone.contains(c)));
     }
 
+    /**
+     * disable the buttons with a different color
+     * @param color - the color which doesn't need to be disabled
+     */
     private void disableOtherButtons(Colors color) {
         startButtonsMap.keySet().forEach(b -> b.setDisable(true));
-        //disable buttons with a different color
         endButtonsMap.forEach((b,c) -> b.setDisable(!c.equals(color)));
     }
 
