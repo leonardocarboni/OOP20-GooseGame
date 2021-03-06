@@ -30,6 +30,7 @@ public class ControllerTicTacToe {
         handler.setListButton(listButton);
     }
 
+    //funzione che crea la scelta del pc
     protected void drawO() {
         for(int i = 0; i < 9; i++){
             final Random rnd = new Random();
@@ -42,6 +43,7 @@ public class ControllerTicTacToe {
         }
     }
 
+    //metodo che controlla chi ha vinto
     protected String checkWin(){
         for(int i = 0; i < 7; i+=3){
             for(int j = 0; j < 2; j++){
@@ -79,7 +81,6 @@ public class ControllerTicTacToe {
     }
 
     //creo una griglia di bottoni e la ritorno
-    //viola 103i123912803180293890 principi ma per ora okay
     public GridPane createButton(){
         final GridPane root = new GridPane();
         listButton.stream()

@@ -22,8 +22,8 @@ public class TicTacToe extends Application {
 
         controller.setStage(primaryStage);
 
-        /* Stage configuration */
         primaryStage.setTitle("TicTacToe");
+
         //uso un contoller per creare la griglia
         //grid pane
         GridPane root = controller.createButton();

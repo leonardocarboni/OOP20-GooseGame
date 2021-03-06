@@ -29,8 +29,6 @@ public class Handler {
         }
     };
 
-
-
     final EventHandler<Event> eh = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {

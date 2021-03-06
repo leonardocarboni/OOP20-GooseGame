@@ -13,7 +13,8 @@ import java.util.Optional;
 public class ButtonDropper extends Button {
 
 
-
+    //metodo che consente di creare il bottone presente nella griglia
+    //prende come valore un handler per un bottone
     public Button gridButton(Handler handler){
 
         final Button btn = new Button();
@@ -29,7 +30,7 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-
+    /* metodo che restituisce il bottone presente alla fine del gioco */
     public Button endGameButton(Optional<Handler> handler, String winner){
         Button btn = new Button();
         btn.setBackground(new Background(BackgroundLoader.endGameButton));

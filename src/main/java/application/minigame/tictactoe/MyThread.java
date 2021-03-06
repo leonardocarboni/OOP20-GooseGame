@@ -16,6 +16,7 @@ public class MyThread extends Thread{
         this.winner = winner;
     }
 
+    /* thread che viene creato dopo che la partita a tris finisce */
     public void run(){
         Platform.runLater(new Runnable() {
             @Override
@@ -25,7 +26,7 @@ public class MyThread extends Thread{
 
                 pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
                 pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
-                FadeTransition ft = new FadeTransition(Duration.millis(3000), pane);
+                FadeTransition ft = new FadeTransition(Duration.millis(2000), pane);
                 ft.setFromValue(0.0);
                 ft.setToValue(1.0);
                 ft.play();
