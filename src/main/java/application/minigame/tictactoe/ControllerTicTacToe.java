@@ -12,8 +12,6 @@ import java.util.Random;
 public class ControllerTicTacToe {
 
 
-
-
     //creo un hanlder
     private final Handler handler = new Handler();
     protected Stage stage = new Stage();
@@ -21,8 +19,7 @@ public class ControllerTicTacToe {
     protected final List<Button> listButton = new ArrayList<>();
     private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
     private final List<String> sign = List.of("X", "O");
-    static private final int BOARD_SIZE = 9;
-    public GridPane grid = new GridPane();
+    protected GridPane grid = new GridPane();
     
     public ControllerTicTacToe(){
         final DropShadow shadow = new DropShadow();
@@ -39,6 +36,7 @@ public class ControllerTicTacToe {
             final int numCase = rnd.nextInt(9);
             if(listButton.get(numCase).getText() == ""){
                 listButton.get(numCase).setText("O");
+                checkWin();
                 return;
             }
         }

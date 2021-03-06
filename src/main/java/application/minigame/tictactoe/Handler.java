@@ -21,18 +21,17 @@ import javafx.util.Duration;
 public class Handler {
 
     private List<Button> listButton;
-    ;
 
-    Consumer<String> winCondition = x -> {
-        if(x != ""){
-            MyThread my = new MyThread();
+    private final Consumer<String> winCondition = winner -> {
+        if(winner != ""){
+            MyThread my = new MyThread(winner);
             my.start();
         }
     };
 
 
 
-    EventHandler<Event> eh = new EventHandler<Event>() {
+    final EventHandler<Event> eh = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
@@ -45,7 +44,7 @@ public class Handler {
             }
     };
 
-    EventHandler<Event> click = new EventHandler<Event>() {
+    final EventHandler<Event> click = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
@@ -58,7 +57,7 @@ public class Handler {
         }
     };
     
-    EventHandler<Event> released = new EventHandler<Event>() {
+    final EventHandler<Event> released = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){

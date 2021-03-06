@@ -30,10 +30,10 @@ public class ButtonDropper extends Button {
     }
 
 
-    public Button endGameButton(Optional<Handler> handler){
+    public Button endGameButton(Optional<Handler> handler, String winner){
         Button btn = new Button();
         btn.setBackground(new Background(BackgroundLoader.endGameButton));
-        btn.setText("Player Won");
+        btn.setText("The winner is: " + winner);
         btn.setTranslateY(-130);
 
         btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,40));

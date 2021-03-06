@@ -18,7 +18,7 @@ public class BackgroundLoader {
 
 
     private static final BackgroundSize bs =
-            new BackgroundSize(200,500,true,true,true,false);
+            new BackgroundSize(300,400,true,true,false,true);
 
     static final BackgroundImage endGameButton =
             new BackgroundImage(new Image("TicTacToe/green_button01.png"),
