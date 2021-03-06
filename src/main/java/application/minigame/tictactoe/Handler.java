@@ -1,22 +1,14 @@
 package application.minigame.tictactoe;
 
-import javafx.animation.FadeTransition;
-import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 
 import java.util.List;
 import java.util.function.Consumer;
 
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
 
 public class Handler {
 
@@ -24,7 +16,7 @@ public class Handler {
 
     private final Consumer<String> winCondition = winner -> {
         if(!winner.equals("")){
-            MyThread my = new MyThread(winner);
+            EndgameThread my = new EndgameThread(winner);
             my.start();
         }
     };

@@ -8,11 +8,11 @@ import javafx.util.Duration;
 
 import java.util.Optional;
 
-public class MyThread extends Thread{
+public class EndgameThread extends Thread{
 
     private final String winner;
 
-    public MyThread(String winner){
+    public EndgameThread(String winner){
         this.winner = winner;
     }
 

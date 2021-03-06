@@ -1,5 +1,6 @@
 package application.minigame.tictactoe;
 
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.GridPane;
@@ -8,8 +9,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.*;
 
-public class ControllerTicTacToe {
+public class TTTControllerImpl implements  TTTController {
 
 
     //creo un hanlder
@@ -19,8 +21,10 @@ public class ControllerTicTacToe {
     protected final List<Button> listButton = new ArrayList<>();
     private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
     private final List<String> sign = List.of("X", "O");
-    
-    public ControllerTicTacToe(){
+
+
+
+    public TTTControllerImpl(){
         for(int i = 0; i < 9; i++){
             final ButtonDropper btn = new ButtonDropper();
             listButton.add(btn.gridButton(handler));
@@ -29,11 +33,11 @@ public class ControllerTicTacToe {
     }
 
     //funzione che crea la scelta del pc
-    protected void drawO() {
-        for(int i = 0; i < 9; i++){
+    public void drawO(){
+        for (int i = 0; i < 9; i++) {
             final Random rnd = new Random();
             final int numCase = rnd.nextInt(9);
-            if(listButton.get(numCase).getText().equals("")){
+            if (listButton.get(numCase).getText().equals("")) {
                 listButton.get(numCase).setText("O");
                 checkWin();
                 return;
@@ -42,7 +46,7 @@ public class ControllerTicTacToe {
     }
 
     //metodo che controlla chi ha vinto
-    protected String checkWin(){
+    public String checkWin(){
         for(int i = 0; i < 7; i+=3){
             for(int j = 0; j < 2; j++){
                 if(listButton.get(i).getText().equals(sign.get(j))
