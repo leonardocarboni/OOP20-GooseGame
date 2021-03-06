@@ -2,6 +2,7 @@ package application.minigame.tictactoe;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class TicTacToe extends Application {
@@ -19,13 +20,19 @@ public class TicTacToe extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
 
+        controller.setStage(primaryStage);
+
         /* Stage configuration */
         primaryStage.setTitle("TicTacToe");
         //uso un contoller per creare la griglia
-        primaryStage.setScene(new Scene(controller.createButton(), SCENE_WIDTH, SCENE_HEIGHT));
+        //grid pane
+        GridPane root = controller.createButton();
+        primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
+
 
     public static void main(final String[] args) {
         launch(args);
