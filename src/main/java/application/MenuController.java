@@ -1,6 +1,7 @@
 package application;
 
 import application.minigame.cableconnect.CableConnect;
+import application.minigame.memory.Memory;
 import application.minigame.sassocartaforbici.SassoCartaFrobici;
 import application.minigame.tictactoe.TicTacToe;
 import javafx.fxml.FXML;
@@ -26,9 +27,9 @@ public class MenuController implements Initializable {
             //System.out.println("Play Cliccato");
             final Stage newStage = new Stage();
             newStage.initModality(Modality.APPLICATION_MODAL);
-            final CableConnect cc = new CableConnect();
+            final Memory memory = new Memory();
             try {
-                cc.start(newStage);
+                memory.start(newStage);
             } catch (Exception e){
                 System.out.println("Errore nell'apertura");
             }
