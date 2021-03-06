@@ -23,7 +23,7 @@ public class Handler {
     private List<Button> listButton;
 
     private final Consumer<String> winCondition = winner -> {
-        if(winner != ""){
+        if(!winner.equals("")){
             MyThread my = new MyThread(winner);
             my.start();
         }
@@ -33,7 +33,7 @@ public class Handler {
         @Override
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
-                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText() == ""){
+                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText().equals("")){
                     listButton.get(i).setText("X");
                     winCondition.accept(TicTacToe.controller.checkWin());
                     TicTacToe.controller.drawO();
@@ -46,7 +46,7 @@ public class Handler {
         @Override
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
-                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText() == ""){
+                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText().equals("")){
                 	final DropShadow shadow = new DropShadow();
                     listButton.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
                     listButton.get(i).setEffect(shadow);
@@ -59,7 +59,7 @@ public class Handler {
         @Override
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
-                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText() == ""){
+                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText().equals("")){
                 	listButton.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
                 }
             }

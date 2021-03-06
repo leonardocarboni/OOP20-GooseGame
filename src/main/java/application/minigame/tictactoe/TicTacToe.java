@@ -13,12 +13,12 @@ public class TicTacToe extends Application {
 
 
     //creo un istanza del controller
-    public static ControllerTicTacToe controller = new ControllerTicTacToe();
+    public static final ControllerTicTacToe controller = new ControllerTicTacToe();
 
 
     //avvio della finestra del programma
     @Override
-    public void start(final Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) {
 
         controller.setStage(primaryStage);
 

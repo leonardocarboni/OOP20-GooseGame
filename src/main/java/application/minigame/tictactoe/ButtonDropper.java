@@ -41,8 +41,4 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-
-
-
-
 }
