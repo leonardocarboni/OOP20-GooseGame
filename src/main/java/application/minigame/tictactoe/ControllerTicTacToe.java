@@ -2,17 +2,7 @@ package application.minigame.tictactoe;
 
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -20,12 +10,12 @@ import java.util.List;
 import java.util.Random;
 
 public class ControllerTicTacToe {
-    private final BackgroundImage bi = new BackgroundImage(new Image("TicTacToe/Sfondo.png",200,170,false,false),
-            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+
 
 
     //creo un hanlder
-    private final Handler handler = new Handler(bi);
+    private final Handler handler = new Handler();
     protected Stage stage = new Stage();
 
     protected final List<Button> listButton = new ArrayList<>();
@@ -37,15 +27,8 @@ public class ControllerTicTacToe {
     public ControllerTicTacToe(){
         final DropShadow shadow = new DropShadow();
         for(int i = 0; i < 9; i++){
-            final Button btn = new Button();
-            btn.setEffect(shadow);
-            btn.setBackground(new Background(bi));
-            btn.setPrefSize(200,200);
-            btn.setFont(Font.font("Arial", FontWeight.BOLD,FontPosture.ITALIC,80));
-            btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.eh);
-            btn.addEventFilter(MouseEvent.MOUSE_PRESSED, handler.click);
-            btn.addEventFilter(MouseEvent.MOUSE_RELEASED, handler.released);
-            listButton.add(btn);
+            final ButtonDropper btn = new ButtonDropper();
+            listButton.add(btn.gridButton(handler));
         }
         handler.setListButton(listButton);
     }

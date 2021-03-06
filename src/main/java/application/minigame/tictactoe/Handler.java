@@ -21,25 +21,16 @@ import javafx.util.Duration;
 public class Handler {
 
     private List<Button> listButton;
-    private final BackgroundImage bi;
+    ;
 
     Consumer<String> winCondition = x -> {
         if(x != ""){
-
-
-            Button btn = new Button("The Winner is: " + x);
-
-
             MyThread my = new MyThread();
             my.start();
-
-
         }
     };
 
-    public Handler(final BackgroundImage bi) {
-        this.bi = bi;
-    }
+
 
     EventHandler<Event> eh = new EventHandler<Event>() {
         @Override
@@ -60,7 +51,7 @@ public class Handler {
             for(int i = 0; i < 9 ; i++){
                 if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText() == ""){
                 	final DropShadow shadow = new DropShadow();
-                    listButton.get(i).setBackground(new Background(bi));
+                    listButton.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
                     listButton.get(i).setEffect(shadow);
                 }
             }
@@ -72,7 +63,7 @@ public class Handler {
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
                 if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText() == ""){
-                	listButton.get(i).setBackground(new Background(bi));
+                	listButton.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
                 }
             }
         }
