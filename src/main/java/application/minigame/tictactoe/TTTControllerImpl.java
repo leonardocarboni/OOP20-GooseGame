@@ -21,6 +21,7 @@ public class TTTControllerImpl implements  TTTController {
 
     protected final List<Button> listButtonGrid = new ArrayList<>();
     private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
+    private final List<Integer> number2 = List.of(0,0,1,1,2,2);
     private final List<String> sign = List.of("X", "O");
     private final List<Button> listBottomButton = new ArrayList<>();
 
@@ -32,10 +33,13 @@ public class TTTControllerImpl implements  TTTController {
         }
         handler.setListButton(listButtonGrid);
 
-        listBottomButton.add(btn.gameDarkModeIcon(Optional.of(handler),""));
-        listBottomButton.add(btn.gameDarkModeIconText(Optional.empty(),""));
-        listBottomButton.add(btn.bugReportIcon(Optional.empty(),""));
-        listBottomButton.add(btn.bugReportIconText(Optional.empty(),""));
+        listBottomButton.add(0,btn.gameDarkModeIcon(Optional.of(handler),""));
+        listBottomButton.add(1,btn.gameDarkModeIconText(Optional.empty(),""));
+        listBottomButton.add(2,btn.bugReportIcon(Optional.empty(),""));
+        listBottomButton.add(3,btn.bugReportIconText(Optional.empty(),""));
+        listBottomButton.add(4,btn.pauseButtonIcon(Optional.empty(),""));
+        listBottomButton.add(5,btn.pauseButtonIconText(Optional.empty(),""));
+
         handler.setListButtonBottom(listBottomButton);
     }
 
@@ -94,12 +98,9 @@ public class TTTControllerImpl implements  TTTController {
         final GridPane root = new GridPane();
         listButtonGrid.stream()
                 .forEach(i -> root.add(i, listButtonGrid.indexOf(i) % 3, number.get(listButtonGrid.indexOf(i)), 1 , 1));
-
+        listBottomButton.stream()
+                .forEach(i -> root.add(i, number2.get(listBottomButton.indexOf(i)), 3, 1 , 1));
         root.setBackground(new Background(new BackgroundFill(Color.BEIGE, null, null)));
-        root.add(listBottomButton.get(1),0,3,1,1);
-        root.add(listBottomButton.get(0),0,3,1,1);
-        root.add(listBottomButton.get(2),1,3,1,1);
-        root.add(listBottomButton.get(3),1,3,1,1);
         return  root;
     }
 

@@ -75,5 +75,21 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
+    public Button pauseButtonIcon(Optional<Handler> handler, String winner){
+        Button btn = new Button();
+        btn.setMinSize(50,40);
+        btn.setBackground(new Background(BackgroundLoader.pauseMusic));
+        return btn;
+    }
+
+    public Button pauseButtonIconText(Optional<Handler> handler, String winner){
+        Button btn = new Button();
+        btn.setMinSize(50,40);
+        btn.setText("<- Pause music");
+        btn.setStyle(" -fx-background-color: transparent; ");
+        btn.setTranslateX(50);
+        return btn;
+    }
+
 
 }

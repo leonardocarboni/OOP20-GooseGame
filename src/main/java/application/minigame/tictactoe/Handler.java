@@ -51,7 +51,6 @@ public class Handler {
     };
 
     final EventHandler<Event> changeDarkModeButton = new EventHandler<Event>() {
-        boolean isDark = false;
         @Override
         public void handle(final Event event) {
                 if(!isDark) {

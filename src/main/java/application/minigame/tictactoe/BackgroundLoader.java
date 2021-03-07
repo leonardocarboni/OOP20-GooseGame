@@ -54,6 +54,10 @@ public class BackgroundLoader {
             new BackgroundImage(new Image("TicTacToe/Bug.png",600,480,false,false),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, darkButtonIconSize);
 
+    static final BackgroundImage pauseMusic =
+            new BackgroundImage(new Image("TicTacToe/Pause.png",600,480,false,false),
+                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, darkButtonIconSize);
+
 
 
 }
