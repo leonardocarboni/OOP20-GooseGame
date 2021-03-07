@@ -1,9 +1,11 @@
 package application.minigame.cableconnect;
 
+import application.utilities.Countdown;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 
@@ -22,6 +24,11 @@ public class CableConnectController implements Initializable {
     private Button endButton0, endButton1, endButton2, endButton3;
     @FXML
     private AnchorPane pane;
+    @FXML
+    private Label timeLabel;
+
+    static final private int SECONDS = 8;
+    static final private int CABLES = 4;
 
     final private Random rand = new Random();
     final private Colors[] colorsArray = Colors.getColors();
@@ -30,13 +37,19 @@ public class CableConnectController implements Initializable {
     final private Map<Button, Colors> endButtonsMap = new HashMap<>();
     final private Set<Colors> colorsDone = new HashSet<>();
     private Line currentLine;
+    private Countdown c;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        c = new Countdown(SECONDS, timeLabel);
+        c.start();
+
         initializeButtonsMap();
         initializeStartButtons();
         initializeEndButtons();
         initializeEventHandlers();
+
     }
 
     /**
@@ -47,14 +60,7 @@ public class CableConnectController implements Initializable {
         startButtonsMap.forEach((button, color) -> button.setOnMouseClicked(e -> {
             button.setOpacity(1);
             disableOtherButtons(color);
-            if (currentLine == null) {
-                currentLine = new Line(e.getSceneX(), e.getSceneY(), e.getSceneX(), e.getSceneY());
-                currentLine.setStrokeWidth(5);
-                currentLine.setStyle("-fx-stroke: " + color);
-                pane.getChildren().add(currentLine);
-            } else {
-                currentLine = null ;
-            }
+            createLine(color, e.getSceneX(), e.getSceneY());
         }));
 
         // updates the line end point.
@@ -71,8 +77,37 @@ public class CableConnectController implements Initializable {
             enableOtherButtons(color);
             if (currentLine != null) {
                 currentLine = null;
+                checkEnd();
             }
         }));
+    }
+
+    private void checkEnd() {
+        int secondsLeft = c.getSecondsLeft();
+        if (colorsDone.size() == CABLES){
+            //Alert main game [TBD]
+            c.shutdown();
+        }
+        if (secondsLeft < 0){
+            timeLabel.setText("LOST");
+        }
+    }
+
+    /**
+     * generate a starting point for the new line
+     * @param color - the color of the line
+     * @param x - x coordinate of the scene
+     * @param y - y coordinate of the scene
+     */
+    private void createLine(Colors color, double x, double y){
+        if (currentLine == null) {
+            currentLine = new Line(x, y, x, y);
+            currentLine.setStrokeWidth(5);
+            currentLine.setStyle("-fx-stroke: " + color);
+            pane.getChildren().add(currentLine);
+        } else {
+            currentLine = null ;
+        }
     }
 
     /**
@@ -91,7 +126,10 @@ public class CableConnectController implements Initializable {
      */
     private void disableOtherButtons(Colors color) {
         startButtonsMap.keySet().forEach(b -> b.setDisable(true));
-        endButtonsMap.forEach((b,c) -> b.setDisable(!c.equals(color)));
+        endButtonsMap.forEach((b,c) -> {
+            b.setDisable(!c.equals(color));
+            b.setOpacity(1);
+        });
     }
 
     /**

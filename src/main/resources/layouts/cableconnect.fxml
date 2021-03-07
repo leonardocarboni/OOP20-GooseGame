@@ -48,7 +48,7 @@
             </AnchorPane>
          </children>
       </GridPane>
-      <Label fx:id="time_label" alignment="CENTER" layoutX="259.0" layoutY="14.0" prefHeight="58.0" prefWidth="93.0" text="6.000" textAlignment="CENTER" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="258.0" AnchorPane.topAnchor="14.0">
+      <Label fx:id="timeLabel" alignment="CENTER" layoutX="259.0" layoutY="14.0" prefHeight="58.0" prefWidth="93.0" text="6.000" textAlignment="CENTER" AnchorPane.leftAnchor="259.0" AnchorPane.rightAnchor="258.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font name="Candara Bold" size="32.0" />
          </font>
