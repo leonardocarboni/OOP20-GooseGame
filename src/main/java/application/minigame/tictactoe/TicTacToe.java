@@ -9,7 +9,7 @@ public class TicTacToe extends Application {
 
     //variabili per la grandezza della schermata
     private static final int SCENE_WIDTH = 600;
-    private static final int SCENE_HEIGHT = 480;
+    private static final int SCENE_HEIGHT = 500;
 
 
     //creo un istanza del controller

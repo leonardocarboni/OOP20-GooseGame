@@ -12,7 +12,9 @@ import javafx.scene.control.Button;
 
 public class Handler {
 
-    private List<Button> listButton;
+    private List<Button> listButtonGrid;
+    private List<Button> listBottomButton;
+    protected static boolean isDark = false;
 
     private final Consumer<String> winCondition = winner -> {
         if(!winner.equals("")){
@@ -25,41 +27,66 @@ public class Handler {
         @Override
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
-                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText().equals("")){
-                    listButton.get(i).setText("X");
+                if(event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")){
+                    listButtonGrid.get(i).setText("X");
                     winCondition.accept(TicTacToe.controller.checkWin());
                     TicTacToe.controller.drawO();
                 }
                 }
             }
     };
-
-    final EventHandler<Event> click = new EventHandler<Event>() {
-        @Override
-        public void handle(final Event event) {
-            for(int i = 0; i < 9 ; i++){
-                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText().equals("")){
-                	final DropShadow shadow = new DropShadow();
-                    listButton.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
-                    listButton.get(i).setEffect(shadow);
-                }
-            }
-        }
-    };
     
     final EventHandler<Event> released = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
             for(int i = 0; i < 9 ; i++){
-                if(event.getSource().equals(listButton.get(i)) && listButton.get(i).getText().equals("")){
-                	listButton.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
+                if(event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")){
+                	if(!isDark){
+                    } else{
+                        listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackgroundBlack));
+                    }
                 }
             }
         }
     };
 
+    final EventHandler<Event> changeDarkModeButton = new EventHandler<Event>() {
+        boolean isDark = false;
+        @Override
+        public void handle(final Event event) {
+                if(!isDark) {
+                    isDark = true;
+                    changeAllDark();
+                    listBottomButton.get(0).setBackground(new Background(BackgroundLoader.darkButtonIconDark));
+                }
+                else if(isDark) {
+                    isDark = false;
+                    changeAllWhite();
+                    listBottomButton.get(0).setBackground(new Background(BackgroundLoader.darkButtonIcon));
+                }
+        }
+    };
+
+    private void changeAllDark(){
+        for(int i = 0; i < 9; i++){
+            listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackgroundBlack));
+        }
+    }
+
+    private void changeAllWhite(){
+        for(int i = 0; i < 9; i++){
+            listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
+        }
+    }
+
+
+
     public void setListButton(final List<Button> listButton){
-        this.listButton = listButton;
+        this.listButtonGrid = listButton;
+    }
+
+    public void setListButtonBottom(final List<Button> listBottomButton){
+        this.listBottomButton = listBottomButton;
     }
 
 }

@@ -25,7 +25,12 @@ public class EndgameThread extends Thread{
                 final ButtonDropper button = new ButtonDropper();
 
                 pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
-                pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
+                if(Handler.isDark){
+                    pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
+                } else{
+                    pane.setBackground(new Background(BackgroundLoader.endGameButtonBackgroundBlack));
+                }
+
                 FadeTransition ft = new FadeTransition(Duration.millis(2000), pane);
                 ft.setFromValue(0.0);
                 ft.setToValue(1.0);

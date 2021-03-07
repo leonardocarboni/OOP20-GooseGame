@@ -1,15 +1,16 @@
 package application.minigame.tictactoe;
 
-import javafx.application.Platform;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
-import java.util.concurrent.*;
+
 
 public class TTTControllerImpl implements  TTTController {
 
@@ -18,18 +19,24 @@ public class TTTControllerImpl implements  TTTController {
     private final Handler handler = new Handler();
     protected Stage stage = new Stage();
 
-    protected final List<Button> listButton = new ArrayList<>();
+    protected final List<Button> listButtonGrid = new ArrayList<>();
     private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
     private final List<String> sign = List.of("X", "O");
-
+    private final List<Button> listBottomButton = new ArrayList<>();
 
 
     public TTTControllerImpl(){
+        final ButtonDropper btn = new ButtonDropper();
         for(int i = 0; i < 9; i++){
-            final ButtonDropper btn = new ButtonDropper();
-            listButton.add(btn.gridButton(handler));
+            listButtonGrid.add(btn.gridButton(handler));
         }
-        handler.setListButton(listButton);
+        handler.setListButton(listButtonGrid);
+
+        listBottomButton.add(btn.gameDarkModeIcon(Optional.of(handler),""));
+        listBottomButton.add(btn.gameDarkModeIconText(Optional.empty(),""));
+        listBottomButton.add(btn.bugReportIcon(Optional.empty(),""));
+        listBottomButton.add(btn.bugReportIconText(Optional.empty(),""));
+        handler.setListButtonBottom(listBottomButton);
     }
 
     //funzione che crea la scelta del pc
@@ -37,8 +44,8 @@ public class TTTControllerImpl implements  TTTController {
         for (int i = 0; i < 9; i++) {
             final Random rnd = new Random();
             final int numCase = rnd.nextInt(9);
-            if (listButton.get(numCase).getText().equals("")) {
-                listButton.get(numCase).setText("O");
+            if (listButtonGrid.get(numCase).getText().equals("")) {
+                listButtonGrid.get(numCase).setText("O");
                 checkWin();
                 return;
             }
@@ -49,9 +56,9 @@ public class TTTControllerImpl implements  TTTController {
     public String checkWin(){
         for(int i = 0; i < 7; i+=3){
             for(int j = 0; j < 2; j++){
-                if(listButton.get(i).getText().equals(sign.get(j))
-                        && listButton.get(i+1).getText().equals(sign.get(j))
-                        && listButton.get(i+2).getText().equals(sign.get(j)))
+                if(listButtonGrid.get(i).getText().equals(sign.get(j))
+                        && listButtonGrid.get(i+1).getText().equals(sign.get(j))
+                        && listButtonGrid.get(i+2).getText().equals(sign.get(j)))
                 {
                     return sign.get(j);
                 }
@@ -59,23 +66,23 @@ public class TTTControllerImpl implements  TTTController {
         }
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 2; j++){
-                if(listButton.get(i).getText().equals(sign.get(j))
-                        && listButton.get(i+3).getText().equals(sign.get(j))
-                        && listButton.get(i+6).getText().equals(sign.get(j)))
+                if(listButtonGrid.get(i).getText().equals(sign.get(j))
+                        && listButtonGrid.get(i+3).getText().equals(sign.get(j))
+                        && listButtonGrid.get(i+6).getText().equals(sign.get(j)))
                 {
                     return sign.get(j);
                 }
             }
         }
         for(int j = 0; j < 2; j++) {
-            if (listButton.get(0).getText().equals(sign.get(j))
-                    && listButton.get(4).getText().equals(sign.get(j))
-                    && listButton.get(8).getText().equals(sign.get(j))) {
+            if (listButtonGrid.get(0).getText().equals(sign.get(j))
+                    && listButtonGrid.get(4).getText().equals(sign.get(j))
+                    && listButtonGrid.get(8).getText().equals(sign.get(j))) {
                 return sign.get(j);
             }
-            if (listButton.get(2).getText().equals(sign.get(j))
-                    && listButton.get(4).getText().equals(sign.get(j))
-                    && listButton.get(6).getText().equals(sign.get(j))) {
+            if (listButtonGrid.get(2).getText().equals(sign.get(j))
+                    && listButtonGrid.get(4).getText().equals(sign.get(j))
+                    && listButtonGrid.get(6).getText().equals(sign.get(j))) {
                 return sign.get(j);
             }
         }
@@ -85,15 +92,20 @@ public class TTTControllerImpl implements  TTTController {
     //creo una griglia di bottoni e la ritorno
     public GridPane createButton(){
         final GridPane root = new GridPane();
-        listButton.stream()
-                .forEach(i -> root.add(i, listButton.indexOf(i) % 3, number.get(listButton.indexOf(i)), 1 , 1));
+        listButtonGrid.stream()
+                .forEach(i -> root.add(i, listButtonGrid.indexOf(i) % 3, number.get(listButtonGrid.indexOf(i)), 1 , 1));
 
+        root.setBackground(new Background(new BackgroundFill(Color.BEIGE, null, null)));
+        root.add(listBottomButton.get(1),0,3,1,1);
+        root.add(listBottomButton.get(0),0,3,1,1);
+        root.add(listBottomButton.get(2),1,3,1,1);
+        root.add(listBottomButton.get(3),1,3,1,1);
         return  root;
     }
 
     //ritorno la lista di bottoni
     public List<Button> getList(){
-        return listButton;
+        return listButtonGrid;
     }
 
     public void setStage(Stage stage){
