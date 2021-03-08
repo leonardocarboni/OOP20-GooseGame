@@ -23,8 +23,10 @@ public class EndgameThread extends Thread{
             public void run() {
                 final StackPane pane = new StackPane();
                 final ButtonDropper button = new ButtonDropper();
+                final Handler handler = new Handler();
 
                 pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
+                pane.getChildren().add(button.exitButton(Optional.of(handler), "Exit"));
                 if(!Handler.isDark){
                     pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
                 } else{

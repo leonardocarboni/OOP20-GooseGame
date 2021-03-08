@@ -1,14 +1,21 @@
 package application.minigame.tictactoe;
 
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
 
 import javafx.scene.control.Button;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 public class Handler {
 
@@ -65,6 +72,28 @@ public class Handler {
                 }
         }
     };
+
+    final EventHandler<Event> exit = new EventHandler<Event>() {
+        @Override
+        public void handle(Event event) {
+            System.exit(1);
+        }
+    };
+
+    final EventHandler<Event> stopMusic = new EventHandler<Event>() {
+        boolean musicRunning = false;
+        @Override
+        public void handle(Event event) {
+            if(!musicRunning){
+                musicRunning = true;
+                TicTacToe.getMusic().stopMusic();
+            } else{
+                musicRunning = false;
+                TicTacToe.getMusic().startMusic();
+            }
+        }
+    };
+
 
     private void changeAllDark(){
         for(int i = 0; i < 9; i++){

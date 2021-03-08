@@ -42,6 +42,17 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
+    public Button exitButton(Optional<Handler> handler, String winner){
+        Button btn = new Button();
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.get().exit);
+        btn.setBackground(new Background(BackgroundLoader.endGameButton));
+        btn.setText("Exit");
+        btn.setTranslateY(30);
+
+        btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,40));
+        return btn;
+    }
+
     public Button gameDarkModeIcon(Optional<Handler> handler, String winner){
         Button btn = new Button();
         btn.setMinSize(50,40);
@@ -59,25 +70,11 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-    public Button bugReportIcon(Optional<Handler> handler, String winner){
-        Button btn = new Button();
-        btn.setMinSize(50,40);
-        btn.setBackground(new Background(BackgroundLoader.bugReportIcon));
-        return btn;
-    }
-
-    public Button bugReportIconText(Optional<Handler> handler, String winner){
-        Button btn = new Button();
-        btn.setMinSize(50,40);
-        btn.setText("<- Report a bug");
-        btn.setStyle(" -fx-background-color: transparent; ");
-        btn.setTranslateX(50);
-        return btn;
-    }
 
     public Button pauseButtonIcon(Optional<Handler> handler, String winner){
         Button btn = new Button();
         btn.setMinSize(50,40);
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED,handler.get().stopMusic);
         btn.setBackground(new Background(BackgroundLoader.pauseMusic));
         return btn;
     }

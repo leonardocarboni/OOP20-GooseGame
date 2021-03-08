@@ -1,5 +1,6 @@
 package application.minigame.tictactoe;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
@@ -24,6 +25,7 @@ public class TTTControllerImpl implements  TTTController {
     private final List<Integer> number2 = List.of(0,0,1,1,2,2);
     private final List<String> sign = List.of("X", "O");
     private final List<Button> listBottomButton = new ArrayList<>();
+    private int numberOfClick=0;
 
 
     public TTTControllerImpl(){
@@ -35,14 +37,14 @@ public class TTTControllerImpl implements  TTTController {
 
         listBottomButton.add(0,btn.gameDarkModeIcon(Optional.of(handler),""));
         listBottomButton.add(1,btn.gameDarkModeIconText(Optional.empty(),""));
-        listBottomButton.add(2,btn.bugReportIcon(Optional.empty(),""));
-        listBottomButton.add(3,btn.bugReportIconText(Optional.empty(),""));
-        listBottomButton.add(4,btn.pauseButtonIcon(Optional.empty(),""));
-        listBottomButton.add(5,btn.pauseButtonIconText(Optional.empty(),""));
+        listBottomButton.add(2,btn.pauseButtonIcon(Optional.of(handler),""));
+        listBottomButton.add(3,btn.pauseButtonIconText(Optional.empty(),""));
+
 
         handler.setListButtonBottom(listBottomButton);
     }
 
+    
     //funzione che crea la scelta del pc
     public void drawO(){
         for (int i = 0; i < 9; i++) {
@@ -58,6 +60,7 @@ public class TTTControllerImpl implements  TTTController {
 
     //metodo che controlla chi ha vinto
     public String checkWin(){
+        numberOfClick++;
         for(int i = 0; i < 7; i+=3){
             for(int j = 0; j < 2; j++){
                 if(listButtonGrid.get(i).getText().equals(sign.get(j))
@@ -89,6 +92,9 @@ public class TTTControllerImpl implements  TTTController {
                     && listButtonGrid.get(6).getText().equals(sign.get(j))) {
                 return sign.get(j);
             }
+        }
+        if(numberOfClick==9){
+            return "No one";
         }
         return "";
     }
