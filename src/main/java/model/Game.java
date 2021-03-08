@@ -11,7 +11,6 @@ public class Game {
 	public static void main(final String[] args) {
 		
 		final List<Player> list = new ArrayList<>();
-		
 		final Player g1 = new Player("Luca");
 		final Player g2 = new Player("Giovanni");
 		final FileUtility fu = new FileUtility();
