@@ -7,6 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,7 +35,17 @@ public class PhraseCatchController implements Initializable {
     }
 
     private void initializeText() {
-        textToCopy = "Sassi Matti cani";
+        File file = new File("src/main/resources/sentences.txt");
+        try {
+            final RandomAccessFile f = new RandomAccessFile(file, "r");
+            final long randomLocation = (long) (Math.random() * f.length());
+            f.seek(randomLocation);
+            f.readLine();
+            textToCopy = f.readLine();
+            f.close();
+        }catch (IOException ex){
+            System.out.println("Couldn't load file");
+        }
         textLabel.setText(textToCopy);
     }
 
