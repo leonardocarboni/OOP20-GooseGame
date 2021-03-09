@@ -2,7 +2,7 @@ package application;
 
 import application.minigame.cableconnect.CableConnect;
 import application.minigame.sassocartaforbici.SassoCartaFrobici;
-import application.minigame.tictactoe.TicTacToe;
+import application.minigame.tictactoe.mainGame.TicTacToe;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

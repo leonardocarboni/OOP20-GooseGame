@@ -1,8 +1,8 @@
-package application.minigame.tictactoe;
+package application.minigame.tictactoe.mainGame;
 
-import application.minigame.tictactoe.JFXItem.BackgroundLoader;
-import application.minigame.tictactoe.JFXItem.ButtonDropper;
-import application.minigame.tictactoe.MVC.TTTController;
+import application.minigame.tictactoe.fxItem.BackgroundLoader;
+import application.minigame.tictactoe.fxItem.ButtonDropper;
+import application.minigame.tictactoe.mvc.TTTController;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.scene.Scene;

@@ -1,9 +1,9 @@
-package application.minigame.tictactoe.MVC;
+package application.minigame.tictactoe.mvc;
 
 
-import application.minigame.tictactoe.JFXItem.BackgroundLoader;
-import application.minigame.tictactoe.EndgameThread;
-import application.minigame.tictactoe.TicTacToe;
+import application.minigame.tictactoe.fxItem.BackgroundLoader;
+import application.minigame.tictactoe.mainGame.EndgameThread;
+import application.minigame.tictactoe.mainGame.TicTacToe;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Background;

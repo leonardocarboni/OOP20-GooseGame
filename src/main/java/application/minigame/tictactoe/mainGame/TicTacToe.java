@@ -1,6 +1,6 @@
-package application.minigame.tictactoe;
+package application.minigame.tictactoe.mainGame;
 
-import application.minigame.tictactoe.MVC.TTTView;
+import application.minigame.tictactoe.mvc.TTTView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;

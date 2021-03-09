@@ -1,7 +1,7 @@
-package application.minigame.tictactoe.MVC;
+package application.minigame.tictactoe.mvc;
 
 
-import application.minigame.tictactoe.JFXItem.ButtonDropper;
+import application.minigame.tictactoe.fxItem.ButtonDropper;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;

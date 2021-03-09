@@ -1,6 +1,6 @@
-package application.minigame.tictactoe.JFXItem;
+package application.minigame.tictactoe.fxItem;
 
-import application.minigame.tictactoe.MVC.TTTController;
+import application.minigame.tictactoe.mvc.TTTController;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;

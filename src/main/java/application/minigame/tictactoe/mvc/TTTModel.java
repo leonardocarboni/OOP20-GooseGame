@@ -1,4 +1,4 @@
-package application.minigame.tictactoe.MVC;
+package application.minigame.tictactoe.mvc;
 
 import javafx.scene.control.Button;
 import java.util.List;

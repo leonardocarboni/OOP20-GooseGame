@@ -1,4 +1,4 @@
-package application.minigame.tictactoe.JFXItem;
+package application.minigame.tictactoe.fxItem;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
@@ -20,12 +20,12 @@ public class BackgroundLoader {
 
 
     /* bottone finale che dice chi ha vinto o no */
-    static final BackgroundImage endGameButtonBackground =
+    public static final BackgroundImage endGameButtonBackground =
             new BackgroundImage(new Image("TicTacToe/Sfondo.png",600,480,false,false),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
     /* bottone finale che dice chi ha vinto o no */
-    static final BackgroundImage endGameButtonBackgroundBlack =
+    public static final BackgroundImage endGameButtonBackgroundBlack =
             new BackgroundImage(new Image("TicTacToe/SfondoBlack.png",600,480,false,false),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
