@@ -80,19 +80,6 @@ public class Handler {
         }
     };
 
-    final EventHandler<Event> stopMusic = new EventHandler<Event>() {
-        boolean musicRunning = false;
-        @Override
-        public void handle(Event event) {
-            if(!musicRunning){
-                musicRunning = true;
-                TicTacToe.getMusic().stopMusic();
-            } else{
-                musicRunning = false;
-                TicTacToe.getMusic().startMusic();
-            }
-        }
-    };
 
 
     private void changeAllDark(){

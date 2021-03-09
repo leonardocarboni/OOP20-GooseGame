@@ -74,7 +74,6 @@ public class ButtonDropper extends Button {
     public Button pauseButtonIcon(Optional<Handler> handler, String winner){
         Button btn = new Button();
         btn.setMinSize(50,40);
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED,handler.get().stopMusic);
         btn.setBackground(new Background(BackgroundLoader.pauseMusic));
         return btn;
     }
