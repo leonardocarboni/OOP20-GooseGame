@@ -1,5 +1,8 @@
 package application.minigame.tictactoe;
 
+import application.minigame.tictactoe.JFXItem.BackgroundLoader;
+import application.minigame.tictactoe.JFXItem.ButtonDropper;
+import application.minigame.tictactoe.MVC.TTTController;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -23,11 +26,11 @@ public class EndgameThread extends Thread{
             public void run() {
                 final StackPane pane = new StackPane();
                 final ButtonDropper button = new ButtonDropper();
-                final Handler handler = new Handler();
+                final TTTController handler = new TTTController();
 
                 pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
                 pane.getChildren().add(button.exitButton(Optional.of(handler), "Exit"));
-                if(!Handler.isDark){
+                if(!TTTController.isDark){
                     pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
                 } else{
                     pane.setBackground(new Background(BackgroundLoader.endGameButtonBackgroundBlack));

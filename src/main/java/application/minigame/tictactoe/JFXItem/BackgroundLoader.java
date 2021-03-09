@@ -1,4 +1,4 @@
-package application.minigame.tictactoe;
+package application.minigame.tictactoe.JFXItem;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
@@ -9,12 +9,12 @@ import javafx.scene.layout.BackgroundSize;
 public class BackgroundLoader {
 
     /* sfondo del bottone della griglia principale */
-    static final BackgroundImage gameButtonBackground =
+    public static final BackgroundImage gameButtonBackground =
             new BackgroundImage(new Image("TicTacToe/Sfondo.png",200,170,false,false),
             BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
     /* sfondo del bottone della griglia principale */
-    static final BackgroundImage gameButtonBackgroundBlack =
+    public static final BackgroundImage gameButtonBackgroundBlack =
             new BackgroundImage(new Image("TicTacToe/SfondoBlack.png",200,170,false,false),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
@@ -42,11 +42,11 @@ public class BackgroundLoader {
     private static final BackgroundSize darkButtonIconSize =
             new BackgroundSize(15,10,false,false,true,true);
 
-    static final BackgroundImage darkButtonIcon =
+    public static final BackgroundImage darkButtonIcon =
             new BackgroundImage(new Image("TicTacToe/Click.png",600,480,false,false),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, darkButtonIconSize);
 
-    static final BackgroundImage darkButtonIconDark =
+    public static final BackgroundImage darkButtonIconDark =
             new BackgroundImage(new Image("TicTacToe/ClickBlack.png",600,480,false,false),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, darkButtonIconSize);
 

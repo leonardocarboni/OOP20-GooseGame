@@ -1,27 +1,22 @@
-package application.minigame.tictactoe;
+package application.minigame.tictactoe.MVC;
 
-import javafx.event.ActionEvent;
+
+import application.minigame.tictactoe.JFXItem.BackgroundLoader;
+import application.minigame.tictactoe.EndgameThread;
+import application.minigame.tictactoe.TicTacToe;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.function.Consumer;
-
 import javafx.scene.control.Button;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
-
-public class Handler {
+public class TTTController {
 
     private List<Button> listButtonGrid;
     private List<Button> listBottomButton;
-    protected static boolean isDark = false;
+    public static boolean isDark = false;
+    private final static int NUMBER_OF_BUTTON = 9;
 
     private final Consumer<String> winCondition = winner -> {
         if(!winner.equals("")){
@@ -30,23 +25,23 @@ public class Handler {
         }
     };
 
-    final EventHandler<Event> eh = new EventHandler<Event>() {
+    public final EventHandler<Event> eh = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
-            for(int i = 0; i < 9 ; i++){
+            for(int i = 0; i < NUMBER_OF_BUTTON ; i++){
                 if(event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")){
                     listButtonGrid.get(i).setText("X");
-                    winCondition.accept(TicTacToe.controller.checkWin());
+                    winCondition.accept(TicTacToe.controller.model.checkWin());
                     TicTacToe.controller.drawO();
                 }
                 }
             }
     };
-    
-    final EventHandler<Event> released = new EventHandler<Event>() {
+
+    public final EventHandler<Event> released = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
-            for(int i = 0; i < 9 ; i++){
+            for(int i = 0; i < NUMBER_OF_BUTTON ; i++){
                 if(event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")){
                 	if(!isDark){
                     } else{
@@ -57,7 +52,7 @@ public class Handler {
         }
     };
 
-    final EventHandler<Event> changeDarkModeButton = new EventHandler<Event>() {
+    public final EventHandler<Event> changeDarkModeButton = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
                 if(!isDark) {
@@ -73,9 +68,9 @@ public class Handler {
         }
     };
 
-    final EventHandler<Event> exit = new EventHandler<Event>() {
+    public final EventHandler<Event> exit = new EventHandler<Event>() {
         @Override
-        public void handle(Event event) {
+        public void handle(final Event event) {
             System.exit(1);
         }
     };
@@ -83,13 +78,13 @@ public class Handler {
 
 
     private void changeAllDark(){
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < NUMBER_OF_BUTTON; i++){
             listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackgroundBlack));
         }
     }
 
     private void changeAllWhite(){
-        for(int i = 0; i < 9; i++){
+        for(int i = 0; i < NUMBER_OF_BUTTON; i++){
             listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
         }
     }

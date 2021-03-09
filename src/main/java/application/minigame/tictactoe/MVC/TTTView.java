@@ -1,12 +1,11 @@
-package application.minigame.tictactoe;
+package application.minigame.tictactoe.MVC;
 
-import javafx.fxml.FXML;
+
+import application.minigame.tictactoe.JFXItem.ButtonDropper;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,38 +14,38 @@ import java.util.Random;
 /**
  * Controller del gioco, esso si occupa della creazione di bottoni, di disegnare la "O" e vedere chi vince
  */
-public class TTTControllerImpl implements  TTTController {
+public class TTTView {
 
 
     //creo un hanlder da dare ai bottoni
-    private final Handler handler = new Handler();
+    private final TTTController handler = new TTTController();
 
     /**
      * Creo lo stage
      */
-    protected Stage stage = new Stage();
+    public Stage stage = new Stage();
 
+    protected final TTTModel model = new TTTModel();
 
     private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
     private final List<Integer> number2 = List.of(0,0,1,1,2,2);
     private final List<String> sign = List.of("X", "O");
+
     /**
      * Lista dei bottoni presenti nella griglia principale 3x3
      */
-    protected final List<Button> listButtonGrid = new ArrayList<>();
+    private static final List<Button> listButtonGrid = new ArrayList<>();
+
     /**
      * Lista dei bottono sotto la griglia 3x3
      */
     private final List<Button> listBottomButton = new ArrayList<>();
-    /**
-     * Numero di click che viene fatto, viene usata in caso che nessuno vinca
-     */
-    private int numberOfClick=0;
+
 
     /**
      * Costruttore della classe controller. Crea la lista dei bottoni nel gioco
      */
-    public TTTControllerImpl(){
+    public TTTView(){
         final ButtonDropper btn = new ButtonDropper();
         for(int i = 0; i < 9; i++){
             listButtonGrid.add(btn.gridButton(handler));
@@ -71,54 +70,10 @@ public class TTTControllerImpl implements  TTTController {
             final int numCase = rnd.nextInt(9);
             if (listButtonGrid.get(numCase).getText().equals("")) {
                 listButtonGrid.get(numCase).setText("O");
-                checkWin();
+                model.checkWin();
                 return;
             }
         }
-    }
-
-    /**
-     * Metodo che ritorna il vincitore
-     * @return Stringa vincitore
-     */
-    public String checkWin(){
-        numberOfClick++;
-        for(int i = 0; i < 7; i+=3){
-            for(int j = 0; j < 2; j++){
-                if(listButtonGrid.get(i).getText().equals(sign.get(j))
-                        && listButtonGrid.get(i+1).getText().equals(sign.get(j))
-                        && listButtonGrid.get(i+2).getText().equals(sign.get(j)))
-                {
-                    return sign.get(j);
-                }
-            }
-        }
-        for(int i = 0; i < 3; i++){
-            for(int j = 0; j < 2; j++){
-                if(listButtonGrid.get(i).getText().equals(sign.get(j))
-                        && listButtonGrid.get(i+3).getText().equals(sign.get(j))
-                        && listButtonGrid.get(i+6).getText().equals(sign.get(j)))
-                {
-                    return sign.get(j);
-                }
-            }
-        }
-        for(int j = 0; j < 2; j++) {
-            if (listButtonGrid.get(0).getText().equals(sign.get(j))
-                    && listButtonGrid.get(4).getText().equals(sign.get(j))
-                    && listButtonGrid.get(8).getText().equals(sign.get(j))) {
-                return sign.get(j);
-            }
-            if (listButtonGrid.get(2).getText().equals(sign.get(j))
-                    && listButtonGrid.get(4).getText().equals(sign.get(j))
-                    && listButtonGrid.get(6).getText().equals(sign.get(j))) {
-                return sign.get(j);
-            }
-        }
-        if(numberOfClick==9){
-            return "No one";
-        }
-        return "";
     }
 
     /**
@@ -135,8 +90,12 @@ public class TTTControllerImpl implements  TTTController {
         return  root;
     }
 
-    public void setStage(Stage stage){
+    public void setStage(final Stage stage){
         this.stage = stage;
+    }
+
+    public static List<Button> getListButton(){
+        return listButtonGrid;
     }
 
 }

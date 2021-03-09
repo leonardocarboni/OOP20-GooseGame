@@ -1,13 +1,10 @@
 package application.minigame.tictactoe;
 
+import application.minigame.tictactoe.MVC.TTTView;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javax.sound.sampled.*;
-import java.io.IOException;
 
 
 public class TicTacToe extends Application {
@@ -18,7 +15,7 @@ public class TicTacToe extends Application {
 
 
     //creo un istanza del controller
-    public static final TTTControllerImpl controller = new TTTControllerImpl();
+    public static final TTTView controller = new TTTView();
 
 
     //avvio della finestra del programma
