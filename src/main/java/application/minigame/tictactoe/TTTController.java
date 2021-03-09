@@ -16,9 +16,6 @@ public interface TTTController {
     //creo una griglia di bottoni e la ritorno
     public GridPane createButton();
 
-    //ritorno la lista di bottoni
-    public List<Button> getList();
-
     public void setStage(Stage stage);
 
 }

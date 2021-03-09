@@ -25,12 +25,16 @@ public class TicTacToe extends Application {
     @Override
     public void start(final Stage primaryStage) {
 
+        /**
+         * Setto lo stage principale
+         */
         controller.setStage(primaryStage);
 
         primaryStage.setTitle("TicTacToe");
 
-        //uso un contoller per creare la griglia
-        //grid pane
+        /**
+         * Il controllore mi ritorna La griglia coi bottoni
+         */
         GridPane root = controller.createButton();
         primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
         primaryStage.setResizable(false);
