@@ -1,7 +1,9 @@
 package application.minigame.tictactoe.mvc;
 
+import application.minigame.tictactoe.mainGame.EndgameThread;
 import javafx.scene.control.Button;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class TTTModel {
     /**
@@ -9,8 +11,7 @@ public class TTTModel {
      */
     private int numberOfClick=0;
 
-    final List<Button> listButtonGrid = TTTView.getListButton();
-
+    private List<Button> listButtonGrid;
     private final List<String> sign = List.of("X", "O");
 
     /**
@@ -18,7 +19,8 @@ public class TTTModel {
      * @return Stringa vincitore
      */
     public String checkWin(){
-        numberOfClick++;
+        this.numberOfClick++;
+        this.listButtonGrid = TTTView.getListButton();
         for(int i = 0; i < 7; i+=3){
             for(int j = 0; j < 2; j++){
                 if(listButtonGrid.get(i).getText().equals(sign.get(j))
@@ -56,5 +58,12 @@ public class TTTModel {
         }
         return "";
     }
+
+    public final Consumer<String> winCondition = winner -> {
+        if(!winner.equals("")){
+            EndgameThread my = new EndgameThread(winner);
+            my.start();
+        }
+    };
 
 }

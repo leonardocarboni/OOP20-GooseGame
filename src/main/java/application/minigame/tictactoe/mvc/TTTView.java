@@ -28,17 +28,17 @@ public class TTTView {
     /**
      * Creo un'istanza del controller
      */
-    private final TTTController handler = new TTTController();
+    public static final TTTController handler = new TTTController();
+
+    /**
+     * Creo un istanza model per vedere chi ha vinto
+     */
+    public static final TTTModel model = new TTTModel();
 
     /**
      * Creo lo stage
      */
     public Stage stage = new Stage();
-
-    /**
-     * Creo un istanza model per vedere chi ha vinto
-     */
-    protected final TTTModel model = new TTTModel();
 
     private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
     private final List<Integer> number2 = List.of(0,0,1,1,2,2);
@@ -57,7 +57,7 @@ public class TTTView {
     /**
      * Serve per vedere se la dark mode è selezionata
      */
-    public static boolean isDark = false;
+    public boolean isDark = false;
 
 
     /**
@@ -88,7 +88,7 @@ public class TTTView {
             final int numCase = rnd.nextInt(9);
             if (listButtonGrid.get(numCase).getText().equals("")) {
                 listButtonGrid.get(numCase).setText("O");
-                TTTController.winCondition.accept(model.checkWin());
+                model.winCondition.accept(model.checkWin());
                 return;
             }
         }
@@ -105,7 +105,7 @@ public class TTTView {
             if(evt.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")){
                 listButtonGrid.get(i).setText("X");
                 winCondition.accept(model.checkWin());
-                TicTacToe.view.drawO();
+                drawO();
             }
         }
     }
@@ -178,8 +178,6 @@ public class TTTView {
         this.stage = stage;
     }
 
-    public static List<Button> getListButton(){
-        return listButtonGrid;
-    }
+    public static List<Button> getListButton(){ return listButtonGrid; }
 
 }

@@ -1,5 +1,6 @@
 package application.minigame.tictactoe.mainGame;
 
+import application.minigame.tictactoe.mvc.GettersMVC;
 import application.minigame.tictactoe.mvc.TTTView;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,10 +14,8 @@ public class TicTacToe extends Application {
     private static final int SCENE_WIDTH = 600;
     private static final int SCENE_HEIGHT = 500;
 
-
     //creo un istanza del controller
     public static final TTTView view = new TTTView();
-
 
     //avvio della finestra del programma
     @Override

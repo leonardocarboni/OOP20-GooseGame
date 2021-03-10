@@ -1,47 +1,33 @@
 package application.minigame.tictactoe.mvc;
 
-
-import application.minigame.tictactoe.fxItem.BackgroundLoader;
-import application.minigame.tictactoe.mainGame.EndgameThread;
 import application.minigame.tictactoe.mainGame.TicTacToe;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.layout.Background;
 import java.util.List;
-import java.util.function.Consumer;
 import javafx.scene.control.Button;
 
 public class TTTController {
 
     private List<Button> listButtonGrid;
     private List<Button> listBottomButton;
-
-
-    public static final Consumer<String> winCondition = winner -> {
-        if(!winner.equals("")){
-            EndgameThread my = new EndgameThread(winner);
-            my.start();
-        }
-    };
+    private GettersMVC getters = new GettersMVC();
 
     public final EventHandler<Event> eh = new EventHandler<Event>() {
         @Override
-        public void handle(final Event event) {
-            TicTacToe.view.drawX(event, winCondition);
-            }
+        public void handle(final Event event) { getters.getView().drawX(event, TTTView.model.winCondition); }
     };
 
     public final EventHandler<Event> released = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
-            TicTacToe.view.releaseButton(event);
+            getters.getView().releaseButton(event);
         }
     };
 
     public final EventHandler<Event> changeDarkModeButton = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
-            TicTacToe.view.changeColor();
+            getters.getView().changeColor();
         }
     };
 
@@ -51,7 +37,6 @@ public class TTTController {
             System.exit(1);
         }
     };
-
 
     public void setListButton(final List<Button> listButton){
         this.listButtonGrid = listButton;
