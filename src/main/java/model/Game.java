@@ -14,7 +14,7 @@ public class Game {
 		final Player g1 = new Player("Luca");
 		final Player g2 = new Player("Giovanni");
 		final FileUtility fu = new FileUtility();
-	
+		
 		list.add(g1);
 		list.add(g2);
 		final Rank r = new Rank(list);
