@@ -15,7 +15,7 @@ public class TicTacToe extends Application {
 
 
     //creo un istanza del controller
-    public static final TTTView controller = new TTTView();
+    public static final TTTView view = new TTTView();
 
 
     //avvio della finestra del programma
@@ -25,14 +25,14 @@ public class TicTacToe extends Application {
         /**
          * Setto lo stage principale
          */
-        controller.setStage(primaryStage);
+        view.setStage(primaryStage);
 
         primaryStage.setTitle("TicTacToe");
 
         /**
          * Il controllore mi ritorna La griglia coi bottoni
          */
-        GridPane root = controller.createButton();
+        GridPane root = view.createButton();
         primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
         primaryStage.setResizable(false);
         primaryStage.show();

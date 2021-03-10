@@ -15,10 +15,9 @@ public class TTTController {
 
     private List<Button> listButtonGrid;
     private List<Button> listBottomButton;
-    public static boolean isDark = false;
-    private final static int NUMBER_OF_BUTTON = 9;
 
-    private final Consumer<String> winCondition = winner -> {
+
+    public static final Consumer<String> winCondition = winner -> {
         if(!winner.equals("")){
             EndgameThread my = new EndgameThread(winner);
             my.start();
@@ -28,43 +27,21 @@ public class TTTController {
     public final EventHandler<Event> eh = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
-            for(int i = 0; i < NUMBER_OF_BUTTON ; i++){
-                if(event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")){
-                    listButtonGrid.get(i).setText("X");
-                    winCondition.accept(TicTacToe.controller.model.checkWin());
-                    TicTacToe.controller.drawO();
-                }
-                }
+            TicTacToe.view.drawX(event, winCondition);
             }
     };
 
     public final EventHandler<Event> released = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
-            for(int i = 0; i < NUMBER_OF_BUTTON ; i++){
-                if(event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")){
-                	if(!isDark){
-                    } else{
-                        listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackgroundBlack));
-                    }
-                }
-            }
+            TicTacToe.view.releaseButton(event);
         }
     };
 
     public final EventHandler<Event> changeDarkModeButton = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
-                if(!isDark) {
-                    isDark = true;
-                    changeAllDark();
-                    listBottomButton.get(0).setBackground(new Background(BackgroundLoader.darkButtonIconDark));
-                }
-                else if(isDark) {
-                    isDark = false;
-                    changeAllWhite();
-                    listBottomButton.get(0).setBackground(new Background(BackgroundLoader.darkButtonIcon));
-                }
+            TicTacToe.view.changeColor();
         }
     };
 
@@ -74,21 +51,6 @@ public class TTTController {
             System.exit(1);
         }
     };
-
-
-
-    private void changeAllDark(){
-        for(int i = 0; i < NUMBER_OF_BUTTON; i++){
-            listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackgroundBlack));
-        }
-    }
-
-    private void changeAllWhite(){
-        for(int i = 0; i < NUMBER_OF_BUTTON; i++){
-            listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
-        }
-    }
-
 
 
     public void setListButton(final List<Button> listButton){

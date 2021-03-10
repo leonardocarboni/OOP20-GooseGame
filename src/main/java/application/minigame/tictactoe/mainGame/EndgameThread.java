@@ -3,6 +3,7 @@ package application.minigame.tictactoe.mainGame;
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
 import application.minigame.tictactoe.fxItem.ButtonDropper;
 import application.minigame.tictactoe.mvc.TTTController;
+import application.minigame.tictactoe.mvc.TTTView;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -30,7 +31,7 @@ public class EndgameThread extends Thread{
 
                 pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
                 pane.getChildren().add(button.exitButton(Optional.of(handler), "Exit"));
-                if(!TTTController.isDark){
+                if(!TTTView.isDark){
                     pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
                 } else{
                     pane.setBackground(new Background(BackgroundLoader.endGameButtonBackgroundBlack));
@@ -41,7 +42,7 @@ public class EndgameThread extends Thread{
                 ft.setToValue(1.0);
                 ft.play();
 
-                TicTacToe.controller.stage.setScene(new Scene(pane,600,480));
+                TicTacToe.view.stage.setScene(new Scene(pane,600,480));
             }
         });
 
