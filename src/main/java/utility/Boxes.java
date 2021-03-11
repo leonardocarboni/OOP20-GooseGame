@@ -11,23 +11,23 @@ public enum Boxes {
 	EVEN_OR_ODD(BoxesType.MINIGAMES,"Pari o Dispari",-2,0),
 	ROCK_PAPER_SCISSORS(BoxesType.MINIGAMES,"Sasso Carta Forbici",3,3),
 	CABLE_CONNECT(BoxesType.MINIGAMES,"Collega i cavi",2,2);
-	
+
 	private BoxesType type;
 	private String description;
 	private int penality;
 	private int win;
-	
+
 	Boxes(final BoxesType type, final String description,final int penality, final int win) {
 		this.type = type;
 		this.description = description;
 		this.penality = penality;
 		this.win = win;
 	}
-	
+
 	public BoxesType getType() {
 		return type;
 	}
-	
+
 	public int getPenality() {
 		return penality;
 	}

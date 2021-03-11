@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import utility.Boxes;
+import utility.BoxesType;
 
 public class Board {
 
@@ -16,22 +17,30 @@ public class Board {
 	}
 	
 	/*
+	 * Function to create the board of game
 	 * @param size of game
 	 * @param number of minigames in the board
-	 * @return list composed of box 
+	 * @return game board
 	 */
-	public List<Boxes> generateBoxes(final int nMinigames){
+	public List<Boxes> generateBoard(){
 		checkSize(size);
+		final List<Boxes> minigames = getAllBoxesByType(BoxesType.MINIGAMES);
 		boxes.add(Boxes.START);
-		int con = 0;
+		int addSpecial = 0;
+		boolean addMinigames = false;
 		for(int i = 0; i < size - 1; i++) {
-			if(con == size / nMinigames) {
-				//Add random minigames
-				con = 0;
-				break;
+			if(addSpecial == 2) {
+				if(addMinigames) {
+					boxes.add(minigames.get(randomValue(0, minigames.size() - 1)));
+				}else {
+					boxes.add(Boxes.BONUS);
+				}
+				addMinigames = addMinigames ? false : true;
+				addSpecial = 0;
+			}else {
+				boxes.add(Boxes.NORMAL);
+				addSpecial++;
 			}
-			boxes.add(Boxes.NORMAL);
-			con++;
 		}
 		boxes.add(Boxes.END);
 		return boxes;
@@ -75,5 +84,20 @@ public class Board {
 	 */
 	private int randomValue(final int minValue, final int maxValue) {
 		return (int)(Math.random() * ((maxValue - minValue) + 1)) + minValue;
+	}
+	
+	/*
+	 * Function to get all boxes that matches the filter
+	 * @param type of Boxes to filter
+	 * @return list of boxes 
+	 */
+	private List<Boxes> getAllBoxesByType(final BoxesType type){
+		final List<Boxes> list = new ArrayList<>();
+		for (final Boxes b : Boxes.values()) {
+			if(b.getType().equals(type)) {
+				list.add(b);
+			}
+		}
+		return list;
 	}
 }

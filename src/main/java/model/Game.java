@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,8 @@ public class Game {
 		final Player g1 = new Player("Luca");
 		final Player g2 = new Player("Giovanni");
 		final FileUtility fu = new FileUtility();
-		
+		final Board b = new Board(42);
+		System.out.println(b.generateBoard());
 		list.add(g1);
 		list.add(g2);
 		final Rank r = new Rank(list);
