@@ -1,0 +1,24 @@
+.button{
+    -fx-background-color: "FCFCFC";
+}
+
+#bottomborder.button{
+    -fx-border-width: 0 0 3 0;
+    -fx-border-color: "1F1F1F";
+}
+
+
+#leftborder.button{
+    -fx-border-width: 0 0 0 3;
+    -fx-border-color: "1F1F1F";
+}
+
+#topborder.button{
+    -fx-border-width: 3 0 0 0;
+    -fx-border-color: "1F1F1F";
+}
+
+#rightborder.button{
+    -fx-border-width: 0 3 0 0;
+    -fx-border-color: "1F1F1F";
+}
