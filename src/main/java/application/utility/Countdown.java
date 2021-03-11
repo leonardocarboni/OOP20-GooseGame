@@ -1,4 +1,4 @@
-package application.utilities;
+package application.utility;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
