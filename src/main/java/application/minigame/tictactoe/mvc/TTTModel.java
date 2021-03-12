@@ -10,7 +10,8 @@ public class TTTModel {
      * Numero di click che viene fatto, viene usata in caso che nessuno vinca
      */
     private int numberOfClick=0;
-
+    private final GettersMVC getters = new GettersMVC();
+    private final int bound = getters.getSize();
     private List<Button> listButtonGrid;
     private final List<String> sign = List.of("X", "O");
 
@@ -21,39 +22,62 @@ public class TTTModel {
     public String checkWin(){
         this.numberOfClick++;
         this.listButtonGrid = TTTView.getListButton();
-        for(int i = 0; i < 7; i+=3){
+        for(int i = 0; i <= (bound)*(bound-1); i+=bound){
             for(int j = 0; j < 2; j++){
-                if(listButtonGrid.get(i).getText().equals(sign.get(j))
-                        && listButtonGrid.get(i+1).getText().equals(sign.get(j))
-                        && listButtonGrid.get(i+2).getText().equals(sign.get(j)))
-                {
-                    return sign.get(j);
+                int counter = 0;
+                for (int k = 0; k < bound; k++){
+                    if(listButtonGrid.get(i+k).getText().equals(sign.get(j))) {
+                        counter++;
+                    }
+                    if (counter == bound){
+                        return sign.get(j);
+                    }
                 }
             }
         }
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < bound; i++){
             for(int j = 0; j < 2; j++){
-                if(listButtonGrid.get(i).getText().equals(sign.get(j))
-                        && listButtonGrid.get(i+3).getText().equals(sign.get(j))
-                        && listButtonGrid.get(i+6).getText().equals(sign.get(j)))
-                {
+                int counter = 0;
+                for(int k = 0; k <= (bound)*(bound-1); k+=bound){
+                    if(listButtonGrid.get(i+k).getText().equals(sign.get(j))){
+                        counter++;
+                    }
+                    if (counter == bound){
+                        return sign.get(j);
+                    }
+                }
+            }
+        }
+        for(int j = 0; j < 2; j++) {
+            int counter = 0;
+            for(int i = 0; i < bound*bound; i+=bound+1){
+                if (listButtonGrid.get(i).getText().equals(sign.get(j))){
+                    counter++;
+                }
+                if(counter == bound){
                     return sign.get(j);
                 }
             }
         }
         for(int j = 0; j < 2; j++) {
-            if (listButtonGrid.get(0).getText().equals(sign.get(j))
-                    && listButtonGrid.get(4).getText().equals(sign.get(j))
-                    && listButtonGrid.get(8).getText().equals(sign.get(j))) {
-                return sign.get(j);
+            int counter = 0;
+            for(int i = bound-1; i < bound*bound; i+=bound-1){
+                if (listButtonGrid.get(i).getText().equals(sign.get(j))){
+                    counter++;
+                }
+                if(counter == bound){
+                    return sign.get(j);
+                }
             }
-            if (listButtonGrid.get(2).getText().equals(sign.get(j))
+
+            /*if (listButtonGrid.get(2).getText().equals(sign.get(j))
                     && listButtonGrid.get(4).getText().equals(sign.get(j))
                     && listButtonGrid.get(6).getText().equals(sign.get(j))) {
                 return sign.get(j);
-            }
+            }*/
         }
-        if(numberOfClick==9){
+
+        if(numberOfClick==bound*bound){
             return "No one";
         }
         return "";

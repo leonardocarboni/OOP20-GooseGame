@@ -23,4 +23,8 @@ public class GettersMVC {
         return this.model;
     }
 
+    public int getSize(){
+        return TicTacToe.GRID_DIM;
+    }
+
 }

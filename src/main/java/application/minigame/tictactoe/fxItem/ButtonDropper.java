@@ -1,5 +1,6 @@
 package application.minigame.tictactoe.fxItem;
 
+import application.minigame.tictactoe.mvc.GettersMVC;
 import application.minigame.tictactoe.mvc.TTTController;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -17,13 +18,15 @@ public class ButtonDropper extends Button {
     //metodo che consente di creare il bottone presente nella griglia
     //prende come valore un handler per un bottone
     public Button gridButton(TTTController handler){
+        final GettersMVC getters = new GettersMVC();
+        final int factor = getters.getSize();
 
         final Button btn = new Button();
         final DropShadow shadow = new DropShadow();
         btn.setEffect(shadow);
         btn.setBackground(new Background(BackgroundLoader.gameButtonBackground));
         btn.setPrefSize(200,200);
-        btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,80));
+        btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,100/factor));
         btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.eh);
         //btn.addEventFilter(MouseEvent.MOUSE_PRESSED, handler.click);
         btn.addEventFilter(MouseEvent.MOUSE_RELEASED, handler.released);
@@ -61,15 +64,6 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-    public Button gameDarkModeIconText(Optional<TTTController> handler, String winner){
-        Button btn = new Button();
-        btn.setMinSize(50,40);
-        btn.setText("<- Change mode");
-        btn.setStyle(" -fx-background-color: transparent; ");
-        btn.setTranslateX(50);
-        return btn;
-    }
-
 
     public Button pauseButtonIcon(Optional<TTTController> handler, String winner){
         Button btn = new Button();
@@ -78,14 +72,6 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-    public Button pauseButtonIconText(Optional<TTTController> handler, String winner){
-        Button btn = new Button();
-        btn.setMinSize(50,40);
-        btn.setText("<- Pause music");
-        btn.setStyle(" -fx-background-color: transparent; ");
-        btn.setTranslateX(50);
-        return btn;
-    }
 
 
 }

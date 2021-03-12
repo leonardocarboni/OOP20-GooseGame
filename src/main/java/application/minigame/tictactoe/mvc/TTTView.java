@@ -4,8 +4,10 @@ package application.minigame.tictactoe.mvc;
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
 import application.minigame.tictactoe.fxItem.ButtonDropper;
 import application.minigame.tictactoe.mainGame.TicTacToe;
+import com.sun.javafx.fxml.BeanAdapter;
 import javafx.event.Event;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -23,7 +25,9 @@ public class TTTView {
     /**
      * Numero di bottoni nella griglia
      */
-    private final static int NUMBER_OF_BUTTON = 9;
+
+    private static int GRID_DIM;
+    private static int NUMBER_OF_BUTTON;
 
     /**
      * Creo un'istanza del controller
@@ -40,8 +44,11 @@ public class TTTView {
      */
     public Stage stage = new Stage();
 
-    private final List<Integer> number = List.of(0,0,0,1,1,1,2,2,2);
-    private final List<Integer> number2 = List.of(0,0,1,1,2,2);
+    private static List<Integer> number = new ArrayList<>();
+
+
+    private static List<Integer> number2 = new ArrayList<>();
+
     private final List<String> sign = List.of("X", "O");
 
     /**
@@ -63,16 +70,30 @@ public class TTTView {
     /**
      * Costruttore della classe controller. Crea la lista dei bottoni nel gioco
      */
-    public TTTView(){
+    public TTTView(int gridDim){
+        GRID_DIM = gridDim;
+        NUMBER_OF_BUTTON = GRID_DIM*GRID_DIM;
+
+        for(int i = GRID_DIM-2; i >= 0; i--){
+            for(int j = 0; j < 1; j++){
+                number2.add(j,i);
+            }
+        }
+        System.out.println(number2);
+
+        for(int i = GRID_DIM-1; i >= 0; i--){
+            for(int j = 0; j < GRID_DIM; j++){
+                number.add(j,i);
+            }
+        }
+
         final ButtonDropper btn = new ButtonDropper();
         for(int i = 0; i < NUMBER_OF_BUTTON; i++){
             listButtonGrid.add(btn.gridButton(handler));
         }
 
         listBottomButton.add(0,btn.gameDarkModeIcon(Optional.of(handler),""));
-        listBottomButton.add(1,btn.gameDarkModeIconText(Optional.empty(),""));
-        listBottomButton.add(2,btn.pauseButtonIcon(Optional.of(handler),""));
-        listBottomButton.add(3,btn.pauseButtonIconText(Optional.empty(),""));
+        listBottomButton.add(1,btn.pauseButtonIcon(Optional.of(handler),""));
 
         handler.setListButton(listButtonGrid);
         handler.setListButtonBottom(listBottomButton);
@@ -85,7 +106,7 @@ public class TTTView {
     public void drawO(){
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             final Random rnd = new Random();
-            final int numCase = rnd.nextInt(9);
+            final int numCase = rnd.nextInt(GRID_DIM*GRID_DIM);
             if (listButtonGrid.get(numCase).getText().equals("")) {
                 listButtonGrid.get(numCase).setText("O");
                 model.winCondition.accept(model.checkWin());
@@ -116,10 +137,13 @@ public class TTTView {
      */
     public GridPane createButton(){
         final GridPane root = new GridPane();
+        GridPane grid = new GridPane();
+
+
         listButtonGrid.stream()
-                .forEach(i -> root.add(i, listButtonGrid.indexOf(i) % 3, number.get(listButtonGrid.indexOf(i)), 1 , 1));
+                .forEach(i -> root.add(i, listButtonGrid.indexOf(i) % GRID_DIM, number.get(listButtonGrid.indexOf(i)), 1 , 1));
         listBottomButton.stream()
-                .forEach(i -> root.add(i, number2.get(listBottomButton.indexOf(i)), 3, 1 , 1));
+                .forEach(i -> root.add(i, number2.get(listBottomButton.indexOf(i)), GRID_DIM, 1 , 1));
         root.setBackground(new Background(new BackgroundFill(Color.BEIGE, null, null)));
         return  root;
     }
