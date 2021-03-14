@@ -15,7 +15,7 @@ public class Board {
 		this.size = size;
 		this.boxes = new ArrayList<>(size);
 	}
-	
+
 	/*
 	 * Function to create the board of game
 	 * @param size of game
@@ -45,7 +45,16 @@ public class Board {
 		boxes.add(Boxes.END);
 		return boxes;
 	}
-	
+
+	/*
+	 * Function to get type of box
+	 * @param a player
+	 * @return type of box where the player is above now 
+	 */
+	public BoxesType getBox(final Player p) {
+		return boxes.get(p.getBoardPosition()).getType();
+	}
+
 	/*
 	 * @param player
 	 * @return 1 if 

@@ -1,20 +1,16 @@
 package utility;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
 
 import model.Player;
 
 public class Rank {
 	
-	private final List<Player> ranking = new ArrayList<>();
+	private final List<Player> ranking;
 
 	public Rank(final List<Player> listPlayer) {
-		for (final Player p : listPlayer) {
-			ranking.add(p);
-		}
+		ranking = listPlayer;
 	}
 
 	public void updateRanking() {
