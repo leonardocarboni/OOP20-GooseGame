@@ -1,6 +1,6 @@
 package application.minigame.cableconnect;
 
-import application.utility.Countdown;
+import utility.Countdown;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
