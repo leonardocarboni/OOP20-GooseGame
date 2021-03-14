@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application{
@@ -18,6 +19,10 @@ public class App extends Application{
 
         /* Stage configuration */
         primaryStage.setTitle("[GooseGame] Menu");
+        primaryStage.getIcons().add(new Image("logo.png"));
+        primaryStage.setOnHiding(e -> {
+            primaryStage.setIconified(true);
+        });
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();

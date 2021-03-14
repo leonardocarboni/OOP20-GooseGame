@@ -26,6 +26,8 @@ public class MenuController implements Initializable {
             final Stage newStage = new Stage();
             newStage.initModality(Modality.APPLICATION_MODAL);
             PlayersChooser pc = new PlayersChooser();
+            Stage s = (Stage) playButton.getParent().getScene().getWindow();
+            s.close();
             try {
                 pc.start(newStage);
             } catch (Exception e){

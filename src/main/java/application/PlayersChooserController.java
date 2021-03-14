@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Player;
 
 import java.net.URL;
@@ -65,11 +67,27 @@ public class PlayersChooserController implements Initializable {
                 playersSelectionMap.forEach( (cb, n) -> {
                     if(cb.isSelected()) {
                         playersList.add(new Player(n.getText()));
+
+
                     }
                 });
                 //System.out.println(playersList);
                 //playersList.removeAll(playersList);
                 //SEND PLAYERS BACK TO MAIN GAME [TBI]
+                //scenecreator.newscene(maingame)
+
+                final Stage newStage = new Stage();
+                Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
+                s.close();
+                newStage.initModality(Modality.APPLICATION_MODAL);
+                newStage.setMinHeight(600);
+                newStage.setMinWidth(800);
+                MainGame mg = new MainGame();
+                try {
+                    mg.start(newStage);
+                } catch (Exception ex){
+                    System.out.println("Errore nell'apertura");
+                }
             }
             else{
                 errorLabel.setText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");
