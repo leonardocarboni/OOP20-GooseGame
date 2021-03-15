@@ -9,6 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Player;
+import view.GamesViewType;
+import view.SceneStarter;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -77,14 +79,14 @@ public class PlayersChooserController implements Initializable {
                 //scenecreator.newscene(maingame)
 
                 final Stage newStage = new Stage();
-                Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
+                final Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
                 s.close();
                 newStage.initModality(Modality.APPLICATION_MODAL);
                 newStage.setMinHeight(600);
                 newStage.setMinWidth(800);
-                MainGame mg = new MainGame();
+                final SceneStarter gameScene = new SceneStarter(GamesViewType.GAME);
                 try {
-                    mg.start(newStage);
+                	gameScene.start(newStage);
                 } catch (Exception ex){
                     System.out.println("Errore nell'apertura");
                 }

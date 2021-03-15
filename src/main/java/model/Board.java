@@ -10,6 +10,7 @@ public class Board {
 
 	private final int size;
 	private final List<Boxes> boxes;
+	private static final int BOARD_LIMIT = 2;
 	
 	public Board(final int size) {
 		this.size = size;
@@ -20,7 +21,7 @@ public class Board {
 	 * Function to create the board of game
 	 * @param size of game
 	 * @param number of minigames in the board
-	 * @return game board
+	 * @return List of boxes that equals to the game board
 	 */
 	public List<Boxes> generateBoard(){
 		checkSize(size);
@@ -57,22 +58,20 @@ public class Board {
 
 	/*
 	 * @param player
-	 * @return 1 if 
+	 * @return StateGame
 	 */
-	public int victory(final Player p) {
+	public StateGame endGame(final Player p) {
 		if (p.getBoardPosition() == size) {
-			return 1; //win (Enum?)
+			return StateGame.ENDGAME;
 		}else {
-			if(p.getBoardPosition() > size) {
-				goBeyoundLimit(p);
-			}
-			return 0; //no win
+			goBeyoundLimit(p);	
+			return StateGame.CONTINUE;
 		}
 	}
 	
+	
 	private void goBeyoundLimit(final Player p) {
-		//Set new position player -> playerPosition - (size - 1) = difference
-		//Set difference as new Position
+		p.addPosition(p.getBoardPosition() > size ? -(p.getBoardPosition() - size) : 0);
 	}
 	
 	/*
@@ -80,7 +79,7 @@ public class Board {
 	 * @throw exception in case the number inserted is too small to create a board
 	 */
 	private void checkSize(final int size){
-		if(size < 2) {
+		if(size < BOARD_LIMIT) {
 			throw new IllegalArgumentException();
 		}
 	}

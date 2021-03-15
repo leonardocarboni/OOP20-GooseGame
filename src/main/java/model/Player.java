@@ -7,10 +7,9 @@ public class Player {
 	
 	public Player(final String name) {
 		if("".equals(name)) {
-			this.name = "G"+Math.random();
-		}else {
-			this.name = name;
+			throw new IllegalStateException();
 		}
+		this.name = name;
 		this.boardPosition = 0;
 	}
 
