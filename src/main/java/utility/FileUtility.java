@@ -1,14 +1,19 @@
 package utility;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import model.Player;
 
@@ -17,10 +22,9 @@ public class FileUtility{
 	private static final String NAME_FILE = "GooseRanking.json";
 	private static final File FILE = new File(NAME_FILE);
 
-	private static Gson gson = new Gson();
+	private final Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 	
 	public void saveFileRanking(final List<Player> ranking) {
-		final Iterator<Player> i = ranking.iterator();
 		if (!FILE.exists()) {
 			try {
 				FILE.createNewFile();
@@ -30,30 +34,29 @@ public class FileUtility{
 		}
 		
 		try (FileWriter writer = new FileWriter(NAME_FILE)) {
-			while(i.hasNext()) {
-				 gson.toJson(gson.toJson(i.next()), writer);
-			}
+			gson.toJson(ranking, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
 	}
 	
-	public void loadFileRanking() throws IOException {
+	public void loadFileRanking() throws FileNotFoundException {
 		if (!FILE.exists()) {
 			System.out.println("File doesn't exist");
-			throw new IOException();
+			throw new FileNotFoundException();
 		}
 		
 		try (Reader reader = new FileReader(NAME_FILE)) {
-            // Convert JSON File to Java Object
-            final Player staff = gson.fromJson(reader, Player.class);
-            
-            // print staff 
-            System.out.println(staff);
-
+            final Player[] playerArray = gson.fromJson(reader, Player[].class);
+            final List<Player> rank = new ArrayList<>();
+            for (final Player p : playerArray) {
+				rank.add(p);
+			}
+            System.out.println(rank);
         } catch (IOException e) {
             e.printStackTrace();
         }
  
 	}
+	
 }

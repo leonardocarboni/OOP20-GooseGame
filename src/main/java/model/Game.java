@@ -15,6 +15,12 @@ public class Game {
 		final Player g1 = new Player("Luca");
 		final Player g2 = new Player("Giovanni");
 		final FileUtility fu = new FileUtility();
+		try {
+			fu.loadFileRanking();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		final Board b = new Board(42);
 		System.out.println(b.generateBoard());
 		list.add(g1);
