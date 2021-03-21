@@ -33,7 +33,7 @@ public class PlayersChooserController implements Initializable {
     final private List<Player> playersList = new ArrayList<>();
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
         initializeMap();
         initializeEventHandlers();
     }
@@ -54,30 +54,22 @@ public class PlayersChooserController implements Initializable {
     private void initializeEventHandlers() {
         startButton.setOnMouseClicked(e -> {
             //number of players enabled
-            int numEnabled = playersSelectionMap.keySet().stream().mapToInt(cb -> cb.isSelected() ? 1 : 0).sum();
+            final int numEnabled = playersSelectionMap.keySet().stream().mapToInt(cb -> cb.isSelected() ? 1 : 0).sum();
 
             //number of unique names (only of the enabled player)
             int numNames = (int) playersSelectionMap.entrySet().stream().filter(en -> en.getKey().isSelected() &&
                     !en.getValue().getText().trim().isEmpty()).map(en -> en.getValue().getText())
                     .distinct().count();
-                    //or .collect(Collectors.toSet()).size();
 
             if (numEnabled < 2){
                 errorLabel.setText("YOU MUST ENTER AT LEAST 2 PLAYERS");
             } else if (numEnabled == numNames) {
-                //System.out.println("ENABLED: " + numEnabled + ", NAMES: " + numNames);
                 playersSelectionMap.forEach( (cb, n) -> {
                     if(cb.isSelected()) {
                         playersList.add(new Player(n.getText()));
-
-
                     }
                 });
-                //System.out.println(playersList);
-                //playersList.removeAll(playersList);
-                //SEND PLAYERS BACK TO MAIN GAME [TBI]
-                //scenecreator.newscene(maingame)
-
+                
                 final Stage newStage = new Stage();
                 final Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
                 s.close();
@@ -88,6 +80,7 @@ public class PlayersChooserController implements Initializable {
                 try {
                 	gameScene.start(newStage);
                 } catch (Exception ex){
+                	System.out.println(ex);
                     System.out.println("Errore nell'apertura");
                 }
             }

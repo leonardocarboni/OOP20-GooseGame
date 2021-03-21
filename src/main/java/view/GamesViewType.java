@@ -1,7 +1,6 @@
 package view;
 
 public enum GamesViewType {
-
 	
 	STARTING_MENU("Goose Game","layouts" + System.getProperty("file.separator") + "menu.fxml",2,2),
 	CHOOSE_PLAYER("Choose a Player","layouts" + System.getProperty("file.separator") + "playerselection.fxml",1,2),

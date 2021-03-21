@@ -16,7 +16,7 @@ public class SceneStarter extends Application{
 	private final String layout;
 	private final Double height;
 	private final Double width;
-	
+
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
 		final Parent root = FXMLLoader.load(ClassLoader.getSystemResource(layout));
@@ -29,7 +29,6 @@ public class SceneStarter extends Application{
             primaryStage.setIconified(true);
         });
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
         primaryStage.show();
 	}
 	
@@ -41,4 +40,7 @@ public class SceneStarter extends Application{
 		this.height = screenBounds.getHeight() / type.getProportionHeight();
 	}
 	
+	public void main(final String[] args) {
+        launch(args);
+    }
 }
