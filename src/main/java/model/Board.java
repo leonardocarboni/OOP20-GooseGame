@@ -52,8 +52,8 @@ public class Board {
 	 * @param a player
 	 * @return type of box where the player is above now 
 	 */
-	public BoxesType getBox(final Player p) {
-		return boxes.get(p.getBoardPosition()).getType();
+	public Boxes getBox(final Player p) {
+		return boxes.get(p.getBoardPosition());
 	}
 
 	/*
@@ -64,7 +64,7 @@ public class Board {
 		if (p.getBoardPosition() == size) {
 			return StateGame.ENDGAME;
 		}else {
-			goBeyoundLimit(p);	
+			goBeyoundLimit(p);
 			return StateGame.CONTINUE;
 		}
 	}

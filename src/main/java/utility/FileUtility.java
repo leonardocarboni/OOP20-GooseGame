@@ -39,7 +39,9 @@ public class FileUtility{
             e.printStackTrace();
         }
 	}
-	
+	/*
+	 * 
+	 */
 	public void loadFileRanking() throws FileNotFoundException {
 		if (!FILE.exists()) {
 			System.out.println("File doesn't exist");
