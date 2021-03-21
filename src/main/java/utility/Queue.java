@@ -3,6 +3,7 @@ package utility;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -10,10 +11,10 @@ import java.util.Map.Entry;
 
 import model.Player;
 
-public class Queue {
+public class Queue{
 
 	private final List<Player> startingQueue;
-
+	private Player current;
 	public Queue() {
 		this.startingQueue =  new ArrayList<>();
 	}
@@ -35,4 +36,9 @@ public class Queue {
 	    	startingQueue.add(entry.getKey());
 	    }
 	}
+
+	public List<Player> getStartingQueue() {
+		return startingQueue;
+	}
+
 }
