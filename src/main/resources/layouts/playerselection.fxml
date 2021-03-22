@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="820.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PlayersChooserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="820.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PlayersChooserController">
    <children>
       <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="231.0" layoutY="426.0" prefHeight="18.0" prefWidth="369.0" text="Minimum players: 2" textAlignment="CENTER" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="220.0">
          <font>
@@ -26,11 +30,6 @@
          <children>
             <AnchorPane>
                <children>
-                  <CheckBox fx:id="active1" layoutX="48.0" mnemonicParsing="false" text="Active">
-                     <font>
-                        <Font name="Candara" size="12.0" />
-                     </font>
-                  </CheckBox>
                   <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="10.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pawns/pawnRed.png" />
@@ -41,11 +40,6 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <CheckBox fx:id="active2" layoutX="48.0" mnemonicParsing="false" text="Active">
-                     <font>
-                        <Font name="Candara" size="12.0" />
-                     </font>
-                  </CheckBox>
                   <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="10.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pawns/pawnPink.png" />
@@ -56,11 +50,6 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <CheckBox fx:id="active3" layoutX="48.0" mnemonicParsing="false" text="Active">
-                     <font>
-                        <Font name="Candara" size="12.0" />
-                     </font>
-                  </CheckBox>
                   <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="10.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pawns/pawnBlue.png" />
@@ -71,11 +60,6 @@
             </AnchorPane>
             <AnchorPane>
                <children>
-                  <CheckBox fx:id="active4" layoutX="48.0" mnemonicParsing="false" text="Active">
-                     <font>
-                        <Font name="Candara" size="12.0" />
-                     </font>
-                  </CheckBox>
                   <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="10.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../pawns/pawnGreen.png" />

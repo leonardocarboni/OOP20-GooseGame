@@ -14,10 +14,10 @@ import view.SceneStarter;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class PlayersChooserController implements Initializable {
     @FXML
@@ -25,27 +25,25 @@ public class PlayersChooserController implements Initializable {
     @FXML
     private TextField name1, name2, name3, name4;
     @FXML
-    private CheckBox active1, active2, active3, active4;
-    @FXML
     private Label errorLabel;
 
-    final private Map<CheckBox, TextField> playersSelectionMap = new HashMap<>();
+    final private Set<TextField> textFiledSet = new HashSet<>();
     final private List<Player> playersList = new ArrayList<>();
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        initializeMap();
+        initializeSet();
         initializeEventHandlers();
     }
 
     /**
-     * Initializes players selection map
+     * Initializes players selection set
      */
-    private void initializeMap(){
-        playersSelectionMap.put(active1, name1);
-        playersSelectionMap.put(active2, name2);
-        playersSelectionMap.put(active3, name3);
-        playersSelectionMap.put(active4, name4);
+    private void initializeSet(){
+        textFiledSet.add(name1);
+        textFiledSet.add(name2);
+        textFiledSet.add(name3);
+        textFiledSet.add(name4);
     }
 
     /**
@@ -53,23 +51,20 @@ public class PlayersChooserController implements Initializable {
      */
     private void initializeEventHandlers() {
         startButton.setOnMouseClicked(e -> {
+
             //number of players enabled
-            final int numEnabled = playersSelectionMap.keySet().stream().mapToInt(cb -> cb.isSelected() ? 1 : 0).sum();
+            final int numEnabled = textFiledSet.stream().mapToInt(tf -> tf.getText().trim().isEmpty() ? 0 : 1).sum();
 
             //number of unique names (only of the enabled player)
-            int numNames = (int) playersSelectionMap.entrySet().stream().filter(en -> en.getKey().isSelected() &&
-                    !en.getValue().getText().trim().isEmpty()).map(en -> en.getValue().getText())
-                    .distinct().count();
+            int numNames = (int) textFiledSet.stream().filter(tf -> !tf.getText().trim().isEmpty())
+                    .map(tf -> tf.getText()).distinct().count();
 
             if (numEnabled < 2){
                 errorLabel.setText("YOU MUST ENTER AT LEAST 2 PLAYERS");
             } else if (numEnabled == numNames) {
-                playersSelectionMap.forEach( (cb, n) -> {
-                    if(cb.isSelected()) {
-                        playersList.add(new Player(n.getText()));
-                    }
-                });
-                
+
+                textFiledSet.forEach(tf -> playersList.add(new Player(tf.getText())));
+
                 final Stage newStage = new Stage();
                 final Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
                 s.close();
