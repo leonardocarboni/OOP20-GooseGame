@@ -18,7 +18,6 @@ public class PlayersChooser extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-
     }
 
 }

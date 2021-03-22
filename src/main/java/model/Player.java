@@ -38,30 +38,6 @@ public class Player {
 	public void resetPosition() {
 		this.boardPosition = 0;
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + boardPosition;
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final Player other = (Player) obj;
-
-		return boardPosition == other.boardPosition; /* did this to remove warning*/
-	}
 
 	@Override
 	public String toString() {

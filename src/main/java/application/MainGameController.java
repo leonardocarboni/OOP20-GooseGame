@@ -3,6 +3,7 @@ package application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Board;
@@ -28,30 +29,41 @@ public class MainGameController implements Initializable {
 	
 	@FXML
     private Button diceButton;
+	
+	@FXML
+	private Label currentPlayerLabel;
     
 	@Override
     public void initialize(final URL location, final ResourceBundle resources) {
 		final Dice dice = new Dice();
-		final Queue playerQueue = new Queue();
 		final List<Player> l = new ArrayList<>();
+		l.add(new Player("Ciao"));
+		l.add(new Player("Ciao2"));
+		l.add(new Player("Ciao22"));
+		final Queue playerQueue = new Queue();
 		startingDice(l,dice,playerQueue);
-		final Rank rank = new Rank(playerQueue.getStartingQueue());
+		playerQueue.resetIterator();
+		final Rank rank = new Rank(l);
 		final Board gameBoard = new Board(42);
-		final Iterator<Player> i = playerQueue.getStartingQueue().iterator();
+		gameBoard.generateBoard();
+		currentPlayerLabel.setText(playerQueue.getCurrent().getName());
 		diceButton.setOnMouseClicked((event) -> {
-			final int diceValue = dice.rollDice();
-			final Player currentPlayer = i.next();
-			currentPlayer.addPosition(diceValue);
+			final int diceValue = dice.roll();
+			playerQueue.getCurrent().addPosition(diceValue);
 			rank.updateRanking();
-			if(gameBoard.endGame(currentPlayer).equals(StateGame.ENDGAME)) {
+			if(gameBoard.endGame(playerQueue.getCurrent()).equals(StateGame.ENDGAME)) {
 				final FileUtility fu = new FileUtility();
 				fu.saveFileRanking(rank.getRanking());
 				/*Game Ending*/
 			}else {
-				final Boxes box = gameBoard.getBox(currentPlayer);
+				final Boxes box = gameBoard.getBox(playerQueue.getCurrent());
 				check(box);
+				playerQueue.next();
+				System.out.println(playerQueue.getCurrent().getBoardPosition());
+				currentPlayerLabel.setText(playerQueue.getCurrent().getName());
+				System.out.println(rank.getRanking());
 			}
-					
+				
 		});
 	}
 
@@ -60,6 +72,7 @@ public class MainGameController implements Initializable {
 		s.initModality(Modality.APPLICATION_MODAL);
         s.setMinHeight(600);
         s.setMinWidth(800);
+        
         SceneStarter minigameScene = null;
 		switch(b) {
 			case BONUS:
@@ -80,19 +93,25 @@ public class MainGameController implements Initializable {
 		default:
 			break;
 		}
-		try {
-			minigameScene.start(s);
-		} catch (Exception e) {
-			e.printStackTrace();
+		if(minigameScene != null) {
+			try {
+				//minigameScene.start(s);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	private void startingDice(final List<Player> p,final Dice dice, final Queue q) {
 		final Iterator<Player> i = p.iterator();
 		final Map<Player, Integer> throwDice = new HashMap<>();
-		while(i.hasNext()) {
-			throwDice.put(i.next(), dice.rollDice());
+		while(i.hasNext()){
+			final int value = dice.roll();
+			final Player ps = i.next();
+			System.out.println(ps + "" + value);
+			throwDice.put(ps, value);
 		}
 		q.orderPlayerQueue(throwDice);
+		System.out.println(throwDice);
 	}
 }

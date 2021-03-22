@@ -4,10 +4,10 @@ public enum GamesViewType {
 	
 	STARTING_MENU("Goose Game","layouts" + System.getProperty("file.separator") + "menu.fxml",2,2),
 	CHOOSE_PLAYER("Choose a Player","layouts" + System.getProperty("file.separator") + "playerselection.fxml",1,2),
-	GAME("Play Game","layouts"+System.getProperty("file.separator") +"maingame.fxml",1,2),
+	GAME("Play Game","layouts"+System.getProperty("file.separator") +"maingame.fxml",2,2),
 	CABLE_CONNECT("Minigame Cable Connect","layouts" + System.getProperty("file.separator") + "cableconnect.fxml",1,2),
-	EVEN_OR_ODD("Minigame Ever Or Odd", "",1,2),
-	ROCK_PAPER_SCISSORS("Minigame ROCK PAPER SCISSORS","",1,2),
+	EVEN_OR_ODD("Minigame Ever Or Odd", "layouts" + System.getProperty("file.separator") + "cableconnect.fxml",1,2),
+	ROCK_PAPER_SCISSORS("Minigame ROCK PAPER SCISSORS","layouts" + System.getProperty("file.separator") + "cableconnect.fxml",1,2),
 	TICTACTOE("Minigame Tic Tac Toe","",1,2);
 	
 	private String title;
