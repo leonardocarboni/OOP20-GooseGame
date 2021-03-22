@@ -63,7 +63,8 @@ public class PlayersChooserController implements Initializable {
                 errorLabel.setText("YOU MUST ENTER AT LEAST 2 PLAYERS");
             } else if (numEnabled == numNames) {
 
-                textFiledSet.forEach(tf -> playersList.add(new Player(tf.getText())));
+                textFiledSet.stream().filter(tf -> !tf.getText().isEmpty())
+                        .forEach(tf -> playersList.add(new Player(tf.getText())));
 
                 final Stage newStage = new Stage();
                 final Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
