@@ -11,10 +11,12 @@ import java.util.Map.Entry;
 
 import model.Player;
 
-public class Queue{
+public class Queue implements Iterator<Player>{
 
-	private final List<Player> startingQueue;
+	private List<Player> startingQueue;
 	private Player current;
+	private Iterator<Player> playerIterator;
+	
 	public Queue() {
 		this.startingQueue =  new ArrayList<>();
 	}
@@ -27,11 +29,12 @@ public class Queue{
 
 			 @Override
 			 public int compare(final Entry<Player, Integer> o1, final Entry<Player, Integer> o2) {
-				return o1.getValue().compareTo(o2.getValue());
+				return -1 * o1.getValue().compareTo(o2.getValue());
 			 }
 	        	
 		});
 
+		//Collections.sort(list,Collections.reverseOrder());
 	    for (final Entry<Player, Integer> entry : list){
 	    	startingQueue.add(entry.getKey());
 	    }
@@ -41,4 +44,33 @@ public class Queue{
 		return startingQueue;
 	}
 
+	@Override
+	public boolean hasNext() {
+		if(!playerIterator.hasNext()) {
+			playerIterator = startingQueue.iterator();
+		}
+		return playerIterator.hasNext();
+	}
+
+	@Override
+	public Player next() {
+		if(!playerIterator.hasNext()) {
+			playerIterator = startingQueue.iterator();
+		}
+		current = playerIterator.next();
+		return current;
+	}
+	
+	public void resetIterator() {
+		playerIterator = startingQueue.iterator();
+		current = this.next();
+	}
+
+	public Player getCurrent() {
+		return current;
+	}
+	
+	public void setQueue(List<Player> l) {
+		this.startingQueue = l;
+	}
 }
