@@ -1,7 +1,7 @@
-package application.minigame.tictactoe.mvc;
+package application.minigame.evenodd.mvc;
 
-import application.minigame.tictactoe.mainGame.EndgameThread;
 import javafx.scene.control.Button;
+
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -77,11 +77,5 @@ public class TTTModel {
         return "";
     }
 
-    public final Consumer<String> winCondition = winner -> {
-        if(!winner.equals("")){
-            EndgameThread my = new EndgameThread(winner);
-            my.start();
-        }
-    };
 
 }
