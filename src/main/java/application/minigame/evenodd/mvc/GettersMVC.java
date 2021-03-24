@@ -1,6 +1,6 @@
 package application.minigame.evenodd.mvc;
 
-import application.minigame.evenodd.mainGame.TicTacToe;
+import application.minigame.evenodd.mainGame.EvenOdd;
 
 public class GettersMVC {
 
@@ -9,7 +9,7 @@ public class GettersMVC {
     private TTTModel model;
 
     public TTTView getView() {
-        this.view = TicTacToe.view;
+        this.view = EvenOdd.view;
         return this.view;
     }
 
@@ -24,7 +24,7 @@ public class GettersMVC {
     }
 
     public int getSize(){
-        return TicTacToe.GRID_DIM;
+        return EvenOdd.GRID_DIM;
     }
 
 }

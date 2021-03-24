@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-public class TicTacToe extends Application {
+public class EvenOdd extends Application {
 
     //variabili per la grandezza della schermata
     public final static int GRID_DIM = 6;
