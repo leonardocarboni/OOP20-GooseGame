@@ -70,9 +70,9 @@ public class PlayersChooserController implements Initializable {
                 final Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
                 s.close();
                 newStage.initModality(Modality.APPLICATION_MODAL);
-                newStage.setMinHeight(600);
-                newStage.setMinWidth(800);
-                final SceneStarter gameScene = new SceneStarter(GamesViewType.GAME);
+                newStage.setMinHeight(800);
+                newStage.setMinWidth(600);
+                MainGame gameScene = new MainGame(playersList);
                 try {
                 	gameScene.start(newStage);
                 } catch (Exception ex){
