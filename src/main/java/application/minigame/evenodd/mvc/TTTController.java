@@ -8,8 +8,6 @@ import java.util.List;
 
 public class TTTController {
 
-    private List<Button> listButtonGrid;
-    private List<Button> listBottomButton;
     private GettersMVC getters = new GettersMVC();
 
 
@@ -17,7 +15,7 @@ public class TTTController {
     public final EventHandler<Event> released = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {
-            getters.getView().releaseButton(event);
+
         }
     };
 
@@ -37,12 +35,5 @@ public class TTTController {
         }
     };
 
-    public void setListButton(final List<Button> listButton){
-        this.listButtonGrid = listButton;
-    }
-
-    public void setListButtonBottom(final List<Button> listBottomButton){
-        this.listBottomButton = listBottomButton;
-    }
 
 }

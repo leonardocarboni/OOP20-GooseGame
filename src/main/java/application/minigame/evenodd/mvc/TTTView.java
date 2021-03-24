@@ -18,16 +18,9 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.function.Consumer;
 
-/**
- * Controller del gioco, esso si occupa della creazione di bottoni, di disegnare la "O" e vedere chi vince
- */
+
 public class TTTView {
 
-    /**
-     * Numero di bottoni nella griglia
-     */
-
-    private static int GRID_DIM;;
 
     /**
      * Creo un'istanza del controller
@@ -44,31 +37,14 @@ public class TTTView {
      */
     public Stage stage = new Stage();
 
-    /**
-     * Lista dei bottoni presenti nella griglia principale 3x3
-     */
-    private static final List<Button> listButtonGrid = new ArrayList<>();
-
-    /**
-     * Lista dei bottono sotto la griglia 3x3
-     */
-    private final List<Button> listBottomButton = new ArrayList<>();
 
 
 
-    /**
-     * Costruttore della classe controller. Crea la lista dei bottoni nel gioco
-     */
     public TTTView(int gridDim) {
     }
 
 
 
-
-    /**
-     * Inserisco i bottoni creati nel costruttore nel pannello
-     * @return Griglia coi bottni
-     */
     public StackPane createPane(){
         StackPane pane = new StackPane();
         ButtonDropper dropper = new ButtonDropper();
@@ -82,22 +58,10 @@ public class TTTView {
     }
 
 
-    /**
-     * In caso sia selezionata la darkMode devo mettere uno specifico colore
-     * @param event
-     */
-    public void releaseButton(Event event){
-
-    }
-
-
-
 
 
     public void setStage(final Stage stage){
         this.stage = stage;
     }
-
-    public static List<Button> getListButton(){ return listButtonGrid; }
 
 }
