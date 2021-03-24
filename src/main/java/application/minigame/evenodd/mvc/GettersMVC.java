@@ -1,6 +1,7 @@
 package application.minigame.evenodd.mvc;
 
 import application.minigame.evenodd.mainGame.EvenOdd;
+import javafx.scene.layout.StackPane;
 
 public class GettersMVC {
 
@@ -23,8 +24,9 @@ public class GettersMVC {
         return this.model;
     }
 
-    public int getSize(){
-        return EvenOdd.GRID_DIM;
+    public StackPane getPane(){
+        return EvenOdd.pane;
     }
+
 
 }

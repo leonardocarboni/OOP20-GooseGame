@@ -9,13 +9,10 @@ import javafx.stage.Stage;
 
 public class EvenOdd extends Application {
 
-    //variabili per la grandezza della schermata
-    public final static int GRID_DIM = 6;
-    private static final int SCENE_WIDTH = 600;
-    private static final int SCENE_HEIGHT = 480;
+    public static StackPane pane = null;
 
     //creo un istanza del controller
-    public static final EOView view = new EOView(GRID_DIM);
+    public static final EOView view = new EOView();
 
     //avvio della finestra del programma
     @Override
@@ -32,9 +29,8 @@ public class EvenOdd extends Application {
         /**
          * Il controllore mi ritorna La griglia coi bottoni
          */
-        StackPane root = view.createPane();
-
-        primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
+        pane = view.createPane();
+        primaryStage.setScene(new Scene(pane,600,480));
        primaryStage.setResizable(false);
         primaryStage.show();
 

@@ -19,7 +19,6 @@ public class ButtonDropper extends Button {
     //prende come valore un handler per un bottone
     public Button evenButton(EOController handler){
         final GettersMVC getters = new GettersMVC();
-        final int factor = getters.getSize();
 
         final Button btn = new Button();
         final DropShadow shadow = new DropShadow();
@@ -27,6 +26,7 @@ public class ButtonDropper extends Button {
         btn.setTranslateX(-150);
         btn.setTranslateY(100);
         btn.setText("PARI");
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.click);
 
         btn.setPrefSize(200,50);
 
@@ -37,7 +37,6 @@ public class ButtonDropper extends Button {
 
     public Button oddButton(EOController handler){
         final GettersMVC getters = new GettersMVC();
-        final int factor = getters.getSize();
 
         final Button btn = new Button();
         final DropShadow shadow = new DropShadow();
@@ -46,6 +45,7 @@ public class ButtonDropper extends Button {
         btn.setTranslateX(150);
         btn.setTranslateY(100);
         btn.setPrefSize(200,50);
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.click);
 
         btn.setBackground(new Background(BackgroundLoader.endGameButton));
 

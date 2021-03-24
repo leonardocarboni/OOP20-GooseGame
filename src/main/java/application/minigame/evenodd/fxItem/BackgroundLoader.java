@@ -9,7 +9,6 @@ import javafx.scene.layout.BackgroundSize;
 
 public class BackgroundLoader {
     private final static GettersMVC getters = new GettersMVC();
-    private final static int factor = getters.getSize();
 
 
     private static final BackgroundSize bs =
