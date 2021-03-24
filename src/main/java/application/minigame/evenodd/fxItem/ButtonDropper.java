@@ -1,7 +1,7 @@
 package application.minigame.evenodd.fxItem;
 
 import application.minigame.evenodd.mvc.GettersMVC;
-import application.minigame.evenodd.mvc.TTTController;
+import application.minigame.evenodd.mvc.EOController;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +17,7 @@ public class ButtonDropper extends Button {
 
     //metodo che consente di creare il bottone presente nella griglia
     //prende come valore un handler per un bottone
-    public Button evenButton(TTTController handler){
+    public Button evenButton(EOController handler){
         final GettersMVC getters = new GettersMVC();
         final int factor = getters.getSize();
 
@@ -35,7 +35,7 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-    public Button oddButton(TTTController handler){
+    public Button oddButton(EOController handler){
         final GettersMVC getters = new GettersMVC();
         final int factor = getters.getSize();
 
@@ -52,7 +52,7 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-    public Button exitButton(Optional<TTTController> handler, String winner){
+    public Button exitButton(Optional<EOController> handler, String winner){
         Button btn = new Button();
         btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.get().exit);
         btn.setBackground(new Background(BackgroundLoader.endGameButton));

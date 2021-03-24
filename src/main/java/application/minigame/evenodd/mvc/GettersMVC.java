@@ -4,22 +4,22 @@ import application.minigame.evenodd.mainGame.EvenOdd;
 
 public class GettersMVC {
 
-    private TTTView view;
-    private TTTController controller;
-    private TTTModel model;
+    private EOView view;
+    private EOController controller;
+    private EOModel model;
 
-    public TTTView getView() {
+    public EOView getView() {
         this.view = EvenOdd.view;
         return this.view;
     }
 
-    public TTTController getController() {
-        this.controller = TTTView.handler;
+    public EOController getController() {
+        this.controller = EOView.handler;
         return this.controller;
     }
 
-    public TTTModel getModel() {
-        this.model = TTTView.model;
+    public EOModel getModel() {
+        this.model = EOView.model;
         return this.model;
     }
 

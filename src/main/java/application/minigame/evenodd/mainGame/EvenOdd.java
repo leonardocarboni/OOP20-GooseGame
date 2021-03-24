@@ -1,9 +1,8 @@
 package application.minigame.evenodd.mainGame;
 
-import application.minigame.evenodd.mvc.TTTView;
+import application.minigame.evenodd.mvc.EOView;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -16,7 +15,7 @@ public class EvenOdd extends Application {
     private static final int SCENE_HEIGHT = 480;
 
     //creo un istanza del controller
-    public static final TTTView view = new TTTView(GRID_DIM);
+    public static final EOView view = new EOView(GRID_DIM);
 
     //avvio della finestra del programma
     @Override

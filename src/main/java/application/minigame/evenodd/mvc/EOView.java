@@ -3,34 +3,24 @@ package application.minigame.evenodd.mvc;
 
 import application.minigame.evenodd.fxItem.BackgroundLoader;
 import application.minigame.evenodd.fxItem.ButtonDropper;
-import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.function.Consumer;
 
-
-public class TTTView {
+public class EOView {
 
 
     /**
      * Creo un'istanza del controller
      */
-    public static final TTTController handler = new TTTController();
+    public static final EOController handler = new EOController();
 
     /**
      * Creo un istanza model per vedere chi ha vinto
      */
-    public static final TTTModel model = new TTTModel();
+    public static final EOModel model = new EOModel();
 
     /**
      * Creo lo stage
@@ -40,7 +30,7 @@ public class TTTView {
 
 
 
-    public TTTView(int gridDim) {
+    public EOView(int gridDim) {
     }
 
 

@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 
 import java.util.List;
 
-public class TTTController {
+public class EOController {
 
     private GettersMVC getters = new GettersMVC();
 
