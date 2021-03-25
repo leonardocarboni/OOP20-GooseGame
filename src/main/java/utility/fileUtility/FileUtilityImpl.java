@@ -1,4 +1,4 @@
-package utility;
+package utility.fileUtility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,10 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.lang.reflect.Type;
-import com.google.gson.reflect.TypeToken;
 
 import model.player.PlayerImpl;
 

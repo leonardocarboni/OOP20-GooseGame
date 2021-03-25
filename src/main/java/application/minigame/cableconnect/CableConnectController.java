@@ -1,6 +1,6 @@
 package application.minigame.cableconnect;
 
-import utility.Countdown;
+import utility.countdown.CountdownImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -37,12 +37,12 @@ public class CableConnectController implements Initializable {
     final private Map<Button, Colors> endButtonsMap = new HashMap<>();
     final private Set<Colors> colorsDone = new HashSet<>();
     private Line currentLine;
-    private Countdown c;
+    private CountdownImpl c;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        c = new Countdown(SECONDS, timeLabel);
+        c = new CountdownImpl(SECONDS, timeLabel);
         c.start();
 
         initializeButtonsMap();

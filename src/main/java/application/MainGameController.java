@@ -13,7 +13,7 @@ import model.dice.DiceImpl;
 import model.player.PlayerImpl;
 import model.queue.QueueImpl;
 import model.rank.RankImpl;
-import utility.FileUtilityImpl;
+import utility.fileUtility.FileUtilityImpl;
 import view.GamesViewType;
 import view.SceneStarter;
 

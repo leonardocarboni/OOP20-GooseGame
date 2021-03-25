@@ -7,7 +7,7 @@ import java.util.List;
 import model.board.BoardImpl;
 import model.player.PlayerImpl;
 import model.rank.RankImpl;
-import utility.FileUtilityImpl;
+import utility.fileUtility.FileUtilityImpl;
 
 public class Game {
 

@@ -1,4 +1,4 @@
-package utility;
+package utility.countdown;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -6,41 +6,32 @@ import javafx.scene.control.Label;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Countdown {
+public class CountdownImpl implements Countdown{
 
-    Timer timer;
-    int seconds;
-    boolean running = true;
-    UpdateLabel updateLabelTask;
-    Label timeLabel;
+    final private Timer timer;
+    private int seconds;
+    final private UpdateLabel updateLabelTask;
+    final private Label timeLabel;
 
-    public Countdown(int seconds, Label timeLabel) {
+    public CountdownImpl(final int seconds, final Label timeLabel) {
         this.seconds = seconds*10;
         this.timeLabel = timeLabel;
-        timer = new Timer();
-        updateLabelTask = new UpdateLabel();
+        this.timer = new Timer();
+        this.updateLabelTask = new UpdateLabel();
     }
 
-    /**
-     * Starts timer
-     */
+    @Override
     public void start(){
         timer.schedule(updateLabelTask, 0, 100);
     }
 
-    /**
-     * Force kills timer's thread
-     */
+    @Override
     public void shutdown(){
         timer.cancel();
         timer.purge();
-        this.running = false;
     }
 
-    /**
-     * Returns seconds left
-     * @return seconds left
-     */
+    @Override
     public int getSecondsLeft(){
         return this.seconds;
     }
