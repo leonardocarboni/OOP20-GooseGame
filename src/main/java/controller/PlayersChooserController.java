@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.player.PlayerImpl;
+import model.rank.RankImpl;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+import application.MainGame;
 
 public class PlayersChooserController implements Initializable {
     @FXML
@@ -53,7 +56,7 @@ public class PlayersChooserController implements Initializable {
             final int numEnabled = textFiledSet.stream().mapToInt(tf -> tf.getText().trim().isEmpty() ? 0 : 1).sum();
 
             //number of unique names (only of the enabled player)
-            int numNames = (int) textFiledSet.stream().filter(tf -> !tf.getText().trim().isEmpty())
+            final int numNames = (int) textFiledSet.stream().filter(tf -> !tf.getText().trim().isEmpty())
                     .map(tf -> tf.getText()).distinct().count();
 
             if (numEnabled < 2){
@@ -63,15 +66,14 @@ public class PlayersChooserController implements Initializable {
                 textFiledSet.stream().filter(tf -> !tf.getText().isEmpty())
                         .forEach(tf -> playersList.add(new PlayerImpl(tf.getText())));
 
+                final RankImpl rank = new RankImpl(playersList);
                 final Stage newStage = new Stage();
                 final Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
                 s.close();
                 newStage.initModality(Modality.APPLICATION_MODAL);
-                newStage.setMinHeight(800);
-                newStage.setMinWidth(600);
-                //MainGame gameScene = new MainGame(playersList);
+                final MainGame gameScene = new MainGame();
                 try {
-                	//gameScene.start(newStage);
+                	gameScene.start(newStage);
                 } catch (Exception ex){
                 	System.out.println(ex);
                     System.out.println("Errore nell'apertura");

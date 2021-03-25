@@ -1,31 +1,42 @@
 package application;
 
+import controller.MenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class App extends Application{
 
-    private static final int SCENE_WIDTH = 600;
-    private static final int SCENE_HEIGHT = 480;
-
+	private static final String LAYOUT_LOCATION = "layouts/menu.fxml";
+	private static final String LOGO_LOCATION = "logo.png";
+	
     @Override
 	public void start(final Stage primaryStage) throws Exception {
-        final Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/menu.fxml"));
-        final Scene scene = new Scene(root, SCENE_WIDTH, SCENE_HEIGHT);
+    	try {
+    		final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+	        final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));    
+	        final MenuController controller = new MenuController();
+	        loader.setController(controller);
+	        final AnchorPane flowPane = loader.load();
+	        final Scene scene = new Scene(flowPane, screenBounds.getWidth() / 3, screenBounds.getHeight() / 2);
+	        /* Stage configuration */
+	        primaryStage.setTitle("[GooseGame]");
+	        primaryStage.getIcons().add(new Image(LOGO_LOCATION));
+	        primaryStage.setOnHiding(e -> {
+	            primaryStage.setIconified(true);
+	        });
+	        primaryStage.setScene(scene);
+	        primaryStage.setResizable(false);
+	        primaryStage.show();
 
-        /* Stage configuration */
-        primaryStage.setTitle("[GooseGame] Menu");
-        primaryStage.getIcons().add(new Image("logo.png"));
-        primaryStage.setOnHiding(e -> {
-            primaryStage.setIconified(true);
-        });
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    	}
 		
 	}
 	
