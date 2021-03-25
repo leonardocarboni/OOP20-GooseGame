@@ -24,7 +24,7 @@ public class ButtonDropper extends Button {
         final DropShadow shadow = new DropShadow();
 
         btn.setTranslateX(-150);
-        btn.setTranslateY(100);
+        btn.setTranslateY(150);
         btn.setText("PARI");
         btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.click);
 
@@ -43,7 +43,7 @@ public class ButtonDropper extends Button {
 
         btn.setText("DISPARI");
         btn.setTranslateX(150);
-        btn.setTranslateY(100);
+        btn.setTranslateY(150);
         btn.setPrefSize(200,50);
         btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.click);
 

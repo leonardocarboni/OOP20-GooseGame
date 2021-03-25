@@ -15,18 +15,15 @@ public class EOController{
         @Override
         public void handle(final Event event) {
             getters.getView().startAnimation();
+            if(((Button)event.getSource()).getText() == "PARI"){
+                getters.getModel().checkWin(2);
+            } else{
+                getters.getModel().checkWin(1);
+            }
+            getters.getView().listButton.stream().forEach(i -> i.setDisable(true));
         }
     };
 
-
-
-
-    public final EventHandler<Event> released = new EventHandler<Event>() {
-        @Override
-        public void handle(final Event event) {
-
-        }
-    };
 
 
     public final EventHandler<Event> exit = new EventHandler<Event>() {

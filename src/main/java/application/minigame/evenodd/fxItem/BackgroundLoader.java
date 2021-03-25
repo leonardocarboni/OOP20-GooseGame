@@ -19,10 +19,25 @@ public class BackgroundLoader {
             new BackgroundImage(new Image("evenodd/button.png"),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, bs);
 
-    /* sfondo del bottone della griglia principale */
+
     public static final BackgroundImage button =
             new BackgroundImage(new Image("evenodd/background.png",600,480,false,false),
             BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+
+    public static final BackgroundImage winner =
+            new BackgroundImage(new Image("evenodd/winner.jpg"),
+                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, bs);
+
+
+    public static final BackgroundImage loser =
+            new BackgroundImage(new Image("evenodd/loserr.jpg"),
+                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+
+    public static final BackgroundImage animationGif =
+            new BackgroundImage(new Image("evenodd/tenor.gif"),
+                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, bs);
 
 
 

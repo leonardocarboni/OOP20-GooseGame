@@ -24,11 +24,9 @@ public class EvenOdd extends Application {
 
         view.setStage(primaryStage);
 
-        primaryStage.setTitle("TicTacToe");
+        primaryStage.setTitle("Even or Odd");
 
-        /**
-         * Il controllore mi ritorna La griglia coi bottoni
-         */
+
         pane = view.createPane();
         primaryStage.setScene(new Scene(pane,600,480));
        primaryStage.setResizable(false);
