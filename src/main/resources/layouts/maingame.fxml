@@ -255,7 +255,7 @@
                   <Font name="Candara" size="22.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="56.0" layoutY="43.0" prefHeight="30.0" prefWidth="130.0" text="PLAYER4">
+            <Label fx:id="firstPlayer" alignment="CENTER" layoutX="56.0" layoutY="43.0" prefHeight="30.0" prefWidth="130.0" text="PLAYER4">
                <font>
                   <Font name="Candara" size="20.0" />
                </font>
@@ -265,7 +265,7 @@
                   <Font name="Candara" size="22.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="56.0" layoutY="73.0" prefHeight="30.0" prefWidth="130.0" text="PLAYER2">
+            <Label fx:id="secondPlayer" alignment="CENTER" layoutX="56.0" layoutY="73.0" prefHeight="30.0" prefWidth="130.0" text="PLAYER2">
                <font>
                   <Font name="Candara" size="20.0" />
                </font>
@@ -275,7 +275,7 @@
                   <Font name="Candara" size="22.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="57.0" layoutY="103.0" prefHeight="30.0" prefWidth="130.0" text="PLAYER1">
+            <Label fx:id="thirdPlayer" alignment="CENTER" layoutX="57.0" layoutY="103.0" prefHeight="30.0" prefWidth="130.0" text="PLAYER1">
                <font>
                   <Font name="Candara" size="20.0" />
                </font>
@@ -285,7 +285,7 @@
                   <Font name="Candara" size="22.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="57.0" layoutY="133.0" prefHeight="30.0" prefWidth="130.0" text="PLAYER3">
+            <Label fx:id="fourthPlayer" alignment="CENTER" layoutX="57.0" layoutY="133.0" prefHeight="30.0" prefWidth="130.0" text="PLAYER3">
                <font>
                   <Font name="Candara" size="20.0" />
                </font>

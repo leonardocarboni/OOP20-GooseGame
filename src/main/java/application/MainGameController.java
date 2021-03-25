@@ -6,14 +6,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Board;
-import model.Dice;
-import model.Player;
 import model.StateGame;
-import utility.Boxes;
-import utility.FileUtility;
-import utility.Queue;
-import utility.Rank;
+import model.board.BoardImpl;
+import model.box.Box;
+import model.dice.DiceImpl;
+import model.player.PlayerImpl;
+import model.queue.QueueImpl;
+import model.rank.RankImpl;
+import utility.FileUtilityImpl;
 import view.GamesViewType;
 import view.SceneStarter;
 
@@ -29,22 +29,22 @@ public class MainGameController implements Initializable {
 	
 	@FXML
     private Button diceButton;
-	
+
 	@FXML
-	private Label currentPlayerLabel;
-    
+	private Label currentPlayerLabel, firstPlayer,secondPlayer,thirdPlayer,fourthPlayer;
+
 	@Override
     public void initialize(final URL location, final ResourceBundle resources) {
-		final Dice dice = new Dice();
-		final List<Player> l = new ArrayList<>();
-		l.add(new Player("Ciao"));
-		l.add(new Player("Ciao2"));
-		l.add(new Player("Ciao22"));
-		final Queue playerQueue = new Queue();
+		final DiceImpl dice = new DiceImpl();
+		final List<PlayerImpl> l = new ArrayList<>();
+		l.add(new PlayerImpl("Ciao"));
+		l.add(new PlayerImpl("Ciao2"));
+		l.add(new PlayerImpl("Ciao22"));
+		final QueueImpl playerQueue = new QueueImpl();
 		startingDice(l,dice,playerQueue);
 		playerQueue.resetIterator();
-		final Rank rank = new Rank(l);
-		final Board gameBoard = new Board(42);
+		final RankImpl rank = new RankImpl(l);
+		final BoardImpl gameBoard = new BoardImpl(42);
 		gameBoard.generateBoard();
 		currentPlayerLabel.setText(playerQueue.getCurrent().getName());
 		diceButton.setOnMouseClicked((event) -> {
@@ -52,22 +52,20 @@ public class MainGameController implements Initializable {
 			playerQueue.getCurrent().addPosition(diceValue);
 			rank.updateRanking();
 			if(gameBoard.endGame(playerQueue.getCurrent()).equals(StateGame.ENDGAME)) {
-				final FileUtility fu = new FileUtility();
+				final FileUtilityImpl fu = new FileUtilityImpl();
 				fu.saveFileRanking(rank.getRanking());
 				/*Game Ending*/
 			}else {
-				final Boxes box = gameBoard.getBox(playerQueue.getCurrent());
+				final Box box = gameBoard.getBox(playerQueue.getCurrent());
 				check(box);
+				updateViewRank(rank.getRanking());
 				playerQueue.next();
-				System.out.println(playerQueue.getCurrent().getBoardPosition());
 				currentPlayerLabel.setText(playerQueue.getCurrent().getName());
-				System.out.println(rank.getRanking());
-			}
-				
+			}		
 		});
 	}
 
-	private void check(final Boxes b) {
+	private void check(final Box b) {
 		final Stage s = new Stage();
 		s.initModality(Modality.APPLICATION_MODAL);
         s.setMinHeight(600);
@@ -102,16 +100,22 @@ public class MainGameController implements Initializable {
 		}
 	}
 
-	private void startingDice(final List<Player> p,final Dice dice, final Queue q) {
-		final Iterator<Player> i = p.iterator();
-		final Map<Player, Integer> throwDice = new HashMap<>();
+	private void startingDice(final List<PlayerImpl> p,final DiceImpl dice, final QueueImpl q) {
+		final Iterator<PlayerImpl> i = p.iterator();
+		final Map<PlayerImpl, Integer> throwDice = new HashMap<>();
 		while(i.hasNext()){
 			final int value = dice.roll();
-			final Player ps = i.next();
-			System.out.println(ps + "" + value);
+			final PlayerImpl ps = i.next();
 			throwDice.put(ps, value);
 		}
 		q.orderPlayerQueue(throwDice);
 		System.out.println(throwDice);
+	}
+	
+	private void updateViewRank(final List<PlayerImpl> rankingList) {
+		firstPlayer.setText(rankingList.get(0).getName());
+		secondPlayer.setText(rankingList.get(1).getName());
+		thirdPlayer.setText(rankingList.size() == 3 ? rankingList.get(2).getName() : "");
+		fourthPlayer.setText(rankingList.size() == 4 ? rankingList.get(3).getName() : ""); 
 	}
 }

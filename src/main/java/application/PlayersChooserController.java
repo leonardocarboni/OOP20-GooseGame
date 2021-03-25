@@ -3,14 +3,11 @@ package application;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Player;
-import view.GamesViewType;
-import view.SceneStarter;
+import model.player.PlayerImpl;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,7 +25,7 @@ public class PlayersChooserController implements Initializable {
     private Label errorLabel;
 
     final private Set<TextField> textFiledSet = new HashSet<>();
-    final private List<Player> playersList = new ArrayList<>();
+    final private List<PlayerImpl> playersList = new ArrayList<>();
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -64,7 +61,7 @@ public class PlayersChooserController implements Initializable {
             } else if (numEnabled == numNames) {
 
                 textFiledSet.stream().filter(tf -> !tf.getText().isEmpty())
-                        .forEach(tf -> playersList.add(new Player(tf.getText())));
+                        .forEach(tf -> playersList.add(new PlayerImpl(tf.getText())));
 
                 final Stage newStage = new Stage();
                 final Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
@@ -72,9 +69,9 @@ public class PlayersChooserController implements Initializable {
                 newStage.initModality(Modality.APPLICATION_MODAL);
                 newStage.setMinHeight(800);
                 newStage.setMinWidth(600);
-                MainGame gameScene = new MainGame(playersList);
+                //MainGame gameScene = new MainGame(playersList);
                 try {
-                	gameScene.start(newStage);
+                	//gameScene.start(newStage);
                 } catch (Exception ex){
                 	System.out.println(ex);
                     System.out.println("Errore nell'apertura");

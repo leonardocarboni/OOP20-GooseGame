@@ -1,6 +1,6 @@
-package model;
+package model.dice;
 
-public class Dice {
+public class DiceImpl {
 
 	static private final int MIN_VALUE_DICE = 1;
 	static private final int MAX_VALUE_DICE = 6;

@@ -1,11 +1,11 @@
-package model;
+package model.player;
 
-public class Player {
+public class PlayerImpl implements Player{
 	
 	private String name;
 	private int boardPosition;
 	
-	public Player(final String name) {
+	public PlayerImpl(final String name) {
 		if("".equals(name)) {
 			throw new IllegalStateException();
 		}

@@ -4,28 +4,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import utility.FileUtility;
-import utility.Rank;
+import model.board.BoardImpl;
+import model.player.PlayerImpl;
+import model.rank.RankImpl;
+import utility.FileUtilityImpl;
 
 public class Game {
 
 	public static void main(final String[] args) {
 		
-		final List<Player> list = new ArrayList<>();
-		final Player g1 = new Player("Luca");
-		final Player g2 = new Player("Giovanni");
-		final FileUtility fu = new FileUtility();
+		final List<PlayerImpl> list = new ArrayList<>();
+		final PlayerImpl g1 = new PlayerImpl("Luca");
+		final PlayerImpl g2 = new PlayerImpl("Giovanni");
+		final FileUtilityImpl fu = new FileUtilityImpl();
 		try {
 			fu.loadFileRanking();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		final Board b = new Board(42);
+		final BoardImpl b = new BoardImpl(42);
 		System.out.println(b.generateBoard());
 		list.add(g1);
 		list.add(g2);
-		final Rank r = new Rank(list);
+		final RankImpl r = new RankImpl(list);
 		System.out.println(g1.toString());
 		System.out.println(g2.toString());
 		

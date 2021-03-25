@@ -1,18 +1,20 @@
-package model;
+package model.board;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import utility.Boxes;
-import utility.BoxesType;
+import model.StateGame;
+import model.box.Box;
+import model.box.BoxType;
+import model.player.PlayerImpl;
 
-public class Board {
+public class BoardImpl implements Board{
 
 	private final int size;
-	private final List<Boxes> boxes;
+	private final List<Box> boxes;
 	private static final int BOARD_LIMIT = 2;
 	
-	public Board(final int size) {
+	public BoardImpl(final int size) {
 		this.size = size;
 		this.boxes = new ArrayList<>(size);
 	}
@@ -23,10 +25,10 @@ public class Board {
 	 * @param number of minigames in the board
 	 * @return List of boxes that equals to the game board
 	 */
-	public List<Boxes> generateBoard(){
+	public List<Box> generateBoard(){
 		checkSize(size);
-		final List<Boxes> minigames = getAllBoxesByType(BoxesType.MINIGAMES);
-		boxes.add(Boxes.START);
+		final List<Box> minigames = getAllBoxesByType(BoxType.MINIGAMES);
+		boxes.add(Box.START);
 		int addSpecial = 0;
 		boolean addMinigames = false;
 		for(int i = 0; i < size - 1; i++) {
@@ -34,16 +36,16 @@ public class Board {
 				if(addMinigames) {
 					boxes.add(minigames.get(randomValue(0, minigames.size() - 1)));
 				}else {
-					boxes.add(Boxes.BONUS);
+					boxes.add(Box.BONUS);
 				}
 				addMinigames = addMinigames ? false : true;
 				addSpecial = 0;
 			}else {
-				boxes.add(Boxes.NORMAL);
+				boxes.add(Box.NORMAL);
 				addSpecial++;
 			}
 		}
-		boxes.add(Boxes.END);
+		boxes.add(Box.END);
 		return boxes;
 	}
 
@@ -52,7 +54,7 @@ public class Board {
 	 * @param a player
 	 * @return type of box where the player is above now 
 	 */
-	public Boxes getBox(final Player p) {
+	public Box getBox(final PlayerImpl p) {
 		return boxes.get(p.getBoardPosition());
 	}
 
@@ -60,7 +62,7 @@ public class Board {
 	 * @param player
 	 * @return StateGame
 	 */
-	public StateGame endGame(final Player p) {
+	public StateGame endGame(final PlayerImpl p) {
 		if (p.getBoardPosition() == size) {
 			return StateGame.ENDGAME;
 		}else {
@@ -70,7 +72,7 @@ public class Board {
 	}
 	
 	
-	private void goBeyoundLimit(final Player p) {
+	private void goBeyoundLimit(final PlayerImpl p) {
 		p.addPosition(p.getBoardPosition() > size ? -(p.getBoardPosition() - size) : 0);
 	}
 	
@@ -99,9 +101,9 @@ public class Board {
 	 * @param type of Boxes to filter
 	 * @return list of boxes 
 	 */
-	private List<Boxes> getAllBoxesByType(final BoxesType type){
-		final List<Boxes> list = new ArrayList<>();
-		for (final Boxes b : Boxes.values()) {
+	private List<Box> getAllBoxesByType(final BoxType type){
+		final List<Box> list = new ArrayList<>();
+		for (final Box b : Box.values()) {
 			if(b.getType().equals(type)) {
 				list.add(b);
 			}

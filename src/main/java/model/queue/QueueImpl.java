@@ -1,4 +1,4 @@
-package utility;
+package model.queue;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,39 +9,51 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import model.Player;
+import model.player.PlayerImpl;
 
-public class Queue implements Iterator<Player>{
+public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 
-	private List<Player> startingQueue;
-	private Player current;
-	private Iterator<Player> playerIterator;
+	private List<PlayerImpl> startingQueue;
+	private PlayerImpl current;
+	private Iterator<PlayerImpl> playerIterator;
 	
-	public Queue() {
+	public QueueImpl() {
 		this.startingQueue =  new ArrayList<>();
 	}
-	
-	public void orderPlayerQueue(final Map<Player,Integer> diceThrowing) {
-		 final List<Entry<Player, Integer>> list = new LinkedList<>(diceThrowing.entrySet());
+
+	@Override
+	public void orderPlayerQueue(final Map<PlayerImpl,Integer> diceThrowing) {
+		 final List<Entry<PlayerImpl, Integer>> list = new LinkedList<>(diceThrowing.entrySet());
 
 	     // Sorting the list based on value
-		 Collections.sort(list, new Comparator<Entry<Player,Integer>>() {
+		 Collections.sort(list, new Comparator<Entry<PlayerImpl,Integer>>() {
 
 			 @Override
-			 public int compare(final Entry<Player, Integer> o1, final Entry<Player, Integer> o2) {
+			 public int compare(final Entry<PlayerImpl, Integer> o1, final Entry<PlayerImpl, Integer> o2) {
 				return -1 * o1.getValue().compareTo(o2.getValue());
 			 }
 	        	
 		});
 
 		//Collections.sort(list,Collections.reverseOrder());
-	    for (final Entry<Player, Integer> entry : list){
+	    for (final Entry<PlayerImpl, Integer> entry : list){
 	    	startingQueue.add(entry.getKey());
 	    }
 	}
 
-	public List<Player> getStartingQueue() {
+	@Override
+	public void setStartingQueue(final List<PlayerImpl> l) {
+		this.startingQueue = l;
+	}
+
+	@Override
+	public List<PlayerImpl> getStartingQueue() {
 		return startingQueue;
+	}
+
+	@Override
+	public PlayerImpl getCurrent() {
+		return current;
 	}
 
 	@Override
@@ -53,24 +65,17 @@ public class Queue implements Iterator<Player>{
 	}
 
 	@Override
-	public Player next() {
+	public PlayerImpl next() {
 		if(!playerIterator.hasNext()) {
 			playerIterator = startingQueue.iterator();
 		}
 		current = playerIterator.next();
 		return current;
 	}
-	
+
+	@Override
 	public void resetIterator() {
 		playerIterator = startingQueue.iterator();
 		current = this.next();
-	}
-
-	public Player getCurrent() {
-		return current;
-	}
-	
-	public void setQueue(List<Player> l) {
-		this.startingQueue = l;
 	}
 }
