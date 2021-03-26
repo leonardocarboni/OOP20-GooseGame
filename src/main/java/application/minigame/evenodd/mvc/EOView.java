@@ -6,6 +6,7 @@ import application.minigame.evenodd.fxItem.ItemDropper;
 import application.minigame.evenodd.mainGame.EvenOdd;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -67,6 +68,8 @@ public class EOView {
      */
     public String playerChoice;
 
+    private ItemDropper item = new ItemDropper();
+
 
     /**
      * Definizione della task usata per implementare un delay nella GUI
@@ -100,9 +103,8 @@ public class EOView {
      */
     public StackPane createPane() {
         StackPane pane = new StackPane();
-        ItemDropper dropper = new ItemDropper();
-        Button btn1 = dropper.evenButton(handler);
-        Button btn2 = dropper.oddButton(handler);
+        Button btn1 = item.evenButton(handler);
+        Button btn2 = item.oddButton(handler);
 
         pane.getChildren().add(btn1);
         pane.getChildren().add(btn2);
@@ -161,23 +163,24 @@ public class EOView {
         viewImage.setFitWidth(400);
         this.imgView = viewImage;
         viewImage.setTranslateY(-100);
-        EvenOdd.pane.getChildren().add(viewImage);
+        addElementToStackPane(viewImage);
     }
 
     /**
      * Crea il testo che mi dice il valore generato dalla model.
      */
     private void createText(){
-        ItemDropper item = new ItemDropper();
         Text text = item.createText("The value generated is: ", Integer.toString(this.resultValue), 50);
-        EvenOdd.pane.getChildren().add(text);
+        addElementToStackPane(text);
     }
     private void createTextChoice(){
-        ItemDropper item = new ItemDropper();
         Text text = item.createText("Your choice is ", playerChoice, 74);
-        EvenOdd.pane.getChildren().add(text);
+        addElementToStackPane(text);
     }
 
+    private void addElementToStackPane(Node obj){
+        EvenOdd.pane.getChildren().add(obj);
+    }
 
     public void setStage(final Stage stage){
         this.stage = stage;
