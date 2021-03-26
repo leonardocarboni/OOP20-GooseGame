@@ -63,6 +63,12 @@ public class EOView {
     public int resultValue;
 
     /**
+     * Scelta del player, pari o dispari.
+     */
+    public String playerChoice;
+
+
+    /**
      * Definizione della task usata per implementare un delay nella GUI
      * Esso setta l'immagine a NULL della imageView, poichè ci sarà l'animazione del dado.
      * Dopodichè chiama un metodo per restituire l'imageView corretta.
@@ -121,6 +127,7 @@ public class EOView {
      */
     private void startWinAnimation(){
         createText();
+        createTextChoice();
        if(result){
            task1.setOnSucceeded(event -> winImage());
        } else{
@@ -162,7 +169,12 @@ public class EOView {
      */
     private void createText(){
         ItemDropper item = new ItemDropper();
-        Text text = item.createText(this.resultValue);
+        Text text = item.createText("The value generated is: ", Integer.toString(this.resultValue), 50);
+        EvenOdd.pane.getChildren().add(text);
+    }
+    private void createTextChoice(){
+        ItemDropper item = new ItemDropper();
+        Text text = item.createText("Your choice is ", playerChoice, 74);
         EvenOdd.pane.getChildren().add(text);
     }
 

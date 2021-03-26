@@ -54,10 +54,10 @@ public class ItemDropper extends Button {
         return btn;
     }
 
-    public Text createText(int resultValue){
+    public Text createText(String string, String resultValue, int positionY){
         Text text = new Text();
-        text.setText("The number generated is: " + resultValue);
-        text.setTranslateY(60);
+        text.setText(string + resultValue.toString());
+        text.setTranslateY(positionY);
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
         text.setFill(Color.BEIGE);
         return text;

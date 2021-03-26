@@ -33,7 +33,13 @@ public class EOModel {
         if((value == 2 && rndValue % 2 == 0) || (value == 1 && rndValue % 2 != 0)){
             getters.getView().result=true;
         }
+        if(value == 1){
+            getters.getView().playerChoice = "Dispari";
+        } else{
+            getters.getView().playerChoice = "Pari";
+        }
         getters.getView().resultValue=rndValue;
+
     }
 
 
