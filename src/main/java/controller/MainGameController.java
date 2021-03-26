@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.StateGame;
@@ -15,7 +16,7 @@ import model.queue.QueueImpl;
 import model.rank.RankImpl;
 import utility.fileUtility.FileUtilityImpl;
 import view.GamesViewType;
-import view.SceneStarter;
+import view.MinigameStarter;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,8 +34,15 @@ public class MainGameController implements Initializable {
 	@FXML
 	private Label currentPlayerLabel, firstPlayer,secondPlayer,thirdPlayer,fourthPlayer;
 
+	@FXML
+	private ImageView diceImage;
+
+	@FXML
+	private Button mg1Button;
+
 	@Override
     public void initialize(final URL location, final ResourceBundle resources) {
+		initializeMiniGameButtons();
 		final DiceImpl dice = new DiceImpl();
 		final List<PlayerImpl> l = new ArrayList<>();
 		l.add(new PlayerImpl("Ciao"));
@@ -65,28 +73,40 @@ public class MainGameController implements Initializable {
 		});
 	}
 
+	private void initializeMiniGameButtons(){
+		mg1Button.setOnMouseClicked(e -> {
+			MinigameStarter cableConnect = new MinigameStarter(GamesViewType.CABLE_CONNECT);
+			Stage s = new Stage();
+			try {
+				cableConnect.start(s);
+			} catch (Exception exception) {
+				exception.printStackTrace();
+			}
+			System.out.println("RES: " + cableConnect.getResult());
+		});
+	}
 	private void check(final Box b) {
 		final Stage s = new Stage();
 		s.initModality(Modality.APPLICATION_MODAL);
         s.setMinHeight(600);
         s.setMinWidth(800);
         
-        SceneStarter minigameScene = null;
+        MinigameStarter minigameScene = null;
 		switch(b) {
 			case BONUS:
-				minigameScene = new SceneStarter(GamesViewType.GAME);
+				minigameScene = new MinigameStarter(GamesViewType.GAME);
 				break;
 			case TICTACTOE:
-				minigameScene = new SceneStarter(GamesViewType.TICTACTOE);
+				minigameScene = new MinigameStarter(GamesViewType.TICTACTOE);
 				break;
 			case EVEN_OR_ODD:
-				minigameScene = new SceneStarter(GamesViewType.EVEN_OR_ODD);
+				minigameScene = new MinigameStarter(GamesViewType.EVEN_OR_ODD);
 				break;
 			case ROCK_PAPER_SCISSORS:
-				minigameScene = new SceneStarter(GamesViewType.ROCK_PAPER_SCISSORS);
+				minigameScene = new MinigameStarter(GamesViewType.ROCK_PAPER_SCISSORS);
 				break;
 			case CABLE_CONNECT:
-				minigameScene = new SceneStarter(GamesViewType.CABLE_CONNECT);
+				minigameScene = new MinigameStarter(GamesViewType.CABLE_CONNECT);
 				break;
 		default:
 			break;

@@ -1,8 +1,8 @@
 package application.minigame.cableconnect;
 
+import controller.MinigameController;
 import utility.countdown.CountdownImpl;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +17,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class CableConnectController implements Initializable {
+public class CableConnectController implements MinigameController {
     @FXML
     private Button startButton0, startButton1, startButton2, startButton3;
     @FXML
@@ -83,7 +83,7 @@ public class CableConnectController implements Initializable {
     }
 
     private void checkEnd() {
-        int secondsLeft = c.getSecondsLeft();
+        double secondsLeft = c.getSecondsLeft();
         if (colorsDone.size() == CABLES){
             //Alert main game [TBD]
             c.shutdown();
@@ -181,11 +181,9 @@ public class CableConnectController implements Initializable {
         endButton3.setDisable(true);
     }
 
-
-    //thread per contare i secondi
-    //colorazione random 4 bottoni iniziali e finali
-    //sul click del bottone si guarda a quale colore corrisponde
-    //quando clicca su un bottone finale con lo stesso colore si segna questa cosa
-    //quando viene chiuso il quarto si ferma il timer e si verifica
-    //se il timer finisce prima si è perso e si torna indietro di 6
+    @Override
+    public int getResult() {
+        c.shutdown();
+        return (int) c.getSecondsLeft();
+    }
 }
