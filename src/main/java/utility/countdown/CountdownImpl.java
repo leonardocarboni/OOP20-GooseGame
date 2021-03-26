@@ -8,13 +8,16 @@ import java.util.TimerTask;
 
 public class CountdownImpl implements Countdown{
 
+    private static final int DELAY = 0;
+    private static final int PERIOD = 100; //every 0.1 seconds
+
     final private Timer timer;
-    private int seconds;
+    private double seconds;
     final private UpdateLabel updateLabelTask;
     final private Label timeLabel;
 
     public CountdownImpl(final int seconds, final Label timeLabel) {
-        this.seconds = seconds*10;
+        this.seconds = seconds;
         this.timeLabel = timeLabel;
         this.timer = new Timer();
         this.updateLabelTask = new UpdateLabel();
@@ -22,7 +25,7 @@ public class CountdownImpl implements Countdown{
 
     @Override
     public void start(){
-        timer.schedule(updateLabelTask, 0, 100);
+        timer.schedule(updateLabelTask, DELAY, PERIOD);
     }
 
     @Override
@@ -32,7 +35,7 @@ public class CountdownImpl implements Countdown{
     }
 
     @Override
-    public int getSecondsLeft(){
+    public double getSecondsLeft(){
         return this.seconds;
     }
 
@@ -48,8 +51,8 @@ public class CountdownImpl implements Countdown{
         public void run() {
             Platform.runLater(() -> {
                 if (seconds >= 0) {
-                    timeLabel.setText(seconds/10 + "." + seconds%10);
-                    seconds--;
+                    timeLabel.setText(String.format("%.1f", seconds));
+                    seconds = seconds - 0.1;
                 } else {
                     shutdown();
                 }

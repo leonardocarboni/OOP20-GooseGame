@@ -16,5 +16,5 @@ public interface Countdown {
      * Returns seconds left
      * @return seconds left
      */
-    int getSecondsLeft();
+    double getSecondsLeft();
 }
