@@ -7,6 +7,10 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 
+/**
+ * Classe che fornisce variabili statiche per prendere immagini.
+ */
+
 public class BackgroundLoader {
     private final static GettersMVC getters = new GettersMVC();
 
@@ -15,12 +19,12 @@ public class BackgroundLoader {
             new BackgroundSize(300,400,true,true,true,false);
 
     /* sfondo della schermata finale del gioco */
-    static final BackgroundImage endGameButton =
+    static final BackgroundImage buttonPrincipal =
             new BackgroundImage(new Image("evenodd/button.png"),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, bs);
 
 
-    public static final BackgroundImage button =
+    public static final BackgroundImage background =
             new BackgroundImage(new Image("evenodd/background.png",600,480,false,false),
             BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
@@ -38,13 +42,6 @@ public class BackgroundLoader {
     public static final BackgroundImage animationGif =
             new BackgroundImage(new Image("evenodd/tenor.gif"),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, bs);
-
-
-
-    /* bottone finale che dice chi ha vinto o no */
-    public static final BackgroundImage endGameButtonBackground =
-            new BackgroundImage(new Image("TicTacToe/Sfondo.png",600,480,false,false),
-                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
     static final BackgroundImage pauseMusic =
             new BackgroundImage(new Image("TicTacToe/Pause.png",50,40,false,false),

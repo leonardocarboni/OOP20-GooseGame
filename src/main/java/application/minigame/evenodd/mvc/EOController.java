@@ -9,8 +9,19 @@ import java.util.List;
 
 public class EOController{
 
+    /**
+     * Questa variabile mi permette di richiamare le funzionalità del model e della view.
+    **/
     private GettersMVC getters = new GettersMVC();
 
+    /**
+     * In caso di click del bottone viene attivato questo handler.
+     * Esso valuta il testo del bottone, e in base a quest'ultimo chiamo la model.
+     *
+     * Se pari chiamo la checkWin con 2.
+     * Se dispari chiamo la checkWin con 1.
+     * Disattivo i bottoni nella view.
+     */
     public final EventHandler<Event> click = new EventHandler<Event>() {
         @Override
         public void handle(final Event event) {

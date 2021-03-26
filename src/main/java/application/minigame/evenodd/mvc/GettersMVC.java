@@ -3,6 +3,13 @@ package application.minigame.evenodd.mvc;
 import application.minigame.evenodd.mainGame.EvenOdd;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Questa classe ritorna la view, controller, model e stackPane dell'applicazione.
+ * Esegue chiamate statiche alle classi EvenOdd e EOView per memorizzare la
+ * view, model, controller e stackPane.
+ *
+ */
+
 public class GettersMVC {
 
     private EOView view;

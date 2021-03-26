@@ -15,8 +15,7 @@ import java.util.Optional;
 public class ButtonDropper extends Button {
 
 
-    //metodo che consente di creare il bottone presente nella griglia
-    //prende come valore un handler per un bottone
+
     public Button evenButton(EOController handler){
         final GettersMVC getters = new GettersMVC();
 
@@ -30,7 +29,7 @@ public class ButtonDropper extends Button {
 
         btn.setPrefSize(200,50);
 
-        btn.setBackground(new Background(BackgroundLoader.endGameButton));
+        btn.setBackground(new Background(BackgroundLoader.buttonPrincipal));
 
         return btn;
     }
@@ -47,7 +46,7 @@ public class ButtonDropper extends Button {
         btn.setPrefSize(200,50);
         btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.click);
 
-        btn.setBackground(new Background(BackgroundLoader.endGameButton));
+        btn.setBackground(new Background(BackgroundLoader.buttonPrincipal));
 
         return btn;
     }
@@ -55,7 +54,7 @@ public class ButtonDropper extends Button {
     public Button exitButton(Optional<EOController> handler, String winner){
         Button btn = new Button();
         btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.get().exit);
-        btn.setBackground(new Background(BackgroundLoader.endGameButton));
+        btn.setBackground(new Background(BackgroundLoader.buttonPrincipal));
         btn.setText("Exit");
         btn.setTranslateY(30);
 
