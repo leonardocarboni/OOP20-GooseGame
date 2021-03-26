@@ -25,6 +25,7 @@ public class EOModel {
      * Se il valore passatomi dal Controller è 1 (il player ha scelto dispari) e il
      * valore generato dalla Random è dispari allora il player ha VINTO.
      * Negli altri casi ha perso.
+     * Passo il valore alla view che lo stamperà a video.
      *
      * @param value valore passatomi dal Controller. 1 dispari, 2 pari.
      */
@@ -32,6 +33,7 @@ public class EOModel {
         if((value == 2 && rndValue % 2 == 0) || (value == 1 && rndValue % 2 != 0)){
             getters.getView().result=true;
         }
+        getters.getView().resultValue=rndValue;
     }
 
 

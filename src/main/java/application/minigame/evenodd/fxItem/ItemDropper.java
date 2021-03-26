@@ -1,18 +1,21 @@
 package application.minigame.evenodd.fxItem;
 
+import application.minigame.evenodd.mainGame.EvenOdd;
 import application.minigame.evenodd.mvc.GettersMVC;
 import application.minigame.evenodd.mvc.EOController;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import java.util.Optional;
 
-public class ButtonDropper extends Button {
+public class ItemDropper extends Button {
 
 
 
@@ -50,6 +53,16 @@ public class ButtonDropper extends Button {
 
         return btn;
     }
+
+    public Text createText(int resultValue){
+        Text text = new Text();
+        text.setText("The number generated is: " + resultValue);
+        text.setTranslateY(60);
+        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
+        text.setFill(Color.BEIGE);
+        return text;
+    }
+
 
     public Button exitButton(Optional<EOController> handler, String winner){
         Button btn = new Button();

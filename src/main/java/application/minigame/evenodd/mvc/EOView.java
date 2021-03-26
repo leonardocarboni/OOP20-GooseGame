@@ -2,7 +2,7 @@ package application.minigame.evenodd.mvc;
 
 
 import application.minigame.evenodd.fxItem.BackgroundLoader;
-import application.minigame.evenodd.fxItem.ButtonDropper;
+import application.minigame.evenodd.fxItem.ItemDropper;
 import application.minigame.evenodd.mainGame.EvenOdd;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -12,6 +12,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +58,11 @@ public class EOView {
     public boolean result;
 
     /**
+     * Valore uscito casualmente dalla model.
+     */
+    public int resultValue;
+
+    /**
      * Definizione della task usata per implementare un delay nella GUI
      * Esso setta l'immagine a NULL della imageView, poichè ci sarà l'animazione del dado.
      * Dopodichè chiama un metodo per restituire l'imageView corretta.
@@ -84,7 +94,7 @@ public class EOView {
      */
     public StackPane createPane() {
         StackPane pane = new StackPane();
-        ButtonDropper dropper = new ButtonDropper();
+        ItemDropper dropper = new ItemDropper();
         Button btn1 = dropper.evenButton(handler);
         Button btn2 = dropper.oddButton(handler);
 
@@ -110,6 +120,7 @@ public class EOView {
      * In base al risultato (dato dal model) setto l'immagine winner o loser
      */
     private void startWinAnimation(){
+        createText();
        if(result){
            task1.setOnSucceeded(event -> winImage());
        } else{
@@ -139,11 +150,20 @@ public class EOView {
     private void changeIcon(BackgroundImage bkg){
         Image imgIcon = new Image(bkg.getImage().getUrl());
         ImageView viewImage = new ImageView(imgIcon);
-        viewImage.setFitHeight(200);
+        viewImage.setFitHeight(200); //no magic number
         viewImage.setFitWidth(400);
         this.imgView = viewImage;
         viewImage.setTranslateY(-100);
         EvenOdd.pane.getChildren().add(viewImage);
+    }
+
+    /**
+     * Crea il testo che mi dice il valore generato dalla model.
+     */
+    private void createText(){
+        ItemDropper item = new ItemDropper();
+        Text text = item.createText(this.resultValue);
+        EvenOdd.pane.getChildren().add(text);
     }
 
 
