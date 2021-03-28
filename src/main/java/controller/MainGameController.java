@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,14 +15,13 @@ import model.dice.DiceImpl;
 import model.player.PlayerImpl;
 import model.queue.QueueImpl;
 import model.rank.RankImpl;
-import utility.fileUtility.FileUtilityImpl;
+import utility.file.FileUtilityImpl;
 import view.GamesViewType;
 import view.MinigameStarter;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -30,62 +30,63 @@ public class MainGameController implements Initializable {
 	
 	@FXML
     private Button diceButton;
-
 	@FXML
-	private Label currentPlayerLabel, firstPlayer,secondPlayer,thirdPlayer,fourthPlayer;
-
+	private Label currentPlayerLabel;
 	@FXML
 	private ImageView diceImage;
-
 	@FXML
 	private Button mg1Button;
-
+	@FXML
+	private List<Label> scoreBoard;
+	
+	private final List<PlayerImpl> plList = new ArrayList<>();
+	private final DiceImpl dice = new DiceImpl();
+	private final QueueImpl playerQueue = new QueueImpl();
+	private final RankImpl rank = new RankImpl();
+	private final BoardImpl gameBoard = new BoardImpl(42);
+	private final Map<PlayerImpl, Integer> throwDice = new HashMap<>();
+	private boolean t = true;
+	
 	@Override
     public void initialize(final URL location, final ResourceBundle resources) {
-		initializeMiniGameButtons();
-		final DiceImpl dice = new DiceImpl();
-		final List<PlayerImpl> l = new ArrayList<>();
-		l.add(new PlayerImpl("Ciao"));
-		l.add(new PlayerImpl("Ciao2"));
-		l.add(new PlayerImpl("Ciao22"));
-		final QueueImpl playerQueue = new QueueImpl();
-		startingDice(l,dice,playerQueue);
-		playerQueue.resetIterator();
-		final RankImpl rank = new RankImpl(l);
-		final BoardImpl gameBoard = new BoardImpl(42);
+		plList.add(new PlayerImpl("Ciao"));
+		plList.add(new PlayerImpl("Ciao1"));
 		gameBoard.generateBoard();
-		currentPlayerLabel.setText(playerQueue.getCurrent().getName());
-		diceButton.setOnMouseClicked((event) -> {
-			final int diceValue = dice.roll();
-			playerQueue.getCurrent().addPosition(diceValue);
-			rank.updateRanking();
+		playerQueue.setStartingQueue(plList);
+		playerQueue.resetIterator();
+		rank.setRanking(plList);
+		updateView(rank.getRanking());
+		diceButton.setOnAction(e -> startGame());
+	}
+
+	private void startGame() {
+		
+		if(t) {
+			throwDice.put(playerQueue.next(), dice.roll());	
+			if(throwDice.size() == plList.size()) {
+				playerQueue.orderPlayerQueue(throwDice);
+				playerQueue.resetIterator();
+				updateView(playerQueue.getStartingQueue());
+				t = false;
+			}
+		}else {
+			playerQueue.getCurrent().addPosition(dice.roll());
 			if(gameBoard.endGame(playerQueue.getCurrent()).equals(StateGame.ENDGAME)) {
 				final FileUtilityImpl fu = new FileUtilityImpl();
 				fu.saveFileRanking(rank.getRanking());
-				/*Game Ending*/
+				Platform.exit();
+				System.exit(0);
 			}else {
 				final Box box = gameBoard.getBox(playerQueue.getCurrent());
-				check(box);
-				updateViewRank(rank.getRanking());
+				checkMinigames(box);
+				rank.updateRanking();
+				updateView(rank.getRanking());
 				playerQueue.next();
-				currentPlayerLabel.setText(playerQueue.getCurrent().getName());
-			}		
-		});
+			}
+		}
 	}
 
-	private void initializeMiniGameButtons(){
-		mg1Button.setOnMouseClicked(e -> {
-			MinigameStarter cableConnect = new MinigameStarter(GamesViewType.CABLE_CONNECT);
-			Stage s = new Stage();
-			try {
-				cableConnect.start(s);
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
-			System.out.println("RES: " + cableConnect.getResult());
-		});
-	}
-	private void check(final Box b) {
+	private void checkMinigames(final Box b) {
 		final Stage s = new Stage();
 		s.initModality(Modality.APPLICATION_MODAL);
         s.setMinHeight(600);
@@ -118,24 +119,16 @@ public class MainGameController implements Initializable {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	private void startingDice(final List<PlayerImpl> p,final DiceImpl dice, final QueueImpl q) {
-		final Iterator<PlayerImpl> i = p.iterator();
-		final Map<PlayerImpl, Integer> throwDice = new HashMap<>();
-		while(i.hasNext()){
-			final int value = dice.roll();
-			final PlayerImpl ps = i.next();
-			throwDice.put(ps, value);
-		}
-		q.orderPlayerQueue(throwDice);
-		System.out.println(throwDice);
+		//minigameScene.getResult();
 	}
 	
-	private void updateViewRank(final List<PlayerImpl> rankingList) {
-		firstPlayer.setText(rankingList.get(0).getName());
-		secondPlayer.setText(rankingList.get(1).getName());
-		thirdPlayer.setText(rankingList.size() == 3 ? rankingList.get(2).getName() : "");
-		fourthPlayer.setText(rankingList.size() == 4 ? rankingList.get(3).getName() : ""); 
+	private void updateView(final List<PlayerImpl> rankingList) {
+		int i = 0;
+		System.out.println(rankingList);
+		for (final PlayerImpl player : rankingList) {
+			scoreBoard.get(i).setText(player.getName() + " " + player.getBoardPosition());
+			i++;
+		}
+		currentPlayerLabel.setText(playerQueue.getCurrent().getName());
 	}
 }
