@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,8 +19,14 @@ public class MenuController implements Initializable {
     private Button settingsButton;
     @FXML
     private Button creditsButton;
+    
+    @Override
+    public void initialize(final URL url, final ResourceBundle resourceBundle) {
+    	playButton.setOnAction(e -> clickPlayButton());
+    	settingsButton.setOnAction(e -> clickCreditsButton());
+    	creditsButton.setOnAction(e -> clickExitButton());
+    }
 
-    @FXML
     private void clickPlayButton() {
     	final Stage newStage = new Stage();
         newStage.initModality(Modality.APPLICATION_MODAL);
@@ -34,23 +39,16 @@ public class MenuController implements Initializable {
             System.out.println("Errore nell'apertura");
         }
     }
-    
-    @FXML
+
     private void clickCreditsButton() {
     	final Stage newStage = new Stage();
         newStage.initModality(Modality.APPLICATION_MODAL);
     }
-    
-    @FXML
+
     private void clickExitButton() {
     	System.out.println("Calling Platform.exit():");
         Platform.exit();
         System.out.println("Calling System.exit(0):");
         System.exit(0);
     }
-    
-    @Override
-    public void initialize(final URL url, final ResourceBundle resourceBundle) {
-    }
-
 }

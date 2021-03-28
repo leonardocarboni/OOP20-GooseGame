@@ -44,6 +44,7 @@ public class PlayersChooserController implements Initializable {
         textFiledSet.add(name2);
         textFiledSet.add(name3);
         textFiledSet.add(name4);
+       
     }
 
     /**
@@ -65,19 +66,17 @@ public class PlayersChooserController implements Initializable {
 
                 textFiledSet.stream().filter(tf -> !tf.getText().isEmpty())
                         .forEach(tf -> playersList.add(new PlayerImpl(tf.getText())));
-
-                final RankImpl rank = new RankImpl(playersList);
-                final Stage newStage = new Stage();
-                final Stage s = (Stage) errorLabel.getParent().getScene().getWindow();
-                s.close();
-                newStage.initModality(Modality.APPLICATION_MODAL);
-                final MainGame gameScene = new MainGame();
+                final Stage s = new Stage();
+        		s.initModality(Modality.APPLICATION_MODAL);
+                s.setMinHeight(600);
+                s.setMinWidth(800);
+                MainGame m = new MainGame();
                 try {
-                	gameScene.start(newStage);
-                } catch (Exception ex){
-                	System.out.println(ex);
-                    System.out.println("Errore nell'apertura");
-                }
+					m.start(s);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             }
             else{
                 errorLabel.setText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");
