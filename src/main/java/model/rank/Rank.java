@@ -9,4 +9,6 @@ public interface Rank {
 	void updateRanking();
 
 	List<PlayerImpl> getRanking();
+
+	void setRanking(List<PlayerImpl> l);
 }
