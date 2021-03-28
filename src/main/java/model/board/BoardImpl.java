@@ -73,7 +73,9 @@ public class BoardImpl implements Board{
 	
 	
 	private void goBeyoundLimit(final PlayerImpl p) {
-		p.addPosition(p.getBoardPosition() > size ? -(p.getBoardPosition() - size) : 0);
+		System.out.println("Valore attual" + p.getBoardPosition() + " Indietro di: ");
+		System.out.println(p.getBoardPosition() > size ? -(p.getBoardPosition() - size)*2 : 0);
+		p.addPosition(p.getBoardPosition() > size ? -(p.getBoardPosition() - size)*2 : 0);
 	}
 	
 	/*
