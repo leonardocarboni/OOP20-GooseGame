@@ -23,7 +23,8 @@ public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 
 	@Override
 	public void orderPlayerQueue(final Map<PlayerImpl,Integer> diceThrowing) {
-		 final List<Entry<PlayerImpl, Integer>> list = new LinkedList<>(diceThrowing.entrySet());
+		startingQueue = new ArrayList<>();
+		final List<Entry<PlayerImpl, Integer>> list = new LinkedList<>(diceThrowing.entrySet());
 
 	     // Sorting the list based on value
 		 Collections.sort(list, new Comparator<Entry<PlayerImpl,Integer>>() {
@@ -34,8 +35,6 @@ public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 			 }
 	        	
 		});
-
-		//Collections.sort(list,Collections.reverseOrder());
 	    for (final Entry<PlayerImpl, Integer> entry : list){
 	    	startingQueue.add(entry.getKey());
 	    }
