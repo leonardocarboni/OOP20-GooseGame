@@ -16,46 +16,46 @@ import com.google.gson.GsonBuilder;
 
 public class FileUtilityImpl implements FileUtility{
 
-	private static final String NAME_FILE = "GooseRanking.json";
-	private static final File FILE = new File(NAME_FILE);
+	private final String fileName;
+	private final File file;
+	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-	private final Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-	
-	public void saveFileRanking(final List<PlayerImpl> ranking) {
-		if (!FILE.exists()) {
+	public FileUtilityImpl(final String name) {
+		this.fileName = name;
+		this.file  = new File(fileName);
+	}
+
+	public void saveInformation(final List<PlayerImpl> playerList) {
+		if (!file.exists()) {
 			try {
-				FILE.createNewFile();
+				file.createNewFile();
 			} catch (IOException e) {
 				System.out.println("Excepton Occured: " + e.toString());
 			}
 		}
 		
-		try (FileWriter writer = new FileWriter(NAME_FILE)) {
-			gson.toJson(ranking, writer);
+		try (FileWriter writer = new FileWriter(fileName)) {
+			GSON.toJson(playerList, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
 	}
-	/*
-	 * 
-	 */
-	public void loadFileRanking() throws FileNotFoundException {
-		if (!FILE.exists()) {
+
+	public List<PlayerImpl> loadInformation() throws FileNotFoundException {
+		final List<PlayerImpl> rank = new ArrayList<>();
+		if (!file.exists()) {
 			System.out.println("File doesn't exist");
 			throw new FileNotFoundException();
 		}
-		
-		try (Reader reader = new FileReader(NAME_FILE)) {
-            final PlayerImpl[] playerArray = gson.fromJson(reader, PlayerImpl[].class);
-            final List<PlayerImpl> rank = new ArrayList<>();
+		try (Reader reader = new FileReader(fileName)) {
+            final PlayerImpl[] playerArray = GSON.fromJson(reader, PlayerImpl[].class);
             for (final PlayerImpl p : playerArray) {
 				rank.add(p);
 			}
-            System.out.println(rank);
         } catch (IOException e) {
             e.printStackTrace();
         }
- 
+		return rank;
 	}
 	
 }

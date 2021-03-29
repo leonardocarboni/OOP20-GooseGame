@@ -8,7 +8,7 @@ import model.player.PlayerImpl;
 public interface FileUtility {
 
 	
-	void saveFileRanking(final List<PlayerImpl> ranking);
+	void saveInformation(final List<PlayerImpl> ranking);
 
-	void loadFileRanking() throws FileNotFoundException;
+	List<PlayerImpl> loadInformation() throws FileNotFoundException;
 }
