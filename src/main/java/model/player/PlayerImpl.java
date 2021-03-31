@@ -1,16 +1,15 @@
-package model;
+package model.player;
 
-public class Player {
+public class PlayerImpl implements Player{
 	
 	private String name;
 	private int boardPosition;
 	
-	public Player(final String name) {
+	public PlayerImpl(final String name) {
 		if("".equals(name)) {
-			this.name = "G"+Math.random();
-		}else {
-			this.name = name;
+			throw new IllegalStateException();
 		}
+		this.name = name;
 		this.boardPosition = 0;
 	}
 
@@ -38,30 +37,6 @@ public class Player {
 	
 	public void resetPosition() {
 		this.boardPosition = 0;
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + boardPosition;
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final Player other = (Player) obj;
-
-		return boardPosition == other.boardPosition; /* did this to remove warning*/
 	}
 
 	@Override
