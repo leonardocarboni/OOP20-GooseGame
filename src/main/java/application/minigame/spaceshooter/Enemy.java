@@ -2,18 +2,25 @@ package application.minigame.spaceshooter;
 
 import javafx.scene.image.Image;
 
-public class Enemy {
+public class Enemy extends Player{
 
-    private int posX;
-    private int posY;
-    private int size;
-    boolean destroyed;
-    Image image_enemy;
+
+    private boolean destroyed;
+    private int shot_received = 0;
+    private int speed = Info.score+5;
 
     public Enemy(int posX, int posY, int size, Image image_enemy) {
-        this.posX = posX;
-        this.posY = posY;
-        this.size = size;
-        this.image_enemy = image_enemy;
+        super(posX,posY,size,image_enemy);
+
     }
+
+    public void update(){
+        super.update();
+        if(!destroyed){
+            posY += speed;
+        } else{
+            this.destroyed = true;
+        }
+    }
+
 }
