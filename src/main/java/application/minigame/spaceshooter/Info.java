@@ -17,7 +17,11 @@ public class Info {
     public static final Image ENEMY_IMG = new Image("spaceShooter/enemy");
     public static int SHOTS_TO_ENEMY = 1;
     public static int SHOTS_TO_PLAYER = 1;
-    public static final int STEPS_EXPLOSION_IMG = 15;
+    public static final int EXPLOSION_IMG_NUM = 15;
+    static final int EXPLOSION_WIDTH = 128;
+    static final int EXPLOSION_ROWS = 3;
+    static final int EXPLOSION_COL = 3;
+    static final int EXPLOSION_HEIGHT = 128;
     public static GraphicsContext gc;
     public static int score;
     public static boolean isOver;
