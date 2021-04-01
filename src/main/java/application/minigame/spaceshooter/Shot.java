@@ -1,14 +1,29 @@
 package application.minigame.spaceshooter;
 
+import javafx.geometry.Point2D;
+
 public class Shot {
 
-    private int posX;
-    private int posY;
-    private int size;
+    private Point2D position_shot;
+    private final int size;
+    private int speed;
 
-    public Shot(int posX, int posY, int size) {
-        this.posX = posX;
-        this.posY = posY;
+    public Shot(final int posX,final  int posY,final  int size) {
+        position_shot = new Point2D(posX, posY);
         this.size = size;
     }
+
+    public void update(){
+        position_shot = new Point2D(position_shot.getX(), position_shot.getY()+speed);
+    }
+
+    public void draw(){
+        Info.gc.fillOval(position_shot.getX(), position_shot.getY(),size, size);
+    }
+
+    public boolean collide(final Enemy enemy){
+        int distance_enemy_shot = (int) position_shot.distance(enemy.position_enemy);
+        return distance_enemy_shot < enemy.size / 2 + this.size / 2;
+    }
+
 }
