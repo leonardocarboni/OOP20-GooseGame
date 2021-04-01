@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 
 public class Player {
     public Point2D position_player;
+    private GettersGraphics gg;
     public final int size;
     private boolean destroyed;
     private int shot_received = 0;
@@ -26,9 +27,9 @@ public class Player {
 
     public void draw(){
         if(!exploding()) {
-            Info.gc.drawImage(Info.PLAYER_IMG,position_player.getX(), position_player.getY(), this.size, this.size);
+            gg.getGraphic().drawImage(Info.PLAYER_IMG,position_player.getX(), position_player.getY(), this.size, this.size);
         } else{
-            Info.gc.drawImage(Info.EXPLOSION_IMG, Info.EXPLOSION_IMG_NUM % Info.EXPLOSION_COL * Info.EXPLOSION_WIDTH,
+            gg.getGraphic().drawImage(Info.EXPLOSION_IMG, Info.EXPLOSION_IMG_NUM % Info.EXPLOSION_COL * Info.EXPLOSION_WIDTH,
                     (Info.EXPLOSION_IMG_NUM / Info.EXPLOSION_ROWS) * Info.EXPLOSION_HEIGHT + 1,
                     Info.EXPLOSION_WIDTH, Info.EXPLOSION_HEIGHT,
                     position_player.getX(),position_player.getY(), size, size);

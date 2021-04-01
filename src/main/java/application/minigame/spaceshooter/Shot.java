@@ -5,6 +5,7 @@ import javafx.geometry.Point2D;
 public class Shot {
 
     private Point2D position_shot;
+    private GettersGraphics gg;
     private final int size;
     private int speed;
 
@@ -18,7 +19,7 @@ public class Shot {
     }
 
     public void draw(){
-        Info.gc.fillOval(position_shot.getX(), position_shot.getY(),size, size);
+        gg.getGraphic().fillOval(position_shot.getX(), position_shot.getY(),size, size);
     }
 
     public boolean collide(final Enemy enemy){

@@ -22,7 +22,6 @@ public class Info {
     static final int EXPLOSION_ROWS = 3;
     static final int EXPLOSION_COL = 3;
     static final int EXPLOSION_HEIGHT = 128;
-    public static GraphicsContext gc;
     public static int score;
     public static boolean isOver;
     public static double mouseX;

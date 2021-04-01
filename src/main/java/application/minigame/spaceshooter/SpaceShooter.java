@@ -2,6 +2,9 @@ package application.minigame.spaceshooter;
 
 
 import javafx.application.Application;
+import javafx.scene.Cursor;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -15,12 +18,17 @@ public class SpaceShooter extends Application {
     private List<Enemy> enemies;
     private List<Shot> shots;
     private Player player;
+    private double mouseX;
+    public static GraphicsContext gc;
 
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        Canvas canvas = new Canvas(Info.WIDTH, Info.HEIGHT);
+        gc = canvas.getGraphicsContext2D();
+        canvas.setCursor(Cursor.MOVE);
+        canvas.setOnMouseMoved(e -> mouseX = e.getX());
     }
 
     private void initialize(){
