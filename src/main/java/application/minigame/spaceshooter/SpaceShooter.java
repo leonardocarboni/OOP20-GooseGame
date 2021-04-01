@@ -3,8 +3,10 @@ package application.minigame.spaceshooter;
 
 import javafx.application.Application;
 import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import java.util.stream.IntStream;
 public class SpaceShooter extends Application {
 
     private final Random rnd = new Random();
-    private List<Enemy> enemies;
+    private List<Enemy> enemies = new ArrayList<>();
     private List<Shot> shots;
     private Player player;
     private double mouseX;
@@ -29,6 +31,11 @@ public class SpaceShooter extends Application {
         gc = canvas.getGraphicsContext2D();
         canvas.setCursor(Cursor.MOVE);
         canvas.setOnMouseMoved(e -> mouseX = e.getX());
+
+        initialize();
+        primaryStage.setTitle("SpaceShooter");
+        primaryStage.setScene(new Scene(new StackPane(canvas)));
+        primaryStage.show();
     }
 
     private void initialize(){

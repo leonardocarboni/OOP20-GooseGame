@@ -14,7 +14,7 @@ public class Info {
     public static final int SIZE_P = 50;
     public static final Image PLAYER_IMG = new Image("spaceShooter/player.png");
     public static final Image EXPLOSION_IMG = new Image("spaceShooter/explosion.png");
-    public static final Image ENEMY_IMG = new Image("spaceShooter/enemy");
+    public static final Image ENEMY_IMG = new Image("spaceShooter/enemy.png");
     public static int SHOTS_TO_ENEMY = 1;
     public static int SHOTS_TO_PLAYER = 1;
     public static final int EXPLOSION_IMG_NUM = 15;
