@@ -1,6 +1,8 @@
 package application.minigame.spaceshooter;
 
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -8,6 +10,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,10 @@ public class SpaceShooter extends Application {
     public void start(Stage primaryStage) throws Exception {
         Canvas canvas = new Canvas(Info.WIDTH, Info.HEIGHT);
         gc = canvas.getGraphicsContext2D();
+        Timeline animation = new Timeline(new KeyFrame(Duration.millis(60), e -> run(gc)));
+        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.play();
+
         canvas.setCursor(Cursor.MOVE);
         canvas.setOnMouseMoved(e -> mouseX = e.getX());
 
@@ -43,5 +50,9 @@ public class SpaceShooter extends Application {
         player = new Player(200,100,Info.SIZE_P, Info.PLAYER_IMG);
         shots = new ArrayList<>();
         Info.score = 0;
+    }
+
+    private void run(GraphicsContext gc) {
+        gc.fillRect(0,0,Info.WIDTH, Info.HEIGHT);
     }
 }
