@@ -41,10 +41,8 @@ public class SpaceShooter extends Application {
         canvas.setCursor(Cursor.MOVE);
         canvas.setOnMouseMoved(e -> mouseX = e.getX());
         canvas.setOnMouseClicked(e -> {
-            if(shots.size() < 2) shots.add(player.shot());
-            if(Info.isOver) {
-                Info.isOver = false;
-                initialize();
+            if(shots.size() < 10) {
+                shots.add(player.shot());
             }
         });
 
@@ -55,7 +53,7 @@ public class SpaceShooter extends Application {
     }
 
     private void initialize(){
-        IntStream.range(0,10).forEach(i -> enemies.add(new Enemy(rnd.nextInt(450),500,Info.SIZE_P,Info.ENEMY_IMG)));
+        IntStream.range(0,10).forEach(i -> enemies.add(new Enemy(rnd.nextInt(600),0,Info.SIZE_P,Info.ENEMY_IMG)));
         player = new Player(Info.WIDTH/2,Info.HEIGHT-Info.SIZE_P,Info.SIZE_P, Info.PLAYER_IMG);
         shots = new ArrayList<>();
         Info.score = 0;
@@ -78,16 +76,39 @@ public class SpaceShooter extends Application {
         player.draw();
         player.position_player = new Point2D(mouseX,player.position_player.getY() );
 
+
         enemies.stream().peek(Enemy::update).peek(Enemy::draw).forEach(e -> {
-            if(player.touch(e) && (player.shot_received!=1)){
-                player.exploding();
+            if(player.touch(e) && !player.exploding){
+                player.explode();
             }
         });
 
+        for(int i = shots.size()-1; i >= 0; i--){
+            Shot shot = shots.get(i);
+            if(shot.position_shot.getY() < 0 || shot.noShot){
+                shots.remove(i);
+                continue;
+            }
+            shot.update();
+            shot.draw();
+            for(Enemy enemy: enemies){
+                if(shot.collide(enemy) && !enemy.exploding){
+                    Info.score++;
+                    enemy.explode();
+                    shot.noShot = true;
+                }
+            }
 
+        }
+        for(int i = enemies.size()-1; i >= 0; i--){
+            if(enemies.get(i).destroyed){
+                enemies.set(i, new Enemy(rnd.nextInt(450),0,Info.SIZE_P,Info.ENEMY_IMG));
+            }
+        }
 
+    }
 
-        Info.isOver = player.destroyed;
-
+    public static void main(String[] args) {
+        launch();
     }
 }
