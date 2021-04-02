@@ -64,7 +64,7 @@ public class BoardImpl implements Board{
 	 */
 	public StateGame endGame(final PlayerImpl p) {
 		if (p.getBoardPosition() == size) {
-			return StateGame.ENDGAME;
+			return StateGame.END;
 		}else {
 			goBeyoundLimit(p);
 			return StateGame.CONTINUE;
