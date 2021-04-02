@@ -78,7 +78,11 @@ public class SpaceShooter extends Application {
         player.draw();
         player.position_player = new Point2D(mouseX,player.position_player.getY() );
 
-
+        enemies.stream().peek(Enemy::update).peek(Enemy::draw).forEach(e -> {
+            if(player.touch(e) && (player.shot_received!=1)){
+                player.exploding();
+            }
+        });
 
 
 
