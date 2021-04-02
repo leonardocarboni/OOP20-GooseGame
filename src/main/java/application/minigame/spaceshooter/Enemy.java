@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 public class Enemy extends Player{
 
 
-    private boolean destroyed;
+    public boolean destroyed;
     public Point2D position_enemy;
     private int shot_received = 0;
     private int speed = Info.score+5;
