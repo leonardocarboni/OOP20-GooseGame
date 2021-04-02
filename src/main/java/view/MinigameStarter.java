@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import controller.MinigameController;
 
 public class MinigameStarter extends Application{
 	
@@ -17,7 +16,7 @@ public class MinigameStarter extends Application{
 	private final String layout;
 	private final Double height;
 	private final Double width;
-	private MinigameController minigameController;
+	private MinigameView minigameController;
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {

@@ -1,86 +1,75 @@
-package controller;
+package view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import model.player.PlayerImpl;
-import model.rank.RankImpl;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
-import application.MainGame;
-
-public class PlayersChooserController implements Initializable {
+public class PlayersChooserView implements Initializable {
     @FXML
     private Button startButton;
     @FXML
-    private TextField name1, name2, name3, name4;
+    private List<TextField> playersName;
     @FXML
     private Label errorLabel;
 
-    final private Set<TextField> textFiledSet = new HashSet<>();
-    final private List<PlayerImpl> playersList = new ArrayList<>();
+	private static final String LAYOUT_LOCATION = "layouts/playerselection.fxml";
+	private static final String LOGO_LOCATION = "logo.png";
+	private final Stage stage = new Stage();
+	
+	public PlayersChooserView() {
+		try {
+			final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
+	        loader.setController(this);
+	        final Scene scene = new Scene(loader.load());
+	        /* Stage configuration */
+	        stage.setTitle("[GooseGame]");
+	        stage.getIcons().add(new Image(LOGO_LOCATION));
+	        stage.setOnHiding(e -> {
+	        	stage.setIconified(true);
+	        });
+	        stage.setScene(scene);
+	        stage.setResizable(true);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        initializeSet();
-        initializeEventHandlers();
+    	
     }
 
-    /**
-     * Initializes players selection set
-     */
-    private void initializeSet(){
-        textFiledSet.add(name1);
-        textFiledSet.add(name2);
-        textFiledSet.add(name3);
-        textFiledSet.add(name4);
-       
+    public List<String> getPlayersNames() {
+    	final List<String> l = new ArrayList<>();
+    	for (final TextField s : playersName) {
+			l.add(s.getText());
+		}
+    	return l;
+    }
+    
+    public void setErrorLabelText(final String s) {
+    	errorLabel.setText(s);
+    }
+    
+    public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
+        startButton.setOnAction(eventHandler);
     }
 
-    /**
-     * Initializes event handlers (mouse click on start)
-     */
-    private void initializeEventHandlers() {
-        startButton.setOnMouseClicked(e -> {
-
-            //number of players enabled
-            final int numEnabled = textFiledSet.stream().mapToInt(tf -> tf.getText().trim().isEmpty() ? 0 : 1).sum();
-
-            //number of unique names (only of the enabled player)
-            final int numNames = (int) textFiledSet.stream().filter(tf -> !tf.getText().trim().isEmpty())
-                    .map(tf -> tf.getText()).distinct().count();
-
-            if (numEnabled < 2){
-                errorLabel.setText("YOU MUST ENTER AT LEAST 2 PLAYERS");
-            } else if (numEnabled == numNames) {
-
-                textFiledSet.stream().filter(tf -> !tf.getText().isEmpty())
-                        .forEach(tf -> playersList.add(new PlayerImpl(tf.getText())));
-                final Stage s = new Stage();
-        		s.initModality(Modality.APPLICATION_MODAL);
-                s.setMinHeight(600);
-                s.setMinWidth(800);
-                MainGame m = new MainGame();
-                try {
-					m.start(s);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-            }
-            else{
-                errorLabel.setText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");
-            }
-        });
-    }
+	public void close() {
+		stage.close();
+	}
 }
