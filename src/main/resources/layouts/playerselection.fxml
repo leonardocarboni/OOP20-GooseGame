@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-
+<?import java.util.ArrayList?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="820.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@minigamestyle.css">
    <children>
       <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="231.0" layoutY="426.0" prefHeight="18.0" prefWidth="369.0" text="Minimum players: 2" textAlignment="CENTER" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="231.0" AnchorPane.rightAnchor="220.0">
@@ -69,6 +69,14 @@
                </children>
             </AnchorPane>
          </children>
+         <fx:define>
+		        <ArrayList fx:id="playersName" >
+		            <fx:reference source="name1"/>
+		            <fx:reference source="name2"/>
+		            <fx:reference source="name3"/>
+		            <fx:reference source="name4"/>
+		        </ArrayList>
+		    </fx:define>
       </HBox>
    </children>
 </AnchorPane>
