@@ -22,8 +22,6 @@ public class Info {
     static final int EXPLOSION_HEIGHT = 128;
     public static int score;
     public static boolean isOver;
-    public static double mouseX;
-    public static int MAX_ENEMIES;
 
     static double distance(double x1, double y1, double x2, double y2) {
         return  Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
