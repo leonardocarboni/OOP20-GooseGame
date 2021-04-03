@@ -1,7 +1,7 @@
 package application.minigame.cableconnect;
 
-import controller.MinigameController;
 import utility.countdown.CountdownImpl;
+import view.MinigameView;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
@@ -17,7 +17,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-public class CableConnectController implements MinigameController {
+public class CableConnectController implements MinigameView {
     @FXML
     private Button startButton0, startButton1, startButton2, startButton3;
     @FXML

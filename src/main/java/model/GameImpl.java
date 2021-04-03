@@ -56,11 +56,11 @@ public class GameImpl {
 				fu.saveInformation(rank.getRanking());
 			}else {
 				final Box box = gameBoard.getBox(playerQueue.getCurrent());
-				//launch minigames
 				rank.updateRanking();
 			}
 		}
 	}
+	
 
 	public List<PlayerImpl> getScoreBoard(){
 		return rank.getRanking(); 
