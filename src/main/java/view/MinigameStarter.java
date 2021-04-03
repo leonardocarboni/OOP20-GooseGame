@@ -14,8 +14,6 @@ public class MinigameStarter extends Application{
 	private static final String URL_ICON = "logo.png";
 	private final String title;
 	private final String layout;
-	private final Double height;
-	private final Double width;
 	private MinigameView minigameController;
 
 	@Override
@@ -23,7 +21,7 @@ public class MinigameStarter extends Application{
 		final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(layout));
 		final Parent root = loader.load();
 		minigameController = loader.getController();
-        final Scene scene = new Scene(root, width, height);
+        //final Scene scene = new Scene(root, width, height);
 
         //Stage configuration
         primaryStage.setTitle("[GooseGame]" + title);
@@ -31,7 +29,7 @@ public class MinigameStarter extends Application{
         primaryStage.setOnHiding(e -> {
             primaryStage.setIconified(true);
         });
-        primaryStage.setScene(scene);
+       // primaryStage.setScene(scene);
         primaryStage.showAndWait();
 	}
 	
@@ -39,8 +37,6 @@ public class MinigameStarter extends Application{
 		final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 		this.title = type.getTitle();
 		this.layout = type.getLayoutLocation();
-		this.width = screenBounds.getWidth() / type.getProportionWidth();
-		this.height = screenBounds.getHeight() / type.getProportionHeight();
 	}
 	
 	public void main(final String[] args) {

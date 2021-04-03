@@ -43,6 +43,7 @@ public class PlayersChooserView implements Initializable {
 	        });
 	        stage.setScene(scene);
 	        stage.setResizable(true);
+	        stage.show();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
