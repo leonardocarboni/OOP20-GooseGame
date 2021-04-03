@@ -1,77 +1,57 @@
 package application.minigame.phrasecatch;
 
-import application.utilities.Countdown;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import controller.MinigameController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import utility.countdown.Countdown;
+import utility.countdown.CountdownImpl;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.net.URL;
-import java.util.ResourceBundle;
+public class PhraseCatchController implements MinigameController {
 
-public class PhraseCatchController implements Initializable {
+    private static final int SECONDS = 10;
+    private final PhraseCatchView view;
+    private final PhraseImpl phraseImpl;
+    private final Countdown countdown;
+    private int secondsLeft;
+    private int errors;
 
-    @FXML
-    Button submitButton;
-    @FXML
-    TextField inputTextField;
-    @FXML
-    Label textLabel, timeLabel;
+    public PhraseCatchController(){
+        view = new PhraseCatchView();
+        phraseImpl = new PhraseImpl();
 
-    private Countdown countdown;
-    private String textToCopy;
+        view.addButtonListener(new PhraseSubmitHandler());
+
+        String sentence = phraseImpl.generatePhrase();
+        view.setPhrase(sentence);
+
+        countdown = new CountdownImpl(SECONDS, view.getTimeLabel());
+        countdown.start();
+
+        view.show();
+    }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        countdown = new Countdown(15, timeLabel);
-        countdown.start();
-        initializeText();
-        initializePhrase();
-        initializeEventHandlers();
+    public int getResult(){
+        return secondsLeft - errors;
     }
 
-    private void initializeText() {
-        File file = new File("src/main/resources/sentences.txt");
-        try {
-            final RandomAccessFile f = new RandomAccessFile(file, "r");
-            final long randomLocation = (long) (Math.random() * f.length());
-            f.seek(randomLocation);
-            f.readLine();
-            textToCopy = f.readLine();
-            f.close();
-        }catch (IOException ex){
-            System.out.println("Couldn't load file");
-        }
-        textLabel.setText(textToCopy);
-    }
-
-    private void initializeEventHandlers() {
-        submitButton.setOnMouseClicked(e -> {
-            int secondsLeft = countdown.getSecondsLeft();
+    /**
+     * An inner class for the event catching in the minigame view
+     */
+    public class PhraseSubmitHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            double remainingTime = countdown.getSecondsLeft();
             countdown.shutdown();
-            String textRead = inputTextField.getText();
-            int errors = checkText(textRead);
-            System.out.println("Errori: " + errors + ", Secondi Rimasti: " + secondsLeft);
-        });
-    }
-
-    private int checkText(String textRead) {
-        int errors = Math.abs(textToCopy.length() - textRead.length());
-
-        for(int i = 0; i < Math.min(textToCopy.length(), textRead.length())-1; i++) {
-            if(textRead.charAt(i) != textToCopy.charAt(i)) {
-                errors++;
+            String textRead = view.getInputText();
+            int errorsMade = phraseImpl.checkText(textRead);
+            if (remainingTime == 0.0){
+                secondsLeft = -6;
+                errors = 0;
+            } else {
+                secondsLeft = (int) remainingTime;
+                errors = errorsMade;
             }
         }
-        return errors;
     }
-
-    private void initializePhrase() {
-        
-    }
-
 }

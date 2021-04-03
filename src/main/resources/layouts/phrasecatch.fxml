@@ -8,8 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="530.0" minWidth="610.0" prefHeight="530.0"
             prefWidth="610.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);"
-            xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="application.minigame.phrasecatch.PhraseCatchController">
+            xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="textLabel" alignment="CENTER" layoutX="22.0" layoutY="176.0" prefHeight="60.0" prefWidth="566.0" text="Testo da copiare qua">
          <font>
