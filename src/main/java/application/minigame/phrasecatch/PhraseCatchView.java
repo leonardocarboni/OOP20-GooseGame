@@ -35,9 +35,7 @@ public class PhraseCatchView{
             primaryStage.initModality(Modality.APPLICATION_MODAL);
             primaryStage.setTitle("[GooseGame] Phrase Catch");
             primaryStage.getIcons().add(new Image(LOGO_LOCATION));
-            primaryStage.setOnHiding(e -> {
-                primaryStage.setIconified(true);
-            });
+            primaryStage.setOnHiding(e -> primaryStage.setIconified(true));
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
         }catch(IOException e) {
