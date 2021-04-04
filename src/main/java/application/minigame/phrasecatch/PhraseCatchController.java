@@ -10,18 +10,18 @@ public class PhraseCatchController implements MinigameController {
 
     private static final int SECONDS = 10;
     private final PhraseCatchView view;
-    private final PhraseImpl phraseImpl;
+    private final Phrase phrase;
     private final Countdown countdown;
     private int secondsLeft;
     private int errors;
 
     public PhraseCatchController(){
         view = new PhraseCatchView();
-        phraseImpl = new PhraseImpl();
+        phrase = new PhraseImpl();
 
         view.addButtonListener(new PhraseSubmitHandler());
 
-        String sentence = phraseImpl.generatePhrase();
+        String sentence = phrase.generatePhrase();
         view.setPhrase(sentence);
 
         countdown = new CountdownImpl(SECONDS, view.getTimeLabel());
@@ -44,7 +44,7 @@ public class PhraseCatchController implements MinigameController {
             double remainingTime = countdown.getSecondsLeft();
             countdown.shutdown();
             String textRead = view.getInputText();
-            int errorsMade = phraseImpl.checkText(textRead);
+            int errorsMade = phrase.checkText(textRead);
             if (remainingTime == 0.0 || errorsMade >= 6){
                 secondsLeft = -6;
                 errors = 0;

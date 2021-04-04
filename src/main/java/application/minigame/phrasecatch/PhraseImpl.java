@@ -4,15 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
-public class PhraseImpl {
+public class PhraseImpl implements Phrase{
 
     private static final String PHRASES_FILENAME = "src/main/resources/sentences.txt";
     private String phrase;
 
-    /**
-     * Generates a random sentence.
-     * @return a random sentence.
-     */
     public String generatePhrase() {
         File file = new File(PHRASES_FILENAME);
         try {
@@ -28,11 +24,6 @@ public class PhraseImpl {
         return phrase;
     }
 
-    /**
-     * Confronts the chosen sentence to the one written by the user.
-     * @param textRead - the sentence written by the user
-     * @return the number of errors in the sentence written
-     */
     public int checkText(String textRead) {
         int errors = Math.abs(phrase.length() - textRead.length());
 
