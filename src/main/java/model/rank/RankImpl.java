@@ -26,6 +26,9 @@ public class RankImpl implements Rank{
 
 	@Override
 	public void setRanking(final List<PlayerImpl> l) {
+		if(l.isEmpty()) {
+			throw new IllegalArgumentException();
+		}
 		ranking = l;
 	}
 	
