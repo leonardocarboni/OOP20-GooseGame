@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainGameView implements Initializable {
+public class GameView implements Initializable {
 	
 	@FXML
     private Button diceButton;
@@ -35,7 +35,7 @@ public class MainGameView implements Initializable {
 	private static final String LAYOUT_LOCATION = "layouts/maingame.fxml";
 	private static final String LOGO_LOCATION = "logo.png";
 	
-	public MainGameView() {
+	public GameView() {
 		try {
     		final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
 	        final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
@@ -59,12 +59,37 @@ public class MainGameView implements Initializable {
 		primaryStage.show();
 	}
 	
+	public void close() {
+		primaryStage.close();
+	}
+
 	@Override
     public void initialize(final URL location, final ResourceBundle resources) {
 	}
 
 	public void changeImageDice(final int value) {
-		
+		String nameDiceImage = "";
+		switch(value) {
+		case 1:
+			nameDiceImage = "diceOne.png";
+			break;
+		case 2:
+			nameDiceImage = "diceTwo.png";
+			break;
+		case 3:
+			nameDiceImage = "diceThree.png";
+			break;
+		case 4:
+			nameDiceImage = "diceFour.png";
+			break;
+		case 5:
+			nameDiceImage = "diceFive.png";
+			break;
+		case 6:
+			nameDiceImage = "diceSix.png";
+			break;
+		}
+		diceImage.setImage(new Image(ClassLoader.getSystemResource("dice/" + nameDiceImage).toString()));
 	}
 
 	public void changeScoreboard(final List<String> list) {

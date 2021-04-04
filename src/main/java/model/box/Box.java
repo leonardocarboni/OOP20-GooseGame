@@ -10,8 +10,9 @@ public enum Box {
 	TICTACTOE(BoxType.MINIGAMES,"Tris",-2,0),
 	EVEN_OR_ODD(BoxType.MINIGAMES,"Pari o Dispari",-2,0),
 	ROCK_PAPER_SCISSORS(BoxType.MINIGAMES,"Sasso Carta Forbici",3,3),
-	CABLE_CONNECT(BoxType.MINIGAMES,"Collega i cavi",2,2);
-
+	CABLE_CONNECT(BoxType.MINIGAMES,"Collega i cavi",2,2),
+	PHRASE_CATCH(BoxType.MINIGAMES,"",0,0);
+	
 	private BoxType type;
 	private String description;
 	private int penality;
