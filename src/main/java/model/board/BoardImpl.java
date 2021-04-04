@@ -13,7 +13,6 @@ public class BoardImpl implements Board{
 	private final int size;
 	private final List<Box> boxes;
 	private static final int BOARD_LIMIT = 2;
-	
 	public BoardImpl(final int size) {
 		this.size = size;
 		this.boxes = new ArrayList<>(size);
@@ -56,26 +55,6 @@ public class BoardImpl implements Board{
 	 */
 	public Box getBox(final PlayerImpl p) {
 		return boxes.get(p.getBoardPosition());
-	}
-
-	/*
-	 * @param player
-	 * @return StateGame
-	 */
-	public StateGame endGame(final PlayerImpl p) {
-		if (p.getBoardPosition() == size) {
-			return StateGame.END;
-		}else {
-			goBeyoundLimit(p);
-			return StateGame.CONTINUE;
-		}
-	}
-	
-	
-	private void goBeyoundLimit(final PlayerImpl p) {
-		System.out.println("Valore attual" + p.getBoardPosition() + " Indietro di: ");
-		System.out.println(p.getBoardPosition() > size ? -(p.getBoardPosition() - size)*2 : 0);
-		p.addPosition(p.getBoardPosition() > size ? -(p.getBoardPosition() - size)*2 : 0);
 	}
 	
 	/*

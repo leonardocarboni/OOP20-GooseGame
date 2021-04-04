@@ -1,13 +1,11 @@
-package model;
+package model.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.glass.ui.EventLoop.State;
-
-import javafx.application.Platform;
+import model.StateGame;
 import model.board.BoardImpl;
 import model.box.Box;
 import model.dice.DiceImpl;
@@ -40,32 +38,35 @@ public class GameImpl {
 		gameBoard.generateBoard();
 		stateGame = StateGame.CHOOSE_STARTING_QUEUE;
 		pl = playerList;
-		playerQueue.setStartingQueue(playerList);
+		playerQueue.setStartingQueue(pl);
 		playerQueue.resetIterator();
 		rank.setRanking(playerList);
 	}
 
-	public void playCurrentPlayer() {
+	public int rollCurrentPlayer() {
+		final int diceValue = dice.roll();
 		if(stateGame.equals(StateGame.CHOOSE_STARTING_QUEUE)) {
-			throwDice.put(playerQueue.getCurrent(), dice.roll());
+			throwDice.put(playerQueue.getCurrent(), diceValue);
 			checkEndChoosePhase();
 		}else {
-			playerQueue.getCurrent().addPosition(dice.roll());
-			if(gameBoard.endGame(playerQueue.getCurrent()).equals(StateGame.END)) {
-				final FileUtilityImpl fu = new FileUtilityImpl(FILE_NAME);
-				fu.saveInformation(rank.getRanking());
-			}else {
-				final Box box = gameBoard.getBox(playerQueue.getCurrent());
-				rank.updateRanking();
-			}
+			playerQueue.getCurrent().addPosition(diceValue);
 		}
+		return diceValue;
+	}
+
+	public void addMinigameResult(final int value) {
+		playerQueue.getCurrent().addPosition(value);
 	}
 	
+	public Box playCurrentPlayer() {
+		return gameBoard.getBox(playerQueue.getCurrent());
+	}
 
 	public List<PlayerImpl> getScoreBoard(){
+		rank.updateRanking();
 		return rank.getRanking(); 
 	}
-	
+
 	private void checkEndChoosePhase() {
 		if(throwDice.size() == pl.size()) {
 			playerQueue.orderPlayerQueue(throwDice);
@@ -78,7 +79,29 @@ public class GameImpl {
 		return playerQueue.next();
 	}
 
-	public void end() {
+	public boolean end() {
+		return endGame(playerQueue.getCurrent()).equals(StateGame.END);
+	}
 
+	public StateGame endGame(final PlayerImpl p) {
+		if (p.getBoardPosition() == BOARD_SIZE) {
+			return StateGame.END;
+		}else {
+			goBeyoundLimit(p);
+			return StateGame.CONTINUE;
+		}
+	}
+
+	private void goBeyoundLimit(final PlayerImpl p) {
+		if(p.getBoardPosition() > BOARD_SIZE ) {
+			p.addPosition(-(p.getBoardPosition() - BOARD_SIZE)*2);
+		}else if (p.getBoardPosition() < 0) {
+			p.resetPosition();
+		}
+	}
+	
+	public void saveResultGame() {
+		final FileUtilityImpl fu = new FileUtilityImpl(FILE_NAME);
+		fu.saveInformation(rank.getRanking());
 	}
 }
