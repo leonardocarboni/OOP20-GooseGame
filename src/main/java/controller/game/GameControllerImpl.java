@@ -1,75 +1,60 @@
-package controller;
+package controller.game;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import application.minigame.phrasecatch.PhraseCatchController;
+import controller.MinigameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import model.GameImpl;
 import model.box.Box;
+import model.game.GameImpl;
 import model.player.PlayerImpl;
-import view.GamesViewType;
-import view.MainGameView;
-import view.MinigameStarter;
+import view.GameView;
 
 public class GameControllerImpl {
 
-	private final MainGameView view;
+	private final GameView view;
 	private final GameImpl game;
 	
 	public GameControllerImpl(final List<PlayerImpl> playersList) {
-		view = new MainGameView();
+		view = new GameView();
 		game = new GameImpl();
 		view.show();
 		game.start(playersList);
-		view.addButtonListener(new test());
+		view.changePlayerLabel(game.nextPlayer().getName());
+		view.addButtonListener(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(final ActionEvent event) {
+				view.changeImageDice(game.rollCurrentPlayer());
+	        	game.addMinigameResult(checkMinigames(game.playCurrentPlayer()));
+	        	view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
+	        	game.end();
+	        	view.changePlayerLabel(game.nextPlayer().getName());
+	        	System.out.println(game.getScoreBoard());
+			}
+		});
 	}
 
-	public void checkMinigames(final Box b) {
-		final Stage s = new Stage();
-		s.initModality(Modality.APPLICATION_MODAL);
-	    s.setMinHeight(600);
-	    s.setMinWidth(800);
-	    
-	    MinigameStarter minigameScene = null;
+	public int checkMinigames(final Box b) {
+	   MinigameController minigameScene = new PhraseCatchController();
+	   System.out.println(minigameScene.getResult());
 		switch(b) {
 			case BONUS:
-				minigameScene = new MinigameStarter(GamesViewType.GAME);
 				break;
 			case TICTACTOE:
-				minigameScene = new MinigameStarter(GamesViewType.TICTACTOE);
 				break;
 			case EVEN_OR_ODD:
-				minigameScene = new MinigameStarter(GamesViewType.EVEN_OR_ODD);
 				break;
 			case ROCK_PAPER_SCISSORS:
-				minigameScene = new MinigameStarter(GamesViewType.ROCK_PAPER_SCISSORS);
 				break;
 			case CABLE_CONNECT:
-				minigameScene = new MinigameStarter(GamesViewType.CABLE_CONNECT);
 				break;
+			case PHRASE_CATCH:
+				minigameScene = new PhraseCatchController();
 			default:
 				break;
 		}
-		if(minigameScene != null) {
-			try {
-				//minigameScene.start(s);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		//minigameScene.getResult();
+		return minigameScene.getResult();
 	}
-
-    public class test implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(final ActionEvent event) {
-        	game.playCurrentPlayer();
-        	view.changeImageDice(1);
-        	view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
-        	view.changePlayerLabel(game.nextPlayer().getName());
-        }
-    }
 }
