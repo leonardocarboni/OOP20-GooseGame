@@ -45,7 +45,7 @@ public class PhraseCatchController implements MinigameController {
             countdown.shutdown();
             String textRead = view.getInputText();
             int errorsMade = phraseImpl.checkText(textRead);
-            if (remainingTime == 0.0){
+            if (remainingTime == 0.0 || errorsMade >= 6){
                 secondsLeft = -6;
                 errors = 0;
             } else {
