@@ -59,6 +59,10 @@ public class GameView implements Initializable {
 		primaryStage.show();
 	}
 	
+	public void close() {
+		primaryStage.close();
+	}
+
 	@Override
     public void initialize(final URL location, final ResourceBundle resources) {
 	}
