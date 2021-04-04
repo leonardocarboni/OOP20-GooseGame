@@ -3,8 +3,9 @@ package controller.game;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import application.minigame.cableconnect.CableConnectController;
 import application.minigame.phrasecatch.PhraseCatchController;
-import controller.MinigameController;
+import controller.minigame.MinigameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.box.Box;
@@ -27,9 +28,12 @@ public class GameControllerImpl {
 			@Override
 			public void handle(final ActionEvent event) {
 				view.changeImageDice(game.rollCurrentPlayer());
+	        	if(game.end()) {
+	        		game.saveResultGame();
+	        		view.close();
+	        	}
 	        	game.addMinigameResult(checkMinigames(game.playCurrentPlayer()));
 	        	view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
-	        	game.end();
 	        	view.changePlayerLabel(game.nextPlayer().getName());
 	        	System.out.println(game.getScoreBoard());
 			}
@@ -37,8 +41,8 @@ public class GameControllerImpl {
 	}
 
 	public int checkMinigames(final Box b) {
-	   MinigameController minigameScene = new PhraseCatchController();
-	   System.out.println(minigameScene.getResult());
+		System.out.println(b);
+		MinigameController minigameScene = null;
 		switch(b) {
 			case BONUS:
 				break;
@@ -49,12 +53,13 @@ public class GameControllerImpl {
 			case ROCK_PAPER_SCISSORS:
 				break;
 			case CABLE_CONNECT:
+				minigameScene = new CableConnectController();
 				break;
 			case PHRASE_CATCH:
 				minigameScene = new PhraseCatchController();
 			default:
 				break;
 		}
-		return minigameScene.getResult();
+		return minigameScene != null ? minigameScene.getResult() : 0;
 	}
 }
