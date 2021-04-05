@@ -42,7 +42,7 @@ public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 
 	@Override
 	public void setStartingQueue(final List<PlayerImpl> l) {
-		this.startingQueue = l;
+		this.startingQueue = getDeepCopy(l);
 	}
 
 	@Override
@@ -76,5 +76,14 @@ public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 	public void resetIterator() {
 		playerIterator = startingQueue.iterator();
 		current = this.next();
+	}
+	
+	private List<PlayerImpl> getDeepCopy(final List<PlayerImpl> pl) {
+		final Iterator<PlayerImpl> iterator = pl.iterator();
+		final List<PlayerImpl> deepCopy = new ArrayList<>();
+		while(iterator.hasNext()) {
+			deepCopy.add(iterator.next());
+		}
+		return deepCopy;
 	}
 }
