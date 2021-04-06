@@ -7,7 +7,7 @@ public class Shot {
 
     public Point2D position_shot;
     private final int size;
-    private int speed = Info.score+10;
+    private int speed = Info.score+5;
     public boolean noShot;
     private GraphicsContext gc;
 
