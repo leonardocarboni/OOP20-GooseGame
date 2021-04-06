@@ -10,8 +10,8 @@ public class Player {
     public final int size;
     public boolean destroyed;
     public boolean exploding;
-    public int shot_received = 0;
     private int steps_img = 0;
+
     private Image image;
     private GraphicsContext gc;
 
