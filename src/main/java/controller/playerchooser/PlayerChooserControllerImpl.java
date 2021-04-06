@@ -34,8 +34,8 @@ public class PlayerChooserControllerImpl {
         	view.setErrorLabelText("YOU MUST ENTER AT LEAST 2 PLAYERS");
         } else if (numEnabled == numNames) {
         	playersName.forEach(t -> playersList.add(new PlayerImpl(t)));
-            final GameControllerImpl c = new GameControllerImpl(playersList);
             view.close();
+            final GameControllerImpl c = new GameControllerImpl(playersList);
         }
         else{
         	view.setErrorLabelText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");

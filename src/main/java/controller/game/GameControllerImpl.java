@@ -7,19 +7,25 @@ import application.minigame.cableconnect.CableConnectController;
 import application.minigame.phrasecatch.PhraseCatchController;
 import controller.minigame.MinigameController;
 import model.box.Box;
+import model.duration.Duration;
+import model.duration.DurationImpl;
 import model.game.GameImpl;
 import model.player.PlayerImpl;
+import org.apache.commons.lang3.time.StopWatch;
 import view.GameView;
 
 public class GameControllerImpl {
 
 	private final GameView view;
 	private final GameImpl game;
-	
+
 	public GameControllerImpl(final List<PlayerImpl> playersList) {
 		view = new GameView();
 		game = new GameImpl();
-		view.show();
+
+		StopWatch stopwatch = new StopWatch();
+		stopwatch.start();
+
 		game.start(playersList);
 		view.changePlayerLabel(game.nextPlayer().getName());
 		view.addButtonListener(event -> {
@@ -33,6 +39,12 @@ public class GameControllerImpl {
 			view.changePlayerLabel(game.nextPlayer().getName());
 			System.out.println(game.getScoreBoard());
 		});
+
+		view.show();
+		stopwatch.stop();
+		Duration duration = new DurationImpl(stopwatch.getTime());
+		//System.out.println("DURATION: " + duration.getDuration());
+
 	}
 
 	public int checkMinigames(final Box b) {

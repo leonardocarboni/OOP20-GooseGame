@@ -49,14 +49,14 @@ public class GameView implements Initializable {
 	            primaryStage.setIconified(true);
 	        });
 	        primaryStage.setScene(scene);
-	        primaryStage.setResizable(false);
+	        //primaryStage.setResizable(false);
     	}catch(IOException e) {
     		e.printStackTrace();
     	}
 	}
 	
 	public void show() {
-		primaryStage.show();
+		primaryStage.showAndWait();
 	}
 	
 	public void close() {
