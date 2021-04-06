@@ -12,6 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -30,11 +31,13 @@ public class SpaceShooter extends Application {
     private double mouseX;
     public static GraphicsContext gc;
     private Canvas canvas = new GettersGraphics().getCanvas();
+    private boolean isOver;
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         gc = canvas.getGraphicsContext2D();
+
         Timeline animation = new Timeline(new KeyFrame(Duration.millis(60), e -> run(gc)));
         animation.setCycleCount(Timeline.INDEFINITE);
         animation.play();
@@ -43,6 +46,9 @@ public class SpaceShooter extends Application {
         canvas.setOnMouseClicked(e -> {
             if(shots.size() < 10) {
                 shots.add(player.shot());
+            }
+            if(this.isOver){
+                this.isOver = true;
             }
         });
 
@@ -66,10 +72,13 @@ public class SpaceShooter extends Application {
         gc.setFont(Font.font(20));
         gc.setFill(Color.WHITE);
         gc.fillText("Score: " + Info.score, 60,  20);
+        gc.drawImage(Info.BACKGROUND_IMG,0,0,Info.WIDTH,Info.HEIGHT);
 
-        if(Info.isOver){
+        if(isOver){
             gc.setFill(Color.RED);
-            gc.fillText("You lost, score: " + Info.score, Info.WIDTH, Info.HEIGHT);
+            gc.fillText("You lost, score: " + Info.score, 300, 300);
+            gc.setFont(Font.font(55));
+            gc.setTextAlign(TextAlignment.LEFT);
         }
 
         player.update();
@@ -80,6 +89,7 @@ public class SpaceShooter extends Application {
         enemies.stream().peek(Enemy::update).peek(Enemy::draw).forEach(e -> {
             if(player.touch(e) && !player.exploding){
                 player.explode();
+                isOver = true;
             }
         });
 
