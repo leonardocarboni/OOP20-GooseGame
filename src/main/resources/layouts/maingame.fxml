@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import java.util.ArrayList?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);" stylesheets="@maingamestyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);" stylesheets="@maingamestyle.css" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane fx:id="gameGrid" alignment="CENTER" layoutX="44.0" layoutY="239.0" prefHeight="531.0" prefWidth="912.0" style="-fx-background-color: FCFCFC;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="239.0">
         <columnConstraints>
