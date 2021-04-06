@@ -1,12 +1,10 @@
 package application.minigame.spaceshooter;
 
+import controller.minigame.MinigameController;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 
 public class Enemy extends Player{
-
-
-    //private int speed = Info.score+1;
 
 
     public Enemy(int posX, int posY, int size, Image image_enemy) {
@@ -27,5 +25,6 @@ public class Enemy extends Player{
     private int calcSpeed(){
         return (int) (Info.score +2) / 2;
     }
+
 
 }
