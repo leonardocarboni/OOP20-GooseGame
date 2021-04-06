@@ -1,5 +1,6 @@
 package view;
 
+import controller.menu.MenuController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -20,9 +21,9 @@ public class MenuView implements Initializable {
     @FXML
     private Button playButton;
     @FXML
-    private Button settingsButton;
+    private Button howToPlayButton;
     @FXML
-    private Button creditsButton;
+    private Button exitButton;
     
 	private static final String LAYOUT_LOCATION = "layouts/menu.fxml";
 	private static final String LOGO_LOCATION = "logo.png";
@@ -50,20 +51,18 @@ public class MenuView implements Initializable {
     
     @Override
     public void initialize(final URL url, final ResourceBundle resourceBundle) {
-    	settingsButton.setOnAction(e -> clickCreditsButton());
-    	creditsButton.setOnAction(e -> closeStage());
+    	exitButton.setOnAction(e -> closeStage());
     }
 
-    private void clickCreditsButton() {
-    	final Stage newStage = new Stage();
-        newStage.initModality(Modality.APPLICATION_MODAL);
-    }
-
-    public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
-    	playButton.setOnAction(eventHandler);
+    public void addPlayButtonListener(final EventHandler<ActionEvent> playClicked) {
+    	playButton.setOnAction(playClicked);
     }
     
     public void closeStage() {
     	stage.close();
+    }
+
+    public void addHowToPlayButtonListener(MenuController.HowToPlayClicked howToPlayClicked) {
+        howToPlayButton.setOnAction(howToPlayClicked);
     }
 }
