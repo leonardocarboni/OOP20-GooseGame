@@ -15,13 +15,13 @@ public class Info {
     public static final Image PLAYER_IMG = new Image("spaceShooter/player.png");
     public static final Image EXPLOSION_IMG = new Image("spaceShooter/explosion.png");
     public static final Image ENEMY_IMG = new Image("spaceShooter/enemy.png");
+    public static final Image BACKGROUND_IMG = new Image("spaceShooter/sfondoGalassia.jpg");
     public static final int EXPLOSION_IMG_NUM = 15;
     static final int EXPLOSION_WIDTH = 128;
     static final int EXPLOSION_ROWS = 3;
     static final int EXPLOSION_COL = 3;
     static final int EXPLOSION_HEIGHT = 128;
     public static int score;
-    public static boolean isOver;
 
     static double distance(double x1, double y1, double x2, double y2) {
         return  Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
