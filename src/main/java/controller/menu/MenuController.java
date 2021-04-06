@@ -1,5 +1,6 @@
-package controller;
+package controller.menu;
 
+import controller.playerchooser.PlayerChooserControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.MenuView;

@@ -1,6 +1,6 @@
 package application.minigame.phrasecatch;
 
-import controller.MinigameController;
+import controller.minigame.MinigameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import utility.countdown.Countdown;

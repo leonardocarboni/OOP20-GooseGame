@@ -1,4 +1,4 @@
-package controller;
+package controller.minigame;
 
 public interface MinigameController {
 

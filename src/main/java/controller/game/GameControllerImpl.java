@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 import application.minigame.cableconnect.CableConnectController;
 import application.minigame.phrasecatch.PhraseCatchController;
 import controller.minigame.MinigameController;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import model.box.Box;
 import model.game.GameImpl;
 import model.player.PlayerImpl;
@@ -24,19 +22,16 @@ public class GameControllerImpl {
 		view.show();
 		game.start(playersList);
 		view.changePlayerLabel(game.nextPlayer().getName());
-		view.addButtonListener(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(final ActionEvent event) {
-				view.changeImageDice(game.rollCurrentPlayer());
-	        	if(game.end()) {
-	        		game.saveResultGame();
-	        		view.close();
-	        	}
-	        	game.addMinigameResult(checkMinigames(game.playCurrentPlayer()));
-	        	view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
-	        	view.changePlayerLabel(game.nextPlayer().getName());
-	        	System.out.println(game.getScoreBoard());
+		view.addButtonListener(event -> {
+			view.changeImageDice(game.rollCurrentPlayer());
+			if(game.end()) {
+				game.saveResultGame();
+				view.close();
 			}
+			game.addMinigameResult(checkMinigames(game.playCurrentPlayer()));
+			view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
+			view.changePlayerLabel(game.nextPlayer().getName());
+			System.out.println(game.getScoreBoard());
 		});
 	}
 

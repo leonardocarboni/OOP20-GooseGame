@@ -1,6 +1,6 @@
 package application.minigame.cableconnect;
 
-import controller.MinigameController;
+import controller.minigame.MinigameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
