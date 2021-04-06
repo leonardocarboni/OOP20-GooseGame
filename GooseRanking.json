@@ -1,1 +1,10 @@
-"{\"name\":\"Giovanni\",\"boardPosition\":11}""{\"name\":\"Luca\",\"boardPosition\":4}"
+[
+  {
+    "name": "Ciao",
+    "boardPosition": 42
+  },
+  {
+    "name": "Ciao1",
+    "boardPosition": 42
+  }
+]

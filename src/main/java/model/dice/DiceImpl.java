@@ -1,6 +1,6 @@
-package model;
+package model.dice;
 
-public class Dice {
+public class DiceImpl {
 
 	static private final int MIN_VALUE_DICE = 1;
 	static private final int MAX_VALUE_DICE = 6;
@@ -8,7 +8,7 @@ public class Dice {
 	/**
 	 * @return random value of dice 
 	 */
-	public int rollDice() {
+	public int roll() {
 		return (int)(Math.random() * ((MAX_VALUE_DICE - MIN_VALUE_DICE) + 1)) + MIN_VALUE_DICE;
 	}
 }

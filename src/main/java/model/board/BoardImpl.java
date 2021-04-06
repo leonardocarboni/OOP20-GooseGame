@@ -1,31 +1,33 @@
-package model;
+package model.board;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import utility.Boxes;
-import utility.BoxesType;
+import model.StateGame;
+import model.box.Box;
+import model.box.BoxType;
+import model.player.PlayerImpl;
 
-public class Board {
+public class BoardImpl implements Board{
 
 	private final int size;
-	private final List<Boxes> boxes;
-	
-	public Board(final int size) {
+	private final List<Box> boxes;
+	private static final int BOARD_LIMIT = 2;
+	public BoardImpl(final int size) {
 		this.size = size;
 		this.boxes = new ArrayList<>(size);
 	}
-	
+
 	/*
 	 * Function to create the board of game
 	 * @param size of game
 	 * @param number of minigames in the board
-	 * @return game board
+	 * @return List of boxes that equals to the game board
 	 */
-	public List<Boxes> generateBoard(){
+	public List<Box> generateBoard(){
 		checkSize(size);
-		final List<Boxes> minigames = getAllBoxesByType(BoxesType.MINIGAMES);
-		boxes.add(Boxes.START);
+		final List<Box> minigames = getAllBoxesByType(BoxType.MINIGAMES);
+		boxes.add(Box.START);
 		int addSpecial = 0;
 		boolean addMinigames = false;
 		for(int i = 0; i < size - 1; i++) {
@@ -33,37 +35,26 @@ public class Board {
 				if(addMinigames) {
 					boxes.add(minigames.get(randomValue(0, minigames.size() - 1)));
 				}else {
-					boxes.add(Boxes.BONUS);
+					boxes.add(Box.BONUS);
 				}
 				addMinigames = addMinigames ? false : true;
 				addSpecial = 0;
 			}else {
-				boxes.add(Boxes.NORMAL);
+				boxes.add(Box.NORMAL);
 				addSpecial++;
 			}
 		}
-		boxes.add(Boxes.END);
+		boxes.add(Box.END);
 		return boxes;
 	}
-	
+
 	/*
-	 * @param player
-	 * @return 1 if 
+	 * Function to get type of box
+	 * @param a player
+	 * @return type of box where the player is above now 
 	 */
-	public int victory(final Player p) {
-		if (p.getBoardPosition() == size) {
-			return 1; //win (Enum?)
-		}else {
-			if(p.getBoardPosition() > size) {
-				goBeyoundLimit(p);
-			}
-			return 0; //no win
-		}
-	}
-	
-	private void goBeyoundLimit(final Player p) {
-		//Set new position player -> playerPosition - (size - 1) = difference
-		//Set difference as new Position
+	public Box getBox(final PlayerImpl p) {
+		return boxes.get(p.getBoardPosition());
 	}
 	
 	/*
@@ -71,7 +62,7 @@ public class Board {
 	 * @throw exception in case the number inserted is too small to create a board
 	 */
 	private void checkSize(final int size){
-		if(size < 2) {
+		if(size < BOARD_LIMIT) {
 			throw new IllegalArgumentException();
 		}
 	}
@@ -91,9 +82,9 @@ public class Board {
 	 * @param type of Boxes to filter
 	 * @return list of boxes 
 	 */
-	private List<Boxes> getAllBoxesByType(final BoxesType type){
-		final List<Boxes> list = new ArrayList<>();
-		for (final Boxes b : Boxes.values()) {
+	private List<Box> getAllBoxesByType(final BoxType type){
+		final List<Box> list = new ArrayList<>();
+		for (final Box b : Box.values()) {
 			if(b.getType().equals(type)) {
 				list.add(b);
 			}

@@ -1,10 +1,64 @@
 package application.minigame.cableconnect;
 
-public class CableConnectController {
-    //thread per contare i secondi
-    //colorazione random 4 bottoni iniziali e finali
-    //sul click del bottone si guarda a quale colore corrisponde
-    //quando clicca su un bottone finale con lo stesso colore si segna questa cosa
-    //quando viene chiuso il quarto si ferma il timer e si verifica
-    //se il timer finisce prima si è perso e si torna indietro di 6
+import controller.minigame.MinigameController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
+import utility.countdown.Countdown;
+import utility.countdown.CountdownImpl;
+
+import java.util.Arrays;
+import java.util.Set;
+
+public class CableConnectController implements MinigameController {
+
+    private static final int SECONDS = 9;
+    static final private int CABLES = 4;
+    private final CableConnectView view;
+    private final Countdown countdown;
+    private int secondsLeft;
+
+    private Colors[] startColorsArray;
+    private Colors[] endColorsArray;
+    private Set<Colors> colorsDone;
+
+    public CableConnectController(){
+        view = new CableConnectView();
+
+        startColorsArray = Colors.getRandomColors();
+        endColorsArray = Colors.getRandomColors();
+
+        view.initializeButtonsMap(startColorsArray, endColorsArray);
+        view.initializeStartButtons();
+        view.initializeEndButtons();
+
+        view.initializeEventHandlers();
+        view.addButtonListener(new LastCableConnectedHandler());
+
+        countdown = new CountdownImpl(SECONDS, view.getTimeLabel());
+        countdown.start();
+
+        view.show();
+    }
+
+    /**
+     * An inner class for the event catching in the minigame view
+     */
+    public class LastCableConnectedHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            double remainingSeconds = countdown.getSecondsLeft();
+            colorsDone = view.getColorsDone();
+            if (colorsDone.size() == CABLES){
+                secondsLeft = (int) remainingSeconds;
+                countdown.shutdown();
+            }
+        }
+    }
+
+    @Override
+    public int getResult(){
+        return secondsLeft;
+    }
+
 }
