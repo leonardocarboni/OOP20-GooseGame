@@ -36,257 +36,303 @@
          <children>
             <VBox id="bottomborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="START-1" />
+                  <HBox fx:id="boxStart" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="START" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="1">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="2" />
+                  <HBox  fx:id="box1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="1" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="3" />
+                  <HBox fx:id="box2" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="2" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="3">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="4" />
+                  <HBox fx:id="box3" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="3" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="4">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="5" />
+                  <HBox fx:id="box4" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="4" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="5">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="6" />
+                  <HBox fx:id="box5" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="5" />
                </children>
             </VBox>
             <VBox alignment="CENTER" layoutX="662.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="6">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="7" />
+                  <HBox fx:id="box6" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="6" />
                </children>
             </VBox>
             <VBox id="leftborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="6" GridPane.rowIndex="1">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="8" />
+                  <HBox fx:id="box7" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="7" />
                </children>
             </VBox>
             <VBox id="leftborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="9" />
+                  <HBox fx:id="box8" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="8" />
                </children>
             </VBox>
             <VBox id="leftborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="6" GridPane.rowIndex="3">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="10" />
+                  <HBox fx:id="box9" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="9" />
                </children>
             </VBox>
             <VBox id="leftborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="6" GridPane.rowIndex="4">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="11" />
+                  <HBox fx:id="box10" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="10" />
                </children>
             </VBox>
             <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="6" GridPane.rowIndex="5">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="12" />
+                  <HBox fx:id="box11" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="11" />
                </children>
             </VBox>
             <VBox id="topborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="5" GridPane.rowIndex="5">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="13" />
+                  <HBox fx:id="box12" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="12" />
                </children>
             </VBox>
             <VBox id="topborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="4" GridPane.rowIndex="5">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="14" />
+                  <HBox fx:id="box13" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="13" />
                </children>
             </VBox>
             <VBox id="topborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="15" />
+                  <HBox fx:id="box14" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="14" />
                </children>
             </VBox>
             <VBox id="topborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="16" />
+                  <HBox fx:id="box15" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="15" />
                </children>
             </VBox>
             <VBox id="topborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="17" />
+                  <HBox fx:id="box16" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="16" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.rowIndex="5">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="18" />
+                  <HBox fx:id="box17" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="17" />
                </children>
             </VBox>
             <VBox id="rightborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.rowIndex="4">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="19" />
+                  <HBox fx:id="box18" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="18" />
                </children>
             </VBox>
             <VBox id="rightborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.rowIndex="3">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="20" />
+                  <HBox fx:id="box19" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="19" />
                </children>
             </VBox>
             <VBox id="rightborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="21" />
+                  <HBox fx:id="box20" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="20" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.rowIndex="1">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="22" />
+                  <HBox fx:id="box21" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="21" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="23" />
+                  <HBox fx:id="box22" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="22" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="24" />
+                  <HBox fx:id="box23" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="23" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="25" />
+                  <HBox fx:id="box24" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="24" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="26" />
+                  <HBox fx:id="box25" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="25" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="5" GridPane.rowIndex="1">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="27" />
+                  <HBox fx:id="box26" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="26" />
                </children>
             </VBox>
             <VBox id="leftborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="28" />
+                  <HBox fx:id="box27" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="27" />
                </children>
             </VBox>
             <VBox id="topborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="32" />
+                  <HBox fx:id="box31" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="31" />
                </children>
             </VBox>
             <VBox id="topborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="31" />
+                  <HBox fx:id="box30" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="30" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="5" GridPane.rowIndex="4">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="30" />
+                  <HBox fx:id="box29" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="29" />
                </children>
             </VBox>
             <VBox id="leftborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="5" GridPane.rowIndex="3">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="29" />
+                  <HBox fx:id="box28" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="28" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="38" />
+                  <HBox fx:id="box37" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="37" />
                </children>
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="37" />
+                  <HBox fx:id="box36" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="36" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="36" />
+                  <HBox fx:id="box35" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="35" />
                </children>
             </VBox>
             <VBox id="rightborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="35" />
+                  <HBox fx:id="box34" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="34" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="34" />
+                  <HBox fx:id="box33" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="33" />
                </children>
             </VBox>
             <VBox id="topborder" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="33" />
+                  <HBox fx:id="box32" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="32" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="41" />
+                  <HBox fx:id="box40" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="40" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="40" />
+                  <HBox fx:id="box39" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="39" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="19" />
+                  <HBox fx:id="box38" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="38" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
-                  <Label text="END-42" />
+                  <HBox fx:id="box41" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <Label text="END-41" />
                </children>
             </VBox>
          </children>
+         <fx:define>
+		        <ArrayList fx:id="gameboard">
+		        	<fx:reference source="boxStart" />
+		            <fx:reference source="box1" />
+		            <fx:reference source="box2" />
+		            <fx:reference source="box3" />
+		            <fx:reference source="box4" />
+		            <fx:reference source="box5" />
+		            <fx:reference source="box6" />
+		            <fx:reference source="box7" />
+		            <fx:reference source="box8" />
+		            <fx:reference source="box9" />
+		            <fx:reference source="box10" />
+		            <fx:reference source="box11" />
+		            <fx:reference source="box12" />
+		            <fx:reference source="box13" />
+		            <fx:reference source="box14" />
+		            <fx:reference source="box15" />
+		            <fx:reference source="box16" />
+		            <fx:reference source="box17" />
+		            <fx:reference source="box18" />
+		            <fx:reference source="box19" />
+		            <fx:reference source="box20" />
+		            <fx:reference source="box21" />
+		            <fx:reference source="box22" />
+		            <fx:reference source="box23" />
+		            <fx:reference source="box24" />
+		            <fx:reference source="box25" />
+		            <fx:reference source="box26" />
+		            <fx:reference source="box27" />
+		            <fx:reference source="box28" />
+		            <fx:reference source="box29" />
+		            <fx:reference source="box30" />
+		            <fx:reference source="box31" />
+		            <fx:reference source="box32" />
+		            <fx:reference source="box33" />
+		            <fx:reference source="box34" />
+		            <fx:reference source="box35" />
+		            <fx:reference source="box36" />
+		            <fx:reference source="box37" />
+		            <fx:reference source="box38" />
+		            <fx:reference source="box39" />
+		            <fx:reference source="box40" />
+		            <fx:reference source="box41" />
+		        </ArrayList>
+		    </fx:define>
       </GridPane>
       <AnchorPane layoutX="776.0" layoutY="15.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="15.0">
          <children>

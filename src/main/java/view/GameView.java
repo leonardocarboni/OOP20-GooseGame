@@ -12,8 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.player.PlayerImpl;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +34,8 @@ public class GameView implements Initializable {
 	private ImageView diceImage;
 	@FXML
 	private List<Label> scoreBoard;
+	@FXML 
+	private List<HBox> gameboard;
 	
 	private final Stage primaryStage = new Stage();
 	private static final String LAYOUT_LOCATION = "layouts/maingame.fxml";
@@ -107,4 +113,22 @@ public class GameView implements Initializable {
 	public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
         diceButton.setOnAction(eventHandler);
     }
+	
+	public void changeAllButtons(final List<PlayerImpl> listPlayer) {
+		for(int i = 0; i < gameboard.size(); i++) {
+			gameboard.get(i).getChildren().clear();
+			for (final PlayerImpl player : listPlayer) {
+				if(i == player.getBoardPosition()) {
+					gameboard.get(i).getChildren().add(createCircle(Color.RED));
+				}
+			}
+		}
+	}
+	
+	private Circle createCircle(final Color c) {
+		final Circle circle = new Circle();
+		circle.setFill(c);
+		circle.setRadius(5.0f);
+		return circle;
+	}
 }
