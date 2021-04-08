@@ -2,6 +2,8 @@ package controller.playerchooser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import controller.game.GameControllerImpl;
@@ -18,25 +20,34 @@ public class PlayerChooserControllerImpl {
 
     public PlayerChooserControllerImpl() {
     	view = new PlayersChooserView();
-    	view.addButtonListener(new Test());
+    	view.addButtonListener(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(final ActionEvent event) {
+				checkContrains();
+			}
+		});
 	}
     
     public void checkContrains () {
-    	final List<String> playersName = view.getPlayersNames()
+    	
+    	final Map<String,String> playersNameNotNull = view.getPlayersInfo()
+    										.entrySet()
     										.stream()
-											.filter(t -> !"".equals(t))
-											.collect(Collectors.toList());
-    	final int numEnabled = playersName.size();
-        //number of unique names (only of the enabled player)
-        final int numNames = (int) playersName.stream()
+											.filter(t -> !"".equals(t.getValue()))
+											.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+    	System.out.println(playersNameNotNull);
+    	final int numPlayers = playersNameNotNull.size();
+        final int numUniqueNames = (int) playersNameNotNull
+        									.values()
+        									.stream()
         									.distinct()
         									.count();
-        if (numEnabled < 2){
+        if (numPlayers < 2){
         	view.setErrorLabelText("YOU MUST ENTER AT LEAST 2 PLAYERS");
-        } else if (numEnabled == numNames) {
-        	for(int i = 0; i < numEnabled; i++) {
-        		playersList.add(new PlayerImpl(playersName.get(i), PlayerColor.values()[i]));
-        	}
+        } else if (numPlayers == numUniqueNames) {
+        	for (final Entry<String, String> player : playersNameNotNull.entrySet()) {
+				playersList.add(new PlayerImpl(player.getValue(),stringToEnum(player.getKey())));
+			}
             view.close();
             final GameControllerImpl c = new GameControllerImpl(playersList);
         }
@@ -46,10 +57,17 @@ public class PlayerChooserControllerImpl {
     	
     }
 
-    public class Test implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(final ActionEvent event) {
-        	checkContrains();
-        }
+    public PlayerColor stringToEnum(final String s) {
+    	PlayerColor color;
+    	if("pink".equals(s)) {
+    		color = PlayerColor.PINK;
+    	}else if ("red".equals(s)) {
+    		color = PlayerColor.RED;
+    	}else if ("yellow".equals(s)) {
+    		color = PlayerColor.YELLOW;
+    	}else { 
+    		color = PlayerColor.BLUE;
+    	}
+    	return color;
     }
 }

@@ -1,10 +1,12 @@
 [
   {
-    "name": "Ciao",
-    "boardPosition": 42
+    "name": "dfsdf",
+    "color": "PINK",
+    "boardPosition": 41
   },
   {
-    "name": "Ciao1",
-    "boardPosition": 42
+    "name": "sfs",
+    "color": "RED",
+    "boardPosition": 38
   }
 ]
