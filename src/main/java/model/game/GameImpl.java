@@ -16,7 +16,7 @@ import utility.file.FileUtilityImpl;
 
 public class GameImpl {
 
-	private static final int BOARD_SIZE = 42;
+	private static final int BOARD_SIZE = 41;
 	private static final String FILE_NAME = "GooseRanking.json";
 	private final DiceImpl dice;
 	private final QueueImpl playerQueue;
