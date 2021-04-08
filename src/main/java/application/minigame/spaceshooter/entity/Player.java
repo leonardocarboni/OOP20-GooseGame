@@ -1,7 +1,7 @@
 package application.minigame.spaceshooter;
 
+import application.minigame.spaceshooter.entity.Enemy;
 import javafx.geometry.Point2D;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
