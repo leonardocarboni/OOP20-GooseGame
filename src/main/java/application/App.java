@@ -1,6 +1,7 @@
 package application;
 
-import controller.MenuController;
+
+import controller.menu.MenuController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
