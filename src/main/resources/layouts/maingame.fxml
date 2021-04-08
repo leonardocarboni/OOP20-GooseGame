@@ -42,7 +42,7 @@
             </VBox>
             <VBox id="bottomborder" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" stylesheets="@maingamestyle.css" GridPane.columnIndex="1">
                <children>
-                  <HBox  fx:id="box1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                  <HBox fx:id="box1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                   <Label text="1" />
                </children>
             </VBox>
@@ -395,6 +395,11 @@
       <Label fx:id="currentPlayerLabel" layoutX="656.0" layoutY="181.0" AnchorPane.rightAnchor="252.0" AnchorPane.topAnchor="181.0">
          <font>
             <Font name="Candara Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="gameState" layoutX="650.0" layoutY="207.0" text="INITIAL PHASE" AnchorPane.rightAnchor="266.0" AnchorPane.topAnchor="207.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
          </font>
       </Label>
    </children>
