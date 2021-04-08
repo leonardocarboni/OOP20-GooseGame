@@ -17,12 +17,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import model.player.PlayerImpl;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Map.Entry;
 
 public class GameView implements Initializable {
 	
@@ -40,7 +41,7 @@ public class GameView implements Initializable {
 	private final Stage primaryStage = new Stage();
 	private static final String LAYOUT_LOCATION = "layouts/maingame.fxml";
 	private static final String LOGO_LOCATION = "logo.png";
-	
+
 	public GameView() {
 		try {
     		final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
@@ -114,14 +115,17 @@ public class GameView implements Initializable {
         diceButton.setOnAction(eventHandler);
     }
 	
-	public void changeAllButtons(final List<PlayerImpl> listPlayer) {
+	public void resetAllButtons() {
 		for(int i = 0; i < gameboard.size(); i++) {
 			gameboard.get(i).getChildren().clear();
-			for (final PlayerImpl player : listPlayer) {
-				if(i == player.getBoardPosition()) {
-					gameboard.get(i).getChildren().add(createCircle(Color.RED));
-				}
-			}
+		}
+	}
+
+	public void changeAllButtons(final Map<Color,Integer> position) {
+		resetAllButtons();
+		for (final Entry<Color,Integer> p : position.entrySet()) {
+			System.out.println(p.getValue());
+			gameboard.get(p.getValue()).getChildren().add(createCircle(p.getKey()));
 		}
 	}
 	

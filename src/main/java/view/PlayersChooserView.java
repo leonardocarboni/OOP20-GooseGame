@@ -25,10 +25,11 @@ public class PlayersChooserView implements Initializable {
     private List<TextField> playersName;
     @FXML
     private Label errorLabel;
-
+    
 	private static final String LAYOUT_LOCATION = "layouts/playerselection.fxml";
 	private static final String LOGO_LOCATION = "logo.png";
 	private final Stage stage = new Stage();
+
 	
 	public PlayersChooserView() {
 		try {
@@ -51,7 +52,6 @@ public class PlayersChooserView implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-    	
     }
 
     public List<String> getPlayersNames() {
