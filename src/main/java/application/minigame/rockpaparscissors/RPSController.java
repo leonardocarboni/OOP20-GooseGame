@@ -15,7 +15,7 @@ public class RPSController {
         //countdown = new CountdownImpl(SECONDS,);
         //countdown.start();
 
-        //view.show();
+        view.show();
     }
 
 }

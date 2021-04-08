@@ -12,9 +12,9 @@
     <children>
         <ProgressBar fx:id="timeBar" layoutX="200.0" layoutY="334.0" prefWidth="200.0" progress="0.0" style="-fx-background-color: #e1840b#e1840b;" AnchorPane.bottomAnchor="50.0" />
         <ImageView fx:id="result" fitHeight="150.0" fitWidth="200.0" layoutX="256.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="117.0" layoutY="193.0" mnemonicParsing="false" onAction="#paper" style="-fx-background-color: #e1840b#e1840b;" text="Carta" />
-        <Button layoutX="115.0" layoutY="140.0" mnemonicParsing="false" onAction="#rock" style="-fx-background-color: #e1840b#e1840b;" text="Sasso" />
-        <Button layoutX="114.0" layoutY="248.0" mnemonicParsing="false" onAction="#scissors" style="-fx-background-color: #e1840b#e1840b;" text="Forbici" />
+        <Button fx:id="paper" layoutX="117.0" layoutY="193.0" mnemonicParsing="false" onAction="#paper" style="-fx-background-color: #e1840b#e1840b;" text="Carta" />
+        <Button fx:id="rock" layoutX="115.0" layoutY="140.0" mnemonicParsing="false" onAction="#rock" style="-fx-background-color: #e1840b#e1840b;" text="Sasso" />
+        <Button fx:id="scissors" layoutX="114.0" layoutY="248.0" mnemonicParsing="false" onAction="#scissors" style="-fx-background-color: #e1840b#e1840b;" text="Forbici" />
         <Label layoutX="33.0" layoutY="54.0" text="ROUND:" textFill="#e1840b">
             <font>
                 <Font size="24.0" />

@@ -1,5 +1,7 @@
 package application.minigame.rockpaparscissors;
 
+import javafx.scene.control.ProgressBar;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -29,24 +31,41 @@ import java.util.Set;
 
 public class RPSView {
 
+    @FXML
+    private ProgressBar timeBar;
+    @FXML
+    private ImageView result;
+   @FXML
+    private Button rock, paper, scissors;
+   @FXML
+   private Label numWin, round;
+
     private final Stage primaryStage = new Stage();
     private static final String LAYOUT_LOCATION = "layouts/rockpaperscissors.fxml";
     private static final String LOGO_LOCATION = "logo.png";
 
     public RPSView() {
         try {
+            System.out.println(ClassLoader.getSystemResource(LAYOUT_LOCATION));
+
             final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
             loader.setController(this);
             final Scene scene = new Scene(loader.load());
             primaryStage.initModality(Modality.APPLICATION_MODAL);
-            primaryStage.setTitle("[GooseGame] Cable Connect");
+            primaryStage.setTitle("[GooseGame] Rock Paper Scissors");
             primaryStage.getIcons().add(new Image(LOGO_LOCATION));
             primaryStage.setOnHiding(e -> primaryStage.setIconified(true));
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
+
+
         }catch(IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void show() {
+        primaryStage.showAndWait();
     }
 
 
