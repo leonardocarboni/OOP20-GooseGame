@@ -1,4 +1,4 @@
-package application.minigame.spaceshooter;
+package application.minigame.spaceshooter.info;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,14 +15,6 @@ public class GettersGraphics {
 
     public Canvas getCanvas(){
         return this.canvas;
-    }
-
-    public GraphicsContext getGraphic(){
-        return this.gc;
-    }
-
-    public void setGraphic(GraphicsContext gc){
-        this.gc = gc;
     }
 
 }
