@@ -1,11 +1,7 @@
-package application.minigame.spaceshooter;
+package application.minigame.spaceshooter.info;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import java.awt.*;
-import java.util.List;
-import java.util.Random;
 
 public class Info {
 
@@ -18,8 +14,6 @@ public class Info {
     public static final Image BACKGROUND_IMG = new Image("spaceShooter/sfondoGalassia.jpg");
     public static final int EXPLOSION_IMG_NUM = 15;
     public static final int EXPLOSION_WIDTH = 128;
-    public static final int EXPLOSION_ROWS = 3;
-    public static final int EXPLOSION_COL = 3;
     public static final int EXPLOSION_HEIGHT = 128;
     public static int score;
 
