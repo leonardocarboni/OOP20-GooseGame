@@ -5,10 +5,10 @@ import java.util.List;
 
 import model.player.PlayerImpl;
 
-public interface FileUtility {
+public interface FileUtility<B> {
 
 	
-	void saveInformation(final List<PlayerImpl> ranking);
+	void saveInformation(final List<B> ranking);
 
-	List<PlayerImpl> loadInformation() throws FileNotFoundException;
+	List<B> loadInformation() throws FileNotFoundException;
 }

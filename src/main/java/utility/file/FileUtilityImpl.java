@@ -6,15 +6,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.player.PlayerImpl;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
-public class FileUtilityImpl implements FileUtility{
+public class FileUtilityImpl<B> implements FileUtility<B>{
 
 	private final String fileName;
 	private final File file;
@@ -25,7 +25,7 @@ public class FileUtilityImpl implements FileUtility{
 		this.file  = new File(fileName);
 	}
 
-	public void saveInformation(final List<PlayerImpl> playerList) {
+	public void saveInformation(final List<B> list) {
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
@@ -35,27 +35,25 @@ public class FileUtilityImpl implements FileUtility{
 		}
 		
 		try (FileWriter writer = new FileWriter(fileName)) {
-			GSON.toJson(playerList, writer);
+			GSON.toJson(list, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
 	}
 
-	public List<PlayerImpl> loadInformation() throws FileNotFoundException {
-		final List<PlayerImpl> rank = new ArrayList<>();
+	public List<B> loadInformation() throws FileNotFoundException {
 		if (!file.exists()) {
 			System.out.println("File doesn't exist");
 			throw new FileNotFoundException();
 		}
+		List<B> list = new ArrayList<>();
+		final Type typeClass = new TypeToken<ArrayList<B>>(){}.getType();
 		try (Reader reader = new FileReader(fileName)) {
-            final PlayerImpl[] playerArray = GSON.fromJson(reader, PlayerImpl[].class);
-            for (final PlayerImpl p : playerArray) {
-				rank.add(p);
-			}
+            list = GSON.fromJson(reader, typeClass);
         } catch (IOException e) {
             e.printStackTrace();
         }
-		return rank;
+		return list;
 	}
 	
 }
