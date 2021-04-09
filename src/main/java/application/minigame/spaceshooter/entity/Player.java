@@ -85,7 +85,7 @@ public class Player {
      * @return Shot
      */
     public Shot shot(){
-        return new Shot((int)position_player.getX() + 5, (int)position_player.getY() + 5, 10);
+        return new Shot((int)position_player.getX() + 5, (int)position_player.getY() + 5, Info.SIZE_SHOT);
     }
 
     /**

@@ -12,7 +12,9 @@ public class Info implements MinigameController {
     private final int WIN_SCORE = 40;
     public static final int WIDTH = 600;
     public static final int HEIGHT = 480;
-    public static final int SIZE_P = 60;
+    public static final int SIZE_PLAYER = 60;
+    public static final int SIZE_ENEMY= 60;
+    public static final int SIZE_SHOT = 10;
     public static final Image PLAYER_IMG = new Image("spaceShooter/player.png");
     public static final Image EXPLOSION_IMG = new Image("spaceShooter/explosion.png");
     public static final Image ENEMY_IMG = new Image("spaceShooter/enemy.png");

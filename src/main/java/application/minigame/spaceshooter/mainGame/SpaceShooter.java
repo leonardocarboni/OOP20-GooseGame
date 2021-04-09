@@ -10,6 +10,7 @@ import controller.minigame.MinigameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -50,11 +51,15 @@ public class SpaceShooter extends Application {
     private Canvas canvas = new GettersGraphics().getCanvas();
     private boolean isOver;
 
+    public boolean isStarted;
+
+
     /**
      * @param primaryStage
      */
     @Override
     public void start(Stage primaryStage) {
+        isStarted = true;
         gc = canvas.getGraphicsContext2D();
 
         /**
@@ -81,7 +86,7 @@ public class SpaceShooter extends Application {
                 shots.add(player.shot());
             }
             if(this.isOver){
-                System.exit(0);
+                stopSpaceShooter();
             }
         });
 
@@ -97,11 +102,11 @@ public class SpaceShooter extends Application {
     /**
      * Inizializzo la lista di nemici, colpi, creo il player e setto lo score a 0
      */
-    private void initialize(){
+    public void initialize(){
         enemies = new ArrayList<>();
         shots = new ArrayList<>();
-        IntStream.range(0,10).forEach(i -> enemies.add(new Enemy(rnd.nextInt(600),0, Info.SIZE_P,Info.ENEMY_IMG)));
-        player = new Player(Info.WIDTH/2,Info.HEIGHT-Info.SIZE_P,Info.SIZE_P, Info.PLAYER_IMG);
+        IntStream.range(0,10).forEach(i -> enemies.add(new Enemy(rnd.nextInt(600),0, Info.SIZE_ENEMY,Info.ENEMY_IMG)));
+        player = new Player(Info.WIDTH/2,Info.HEIGHT-Info.SIZE_PLAYER,Info.SIZE_PLAYER, Info.PLAYER_IMG);
         Info.score = 0;
     }
 
@@ -187,7 +192,7 @@ public class SpaceShooter extends Application {
          */
         for(int i = enemies.size()-1; i >= 0; i--){
             if(enemies.get(i).destroyed){
-                enemies.set(i, new Enemy(rnd.nextInt(450),0,Info.SIZE_P,Info.ENEMY_IMG));
+                enemies.set(i, new Enemy(rnd.nextInt(450),0,Info.SIZE_ENEMY,Info.ENEMY_IMG));
             }
         }
 
@@ -195,11 +200,28 @@ public class SpaceShooter extends Application {
 
     /**
      * Eseguo il gioco
-     * @param args
      */
-    public static void main(String[] args) {
+    public void startSpaceShooter() {
         launch();
     }
 
+    public void stopSpaceShooter(){
+        Platform.exit();
+    }
 
+    public List<Enemy> getEnemies() {
+        return enemies;
+    }
+
+    public List<Shot> getShots() {
+        return shots;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public boolean getOver() {
+        return isOver;
+    }
 }
