@@ -26,12 +26,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class SpaceShooter extends Application implements MinigameController {
+public class SpaceShooter extends Application {
 
-    /**
-     * Limit when you win
-     */
-    private final int WIN_SCORE = 40;
+
     private final Random rnd = new Random();
 
     /**
@@ -84,8 +81,7 @@ public class SpaceShooter extends Application implements MinigameController {
                 shots.add(player.shot());
             }
             if(this.isOver){
-                this.isOver = false;
-                initialize();
+                System.exit(0);
             }
         });
 
@@ -138,7 +134,7 @@ public class SpaceShooter extends Application implements MinigameController {
             gc.fillText("You lost, score: " + Info.score, 300, 300);
             gc.setFont(Font.font(55));
             gc.setTextAlign(TextAlignment.LEFT);
-            getResult();
+
         }
 
         /**
@@ -205,15 +201,5 @@ public class SpaceShooter extends Application implements MinigameController {
         launch();
     }
 
-    /**
-     * @return Risultato ottenuto
-     */
-    @Override
-    public int getResult() {
-        if(Info.score>=WIN_SCORE){
-            return Info.score;
-        } else{
-            return 0;
-        }
-    }
+
 }
