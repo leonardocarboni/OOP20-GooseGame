@@ -37,7 +37,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
 		});
 	}
 
-    /*
+    /**
      * Function to check if users wrote unique names and if there are at least two players
      * In this case this function create the controller of the Game
      */
@@ -69,7 +69,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
     	
     }
 
-    /*
+    /**
      * Function to convert a string to an enum 
      * @param s color name passed as string
      * @return PlayerColor 
@@ -88,7 +88,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
     	return color;
     }
 
-    /*
+    /**
      * Load names from the file and put them inside of ComboBox
      */
     public void loadNamesBox() {
@@ -100,7 +100,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
 		}
     }
 
-    /*
+    /**
      * Save names wrote by users in the file
      */
     public void saveNamesBox(final List<String> namePlayers) {
