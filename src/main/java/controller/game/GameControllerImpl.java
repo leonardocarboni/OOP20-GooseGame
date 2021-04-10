@@ -18,17 +18,18 @@ import model.game.GameImpl;
 import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import org.apache.commons.lang3.time.StopWatch;
-import view.GameView;
+
 import view.ViewType;
+import view.game.GameViewImpl;
 
 public class GameControllerImpl {
 
-	private final GameView view;
+	private final GameViewImpl view;
 	private final GameImpl game;
 	private final StopWatch stopwatch;
 
 	public GameControllerImpl(final List<PlayerImpl> playersList) {
-		view = new GameView();
+		view = new GameViewImpl();
 		game = new GameImpl();
 		view.createStage(ViewType.GAME);
 		game.start(playersList);

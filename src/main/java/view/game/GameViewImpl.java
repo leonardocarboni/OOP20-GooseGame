@@ -1,31 +1,25 @@
-package view;
+package view.game;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
+import view.View;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
-public class GameView extends View implements Initializable {
+public class GameViewImpl extends View implements Initializable,GameView {
 	
 	@FXML
     private Button diceButton;
@@ -44,6 +38,7 @@ public class GameView extends View implements Initializable {
     public void initialize(final URL location, final ResourceBundle resources) {
 	}
 
+	@Override
 	public void changeImageDice(final int value) {
 		String nameDiceImage = "";
 		switch(value) {
@@ -69,6 +64,7 @@ public class GameView extends View implements Initializable {
 		diceImage.setImage(new Image(ClassLoader.getSystemResource("dice/" + nameDiceImage).toString()));
 	}
 
+	@Override
 	public void changeScoreboard(final List<String> list) {
 		int i = 0;
 		for (final String p : list) {
@@ -77,24 +73,29 @@ public class GameView extends View implements Initializable {
 		}
 	}
 
+	@Override
 	public void changeGameStateLabel(final String s) {
 		gameState.setText(s);
 	}
 
+	@Override
 	public void changePlayerLabel(final String s) {
 		currentPlayerLabel.setText(s);
 	}
 
+	@Override
 	public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
         diceButton.setOnAction(eventHandler);
     }
-	
+
+	@Override
 	public void resetAllButtons() {
-		for(int i = 0; i < gameboard.size(); i++) {
-			gameboard.get(i).getChildren().clear();
+		for(final HBox hb : gameboard) {
+			hb.getChildren().clear();
 		}
 	}
 
+	@Override
 	public void changeAllButtons(final Map<Color,Integer> position) {
 		resetAllButtons();
 		for (final Entry<Color,Integer> p : position.entrySet()) {
@@ -102,7 +103,11 @@ public class GameView extends View implements Initializable {
 			gameboard.get(p.getValue()).getChildren().add(createCircle(p.getKey()));
 		}
 	}
-	
+
+	/*
+	 * @param Color -  color passed that represents the player
+	 * @return Circle - node 
+	 */
 	private Circle createCircle(final Color c) {
 		final Circle circle = new Circle();
 		circle.setFill(c);
