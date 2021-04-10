@@ -64,6 +64,34 @@ public class RPSView {
         }
     }
 
+    public void rockListener(final EventHandler<ActionEvent> eventHandler) {
+        rock.setOnAction(eventHandler);
+    }
+
+    public void paperListener(final EventHandler<ActionEvent> eventHandler) {
+        paper.setOnAction(eventHandler);
+    }
+
+    public void scissorsListener(final EventHandler<ActionEvent> eventHandler) {
+        scissors.setOnAction(eventHandler);
+    }
+
+    public ImageView getResult() {
+        return null;
+    }
+
+    public ProgressBar getTime() {
+        return timeBar;
+    }
+
+    public Label getNumWin() {
+        return numWin;
+    }
+
+    public Label getRound() {
+        return round;
+    }
+
     public void show() {
         primaryStage.showAndWait();
     }
