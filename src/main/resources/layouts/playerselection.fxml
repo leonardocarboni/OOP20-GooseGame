@@ -37,7 +37,7 @@
                         <Image url="@../pawns/pawnRed.png" />
                      </image>
                   </ImageView>
-                  <ComboBox fx:id="comboBox1" layoutY="158.0" prefWidth="150.0" promptText="New Player" />
+                  <ComboBox id="red" fx:id="comboBox1" layoutY="158.0" prefWidth="150.0" promptText="New Player" />
                   <TextField id="red" fx:id="name1" layoutX="1.0" layoutY="187.0" promptText="Name" />
                </children>
             </AnchorPane>
@@ -49,7 +49,7 @@
                      </image>
                   </ImageView>
                   <TextField id="pink" fx:id="name2" layoutX="1.0" layoutY="187.0" promptText="Name" />
-                  <ComboBox fx:id="comboBox2" layoutY="158.0" prefWidth="150.0" promptText="New Player" />
+                  <ComboBox id="pink" fx:id="comboBox2" layoutY="158.0" prefWidth="150.0" promptText="New Player" />
                </children>
             </AnchorPane>
             <AnchorPane>
@@ -60,7 +60,7 @@
                      </image>
                   </ImageView>
                   <TextField id="blue" fx:id="name3" layoutX="1.0" layoutY="187.0" promptText="Name" />
-                  <ComboBox fx:id="comboBox3" layoutY="158.0" prefWidth="150.0" promptText="New Player" />
+                  <ComboBox  id="blue" fx:id="comboBox3" layoutY="158.0" prefWidth="150.0" promptText="New Player" />
                </children>
             </AnchorPane>
             <AnchorPane>
@@ -71,7 +71,7 @@
                      </image>
                   </ImageView>
                   <TextField id="green" fx:id="name4" layoutX="1.0" layoutY="187.0" promptText="Name" />
-                  <ComboBox fx:id="comboBox4"  layoutY="158.0" prefWidth="150.0" promptText="New Player" />
+                  <ComboBox id="green"  fx:id="comboBox4"  layoutY="158.0" prefWidth="150.0" promptText="New Player" />
                </children>
             </AnchorPane>
          </children>
