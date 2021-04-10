@@ -17,7 +17,7 @@ public class View {
 	        final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(gameType.getLayoutLocation()));
 	        loader.setController(this);
 	        final Scene scene = new Scene(loader.load());
-	        primaryStage.setTitle("[GooseGame]" + gameType.getTitle());
+	        primaryStage.setTitle("[GooseGame] " + gameType.getTitle());
 	        primaryStage.getIcons().add(new Image(LOGO_LOCATION));
 	        primaryStage.setOnHiding(e -> {
 	            primaryStage.setIconified(true);

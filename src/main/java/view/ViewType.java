@@ -8,9 +8,10 @@ public enum ViewType {
 	CABLE_CONNECT("Minigame Cable Connect","layouts/cableconnect.fxml"),
 	EVEN_OR_ODD("Minigame Ever Or Odd", "layouts/cableconnect.fxml"),
 	ROCK_PAPER_SCISSORS("Minigame ROCK PAPER SCISSORS","layouts/cableconnect.fxml"),
-	TICTACTOE("Minigame Tic Tac Toe","");
-	
-	private String title;
+	TICTACTOE("Minigame Tic Tac Toe",""),
+	WINSCREEN("Final Scoreboard", "layouts/winscreen.fxml") ;
+
+    private String title;
 	private String layoutLocation;
 
 	ViewType(final String title, final String layoutLocation) {
