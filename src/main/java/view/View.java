@@ -28,10 +28,13 @@ public class View {
 		}
 	}
 	
-	public void show() {
+	public void showAndWait() {
 		primaryStage.showAndWait();
 	}
 	
+	public void show() {
+		primaryStage.show();
+	}
 	public void close() {
 		primaryStage.close();
 	}
