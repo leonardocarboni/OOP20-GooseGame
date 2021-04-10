@@ -32,17 +32,21 @@ import java.util.Set;
 public class RPSView {
 
     @FXML
-    private ProgressBar timeBar;
-    @FXML
-    private ImageView result;
-   @FXML
     private Button rock, paper, scissors;
-   @FXML
-   private Label numWin, round;
 
-    private final Stage primaryStage = new Stage();
-    private static final String LAYOUT_LOCATION = "layouts/rockpaperscissors.fxml";
+    @FXML
+    private Label playerScore, computerScore, result;
+
+    @FXML
+    private ImageView player, computer;
+
+    private static final String LAYOUT_LOCATION = "layouts/rps.fxml";
     private static final String LOGO_LOCATION = "logo.png";
+    private static final String ROCK = "r";
+    private static final String PAPER = "p";
+    private static final String SCISSORS = "s";
+    private final Stage primaryStage = new Stage();
+    private Image image;
 
     public RPSView() {
         try {
@@ -64,29 +68,88 @@ public class RPSView {
         }
     }
 
-    public void rockListener(final EventHandler<ActionEvent> eventHandler) {
-        rock.setOnAction(eventHandler);
+    @FXML
+    private void playerTurn(ActionEvent event) {
+        String playerChoice = null;
+        switch (((Button)event.getSource()).getId()) {
+            case "rock":
+                image = new Image("src/main/resources/rockPaperScissors/rock.png");
+                playerChoice = ROCK;
+                break;
+            case "paper":
+                image = new Image("src/main/resources/rockPaperScissors/paper.png");
+                playerChoice = PAPER;
+                break;
+            case "scissors":
+                image = new Image("src/main/resources/rockPaperScissors/scissors.png");
+                playerChoice = SCISSORS;
+                break;
+        }
+        player.setImage(image);
+
+        winner(playerChoice, computerTurn());
     }
 
-    public void paperListener(final EventHandler<ActionEvent> eventHandler) {
-        paper.setOnAction(eventHandler);
+    @FXML
+    private String computerTurn() {
+        String computerChoice = null;
+        int index = (int) (Math.random() * 3);
+        switch (index) {
+            case 0:
+                image = new Image("src/main/resources/rockPaperScissors/rock.png");
+                computerChoice = ROCK;
+                break;
+            case 1:
+                image = new Image("src/main/resources/rockPaperScissors/paper.png");
+                computerChoice = PAPER;
+                break;
+            case 2:
+                image = new Image("src/main/resources/rockPaperScissors/scissors.png");
+                computerChoice = SCISSORS;
+                break;
+        }
+        computer.setImage(image);
+        return computerChoice;
     }
 
-    public void scissorsListener(final EventHandler<ActionEvent> eventHandler) {
-        scissors.setOnAction(eventHandler);
+    public void playerWin() {
+        result.setText("You Win");
+        playerScore.setText(String.valueOf(Integer.parseInt(playerScore.getText()) + 1));
     }
 
-    public ImageView getResult() {
-        return null;
-    }
-    
-
-    public Label getNumWin() {
-        return numWin;
+    public void computerWin() {
+        result.setText("You Lose");
+        playerScore.setText(String.valueOf(Integer.parseInt(computerScore.getText()) + 1));
     }
 
-    public Label getRound() {
-        return round;
+    public void draw() {
+        result.setText("Draw");
+    }
+
+    public void winner(String playerChoice, String computerChoice) {
+        if (playerChoice.equals(computerChoice)) {
+            draw();
+            return;
+        }
+        if (playerChoice.equals(ROCK)) {
+            if (computerChoice.equals(PAPER)) {
+                computerWin();
+            } else if (computerChoice.equals(SCISSORS)) {
+                playerWin();
+            }
+        } else if (playerChoice.equals(PAPER)) {
+            if (computerChoice.equals(ROCK)) {
+                playerWin();
+            } else if (computerChoice.equals(SCISSORS)) {
+                computerWin();
+            }
+        } else {
+            if (computerChoice.equals(ROCK)) {
+                computerWin();
+            } else if (computerChoice.equals(PAPER)) {
+                playerWin();
+            }
+        }
     }
 
     public void show() {
