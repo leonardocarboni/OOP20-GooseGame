@@ -79,10 +79,7 @@ public class RPSView {
     public ImageView getResult() {
         return null;
     }
-
-    public ProgressBar getTime() {
-        return timeBar;
-    }
+    
 
     public Label getNumWin() {
         return numWin;
