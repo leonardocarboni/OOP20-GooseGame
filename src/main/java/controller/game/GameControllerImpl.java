@@ -19,7 +19,7 @@ import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import org.apache.commons.lang3.time.StopWatch;
 import view.GameView;
-import view.GamesViewType;
+import view.ViewType;
 
 public class GameControllerImpl {
 
@@ -30,7 +30,7 @@ public class GameControllerImpl {
 	public GameControllerImpl(final List<PlayerImpl> playersList) {
 		view = new GameView();
 		game = new GameImpl();
-		view.createStage(GamesViewType.GAME);
+		view.createStage(ViewType.GAME);
 		game.start(playersList);
 
 		stopwatch = new StopWatch();

@@ -12,7 +12,7 @@ public class View {
 	private final Stage primaryStage = new Stage();
 	private static final String LOGO_LOCATION = "logo.png";
 
-	public void createStage(final GamesViewType gameType) {
+	public void createStage(final ViewType gameType) {
 		try {
 	        final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(gameType.getLayoutLocation()));
 	        loader.setController(this);

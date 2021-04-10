@@ -14,20 +14,20 @@ import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import utility.file.FileUtility;
 import utility.file.FileUtilityImpl;
-import view.GamesViewType;
-import view.PlayersChooserView;
+import view.ViewType;
+import view.playerchooser.PlayersChooserViewImpl;
 
 public class PlayerChooserControllerImpl implements PlayerChooser{
 
 	final private static String FILE_NAME = "NamePlayers.json";
 	
-	final private PlayersChooserView view;
+	final private PlayersChooserViewImpl view;
     final private List<PlayerImpl> playersList = new ArrayList<>();
     final private FileUtility<String> s = new FileUtilityImpl<>(FILE_NAME);
 
     public PlayerChooserControllerImpl() {
-    	view = new PlayersChooserView();
-    	view.createStage(GamesViewType.CHOOSE_PLAYER);
+    	view = new PlayersChooserViewImpl();
+    	view.createStage(ViewType.CHOOSE_PLAYER);
     	view.show();
     	view.addButtonListener(new EventHandler<ActionEvent>() {
 			@Override

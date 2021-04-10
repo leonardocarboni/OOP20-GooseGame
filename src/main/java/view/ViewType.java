@@ -1,6 +1,6 @@
 package view;
 
-public enum GamesViewType {
+public enum ViewType {
 	
 	STARTING_MENU("Goose Game","layouts/menu.fxml"),
 	CHOOSE_PLAYER("Choose a Player","layouts/playerselection.fxml"),
@@ -13,7 +13,7 @@ public enum GamesViewType {
 	private String title;
 	private String layoutLocation;
 
-	GamesViewType(final String title, final String layoutLocation) {
+	ViewType(final String title, final String layoutLocation) {
 		this.title = title;
 		this.layoutLocation = layoutLocation;
 	}
