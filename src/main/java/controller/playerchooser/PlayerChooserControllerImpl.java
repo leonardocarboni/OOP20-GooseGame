@@ -28,6 +28,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
     public PlayerChooserControllerImpl() {
     	view = new PlayersChooserViewImpl();
     	view.createStage(ViewType.CHOOSE_PLAYER);
+    	view.setTextComboBox(loadNamesBox());
     	view.show();
     	view.addButtonListener(new EventHandler<ActionEvent>() {
 			@Override
@@ -91,13 +92,14 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
     /**
      * Load names from the file and put them inside of ComboBox
      */
-    public void loadNamesBox() {
+    public List<String> loadNamesBox() {
+    	List<String> playerNames = new ArrayList<>();
     	try {
-			final List<String> playerNames = s.loadInformation();
-			//set it to Box
+			playerNames = s.loadInformation();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+    	return playerNames;
     }
 
     /**
