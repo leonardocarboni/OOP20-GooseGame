@@ -14,6 +14,7 @@ import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import utility.file.FileUtility;
 import utility.file.FileUtilityImpl;
+import view.GamesViewType;
 import view.PlayersChooserView;
 
 public class PlayerChooserControllerImpl implements PlayerChooser{
@@ -26,6 +27,8 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
 
     public PlayerChooserControllerImpl() {
     	view = new PlayersChooserView();
+    	view.createStage(GamesViewType.CHOOSE_PLAYER);
+    	view.show();
     	view.addButtonListener(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent event) {

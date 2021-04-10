@@ -22,37 +22,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class PlayersChooserView implements Initializable {
+public class PlayersChooserView extends View implements Initializable {
     @FXML
     private Button startButton;
     @FXML
     private List<TextField> playersName;
     @FXML
     private Label errorLabel;
-    
-	private static final String LAYOUT_LOCATION = "layouts/playerselection.fxml";
-	private static final String LOGO_LOCATION = "logo.png";
-	private final Stage stage = new Stage();
-
-	
-	public PlayersChooserView() {
-		try {
-			final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
-	        loader.setController(this);
-	        final Scene scene = new Scene(loader.load());
-	        /* Stage configuration */
-	        stage.setTitle("[GooseGame]");
-	        stage.getIcons().add(new Image(LOGO_LOCATION));
-	        stage.setOnHiding(e -> {
-	        	stage.setIconified(true);
-	        });
-	        stage.setScene(scene);
-	        stage.setResizable(true);
-	        stage.show();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-	}
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -73,8 +49,4 @@ public class PlayersChooserView implements Initializable {
     public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
         startButton.setOnAction(eventHandler);
     }
-
-	public void close() {
-		stage.close();
-	}
 }

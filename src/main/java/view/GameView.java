@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
-public class GameView implements Initializable {
+public class GameView extends View implements Initializable {
 	
 	@FXML
     private Button diceButton;
@@ -39,38 +39,6 @@ public class GameView implements Initializable {
 	private List<HBox> gameboard;
 	@FXML
 	private Label gameState;
-	
-	private final Stage primaryStage = new Stage();
-	private static final String LAYOUT_LOCATION = "layouts/maingame.fxml";
-	private static final String LOGO_LOCATION = "logo.png";
-
-	public GameView() {
-		try {
-    		final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-	        final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
-	        loader.setController(this);
-	        final AnchorPane flowPane = loader.load();
-	        final Scene scene = new Scene(flowPane, screenBounds.getWidth() / 2, screenBounds.getHeight() / 2);
-	        /* Stage configuration */
-	        primaryStage.setTitle("[GooseGame]");
-	        primaryStage.getIcons().add(new Image(LOGO_LOCATION));
-	        primaryStage.setOnHiding(e -> {
-	            primaryStage.setIconified(true);
-	        });
-	        primaryStage.setScene(scene);
-	        //primaryStage.setResizable(false);
-    	}catch(IOException e) {
-    		e.printStackTrace();
-    	}
-	}
-	
-	public void show() {
-		primaryStage.showAndWait();
-	}
-	
-	public void close() {
-		primaryStage.close();
-	}
 
 	@Override
     public void initialize(final URL location, final ResourceBundle resources) {
