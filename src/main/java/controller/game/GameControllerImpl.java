@@ -6,10 +6,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import application.minigame.cableconnect.CableConnectController;
-import application.minigame.cableconnect.Colors;
 import application.minigame.phrasecatch.PhraseCatchController;
+import application.minigame.spaceshooter.info.Info;
 import controller.minigame.MinigameController;
 import javafx.scene.paint.Color;
+import model.StateGame;
 import model.box.Box;
 import model.duration.Duration;
 import model.duration.DurationImpl;
@@ -23,39 +24,25 @@ public class GameControllerImpl {
 
 	private final GameView view;
 	private final GameImpl game;
+	private final StopWatch stopwatch;
 
 	public GameControllerImpl(final List<PlayerImpl> playersList) {
 		view = new GameView();
 		game = new GameImpl();
+		game.start(playersList);
 
-		final StopWatch stopwatch = new StopWatch();
+		stopwatch = new StopWatch();
 		stopwatch.start();
 
-		game.start(playersList);
-		//aggiungere createMap
+		view.changeAllButtons(createMap(game.getScoreBoard()));
 		view.changePlayerLabel(game.nextPlayer().getName());
 		view.addButtonListener(event -> {
-			view.changeImageDice(game.rollCurrentPlayer());
-			if(game.end()) {
-				game.saveResultGame();
-				view.close();
-			}
-			game.addMinigameResult(checkMinigames(game.playCurrentPlayer()));
-			view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
-			view.changePlayerLabel(game.nextPlayer().getName());
-			System.out.println(game.getScoreBoard());
-			view.changeAllButtons(createMap(game.getScoreBoard()));
+			changeViewGameState();
 		});
-
 		view.show();
-		stopwatch.stop();
-		final Duration duration = new DurationImpl(stopwatch.getTime());
-		//System.out.println("DURATION: " + duration.getDuration());
-
 	}
 
 	public int checkMinigames(final Box b) {
-		System.out.println(b);
 		MinigameController minigameScene = null;
 		switch(b) {
 			case BONUS:
@@ -63,6 +50,7 @@ public class GameControllerImpl {
 			case TICTACTOE:
 				break;
 			case EVEN_OR_ODD:
+				minigameScene = new Info();
 				break;
 			case ROCK_PAPER_SCISSORS:
 				break;
@@ -93,5 +81,31 @@ public class GameControllerImpl {
 			map.put(color,p.getBoardPosition());
 		});
 		return map;
+	}
+
+	public void changeViewGameState() {
+		if(game.getStateGame().equals(StateGame.CHOOSE_STARTING_QUEUE)) {
+			view.changeGameStateLabel("Initial PHASE");
+			view.changeImageDice(game.choosePlayersQueue());
+		}
+		else if(game.getStateGame().equals(StateGame.CONTINUE)) {
+			view.changeGameStateLabel("GAME");
+			view.changeImageDice(game.rollCurrentPlayer());
+			if(game.endGame()) {
+				endGamefunction();
+			}
+			game.addMinigameResult(checkMinigames(game.playCurrentPlayer()));
+			view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
+			view.changeAllButtons(createMap(game.getScoreBoard()));
+		}
+		view.changePlayerLabel(game.nextPlayer().getName());
+	}
+
+	private void endGamefunction() {
+		stopwatch.stop();
+		final Duration duration = new DurationImpl(stopwatch.getTime());
+		view.changeGameStateLabel("END_GAME - TIME: " + duration.getDuration());
+		game.saveResultGame();
+		//view.close();
 	}
 }

@@ -43,14 +43,16 @@ public class GameImpl {
 		rank.setRanking(playerList);
 	}
 
+	public int choosePlayersQueue() {
+		final int diceValue = dice.roll();
+		throwDice.put(playerQueue.getCurrent(), diceValue);
+		checkEndChoosePhase();
+		return diceValue;
+	}
+
 	public int rollCurrentPlayer() {
 		final int diceValue = dice.roll();
-		if(stateGame.equals(StateGame.CHOOSE_STARTING_QUEUE)) {
-			throwDice.put(playerQueue.getCurrent(), diceValue);
-			checkEndChoosePhase();
-		}else {
-			playerQueue.getCurrent().addPosition(diceValue);
-		}
+		playerQueue.getCurrent().addPosition(diceValue);
 		return diceValue;
 	}
 
@@ -67,31 +69,29 @@ public class GameImpl {
 		return rank.getRanking(); 
 	}
 
-	private void checkEndChoosePhase() {
-		if(throwDice.size() == pl.size()) {
-			playerQueue.orderPlayerQueue(throwDice);
-			playerQueue.resetIterator();
-			stateGame = StateGame.START;
-		}
-	}
-
 	public PlayerImpl nextPlayer() {
 		return playerQueue.next();
 	}
 
-	public boolean end() {
-		return endGame(playerQueue.getCurrent()).equals(StateGame.END);
-	}
-
-	public StateGame endGame(final PlayerImpl p) {
-		if (p.getBoardPosition() == BOARD_SIZE) {
-			return StateGame.END;
+	public boolean endGame() {
+		if (playerQueue.getCurrent().getBoardPosition() == BOARD_SIZE) {
+			stateGame =  StateGame.END;
 		}else {
-			goBeyoundLimit(p);
-			return StateGame.CONTINUE;
+			goBeyoundLimit(playerQueue.getCurrent());
+			stateGame =  StateGame.CONTINUE;
 		}
+		return stateGame.equals(StateGame.END);
 	}
 
+	public void saveResultGame() {
+		final FileUtilityImpl<PlayerImpl> fu = new FileUtilityImpl<>(FILE_NAME);
+		fu.saveInformation(rank.getRanking());
+	}
+
+	public StateGame getStateGame() {
+		return stateGame;
+	}
+	
 	private void goBeyoundLimit(final PlayerImpl p) {
 		if(p.getBoardPosition() > BOARD_SIZE ) {
 			p.addPosition(-(p.getBoardPosition() - BOARD_SIZE)*2);
@@ -99,9 +99,12 @@ public class GameImpl {
 			p.resetPosition();
 		}
 	}
-	
-	public void saveResultGame() {
-		final FileUtilityImpl fu = new FileUtilityImpl(FILE_NAME);
-		fu.saveInformation(rank.getRanking());
+
+	private void checkEndChoosePhase() {
+		if(throwDice.size() == pl.size()) {
+			playerQueue.orderPlayerQueue(throwDice);
+			playerQueue.resetIterator();
+			stateGame = StateGame.CONTINUE;
+		}
 	}
 }
