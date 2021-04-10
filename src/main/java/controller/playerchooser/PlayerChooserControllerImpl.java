@@ -29,13 +29,13 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
     	view = new PlayersChooserViewImpl();
     	view.createStage(ViewType.CHOOSE_PLAYER);
     	view.setTextComboBox(loadNamesBox());
-    	view.show();
     	view.addButtonListener(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(final ActionEvent event) {
 				checkContrains();
 			}
 		});
+    	view.show();
 	}
 
     /**
@@ -43,6 +43,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
      * In this case this function create the controller of the Game
      */
     public void checkContrains () {
+    	System.out.println(view.getPlayersInfo());
     	final Map<String,String> playersNameNotNull = view.getPlayersInfo()
     										.entrySet()
     										.stream()
@@ -92,7 +93,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
     /**
      * Load names from the file and put them inside of ComboBox
      */
-    public List<String> loadNamesBox() {
+    private List<String> loadNamesBox() {
     	List<String> playerNames = new ArrayList<>();
     	try {
 			playerNames = s.loadInformation();

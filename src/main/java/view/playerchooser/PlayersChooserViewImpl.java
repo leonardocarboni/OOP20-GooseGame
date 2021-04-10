@@ -54,7 +54,8 @@ public class PlayersChooserViewImpl extends View implements Initializable,Player
     	for (int i = 0; i < playersComboBox.size(); i++) {
     		final TextField txtPlayer = playersName.get(i);
     		final ComboBox<String> cb = playersComboBox.get(i);
-    		if(txtPlayer.isDisable()) {
+    		System.out.println(cb.getValue());
+    		if("No Selection".equals(cb.getValue()) || cb.getValue() == null) {
     			l.put(txtPlayer.getId(),txtPlayer.getText());
     		}else {
     			l.put(cb.getId(),cb.getValue());
