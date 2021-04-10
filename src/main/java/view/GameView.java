@@ -37,6 +37,8 @@ public class GameView implements Initializable {
 	private List<Label> scoreBoard;
 	@FXML 
 	private List<HBox> gameboard;
+	@FXML
+	private Label gameState;
 	
 	private final Stage primaryStage = new Stage();
 	private static final String LAYOUT_LOCATION = "layouts/maingame.fxml";
@@ -105,6 +107,10 @@ public class GameView implements Initializable {
 			scoreBoard.get(i).setText(p);
 			i++;
 		}
+	}
+
+	public void changeGameStateLabel(final String s) {
+		gameState.setText(s);
 	}
 
 	public void changePlayerLabel(final String s) {
