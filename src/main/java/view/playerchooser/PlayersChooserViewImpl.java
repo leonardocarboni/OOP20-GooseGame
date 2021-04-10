@@ -1,4 +1,4 @@
-package view;
+package view.playerchooser;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import view.View;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class PlayersChooserView extends View implements Initializable {
+public class PlayersChooserViewImpl extends View implements Initializable,PlayersChooserView {
     @FXML
     private Button startButton;
     @FXML
@@ -34,6 +35,7 @@ public class PlayersChooserView extends View implements Initializable {
     public void initialize(final URL location, final ResourceBundle resources) {
     }
 
+    @Override
     public Map<String,String> getPlayersInfo() {
     	final Map<String,String> l = new HashMap<>();
     	for (final TextField s : playersName) {
@@ -41,11 +43,13 @@ public class PlayersChooserView extends View implements Initializable {
 		}
     	return l;
     }
-    
+
+    @Override
     public void setErrorLabelText(final String s) {
     	errorLabel.setText(s);
     }
-    
+
+    @Override
     public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
         startButton.setOnAction(eventHandler);
     }
