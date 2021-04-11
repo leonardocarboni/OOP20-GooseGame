@@ -9,19 +9,46 @@ import javafx.scene.paint.Color;
 
 public interface GameView {
 
+	/**
+	 * Change image of button according to the value 
+	 * @param value
+	 */
 	void changeImageDice(final int value);
 
+	/**
+	 * Change text of every label of scoreboard using param
+	 * @param list
+	 */
 	void changeScoreboard(final List<String> list);
 
-	void changeGameStateLabel(final String s);
+	/**
+	 * Change text of the game state label
+	 * @param text
+	 */
+	void changeGameStateLabel(final String text);
 
-	void changePlayerLabel(final String s);
+	/**
+	 * Change text of the player label
+	 * @param text
+	 */
+	void changePlayerLabel(final String text);
 
+	/**
+	 * 
+	 * @param eventHandler
+	 */
 	void addButtonListener(final EventHandler<ActionEvent> eventHandler);
 
-	void resetAllButtons();
+	/**
+	 * Remove all elements inside of the HBoxes
+	 */
+	void resetAllBoxes();
 
-	void changeAllButtons(final Map<Color,Integer> position);
+	/**
+	 * Update all boxes checking if there is any players on it or not
+	 * @param position
+	 */
+	void changeAllBoxes(final Map<Color,Integer> position);
 
 	
 }

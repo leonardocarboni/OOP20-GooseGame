@@ -37,7 +37,7 @@ public class GameControllerImpl {
 		stopwatch = new StopWatch();
 		stopwatch.start();
 
-		view.changeAllButtons(createMap(game.getScoreBoard()));
+		view.changeAllBoxes(createMap(game.getScoreBoard()));
 		view.changePlayerLabel(game.nextPlayer().getName());
 		view.addButtonListener(event -> {
 			changeViewGameState();
@@ -99,7 +99,7 @@ public class GameControllerImpl {
 			}
 			game.addMinigameResult(checkMinigames(game.playCurrentPlayer()));
 			view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
-			view.changeAllButtons(createMap(game.getScoreBoard()));
+			view.changeAllBoxes(createMap(game.getScoreBoard()));
 		}
 		view.changePlayerLabel(game.nextPlayer().getName());
 	}

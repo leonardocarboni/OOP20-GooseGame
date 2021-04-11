@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import view.View;
+import view.ViewType;
 
 import java.net.URL;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
 public class GameViewImpl extends View implements Initializable,GameView {
-	
+
 	@FXML
     private Button diceButton;
 	@FXML
@@ -33,6 +34,10 @@ public class GameViewImpl extends View implements Initializable,GameView {
 	private List<HBox> gameboard;
 	@FXML
 	private Label gameState;
+
+	public GameViewImpl() {
+		super.createStage(ViewType.GAME);
+	}
 
 	@Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -89,15 +94,15 @@ public class GameViewImpl extends View implements Initializable,GameView {
     }
 
 	@Override
-	public void resetAllButtons() {
+	public void resetAllBoxes() {
 		for(final HBox hb : gameboard) {
 			hb.getChildren().clear();
 		}
 	}
 
 	@Override
-	public void changeAllButtons(final Map<Color,Integer> position) {
-		resetAllButtons();
+	public void changeAllBoxes(final Map<Color,Integer> position) {
+		resetAllBoxes();
 		for (final Entry<Color,Integer> p : position.entrySet()) {
 			System.out.println(p.getValue());
 			gameboard.get(p.getValue()).getChildren().add(createCircle(p.getKey()));
