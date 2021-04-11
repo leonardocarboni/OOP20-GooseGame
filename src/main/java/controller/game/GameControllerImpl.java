@@ -45,29 +45,48 @@ public class GameControllerImpl {
 		view.show();
 	}
 
-	public int checkMinigames(final Box b) {
+	/**
+	 * Load Minigames 
+	 * @param box - type of box where the player is now
+	 * @return minigame result or 0 if is not a minigame
+	 */
+	public int checkMinigames(final Box box) {
 		MinigameController minigameScene = null;
-		switch(b) {
+		switch(box) {
 			case BONUS:
 				break;
 			case TICTACTOE:
+				minigameScene = null;
 				break;
 			case EVEN_OR_ODD:
-				minigameScene = new Info();
+				minigameScene = null;
 				break;
 			case ROCK_PAPER_SCISSORS:
+				minigameScene = null;
 				break;
 			case CABLE_CONNECT:
 				minigameScene = new CableConnectController();
 				break;
 			case PHRASE_CATCH:
 				minigameScene = new PhraseCatchController();
+				break;
+			case SPACESHOOTER:
+				minigameScene = null;
+				break;
+			case MEMORY:
+				minigameScene = null;
+				break;
 			default:
 				break;
 		}
 		return minigameScene != null ? minigameScene.getResult() : 0;
 	}
 
+	/**
+	 * create a map that associates each player with their own View color
+	 * @param list - players list
+	 * @return map
+	 */
 	private Map<Color,Integer> createMap(final List<PlayerImpl> list){
 		final Map<Color,Integer> map = new HashMap<>();
 		list.forEach( p -> {
@@ -86,6 +105,9 @@ public class GameControllerImpl {
 		return map;
 	}
 
+	/**
+	 * Change view and call model method according the game state
+	 */
 	public void changeViewGameState() {
 		if(game.getStateGame().equals(StateGame.CHOOSE_STARTING_QUEUE)) {
 			view.changeGameStateLabel("Initial PHASE");
@@ -104,6 +126,9 @@ public class GameControllerImpl {
 		view.changePlayerLabel(game.nextPlayer().getName());
 	}
 
+	/**
+	 * Method groups all the things to do at the end of the game
+	 */
 	private void endGamefunction() {
 		stopwatch.stop();
 		final Duration duration = new DurationImpl(stopwatch.getTime());
