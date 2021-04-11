@@ -9,14 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="785.0" styleClass="background-image" stylesheets="@rpsStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <HBox alignment="CENTER" prefHeight="135.0" prefWidth="200.0" spacing="100.0" style="-fx-background-color: rgba(0,0,0,0.6);" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="rock" alignment="CENTER" mnemonicParsing="false"  prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255);">
+                  <Button fx:id="rock" alignment="CENTER" mnemonicParsing="false" prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255);">
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
                            <image>
