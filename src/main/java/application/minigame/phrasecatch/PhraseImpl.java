@@ -27,11 +27,16 @@ public class PhraseImpl implements Phrase{
     public int checkText(String textRead) {
         int errors = Math.abs(phrase.length() - textRead.length());
 
-        for(int i = 0; i < Math.min(phrase.length(), textRead.length())-1; i++) {
+        for(int i = 0; i < Math.min(phrase.length(), textRead.length()); i++) {
             if(textRead.charAt(i) != phrase.charAt(i)) {
                 errors++;
             }
         }
         return errors;
+    }
+
+    @Override
+    public void setPhrase(String sentence){
+        phrase = sentence;
     }
 }
