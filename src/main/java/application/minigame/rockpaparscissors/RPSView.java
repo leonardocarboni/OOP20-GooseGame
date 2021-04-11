@@ -111,11 +111,11 @@ public class RPSView {
     private String parseChoiceImagePath(Choice choice) {
         String imagePath = null;
         if (choice == Choice.ROCK) {
-            imagePath = "rock.png";
+            imagePath = "rockpaperscissors/rock.png";
         } else if (choice == Choice.PAPER) {
-            imagePath = "paper.png";
+            imagePath = "rockpaperscissors/paper.png";
         } else {
-            imagePath = "scissors.png";
+            imagePath = "rockpaperscissors/scissors.png";
         }
         return imagePath;
     }
