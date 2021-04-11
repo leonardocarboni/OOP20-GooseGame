@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class View {
@@ -18,6 +19,7 @@ public class View {
 	        loader.setController(this);
 	        final Scene scene = new Scene(loader.load());
 	        primaryStage.setTitle("[GooseGame] " + gameType.getTitle());
+			primaryStage.initModality(Modality.APPLICATION_MODAL);
 	        primaryStage.getIcons().add(new Image(LOGO_LOCATION));
 	        primaryStage.setOnHiding(e -> {
 	            primaryStage.setIconified(true);
