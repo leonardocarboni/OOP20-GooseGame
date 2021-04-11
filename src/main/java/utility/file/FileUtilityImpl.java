@@ -18,13 +18,16 @@ public class FileUtilityImpl<B> implements FileUtility<B>{
 
 	private final String fileName;
 	private final File file;
-	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+	private final Gson gson = new GsonBuilder().setPrettyPrinting()
+											   .disableHtmlEscaping()
+											   .create();
 
 	public FileUtilityImpl(final String name) {
 		this.fileName = name;
 		this.file  = new File(fileName);
 	}
 
+	@Override
 	public void saveInformation(final List<B> list) {
 		if (!file.exists()) {
 			try {
@@ -35,12 +38,13 @@ public class FileUtilityImpl<B> implements FileUtility<B>{
 		}
 		
 		try (FileWriter writer = new FileWriter(fileName)) {
-			GSON.toJson(list, writer);
+			gson.toJson(list, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
 	}
 
+	@Override
 	public List<B> loadInformation() throws FileNotFoundException {
 		if (!file.exists()) {
 			System.out.println("File doesn't exist");
@@ -49,7 +53,7 @@ public class FileUtilityImpl<B> implements FileUtility<B>{
 		List<B> list = new ArrayList<>();
 		final Type typeClass = new TypeToken<ArrayList<B>>(){}.getType();
 		try (Reader reader = new FileReader(fileName)) {
-            list = GSON.fromJson(reader, typeClass);
+            list = gson.fromJson(reader, typeClass);
         } catch (IOException e) {
             e.printStackTrace();
         }
