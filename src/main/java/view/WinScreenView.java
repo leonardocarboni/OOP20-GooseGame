@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.player.Player;
+import model.player.PlayerImpl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -38,7 +39,7 @@ public class WinScreenView extends View {
      * sets the players names in the lable ordered by their score and shows them by fading.
      * @param playersList - the list of players (may be unordered).
      */
-    public void setPlayers(final List<Player> playersList) {
+    public void setPlayers(final List<PlayerImpl> playersList) {
 
         List<Player> sortedPlayersList = playersList.stream()
                 .sorted((p1, p2) -> p2.getBoardPosition() - p1.getBoardPosition()).collect(Collectors.toList());
