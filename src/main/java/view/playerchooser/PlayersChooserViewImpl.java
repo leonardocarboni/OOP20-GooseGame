@@ -31,6 +31,7 @@ public class PlayersChooserViewImpl extends View implements Initializable,Player
     public PlayersChooserViewImpl() {
     	super.createStage(ViewType.CHOOSE_PLAYER);
 	}
+
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
     	for (int i = 0; i < playersComboBox.size(); i++) {
@@ -50,19 +51,18 @@ public class PlayersChooserViewImpl extends View implements Initializable,Player
 
     @Override
     public Map<String,String> getPlayersInfo() {
-    	final Map<String,String> l = new HashMap<>();
+    	final Map<String,String> playersInfo = new HashMap<>();
     	for (int i = 0; i < playersComboBox.size(); i++) {
     		final TextField txtPlayer = playersName.get(i);
     		final ComboBox<String> cb = playersComboBox.get(i);
     		System.out.println(cb.getValue());
     		if("No Selection".equals(cb.getValue()) || cb.getValue() == null) {
-    			l.put(txtPlayer.getId(),txtPlayer.getText());
+    			playersInfo.put(txtPlayer.getId(),txtPlayer.getText());
     		}else {
-    			l.put(cb.getId(),cb.getValue());
+    			playersInfo.put(cb.getId(),cb.getValue());
     		}
     	}
-		
-    	return l;
+    	return playersInfo;
     }
 
     @Override
@@ -74,7 +74,8 @@ public class PlayersChooserViewImpl extends View implements Initializable,Player
     public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
         startButton.setOnAction(eventHandler);
     }
-    
+
+    @Override
     public void setTextComboBox(final List<String> listNames) {
     	listNames.add(0, "No Selection");
     	for (final ComboBox<String> cb: playersComboBox) {
