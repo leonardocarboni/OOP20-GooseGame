@@ -9,6 +9,8 @@ import application.minigame.cableconnect.CableConnectController;
 import application.minigame.phrasecatch.PhraseCatchController;
 import application.minigame.spaceshooter.info.Info;
 import controller.minigame.MinigameController;
+import controller.winscreen.WinScreen;
+import controller.winscreen.WinScreenImpl;
 import javafx.scene.paint.Color;
 import model.box.Box;
 import model.duration.Duration;
@@ -134,6 +136,7 @@ public class GameControllerImpl {
 		final Duration duration = new DurationImpl(stopwatch.getTime());
 		view.changeGameStateLabel("END_GAME - TIME: " + duration.getDuration());
 		game.saveResultGame();
-		//view.close();
+		view.close();
+		WinScreen winScreen = new WinScreenImpl(game.getScoreBoard());
 	}
 }

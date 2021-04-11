@@ -1,15 +1,15 @@
 package controller.winscreen;
 
 import controller.playerchooser.PlayerChooserControllerImpl;
-import model.player.Player;
 
+import model.player.PlayerImpl;
 import view.WinScreenView;
 
 import java.util.List;
 
 public class WinScreenImpl implements WinScreen{
 
-    public WinScreenImpl(List<Player> playersList){
+    public <T> WinScreenImpl(List<PlayerImpl> playersList){
         WinScreenView view = new WinScreenView();
 
         view.addButtonListener(e -> {
