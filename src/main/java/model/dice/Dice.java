@@ -2,9 +2,9 @@ package model.dice;
 
 public interface Dice {
 
-	/*
-	 * @return int 
-	 * 
+	/**
+	 * Get value of roll dice. Min 1 - Max 6
+	 * @return value of roll
 	 */
 	int roll();
 }

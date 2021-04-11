@@ -10,11 +10,11 @@ import application.minigame.phrasecatch.PhraseCatchController;
 import application.minigame.spaceshooter.info.Info;
 import controller.minigame.MinigameController;
 import javafx.scene.paint.Color;
-import model.StateGame;
 import model.box.Box;
 import model.duration.Duration;
 import model.duration.DurationImpl;
 import model.game.GameImpl;
+import model.game.StateGame;
 import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import org.apache.commons.lang3.time.StopWatch;
@@ -68,7 +68,7 @@ public class GameControllerImpl {
 		return minigameScene != null ? minigameScene.getResult() : 0;
 	}
 
-	public Map<Color,Integer> createMap(final List<PlayerImpl> list){
+	private Map<Color,Integer> createMap(final List<PlayerImpl> list){
 		final Map<Color,Integer> map = new HashMap<>();
 		list.forEach( p -> {
 			Color color;
@@ -97,7 +97,7 @@ public class GameControllerImpl {
 			if(game.endGame()) {
 				endGamefunction();
 			}
-			game.addMinigameResult(checkMinigames(game.playCurrentPlayer()));
+			game.movePlayer(checkMinigames(game.playCurrentPlayer()));
 			view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
 			view.changeAllBoxes(createMap(game.getScoreBoard()));
 		}

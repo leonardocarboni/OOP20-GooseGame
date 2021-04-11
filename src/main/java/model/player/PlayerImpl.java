@@ -1,11 +1,11 @@
 package model.player;
 
 public class PlayerImpl implements Player{
-	
+
 	private String name;
 	private final PlayerColor color;
 	private int boardPosition;
-	
+
 	public PlayerImpl(final String name,final PlayerColor color) {
 		if("".equals(name)) {
 			throw new IllegalStateException();
@@ -24,28 +24,22 @@ public class PlayerImpl implements Player{
 	public void setName(final String name) {
 		this.name = name;
 	}
-	
+
 	@Override
 	public int getBoardPosition() {
 		return boardPosition;
 	}
 
-	/*
-	private void setBoardPosition(final int boardPosition) {
-		this.boardPosition = boardPosition;
-	}
-	*/
-	
 	@Override
 	public void addPosition(final int diceValue) {
 		this.boardPosition += diceValue;
 	}
-	
+
 	@Override
 	public void resetPosition() {
 		this.boardPosition = 0;
 	}
-	
+
 	@Override
 	public PlayerColor getColor() {
 		return color;
@@ -53,8 +47,7 @@ public class PlayerImpl implements Player{
 
 	@Override
 	public String toString() {
-		return "Player [name=" + name + ", boardPosition=" + boardPosition + "]";
+		return "PlayerImpl [name=" + name + ", color=" + color + ", boardPosition=" + boardPosition + "]";
 	}
-	
-	
+
 }

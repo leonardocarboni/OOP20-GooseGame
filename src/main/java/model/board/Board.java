@@ -8,17 +8,17 @@ import model.player.PlayerImpl;
 public interface Board {
 
 	/*
-	 * Function to create the board of game
+	 * Create the board of game
 	 * @param size of game
 	 * @param number of minigames in the board
-	 * @return List of boxes that equals to the game board
+	 * @return list of boxes that equals to the game board
 	 */
 	List<Box> generateBoard();
 
 	/*
-	 * Function to get type of box
-	 * @param a player
-	 * @return type of box where the player is above now 
+	 * Get type of box where the player is above now 
+	 * @param player
+	 * @return type of box
 	 */
-	Box getBox(final PlayerImpl p);
+	Box getBox(final PlayerImpl player);
 }
