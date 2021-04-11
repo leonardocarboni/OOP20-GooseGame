@@ -1,32 +1,22 @@
 package application.minigame.cableconnect;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import utility.countdown.CountdownImpl;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import view.View;
+import view.ViewType;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Random;
-import java.util.ResourceBundle;
 import java.util.Set;
 
-public class CableConnectView {
+public class CableConnectView extends View {
 
     @FXML
     private Button startButton0, startButton1, startButton2, startButton3;
@@ -39,28 +29,12 @@ public class CableConnectView {
 
     private Line currentLine;
 
-    private final Stage primaryStage = new Stage();
-    private static final String LAYOUT_LOCATION = "layouts/cableconnect.fxml";
-    private static final String LOGO_LOCATION = "logo.png";
-
     final private Map<Button, Colors> startButtonsMap = new HashMap<>();
     final private Map<Button, Colors> endButtonsMap = new HashMap<>();
     final private Set<Colors> colorsDone = new HashSet<>();
 
     public CableConnectView(){
-        try {
-            final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
-            loader.setController(this);
-            final Scene scene = new Scene(loader.load());
-            primaryStage.initModality(Modality.APPLICATION_MODAL);
-            primaryStage.setTitle("[GooseGame] Cable Connect");
-            primaryStage.getIcons().add(new Image(LOGO_LOCATION));
-            primaryStage.setOnHiding(e -> primaryStage.setIconified(true));
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
+        super.createStage(ViewType.CABLE_CONNECT);
     }
 
     /**
@@ -177,10 +151,6 @@ public class CableConnectView {
 
     public void addButtonListener(final EventHandler<ActionEvent> cableConnectedHandler) {
         endButtonsMap.forEach((button, color) -> button.addEventHandler(ActionEvent.ACTION, cableConnectedHandler));
-    }
-
-    public void show() {
-        this.primaryStage.showAndWait();
     }
 
     public Set<Colors> getColorsDone() {
