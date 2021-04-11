@@ -1,4 +1,4 @@
 package application.minigame.memory;
 
-public class MemoryController {
+public class MemoryView {
 }
