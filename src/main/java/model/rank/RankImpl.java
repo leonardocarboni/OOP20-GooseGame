@@ -18,18 +18,18 @@ public class RankImpl implements Rank{
 	public void updateRanking() {
 		ranking.sort(Comparator.comparing(PlayerImpl::getBoardPosition).reversed());
 	}
-	
+
 	@Override
 	public List<PlayerImpl> getRanking() {
 		return ranking;
 	}
 
 	@Override
-	public void setRanking(final List<PlayerImpl> l) {
-		if(l.isEmpty()) {
+	public void setRanking(final List<PlayerImpl> list) {
+		if(list.isEmpty()) {
 			throw new IllegalArgumentException();
 		}
-		ranking = l;
+		ranking = list;
 	}
 	
 }
