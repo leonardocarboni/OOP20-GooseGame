@@ -6,11 +6,14 @@ import javafx.event.EventHandler;
 
 public class RPSController implements MinigameController {
 
+    private final static int PROGRESS_IN_GAME = 3;
+    private final static int COME_BACK_IN_GAME = -3;
     private final RPSView view;
 
     private int numPlayerWin = 0;
     private int numComputerWin = 0;
     private int numTurns = 0;
+    private Choice playerChoice;
 
 
     public RPSController(){
@@ -18,7 +21,6 @@ public class RPSController implements MinigameController {
         view.setPaperButtonHandler(new PaperClickHandler());
         view.setRockButtonHandler(new RockClickHandler());
         view.setScissorsButtonHandler(new ScissorsClickHandler());
-
         view.show();
     }
 
@@ -28,6 +30,15 @@ public class RPSController implements MinigameController {
 
     @Override
     public int getResult() {
+        if (numTurns == 3) {
+            if (getWinner(playerChoice,getComputerChoice()) == RPSGameState.DRAW) {
+                return 0;
+            } else if (getWinner(playerChoice,getComputerChoice()) == RPSGameState.COMPUTER_WIN){
+                return PROGRESS_IN_GAME;
+            } else {
+                return COME_BACK_IN_GAME;
+            }
+        }
         return 0;
     }
 
@@ -41,12 +52,15 @@ public class RPSController implements MinigameController {
         }
     }
 
+    /**
+     * An inner class for the event catching in the minigame view
+     */
     public class RockClickHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent event) {
             if (numTurns < 3) {
                 numTurns++;
+                playerChoice = Choice.ROCK;
                 Choice computerChoice = getComputerChoice();
                 RPSGameState winner = getWinner(Choice.ROCK, computerChoice);
                 view.setPlayerChoiceImage(Choice.ROCK);
@@ -55,16 +69,18 @@ public class RPSController implements MinigameController {
                 view.setComputerScoreLabel(numComputerWin);
                 checkEnd();
             }
-         //else non succede niente
         }
     }
 
+    /**
+     * An inner class for the event catching in the minigame view
+     */
     public class PaperClickHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent event) {
             if (numTurns < 3) {
                 numTurns++;
+                playerChoice = Choice.PAPER;
                 Choice computerChoice = getComputerChoice();
                 RPSGameState winner = getWinner(Choice.PAPER, computerChoice);
                 view.setPlayerChoiceImage(Choice.PAPER);
@@ -76,12 +92,15 @@ public class RPSController implements MinigameController {
         }
     }
 
+    /**
+     * An inner class for the event catching in the minigame view
+     */
     public class  ScissorsClickHandler implements EventHandler<ActionEvent> {
-
         @Override
         public void handle(ActionEvent event) {
             if (numTurns < 3) {
                 numTurns++;
+                playerChoice = Choice.SCISSORS;
                 Choice computerChoice = getComputerChoice();
                 RPSGameState winner = getWinner(Choice.SCISSORS, computerChoice);
                 view.setPlayerChoiceImage(Choice.SCISSORS);
@@ -132,5 +151,4 @@ public class RPSController implements MinigameController {
         }
         return RPSGameState.DRAW;
     }
-
 }
