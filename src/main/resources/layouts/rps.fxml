@@ -15,7 +15,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="rock" alignment="CENTER" mnemonicParsing="false" prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255);">
+                  <Button fx:id="rockButton" alignment="CENTER" mnemonicParsing="false" prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255);">
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -33,7 +33,7 @@
             </VBox>
             <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="paper" alignment="CENTER" mnemonicParsing="false" prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255);">
+                  <Button fx:id="paperButton" alignment="CENTER" mnemonicParsing="false" prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255);">
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -51,7 +51,7 @@
             </VBox>
             <VBox alignment="CENTER" layoutX="131.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="scissors" alignment="CENTER" mnemonicParsing="false" prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255);">
+                  <Button fx:id="scissorsButton" alignment="CENTER" mnemonicParsing="false" prefHeight="101.0" prefWidth="120.0" style="-fx-background-color: rgba(255,255,255);">
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -78,7 +78,7 @@
                   <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="playerScore" layoutX="332.0" layoutY="30.0" text="0" textFill="WHITE">
+            <Label fx:id="playerScoreLabel" layoutX="332.0" layoutY="30.0" text="0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="computerScore" layoutX="460.0" layoutY="30.0" text="0" textFill="WHITE">
+            <Label fx:id="computerScoreLabel" layoutX="460.0" layoutY="30.0" text="0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>
@@ -104,13 +104,13 @@
    <center>
       <HBox alignment="CENTER" prefHeight="135.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="player" fitHeight="299.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="result" alignment="CENTER" prefHeight="100.0" prefWidth="277.0">
+            <ImageView fx:id="playerImage" fitHeight="299.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="resultLabel" alignment="CENTER" prefHeight="100.0" prefWidth="277.0">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-            <ImageView fx:id="computer" fitHeight="299.0" fitWidth="220.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="computerImage" fitHeight="299.0" fitWidth="220.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
    </center>
