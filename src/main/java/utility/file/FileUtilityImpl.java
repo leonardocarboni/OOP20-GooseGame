@@ -6,28 +6,36 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
-public class FileUtilityImpl<B> implements FileUtility<B>{
+import model.player.PlayerImpl;
+
+public class FileUtilityImpl<B> {
 
 	private final String fileName;
 	private final File file;
 	private final Gson gson = new GsonBuilder().setPrettyPrinting()
 											   .disableHtmlEscaping()
 											   .create();
-
 	public FileUtilityImpl(final String name) {
 		this.fileName = name;
 		this.file  = new File(fileName);
 	}
 
-	@Override
 	public void saveInformation(final List<B> list) {
 		if (!file.exists()) {
 			try {
@@ -44,20 +52,18 @@ public class FileUtilityImpl<B> implements FileUtility<B>{
         }
 	}
 
-	@Override
-	public List<B> loadInformation() throws FileNotFoundException {
+	public List<B> loadInformation(final Class<B> classB) throws FileNotFoundException {
 		if (!file.exists()) {
 			System.out.println("File doesn't exist");
 			throw new FileNotFoundException();
 		}
+		final Type listType =TypeToken.getParameterized(List.class, classB).getType();
 		List<B> list = new ArrayList<>();
-		final Type typeClass = new TypeToken<ArrayList<B>>(){}.getType();
-		try (Reader reader = new FileReader(fileName)) {
-            list = gson.fromJson(reader, typeClass);
+		try (JsonReader reader = new JsonReader(new FileReader(fileName))) {
+			list = gson.fromJson(reader, listType);
         } catch (IOException e) {
             e.printStackTrace();
         }
 		return list;
 	}
-	
 }

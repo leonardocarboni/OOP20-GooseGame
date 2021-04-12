@@ -12,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.player.PlayerColor;
 import model.player.PlayerImpl;
-import utility.file.FileUtility;
 import utility.file.FileUtilityImpl;
 import view.ViewType;
 import view.playerchooser.PlayersChooserViewImpl;
@@ -23,7 +22,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
 	
 	final private PlayersChooserViewImpl view;
     final private List<PlayerImpl> playersList = new ArrayList<>();
-    final private FileUtility<String> s = new FileUtilityImpl<>(FILE_NAME);
+    final private FileUtilityImpl<String> s = new FileUtilityImpl<>(FILE_NAME);
 
     public PlayerChooserControllerImpl() {
     	view = new PlayersChooserViewImpl();
@@ -94,11 +93,11 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
      * Load names from the file and put them inside of ComboBox
      */
     private List<String> loadNamesBox() {
-    	List<String> playerNames = new ArrayList<>();
+    	List<String> playerNames;
     	try {
-			playerNames = s.loadInformation();
+			playerNames = s.loadInformation(String.class);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			playerNames = new ArrayList<>();
 		}
     	return playerNames;
     }
