@@ -16,7 +16,7 @@ public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 	private List<PlayerImpl> startingQueue;
 	private PlayerImpl current;
 	private Iterator<PlayerImpl> playerIterator;
-	
+
 	public QueueImpl() {
 		this.startingQueue =  new ArrayList<>();
 	}
@@ -33,7 +33,7 @@ public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 			 public int compare(final Entry<PlayerImpl, Integer> o1, final Entry<PlayerImpl, Integer> o2) {
 				return -1 * o1.getValue().compareTo(o2.getValue());
 			 }
-	        	
+
 		});
 	    for (final Entry<PlayerImpl, Integer> entry : list){
 	    	startingQueue.add(entry.getKey());
@@ -41,8 +41,8 @@ public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 	}
 
 	@Override
-	public void setStartingQueue(final List<PlayerImpl> l) {
-		this.startingQueue = getDeepCopy(l);
+	public void setStartingQueue(final List<PlayerImpl> list) {
+		this.startingQueue = getDeepCopy(list);
 	}
 
 	@Override
@@ -77,9 +77,14 @@ public class QueueImpl implements Iterator<PlayerImpl>,Queue{
 		playerIterator = startingQueue.iterator();
 		current = this.next();
 	}
-	
-	private List<PlayerImpl> getDeepCopy(final List<PlayerImpl> pl) {
-		final Iterator<PlayerImpl> iterator = pl.iterator();
+
+	/**
+	 * Create a deep copy of the list to avoid problem when list passed in params will change
+	 * @param list
+	 * @return list of players
+	 */
+	private List<PlayerImpl> getDeepCopy(final List<PlayerImpl> list) {
+		final Iterator<PlayerImpl> iterator = list.iterator();
 		final List<PlayerImpl> deepCopy = new ArrayList<>();
 		while(iterator.hasNext()) {
 			deepCopy.add(iterator.next());

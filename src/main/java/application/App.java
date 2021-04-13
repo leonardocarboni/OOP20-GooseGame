@@ -1,6 +1,4 @@
 package application;
-
-import application.minigame.rockpaparscissors.RPSController;
 import controller.menu.MenuController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -9,7 +7,7 @@ public class App extends Application{
 	
     @Override
 	public void start(final Stage primaryStage) throws Exception {
-		final RPSController  rpsController = new RPSController();
+		final MenuController menu = new MenuController();
 	}
 	
 	public static void main(final String[] args) {

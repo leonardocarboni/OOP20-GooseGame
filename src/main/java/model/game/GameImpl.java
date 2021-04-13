@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import model.StateGame;
 import model.board.BoardImpl;
 import model.box.Box;
 import model.dice.DiceImpl;
@@ -14,9 +13,9 @@ import model.queue.QueueImpl;
 import model.rank.RankImpl;
 import utility.file.FileUtilityImpl;
 
-public class GameImpl {
+public class GameImpl implements Game{
 
-	private static final int BOARD_SIZE = 42;
+	private static final int BOARD_SIZE = 41;
 	private static final String FILE_NAME = "GooseRanking.json";
 	private final DiceImpl dice;
 	private final QueueImpl playerQueue;
@@ -34,6 +33,7 @@ public class GameImpl {
 		stateGame = StateGame.START;
 	}
 
+	@Override
 	public void start(final List<PlayerImpl> playerList){
 		gameBoard.generateBoard();
 		stateGame = StateGame.CHOOSE_STARTING_QUEUE;
@@ -43,55 +43,68 @@ public class GameImpl {
 		rank.setRanking(playerList);
 	}
 
-	public int rollCurrentPlayer() {
+	@Override
+	public int choosePlayersQueue() {
 		final int diceValue = dice.roll();
-		if(stateGame.equals(StateGame.CHOOSE_STARTING_QUEUE)) {
-			throwDice.put(playerQueue.getCurrent(), diceValue);
-			checkEndChoosePhase();
-		}else {
-			playerQueue.getCurrent().addPosition(diceValue);
-		}
+		throwDice.put(playerQueue.getCurrent(), diceValue);
+		checkEndChoosePhase();
 		return diceValue;
 	}
 
-	public void addMinigameResult(final int value) {
+	@Override
+	public int rollCurrentPlayer() {
+		final int diceValue = dice.roll();
+		movePlayer(diceValue);
+		return diceValue;
+	}
+
+	@Override
+	public void movePlayer(final int value) {
 		playerQueue.getCurrent().addPosition(value);
 	}
-	
+
+	@Override
 	public Box playCurrentPlayer() {
 		return gameBoard.getBox(playerQueue.getCurrent());
 	}
 
+	@Override
 	public List<PlayerImpl> getScoreBoard(){
 		rank.updateRanking();
 		return rank.getRanking(); 
 	}
 
-	private void checkEndChoosePhase() {
-		if(throwDice.size() == pl.size()) {
-			playerQueue.orderPlayerQueue(throwDice);
-			playerQueue.resetIterator();
-			stateGame = StateGame.START;
-		}
-	}
-
+	@Override
 	public PlayerImpl nextPlayer() {
 		return playerQueue.next();
 	}
 
-	public boolean end() {
-		return endGame(playerQueue.getCurrent()).equals(StateGame.END);
-	}
-
-	public StateGame endGame(final PlayerImpl p) {
-		if (p.getBoardPosition() == BOARD_SIZE) {
-			return StateGame.END;
+	@Override
+	public boolean endGame() {
+		if (playerQueue.getCurrent().getBoardPosition() == BOARD_SIZE) {
+			stateGame =  StateGame.END;
 		}else {
-			goBeyoundLimit(p);
-			return StateGame.CONTINUE;
+			goBeyoundLimit(playerQueue.getCurrent());
+			stateGame =  StateGame.CONTINUE;
 		}
+		return stateGame.equals(StateGame.END);
 	}
 
+	@Override
+	public void saveResultGame() {
+		final FileUtilityImpl<PlayerImpl> fu = new FileUtilityImpl<>(FILE_NAME);
+		fu.saveInformation(rank.getRanking());
+	}
+
+	@Override
+	public StateGame getStateGame() {
+		return stateGame;
+	}
+
+	/**
+	 * 
+	 * @param p
+	 */
 	private void goBeyoundLimit(final PlayerImpl p) {
 		if(p.getBoardPosition() > BOARD_SIZE ) {
 			p.addPosition(-(p.getBoardPosition() - BOARD_SIZE)*2);
@@ -99,9 +112,15 @@ public class GameImpl {
 			p.resetPosition();
 		}
 	}
-	
-	public void saveResultGame() {
-		final FileUtilityImpl fu = new FileUtilityImpl(FILE_NAME);
-		fu.saveInformation(rank.getRanking());
+
+	/**
+	 * 
+	 */
+	private void checkEndChoosePhase() {
+		if(throwDice.size() == pl.size()) {
+			playerQueue.orderPlayerQueue(throwDice);
+			playerQueue.resetIterator();
+			stateGame = StateGame.CONTINUE;
+		}
 	}
 }

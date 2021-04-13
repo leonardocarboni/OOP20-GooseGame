@@ -14,4 +14,11 @@ public interface Phrase {
      * @return the number of errors in the sentence written
      */
     int checkText(String textRead);
+
+    /**
+     * [Test] sets a sentence as the phrase
+     * @param sentence - tha phrase
+     */
+    void setPhrase(String sentence);
+
 }
