@@ -1,7 +1,9 @@
 package application.minigame.memory;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -10,7 +12,10 @@ import java.io.IOException;
 
 public class MemoryView {
 
-    private static final String LAYOUT_LOCATION = "layouts/rps.fxml";
+    @FXML
+    Label secretCodeLabel;
+
+    private static final String LAYOUT_LOCATION = "layouts/memory.fxml";
     private static final String LOGO_LOCATION = "logo.png";
     private final Stage primaryStage = new Stage();
 
@@ -34,7 +39,11 @@ public class MemoryView {
         }
     }
 
+    public Label getSecretCodeLabel() {
+        return this.secretCodeLabel;
+    }
+
     public void show() {
-        primaryStage.showAndWait();
+        this.primaryStage.showAndWait();
     }
 }
