@@ -1,7 +1,7 @@
 package view;
 
 import java.io.IOException;
-import java.lang.*;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;

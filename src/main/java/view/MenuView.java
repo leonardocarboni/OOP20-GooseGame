@@ -18,14 +18,14 @@ public class MenuView extends View implements Initializable {
     private Button howToPlayButton;
     @FXML
     private Button exitButton;
-    
+
     @Override
     public void initialize(final URL url, final ResourceBundle resourceBundle) {
-    	exitButton.setOnAction(e -> this.close());
+        exitButton.setOnAction(e -> this.close());
     }
 
     public void addPlayButtonListener(final EventHandler<ActionEvent> playClicked) {
-    	playButton.setOnAction(playClicked);
+        playButton.setOnAction(playClicked);
     }
 
     public void addHowToPlayButtonListener(final MenuController.HowToPlayClicked howToPlayClicked) {
