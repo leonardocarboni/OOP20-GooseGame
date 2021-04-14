@@ -12,29 +12,29 @@ import view.ViewType;
 public class PhraseCatchView extends View {
 
     @FXML
-    Button submitButton;
+    private Button submitButton;
     @FXML
-    TextField inputTextField;
+    private TextField inputTextField;
     @FXML
-    Label textLabel, timeLabel;
+    private Label textLabel, timeLabel;
 
-    public PhraseCatchView(){
+    public PhraseCatchView() {
         super.createStage(ViewType.PHRASE_CATCH);
     }
 
     /**
-     * Updates the view Sentence Text field and variable
-     * @param sentence - the sentence to be copied
+     * Updates the view Sentence Text field and variable.
+     * @param sentence - the sentence to be copied.
      */
-    public void setPhrase(String sentence){
+    public void setPhrase(final String sentence) {
         this.textLabel.setText(sentence);
     }
 
-    public Label getTimeLabel(){
+    public Label getTimeLabel() {
         return timeLabel;
     }
 
-    public String getInputText(){
+    public String getInputText() {
         return inputTextField.getText();
     }
 
