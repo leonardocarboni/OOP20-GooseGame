@@ -8,24 +8,24 @@ import javafx.event.EventHandler;
 
 public interface PlayersChooserView {
 
-	/**
-	 * Create a Map
-	 * @return Map<String,String> 
-	 */
-	Map<String, String> getPlayersInfo();
-	
-	/**
-	 * @param text
-	 */
-	void setErrorLabelText(String text);
-	
-	/**
-	 * @param eventHandler
-	 */
-	void addButtonListener(EventHandler<ActionEvent> eventHandler);
+    /**
+     * Create a Map.
+     * @return Map<String,String>
+     */
+    Map<String, String> getPlayersInfo();
 
-	/*
-	 * @param text
-	 */
-	void setTextComboBox(List<String> listName);
+    /**
+     * @param text
+     */
+    void setErrorLabelText(String text);
+
+    /**
+     * @param eventHandler
+     */
+    void addButtonListener(EventHandler<ActionEvent> eventHandler);
+
+    /*
+     * @param text
+     */
+    void setTextComboBox(List<String> listName);
 }

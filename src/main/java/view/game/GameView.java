@@ -9,46 +9,50 @@ import javafx.scene.paint.Color;
 
 public interface GameView {
 
-	/**
-	 * Change image of button according to the value 
-	 * @param value
-	 */
-	void changeImageDice(int value);
+    /**
+     * Change image of button according to the value.
+     * 
+     * @param value
+     */
+    void changeImageDice(int value);
 
-	/**
-	 * Change text of every label of scoreboard using param.
-	 * @param list
-	 */
-	void changeScoreboard(List<String> list);
+    /**
+     * Change text of every label of scoreboard using param.
+     * 
+     * @param list
+     */
+    void changeScoreboard(List<String> list);
 
-	/**
-	 * Change text of the game state label.
-	 * @param text
-	 */
-	void changeGameStateLabel(String text);
+    /**
+     * Change text of the game state label.
+     * 
+     * @param text
+     */
+    void changeGameStateLabel(String text);
 
-	/**
-	 * Change text of the player label.
-	 * @param text
-	 */
-	void changePlayerLabel(String text);
+    /**
+     * Change text of the player label.
+     * 
+     * @param text
+     */
+    void changePlayerLabel(String text);
 
-	/**
-	 * 
-	 * @param eventHandler
-	 */
-	void addButtonListener(EventHandler<ActionEvent> eventHandler);
+    /**
+     * 
+     * @param eventHandler
+     */
+    void addButtonListener(EventHandler<ActionEvent> eventHandler);
 
-	/**
-	 * Remove all elements inside of the HBoxes.
-	 */
-	void resetAllBoxes();
+    /**
+     * Remove all elements inside of the HBoxes.
+     */
+    void resetAllBoxes();
 
-	/**
-	 * Update all boxes checking if there is any players on it or not.
-	 * @param position
-	 */
-	void changeAllBoxes(Map<Color, Integer> position);
+    /**
+     * Update all boxes checking if there is any players on it or not.
+     * 
+     * @param position
+     */
+    void changeAllBoxes(Map<Color, Integer> position);
 
-	
 }

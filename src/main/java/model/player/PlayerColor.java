@@ -1,29 +1,24 @@
 package model.player;
 
-/**
- * 
- * @author Andrea Ongaro
- *
- */
 public enum PlayerColor {
 
-	/**
-	 * Pink Color
-	 */
-	PINK,
+    /**
+     * Pink Color.
+     */
+    PINK,
 
-	/**
-	 * Yellow Color
-	 */
-	YELLOW,
+    /**
+     * Yellow Color.
+     */
+    YELLOW,
 
-	/**
-	 * Red Color
-	 */
-	RED,
+    /**
+     * Red Color.
+     */
+    RED,
 
-	/**
-	 * Blue Color
-	 */
-	BLUE
+    /**
+     * Blue Color.
+     */
+    BLUE
 }
