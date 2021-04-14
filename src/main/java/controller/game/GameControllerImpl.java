@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import application.minigame.cableconnect.CableConnectController;
 import application.minigame.phrasecatch.PhraseCatchController;
-import application.minigame.spaceshooter.info.Info;
 import controller.minigame.MinigameController;
 import controller.winscreen.WinScreen;
 import controller.winscreen.WinScreenImpl;
@@ -48,13 +47,13 @@ public class GameControllerImpl {
 	}
 
 	/**
-	 * Load Minigames 
-	 * @param box - type of box where the player is now
+	 * Load Minigames .
+	 * @param box - type of box where the player is now.
 	 * @return minigame result or 0 if is not a minigame
 	 */
 	public int checkMinigames(final Box box) {
 		MinigameController minigameScene = null;
-		switch(box) {
+		switch (box) {
 			case BONUS:
 				break;
 			case TICTACTOE:
@@ -85,40 +84,39 @@ public class GameControllerImpl {
 	}
 
 	/**
-	 * create a map that associates each player with their own View color
+	 * create a map that associates each player with their own View color.
 	 * @param list - players list
 	 * @return map
 	 */
-	private Map<Color,Integer> createMap(final List<PlayerImpl> list){
-		final Map<Color,Integer> map = new HashMap<>();
-		list.forEach( p -> {
+	private Map<Color, Integer> createMap(final List<PlayerImpl> list) {
+		final Map<Color, Integer> map = new HashMap<>();
+		list.forEach(p -> {
 			Color color;
-			if(p.getColor() == PlayerColor.BLUE) {
+			if (p.getColor() == PlayerColor.BLUE) {
 				color = Color.BLUE;
-			}else if(p.getColor() == PlayerColor.PINK) {
+			} else if (p.getColor() == PlayerColor.PINK) {
 				color = Color.PINK;
-			}else if (p.getColor() == PlayerColor.RED) {
+			} else if (p.getColor() == PlayerColor.RED) {
 				color = Color.RED;
-			}else {
+			} else {
 				color = Color.YELLOW;
 			}
-			map.put(color,p.getBoardPosition());
+			map.put(color, p.getBoardPosition());
 		});
 		return map;
 	}
 
 	/**
-	 * Change view and call model method according the game state
+	 * Change view and call model method according the game state.
 	 */
 	public void changeViewGameState() {
-		if(game.getStateGame().equals(StateGame.CHOOSE_STARTING_QUEUE)) {
+		if (game.getStateGame().equals(StateGame.CHOOSE_STARTING_QUEUE)) {
 			view.changeGameStateLabel("Initial PHASE");
 			view.changeImageDice(game.choosePlayersQueue());
-		}
-		else if(game.getStateGame().equals(StateGame.CONTINUE)) {
+		} else if (game.getStateGame().equals(StateGame.CONTINUE)) {
 			view.changeGameStateLabel("GAME");
 			view.changeImageDice(game.rollCurrentPlayer());
-			if(game.endGame()) {
+			if (game.endGame()) {
 				endGamefunction();
 			}
 			game.movePlayer(checkMinigames(game.playCurrentPlayer()));
@@ -129,7 +127,7 @@ public class GameControllerImpl {
 	}
 
 	/**
-	 * Method groups all the things to do at the end of the game
+	 * Method groups all the things to do at the end of the game.
 	 */
 	private void endGamefunction() {
 		stopwatch.stop();
@@ -137,6 +135,6 @@ public class GameControllerImpl {
 		view.changeGameStateLabel("END_GAME - TIME: " + duration.getDuration());
 		game.saveResultGame();
 		view.close();
-		WinScreen winScreen = new WinScreenImpl(game.getScoreBoard());
+		final WinScreen winScreen = new WinScreenImpl(game.getScoreBoard());
 	}
 }

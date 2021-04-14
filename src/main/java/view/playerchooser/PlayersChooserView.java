@@ -12,20 +12,20 @@ public interface PlayersChooserView {
 	 * Create a Map
 	 * @return Map<String,String> 
 	 */
-	Map<String,String> getPlayersInfo();
+	Map<String, String> getPlayersInfo();
 	
 	/**
 	 * @param text
 	 */
-	void setErrorLabelText(final String text);
+	void setErrorLabelText(String text);
 	
 	/**
-	 * @param EventHandler<ActionEvent>
+	 * @param eventHandler
 	 */
-	void addButtonListener(final EventHandler<ActionEvent> eventHandler);
+	void addButtonListener(EventHandler<ActionEvent> eventHandler);
 
 	/*
 	 * @param text
 	 */
-	void setTextComboBox(final List<String> listName);
+	void setTextComboBox(List<String> listName);
 }

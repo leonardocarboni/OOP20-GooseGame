@@ -1,7 +1,7 @@
 package view;
 
 import java.io.IOException;
-
+import java.lang.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -25,7 +25,7 @@ public class View {
 	            primaryStage.setIconified(true);
 	        });
 	        primaryStage.setScene(scene);
-		}catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

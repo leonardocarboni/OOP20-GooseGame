@@ -44,7 +44,7 @@ public class FileUtilityImpl<B> {
 				System.out.println("Excepton Occured: " + e.toString());
 			}
 		}
-		
+
 		try (FileWriter writer = new FileWriter(fileName)) {
 			gson.toJson(list, writer);
         } catch (IOException e) {
@@ -57,7 +57,7 @@ public class FileUtilityImpl<B> {
 			System.out.println("File doesn't exist");
 			throw new FileNotFoundException();
 		}
-		final Type listType =TypeToken.getParameterized(List.class, classB).getType();
+		final Type listType = TypeToken.getParameterized(List.class, classB).getType();
 		List<B> list = new ArrayList<>();
 		try (JsonReader reader = new JsonReader(new FileReader(fileName))) {
 			list = gson.fromJson(reader, listType);

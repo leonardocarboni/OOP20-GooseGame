@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.player.PlayerImpl;
 
-public class RankImpl implements Rank{
+public class RankImpl implements Rank {
 	
 	private List<PlayerImpl> ranking;
 
@@ -26,7 +26,7 @@ public class RankImpl implements Rank{
 
 	@Override
 	public void setRanking(final List<PlayerImpl> list) {
-		if(list.isEmpty()) {
+		if (list.isEmpty()) {
 			throw new IllegalArgumentException();
 		}
 		ranking = list;

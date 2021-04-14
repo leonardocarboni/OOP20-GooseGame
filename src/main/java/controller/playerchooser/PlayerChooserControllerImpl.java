@@ -18,11 +18,11 @@ import view.playerchooser.PlayersChooserViewImpl;
 
 public class PlayerChooserControllerImpl implements PlayerChooser{
 
-	final private static String FILE_NAME = "NamePlayers.json";
+	private final static String FILE_NAME = "NamePlayers.json";
 	
-	final private PlayersChooserViewImpl view;
-    final private List<PlayerImpl> playersList = new ArrayList<>();
-    final private FileUtilityImpl<String> s = new FileUtilityImpl<>(FILE_NAME);
+	private final PlayersChooserViewImpl view;
+	private final List<PlayerImpl> playersList = new ArrayList<>();
+	private final FileUtilityImpl<String> s = new FileUtilityImpl<>(FILE_NAME);
 
     public PlayerChooserControllerImpl() {
     	view = new PlayersChooserViewImpl();
@@ -38,16 +38,16 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
 	}
 
     /**
-     * Function to check if users wrote unique names and if there are at least two players
+     * Function to check if users wrote unique names and if there are at least two players.
      * In this case this function create the controller of the Game
      */
-    public void checkContrains () {
+    public void checkContrains() {
     	System.out.println(view.getPlayersInfo());
-    	final Map<String,String> playersNameNotNull = view.getPlayersInfo()
+    	final Map<String, String> playersNameNotNull = view.getPlayersInfo()
     										.entrySet()
     										.stream()
 											.filter(t -> !"".equals(t.getValue()))
-											.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+											.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     	System.out.println(playersNameNotNull);
     	final int numPlayers = playersNameNotNull.size();
         final int numUniqueNames = (int) playersNameNotNull
@@ -55,42 +55,41 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
         									.stream()
         									.distinct()
         									.count();
-        if (numPlayers < 2){
+        if (numPlayers < 2) {
         	view.setErrorLabelText("YOU MUST ENTER AT LEAST 2 PLAYERS");
         } else if (numPlayers == numUniqueNames) {
         	for (final Entry<String, String> player : playersNameNotNull.entrySet()) {
-				playersList.add(new PlayerImpl(player.getValue(),stringToEnum(player.getKey())));
+				playersList.add(new PlayerImpl(player.getValue(), stringToEnum(player.getKey())));
 			}
             view.close();
             final GameControllerImpl c = new GameControllerImpl(playersList);
-        }
-        else{
+        } else {
         	view.setErrorLabelText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");
         }
-    	
     }
 
     /**
-     * Function to convert a string to an enum 
-     * @param s color name passed as string
+     * Function to convert a string to an enum.
+     * @param s color name passed as string.
      * @return PlayerColor 
      */
     public PlayerColor stringToEnum(final String s) {
     	PlayerColor color;
-    	if("pink".equals(s)) {
+    	if ("pink".equals(s)) {
     		color = PlayerColor.PINK;
-    	}else if ("red".equals(s)) {
+    	} else if ("red".equals(s)) {
     		color = PlayerColor.RED;
-    	}else if ("yellow".equals(s)) {
+    	} else if ("yellow".equals(s)) {
     		color = PlayerColor.YELLOW;
-    	}else { 
+    	} else { 
     		color = PlayerColor.BLUE;
     	}
     	return color;
     }
 
     /**
-     * Load names from the file and put them inside of ComboBox
+     * Load names from the file and put them inside of ComboBox.
+     * @return list with names loaded from file.
      */
     private List<String> loadNamesBox() {
     	List<String> playerNames;
@@ -103,7 +102,8 @@ public class PlayerChooserControllerImpl implements PlayerChooser{
     }
 
     /**
-     * Save names wrote by users in the file
+     * Save names wrote by users in the file.
+     * @param namePlayers
      */
     public void saveNamesBox(final List<String> namePlayers) {
     	s.saveInformation(namePlayers);

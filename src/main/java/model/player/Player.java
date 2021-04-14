@@ -3,36 +3,36 @@ package model.player;
 public interface Player {
 
 	/**
-	 * Get name of player
-	 * @return String
+	 * Get name of player.
+	 * @return name of player.
 	 */
 	String getName();
 
 	/**
-	 * Set player name
+	 * Set player name.
 	 * @param name
 	 */
-	void setName(final String name);
+	void setName(String name);
 
 	/**
-	 * Get actual board position of the player
-	 * @return 
+	 * Get actual board position of the player.
+	 * @return position number
 	 */
 	int getBoardPosition();
 
 	/**
-	 * Add dice result to current position of the player
+	 * Add dice result to current position of the player.
 	 * @param diceValue
 	 */
-	void addPosition(final int diceValue);
+	void addPosition(int diceValue);
 
 	/**
-	 * Set position of the player to 0
+	 * Set position of the player to 0.
 	 */
 	void resetPosition();
 	
 	/**
-	 * Get color of the player
+	 * Get color of the player.
 	 * @return PlayerColor 
 	 */
 	PlayerColor getColor();

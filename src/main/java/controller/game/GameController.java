@@ -4,10 +4,11 @@ import model.box.Box;
 
 public interface GameController {
 
-	/*
+	/**
+	 * Return result of minigame. 
+	 * @param box
 	 * @return int 
-	 * Return result of minigame 
 	 */
-	int checkMinigames(final Box b);
+	int checkMinigames(Box box);
 
 }

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
-public class GameViewImpl extends View implements Initializable,GameView {
+public class GameViewImpl extends View implements Initializable, GameView {
 
 	@FXML
     private Button diceButton;
@@ -46,24 +46,26 @@ public class GameViewImpl extends View implements Initializable,GameView {
 	@Override
 	public void changeImageDice(final int value) {
 		String nameDiceImage = "";
-		switch(value) {
-		case 1:
-			nameDiceImage = "diceOne.png";
-			break;
-		case 2:
-			nameDiceImage = "diceTwo.png";
-			break;
-		case 3:
-			nameDiceImage = "diceThree.png";
-			break;
-		case 4:
-			nameDiceImage = "diceFour.png";
-			break;
-		case 5:
-			nameDiceImage = "diceFive.png";
-			break;
-		case 6:
-			nameDiceImage = "diceSix.png";
+		switch (value) {
+			case 1:
+				nameDiceImage = "diceOne.png";
+				break;
+			case 2:
+				nameDiceImage = "diceTwo.png";
+				break;
+			case 3:
+				nameDiceImage = "diceThree.png";
+				break;
+			case 4:
+				nameDiceImage = "diceFour.png";
+				break;
+			case 5:
+				nameDiceImage = "diceFive.png";
+				break;
+			case 6:
+				nameDiceImage = "diceSix.png";
+				break;
+		default:
 			break;
 		}
 		diceImage.setImage(new Image(ClassLoader.getSystemResource("dice/" + nameDiceImage).toString()));
@@ -95,15 +97,15 @@ public class GameViewImpl extends View implements Initializable,GameView {
 
 	@Override
 	public void resetAllBoxes() {
-		for(final HBox hb : gameboard) {
+		for (final HBox hb : gameboard) {
 			hb.getChildren().clear();
 		}
 	}
 
 	@Override
-	public void changeAllBoxes(final Map<Color,Integer> position) {
+	public void changeAllBoxes(final Map<Color, Integer> position) {
 		resetAllBoxes();
-		for (final Entry<Color,Integer> p : position.entrySet()) {
+		for (final Entry<Color, Integer> p : position.entrySet()) {
 			System.out.println(p.getValue());
 			gameboard.get(p.getValue()).getChildren().add(createCircle(p.getKey()));
 		}

@@ -13,7 +13,7 @@ import model.queue.QueueImpl;
 import model.rank.RankImpl;
 import utility.file.FileUtilityImpl;
 
-public class GameImpl implements Game{
+public class GameImpl implements Game {
 
 	private static final int BOARD_SIZE = 41;
 	private static final String FILE_NAME = "GooseRanking.json";
@@ -69,7 +69,7 @@ public class GameImpl implements Game{
 	}
 
 	@Override
-	public List<PlayerImpl> getScoreBoard(){
+	public List<PlayerImpl> getScoreBoard() {
 		rank.updateRanking();
 		return rank.getRanking(); 
 	}
@@ -83,7 +83,7 @@ public class GameImpl implements Game{
 	public boolean endGame() {
 		if (playerQueue.getCurrent().getBoardPosition() == BOARD_SIZE) {
 			stateGame =  StateGame.END;
-		}else {
+		} else {
 			goBeyoundLimit(playerQueue.getCurrent());
 			stateGame =  StateGame.CONTINUE;
 		}
@@ -106,9 +106,9 @@ public class GameImpl implements Game{
 	 * @param p
 	 */
 	private void goBeyoundLimit(final PlayerImpl p) {
-		if(p.getBoardPosition() > BOARD_SIZE ) {
-			p.addPosition(-(p.getBoardPosition() - BOARD_SIZE)*2);
-		}else if (p.getBoardPosition() < 0) {
+		if (p.getBoardPosition() > BOARD_SIZE) {
+			p.addPosition(-(p.getBoardPosition() - BOARD_SIZE) * 2);
+		} else if (p.getBoardPosition() < 0) {
 			p.resetPosition();
 		}
 	}
@@ -117,7 +117,7 @@ public class GameImpl implements Game{
 	 * 
 	 */
 	private void checkEndChoosePhase() {
-		if(throwDice.size() == pl.size()) {
+		if (throwDice.size() == pl.size()) {
 			playerQueue.orderPlayerQueue(throwDice);
 			playerQueue.resetIterator();
 			stateGame = StateGame.CONTINUE;

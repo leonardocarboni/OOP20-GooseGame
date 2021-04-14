@@ -7,14 +7,14 @@ import java.util.List;
 public interface FileUtility<B> {
 
 	/**
-	 * Save generic list in the file passed in the constructor
-	 * @param ranking
+	 * Save generic list in the file passed in the constructor.
+	 * @param list
 	 */
-	void saveInformation(final List<B> list);
+	void saveInformation(List<B> list);
 
 	/**
-	 * Load content from file passed in the constructor
-	 * @return List<B> - list with the content found it in the file
+	 * Load content from file passed in the constructor.
+	 * @return list with the content found it in the file
 	 * @throws FileNotFoundException
 	 */
 	List<B> loadInformation() throws FileNotFoundException;

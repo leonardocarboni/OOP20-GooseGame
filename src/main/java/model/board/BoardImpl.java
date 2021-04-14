@@ -2,12 +2,13 @@ package model.board;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import model.box.Box;
 import model.box.BoxType;
 import model.player.PlayerImpl;
 
-public class BoardImpl implements Board{
+public class BoardImpl implements Board {
 
 	private final int size;
 	private final List<Box> boxes;
@@ -19,22 +20,22 @@ public class BoardImpl implements Board{
 	}
 
 	@Override
-	public List<Box> generateBoard(){
+	public List<Box> generateBoard() {
 		checkSize(size);
 		final List<Box> minigames = getAllBoxesByType(BoxType.MINIGAMES);
 		boxes.add(Box.START);
 		int addSpecial = 0;
 		boolean addMinigames = false;
-		for(int i = 0; i < size - 1; i++) {
-			if(addSpecial == 2) {
-				if(addMinigames) {
+		for (int i = 0; i < size - 1; i++) {
+			if (addSpecial == 2) {
+				if (addMinigames) {
 					boxes.add(minigames.get(randomValue(0, minigames.size() - 1)));
-				}else {
+				} else {
 					boxes.add(Box.BONUS);
 				}
 				addMinigames = addMinigames ? false : true;
 				addSpecial = 0;
-			}else {
+			} else {
 				boxes.add(Box.NORMAL);
 				addSpecial++;
 			}
@@ -52,8 +53,8 @@ public class BoardImpl implements Board{
 	 * @param size of board
 	 * @throw exception in case the number inserted is too small to create a board
 	 */
-	private void checkSize(final int size){
-		if(size < BOARD_LIMIT) {
+	private void checkSize(final int size) {
+		if (size < BOARD_LIMIT) {
 			throw new IllegalArgumentException();
 		}
 	}
@@ -64,7 +65,8 @@ public class BoardImpl implements Board{
 	 * @return number between min and max (inclusive)
 	 */
 	private int randomValue(final int minValue, final int maxValue) {
-		return (int)(Math.random() * ((maxValue - minValue) + 1)) + minValue;
+		final Random rand = new Random();
+		return rand.nextInt((maxValue - minValue) + 1) + minValue;
 	}
 	
 	/*
@@ -72,10 +74,10 @@ public class BoardImpl implements Board{
 	 * @param type of Boxes to filter
 	 * @return list of boxes
 	 */
-	private List<Box> getAllBoxesByType(final BoxType type){
+	private List<Box> getAllBoxesByType(final BoxType type) {
 		final List<Box> list = new ArrayList<>();
 		for (final Box b : Box.values()) {
-			if(b.getType().equals(type)) {
+			if (b.getType().equals(type)) {
 				list.add(b);
 			}
 		}

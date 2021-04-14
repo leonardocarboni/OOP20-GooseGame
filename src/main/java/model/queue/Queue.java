@@ -8,26 +8,26 @@ import model.player.PlayerImpl;
 public interface Queue {
 
 	/**
-	 * Set playerQueue with map keys and ordering using map values
+	 * Set playerQueue with map keys and ordering using map values.
 	 * @param diceThrowing
 	 */
-	void orderPlayerQueue(final Map<PlayerImpl,Integer> diceThrowing);
+	void orderPlayerQueue(Map<PlayerImpl, Integer> diceThrowing);
 
 	/**
-	 * Set starting player queue
+	 * Set starting player queue.
 	 * @param list
 	 */
-	void setStartingQueue(final List<PlayerImpl> list);
+	void setStartingQueue(List<PlayerImpl> list);
 
 	/**
-	 * Get current player
-	 * @return
+	 * Get current player.
+	 * @return current player
 	 */
 	PlayerImpl getCurrent();
 
 	/**
-	 * Get starting queue
-	 * @return
+	 * Get starting queue.
+	 * @return list of players
 	 */
 	List<PlayerImpl> getStartingQueue();
 

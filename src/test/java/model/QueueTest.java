@@ -9,7 +9,6 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import application.minigame.phrasecatch.PhraseImpl;
 import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import model.queue.QueueImpl;
