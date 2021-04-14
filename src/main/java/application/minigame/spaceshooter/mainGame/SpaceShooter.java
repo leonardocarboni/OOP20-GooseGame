@@ -198,13 +198,6 @@ public class SpaceShooter extends Application {
 
     }
 
-    /**
-     * Eseguo il gioco
-     */
-    public void startSpaceShooter() {
-        launch();
-    }
-
     public void stopSpaceShooter(){
         Platform.exit();
     }
