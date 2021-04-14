@@ -1,6 +1,6 @@
 package application.minigame.spaceshooter.entity;
 
-import application.minigame.spaceshooter.info.Info;
+import application.minigame.spaceshooter.info.InfoGame;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
 
@@ -20,7 +20,7 @@ public class Enemy extends Player {
         if(!destroyed && !exploding){
             position_player = new Point2D(position_player.getX(), position_player.getY()+calcSpeed());
         }
-        if(this.position_player.getY()> Info.HEIGHT){
+        if(this.position_player.getY()> InfoGame.HEIGHT){
             destroyed = true;
         }
     }
@@ -30,7 +30,7 @@ public class Enemy extends Player {
      * @return un intero che è la velocita
      */
     private int calcSpeed(){
-        return (int) (Info.score +2) / 2;
+        return (int) (InfoGame.score +2) / 2;
     }
 
 

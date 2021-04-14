@@ -1,6 +1,6 @@
 package application.minigame.spaceshooter.entity;
 
-import application.minigame.spaceshooter.info.Info;
+import application.minigame.spaceshooter.info.InfoGame;
 import application.minigame.spaceshooter.mainGame.SpaceShooter;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -16,7 +16,7 @@ public class Shot {
     /**
      * La velocita la setto in base allo score
      */
-    private int speed = Info.score+5;
+    private int speed = InfoGame.score+5;
 
     /**
      * SE true allora il colpo va eliminato, questo verra fatto nella classe SpaceShooter
@@ -53,7 +53,7 @@ public class Shot {
      * @return true se si ha avuto una collisione
      */
     public boolean collide(final Enemy enemy){
-        double distance_enemy_shot = Info.distance(this.position_shot.getX() + size / 3, this.position_shot.getY() + size ,
+        double distance_enemy_shot = InfoGame.distance(this.position_shot.getX() + size / 3, this.position_shot.getY() + size ,
                 enemy.position_player.getX() + enemy.size / 3, enemy.position_player.getY() + enemy.size );
         return distance_enemy_shot < enemy.size / 2 + this.size / 2;
     }

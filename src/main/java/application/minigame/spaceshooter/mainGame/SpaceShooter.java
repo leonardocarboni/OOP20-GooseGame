@@ -5,8 +5,7 @@ import application.minigame.spaceshooter.entity.Enemy;
 import application.minigame.spaceshooter.entity.Player;
 import application.minigame.spaceshooter.entity.Shot;
 import application.minigame.spaceshooter.info.GettersGraphics;
-import application.minigame.spaceshooter.info.Info;
-import controller.minigame.MinigameController;
+import application.minigame.spaceshooter.info.InfoGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
-
 public class SpaceShooter extends Application {
 
 
@@ -96,6 +94,7 @@ public class SpaceShooter extends Application {
         initialize();
         primaryStage.setTitle("SpaceShooter");
         primaryStage.setScene(new Scene(new StackPane(canvas)));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -105,9 +104,9 @@ public class SpaceShooter extends Application {
     public void initialize(){
         enemies = new ArrayList<>();
         shots = new ArrayList<>();
-        IntStream.range(0,10).forEach(i -> enemies.add(new Enemy(rnd.nextInt(600),0, Info.SIZE_ENEMY,Info.ENEMY_IMG)));
-        player = new Player(Info.WIDTH/2,Info.HEIGHT-Info.SIZE_PLAYER,Info.SIZE_PLAYER, Info.PLAYER_IMG);
-        Info.score = 0;
+        IntStream.range(0,10).forEach(i -> enemies.add(new Enemy(rnd.nextInt(600),0, InfoGame.SIZE_ENEMY,InfoGame.ENEMY_IMG)));
+        player = new Player(InfoGame.WIDTH/2,InfoGame.HEIGHT-InfoGame.SIZE_PLAYER,InfoGame.SIZE_PLAYER, InfoGame.PLAYER_IMG);
+        InfoGame.score = 0;
     }
 
     /**
@@ -120,23 +119,23 @@ public class SpaceShooter extends Application {
          * Scrivo lo score in alto al centro
          */
         gc.setFill(Color.grayRgb(20));
-        gc.fillRect(0, 0, Info.WIDTH, Info.HEIGHT);
+        gc.fillRect(0, 0, InfoGame.WIDTH, InfoGame.HEIGHT);
         gc.setTextAlign(TextAlignment.CENTER);
         gc.setFont(Font.font(20));
         gc.setFill(Color.WHITE);
-        gc.fillText("Score: " + Info.score, 300,  17);
+        gc.fillText("Score: " + InfoGame.score, 300,  17);
 
         /**
          * Disegno lo sfondo
          */
-        gc.drawImage(Info.BACKGROUND_IMG,0,20,Info.WIDTH,Info.HEIGHT);
+        gc.drawImage(InfoGame.BACKGROUND_IMG,0,20,InfoGame.WIDTH,InfoGame.HEIGHT);
 
         /**
          * Se è finito il gioco, lo scrivo e ritorno il risultato
          */
         if(isOver){
             gc.setFill(Color.RED);
-            gc.fillText("You lost, score: " + Info.score, 300, 300);
+            gc.fillText("You lost, score: " + InfoGame.score, 300, 300);
             gc.setFont(Font.font(55));
             gc.setTextAlign(TextAlignment.LEFT);
 
@@ -180,7 +179,7 @@ public class SpaceShooter extends Application {
             shot.draw();
             for(Enemy enemy: enemies){
                 if(shot.collide(enemy) && !enemy.exploding){
-                    Info.score++;
+                    InfoGame.score++;
                     enemy.explode();
                     shot.noShot = true;
                 }
@@ -192,7 +191,7 @@ public class SpaceShooter extends Application {
          */
         for(int i = enemies.size()-1; i >= 0; i--){
             if(enemies.get(i).destroyed){
-                enemies.set(i, new Enemy(rnd.nextInt(450),0,Info.SIZE_ENEMY,Info.ENEMY_IMG));
+                enemies.set(i, new Enemy(rnd.nextInt(450),0,InfoGame.SIZE_ENEMY,InfoGame.ENEMY_IMG));
             }
         }
 
@@ -210,7 +209,7 @@ public class SpaceShooter extends Application {
         return shots;
     }
 
-    public Player getPlayer() {
+    public Object getPlayer() {
         return player;
     }
 

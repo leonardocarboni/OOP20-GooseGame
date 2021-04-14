@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class GettersGraphics {
 
-    private Canvas canvas = new Canvas(Info.WIDTH, Info.HEIGHT);
+    private Canvas canvas = new Canvas(InfoGame.WIDTH, InfoGame.HEIGHT);
     private GraphicsContext gc;
 
 

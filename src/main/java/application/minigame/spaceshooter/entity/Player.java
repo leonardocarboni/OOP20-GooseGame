@@ -1,6 +1,6 @@
 package application.minigame.spaceshooter.entity;
 
-import application.minigame.spaceshooter.info.Info;
+import application.minigame.spaceshooter.info.InfoGame;
 import application.minigame.spaceshooter.mainGame.SpaceShooter;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
@@ -59,7 +59,7 @@ public class Player {
         if(exploding){
             this.steps_img++;
         }
-        destroyed = this.steps_img > Info.EXPLOSION_IMG_NUM;
+        destroyed = this.steps_img > InfoGame.EXPLOSION_IMG_NUM;
     }
 
     /**
@@ -73,9 +73,9 @@ public class Player {
         if(!exploding) {
             gc.drawImage(this.image,position_player.getX(), position_player.getY(), this.size, this.size);
         } else{
-            gc.drawImage(Info.EXPLOSION_IMG, this.steps_img  * Info.EXPLOSION_WIDTH,
-                    this.steps_img  * Info.EXPLOSION_HEIGHT + 1 ,
-                    Info.EXPLOSION_WIDTH, Info.EXPLOSION_HEIGHT,
+            gc.drawImage(InfoGame.EXPLOSION_IMG, this.steps_img  * InfoGame.EXPLOSION_WIDTH,
+                    this.steps_img  * InfoGame.EXPLOSION_HEIGHT + 1 ,
+                    InfoGame.EXPLOSION_WIDTH, InfoGame.EXPLOSION_HEIGHT,
                     position_player.getX(),position_player.getY(), size, size);
         }
     }
@@ -85,7 +85,7 @@ public class Player {
      * @return Shot
      */
     public Shot shot(){
-        return new Shot((int)position_player.getX() + 5, (int)position_player.getY() + 5, Info.SIZE_SHOT);
+        return new Shot((int)position_player.getX() + 5, (int)position_player.getY() + 5, InfoGame.SIZE_SHOT);
     }
 
     /**
@@ -93,7 +93,7 @@ public class Player {
      * @return true se si toccan
      */
     public boolean touch(final Enemy enemy){
-        double distance_enemy_player = Info.distance(this.position_player.getX() + size / 3, this.position_player.getY() + size ,
+        double distance_enemy_player = InfoGame.distance(this.position_player.getX() + size / 3, this.position_player.getY() + size ,
                 enemy.position_player.getX() + enemy.size / 3, enemy.position_player.getY() + enemy.size );
         return distance_enemy_player < enemy.size / 3 + this.size / 3;
     }
