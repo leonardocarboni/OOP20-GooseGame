@@ -23,7 +23,7 @@ class FileUtilityTest {
         list.add(new PlayerImpl("Name1", PlayerColor.PINK));
         list.add(new PlayerImpl("Name2", PlayerColor.PINK));
         list.add(new PlayerImpl("Name3", PlayerColor.PINK));
-        c.saveInformation(list);
+        c.saveInformation(list, false, PlayerImpl.class);
 
         List<PlayerImpl> fromFile = new ArrayList<>();
         try {
@@ -41,7 +41,7 @@ class FileUtilityTest {
         final List<String> list2 = new ArrayList<>();
         list2.add("Name1");
         list2.add("Name2");
-        c2.saveInformation(list2);
+        c2.saveInformation(list2, false, String.class);
 
         List<String> fromFile2 = new ArrayList<>();
         try {

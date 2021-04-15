@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
-public class FileUtilityImpl<B> {
+public class FileUtilityImpl<B> implements FileUtility<B> {
 
     private final String fileName;
     private final File file;
@@ -28,28 +28,37 @@ public class FileUtilityImpl<B> {
         this.file = new File(fileName);
     }
 
-    public void saveInformation(final List<B> list) {
+    public void saveInformation(final List<B> list, final boolean append, final Class<B> classType) {
+        List<B> baseList = new ArrayList<>(); 
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
                 System.out.println("Excepton Occured: " + e.toString());
             }
+        } else {
+          if (append) {
+             try {
+                baseList = loadInformation(classType);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+          }
         }
-
+        baseList.addAll(list);
         try (FileWriter writer = new FileWriter(fileName)) {
-            gson.toJson(list, writer);
+            gson.toJson(baseList, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public List<B> loadInformation(final Class<B> classB) throws FileNotFoundException {
+    public List<B> loadInformation(final Class<B> classType) throws FileNotFoundException {
         if (!file.exists()) {
             System.out.println("File doesn't exist");
             throw new FileNotFoundException();
         }
-        final Type listType = TypeToken.getParameterized(List.class, classB).getType();
+        final Type listType = TypeToken.getParameterized(List.class, classType).getType();
         List<B> list = new ArrayList<>();
         try (JsonReader reader = new JsonReader(new FileReader(fileName))) {
             list = gson.fromJson(reader, listType);

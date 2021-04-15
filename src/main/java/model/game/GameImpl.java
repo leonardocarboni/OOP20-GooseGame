@@ -94,7 +94,7 @@ public class GameImpl implements Game {
     @Override
     public void saveResultGame() {
         final FileUtilityImpl<PlayerImpl> fu = new FileUtilityImpl<>(FILE_NAME);
-        fu.saveInformation(rank.getRanking());
+        fu.saveInformation(rank.getRanking(), false, PlayerImpl.class);
     }
 
     @Override

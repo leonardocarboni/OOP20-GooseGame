@@ -57,10 +57,13 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
         if (numPlayers < 2) {
             view.setErrorLabelText("YOU MUST ENTER AT LEAST 2 PLAYERS");
         } else if (numPlayers == numUniqueNames) {
+            final List<String> playerNames = new ArrayList<>();
             for (final Entry<String, String> player : playersNameNotNull.entrySet()) {
                 playersList.add(new PlayerImpl(player.getValue(), stringToEnum(player.getKey())));
+                playerNames.add(player.getValue());
             }
             view.close();
+            saveNamesBox(playerNames);
             final GameControllerImpl c = new GameControllerImpl();
             c.startGame(playersList);
         } else {
@@ -109,6 +112,6 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
      * @param namePlayers
      */
     private void saveNamesBox(final List<String> namePlayers) {
-        s.saveInformation(namePlayers);
+        s.saveInformation(namePlayers, true, String.class);
     }
 }
