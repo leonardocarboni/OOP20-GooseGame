@@ -38,6 +38,7 @@ public class GameImpl implements Game {
         gameBoard.generateBoard();
         stateGame = StateGame.CHOOSE_STARTING_QUEUE;
         pl = playerList;
+        initPlayers(playerList);
         playerQueue.setStartingQueue(pl);
         playerQueue.resetIterator();
         rank.setRanking(playerList);
@@ -121,6 +122,17 @@ public class GameImpl implements Game {
             playerQueue.orderPlayerQueue(throwDice);
             playerQueue.resetIterator();
             stateGame = StateGame.CONTINUE;
+        }
+    }
+
+    /**
+     * Reset all players position.
+     * Usefull with a second new game with same players.
+     * @param players
+     */
+    private void initPlayers(final List<PlayerImpl> players) {
+        for (final PlayerImpl p : players) {
+            p.resetPosition();
         }
     }
 }
