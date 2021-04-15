@@ -26,6 +26,9 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
 
     public PlayerChooserControllerImpl() {
         view = new PlayersChooserViewImpl();
+    }
+
+    public void start() {
         view.createStage(ViewType.CHOOSE_PLAYER);
         view.setTextComboBox(loadNamesBox());
         view.addButtonListener(new EventHandler<ActionEvent>() {
@@ -41,14 +44,16 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
      * Function to check if users wrote unique names and if there are at least two
      * players. In this case this function create the controller of the Game
      */
-    public void checkContrains() {
-        System.out.println(view.getPlayersInfo());
-        final Map<String, String> playersNameNotNull = view.getPlayersInfo().entrySet().stream()
-                .filter(t -> !"".equals(t.getValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        System.out.println(playersNameNotNull);
+    private void checkContrains() {
+        final Map<String, String> playersNameNotNull = view.getPlayersInfo()
+                                                           .entrySet()
+                                                           .stream()
+                                                           .filter(t -> !"".equals(t.getValue()))
+                                                           .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
         final int numPlayers = playersNameNotNull.size();
         final int numUniqueNames = (int) playersNameNotNull.values().stream().distinct().count();
+
         if (numPlayers < 2) {
             view.setErrorLabelText("YOU MUST ENTER AT LEAST 2 PLAYERS");
         } else if (numPlayers == numUniqueNames) {
@@ -56,7 +61,8 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
                 playersList.add(new PlayerImpl(player.getValue(), stringToEnum(player.getKey())));
             }
             view.close();
-            final GameControllerImpl c = new GameControllerImpl(playersList);
+            final GameControllerImpl c = new GameControllerImpl();
+            c.startGame(playersList);
         } else {
             view.setErrorLabelText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");
         }
@@ -68,7 +74,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
      * @param s color name passed as string.
      * @return PlayerColor
      */
-    public PlayerColor stringToEnum(final String s) {
+    private PlayerColor stringToEnum(final String s) {
         PlayerColor color;
         if ("pink".equals(s)) {
             color = PlayerColor.PINK;
@@ -102,7 +108,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
      * 
      * @param namePlayers
      */
-    public void saveNamesBox(final List<String> namePlayers) {
+    private void saveNamesBox(final List<String> namePlayers) {
         s.saveInformation(namePlayers);
     }
 }

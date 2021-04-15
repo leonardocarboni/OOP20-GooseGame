@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.player.Player;
 import model.player.PlayerImpl;
@@ -60,7 +59,7 @@ public class WinScreenView extends View {
         if (numPlayers > 2) {
             activeHBoxes.add(thirdPlayer);
         }
-        if (numPlayers > 3){
+        if (numPlayers > 3) {
             activeHBoxes.add(fourthPlayer);
         }
 
@@ -70,7 +69,7 @@ public class WinScreenView extends View {
 
     public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
         playAgainButton.setOnAction(eventHandler);
-        exitButton.setOnAction(e -> System.exit(0));
+        exitButton.setOnAction(e -> this.close());
     }
 
     /**
@@ -80,7 +79,7 @@ public class WinScreenView extends View {
     private void fadeHBox(final List<HBox> activeHBoxes) {
         final int lastIndex = activeHBoxes.size() - 1;
 
-        if (lastIndex >= 0){
+        if (lastIndex >= 0) {
             final HBox hBox = activeHBoxes.get(lastIndex);
             final FadeTransition fadeIn = new FadeTransition(Duration.millis(FADING_DURATION_MILLIS));
             hBox.setOpacity(0.0);

@@ -4,7 +4,7 @@ import view.HowToPlayView;
 
 public class HowToPlayImpl implements HowToPlay {
 
-    public HowToPlayImpl() {
+    public void start() {
         final HowToPlayView view = new HowToPlayView();
         view.show();
     }

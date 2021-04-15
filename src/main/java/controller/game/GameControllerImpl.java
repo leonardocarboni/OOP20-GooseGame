@@ -29,13 +29,15 @@ public class GameControllerImpl {
     private final GameImpl game;
     private final StopWatch stopwatch;
 
-    public GameControllerImpl(final List<PlayerImpl> playersList) {
+    public GameControllerImpl() {
         view = new GameViewImpl();
         game = new GameImpl();
+        stopwatch = new StopWatch();
+    }
+
+    public void startGame(final List<PlayerImpl> playersList) {
         view.createStage(ViewType.GAME);
         game.start(playersList);
-
-        stopwatch = new StopWatch();
         stopwatch.start();
 
         view.changeAllBoxes(createMap(game.getScoreBoard()));
@@ -45,7 +47,6 @@ public class GameControllerImpl {
         });
         view.show();
     }
-
     /**
      * Load Minigames .
      * 
@@ -137,6 +138,7 @@ public class GameControllerImpl {
         view.changeGameStateLabel("END_GAME - TIME: " + duration.getDuration());
         game.saveResultGame();
         view.close();
-        final WinScreen winScreen = new WinScreenImpl(game.getScoreBoard());
+        final WinScreen winScreen = new WinScreenImpl();
+        winScreen.start(game.getScoreBoard());
     }
 }
