@@ -3,17 +3,17 @@ package utility.countdown;
 public interface Countdown {
 
     /**
-     * Starts timer
+     * Starts timer.
      */
     void start();
 
     /**
-     * Force kills timer's thread
+     * Force kills timer's thread.
      */
     void shutdown();
 
     /**
-     * Returns seconds left
+     * Returns seconds left.
      * @return seconds left
      */
     double getSecondsLeft();
