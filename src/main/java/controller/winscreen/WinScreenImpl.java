@@ -7,13 +7,14 @@ import view.WinScreenView;
 
 import java.util.List;
 
-public class WinScreenImpl implements WinScreen{
+public class WinScreenImpl implements WinScreen {
 
-    public <T> WinScreenImpl(List<PlayerImpl> playersList){
-        WinScreenView view = new WinScreenView();
+    public <T> WinScreenImpl(final List<PlayerImpl> playersList) {
+        final WinScreenView view = new WinScreenView();
 
         view.addButtonListener(e -> {
-            PlayerChooserControllerImpl pc = new PlayerChooserControllerImpl();
+            final PlayerChooserControllerImpl pc = new PlayerChooserControllerImpl();
+            //spostare tutto in start e togliere il costruttore.
             view.close();
         });
 

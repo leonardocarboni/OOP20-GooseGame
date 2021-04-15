@@ -12,8 +12,7 @@ public class PhraseImpl implements Phrase {
 
     public String generatePhrase() {
         final File file = new File(PHRASES_FILENAME);
-        try {
-            final RandomAccessFile f = new RandomAccessFile(file, "r");
+        try (RandomAccessFile f = new RandomAccessFile(file, "r")) {
             final Random random = new Random();
             final long randomLocation = random.nextLong() / f.length();
             f.seek(randomLocation);

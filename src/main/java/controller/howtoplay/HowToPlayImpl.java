@@ -2,12 +2,10 @@ package controller.howtoplay;
 
 import view.HowToPlayView;
 
-public class HowToPlayImpl implements HowToPlay{
-
-    private final HowToPlayView view;
+public class HowToPlayImpl implements HowToPlay {
 
     public HowToPlayImpl() {
-        view = new HowToPlayView();
+        final HowToPlayView view = new HowToPlayView();
         view.show();
     }
 }
