@@ -45,6 +45,7 @@ public class FileUtilityImpl<B> implements FileUtility<B> {
             }
           }
         }
+        baseList.removeAll(list);
         baseList.addAll(list);
         try (FileWriter writer = new FileWriter(fileName)) {
             gson.toJson(baseList, writer);
