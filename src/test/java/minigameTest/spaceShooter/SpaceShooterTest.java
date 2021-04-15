@@ -1,4 +1,4 @@
-package application.minigame.spaceshooter.mainGame;
+package minigameTest.spaceShooter;
 
 import application.minigame.spaceshooter.info.InfoGame;
 import application.minigame.spaceshooter.mainGame.SpaceShooter;

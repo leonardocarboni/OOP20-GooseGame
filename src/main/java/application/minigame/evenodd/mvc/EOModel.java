@@ -1,5 +1,7 @@
 package application.minigame.evenodd.mvc;
 
+import application.minigame.evenodd.fxItem.Choice;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 
 import java.util.List;
@@ -34,9 +36,9 @@ public class EOModel {
             getters.getView().result=true;
         }
         if(value == 1){
-            getters.getView().playerChoice = "Dispari";
+            getters.getView().playerChoice = Choice.DISPARI;
         } else{
-            getters.getView().playerChoice = "Pari";
+            getters.getView().playerChoice = Choice.PARI;
         }
         getters.getView().resultValue=rndValue;
 

@@ -2,6 +2,7 @@ package application.minigame.evenodd.mvc;
 
 
 import application.minigame.evenodd.fxItem.BackgroundLoader;
+import application.minigame.evenodd.fxItem.Choice;
 import application.minigame.evenodd.fxItem.ItemDropper;
 import application.minigame.evenodd.mainGame.EvenOdd;
 import javafx.application.Platform;
@@ -39,7 +40,7 @@ public class EOView {
      * Creo lo stage.
      * Questo valore verrà assegnato dalla classe EvenOdd al lancio dell'applicazione.
      */
-    public Stage stage = new Stage();
+    public Stage stage = null;
 
     /**
      * Lista dei bottoni presenti nel gioco, Pari o Dispari.
@@ -66,9 +67,9 @@ public class EOView {
     /**
      * Scelta del player, pari o dispari.
      */
-    public String playerChoice;
+    public Choice playerChoice;
 
-    private ItemDropper item = new ItemDropper();
+
 
 
     /**
@@ -102,6 +103,7 @@ public class EOView {
      * @return Il pannello di gioco
      */
     public StackPane createPane() {
+        ItemDropper item = new ItemDropper();
         StackPane pane = new StackPane();
         Button btn1 = item.evenButton(handler);
         Button btn2 = item.oddButton(handler);
@@ -170,11 +172,13 @@ public class EOView {
      * Crea il testo che mi dice il valore generato dalla model.
      */
     private void createText(){
+        ItemDropper item = new ItemDropper();
         Text text = item.createText("The value generated is: ", Integer.toString(this.resultValue), 50);
         addElementToStackPane(text);
     }
     private void createTextChoice(){
-        Text text = item.createText("Your choice is ", playerChoice, 74);
+        ItemDropper item = new ItemDropper();
+        Text text = item.createText("Your choice is ", this.playerChoice.toString(), 74);
         addElementToStackPane(text);
     }
 
