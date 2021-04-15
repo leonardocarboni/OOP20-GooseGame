@@ -2,43 +2,65 @@ package model.box;
 
 public enum Box {
 
-	START(BoxType.NORMAL,"Start",0,0),
-	NORMAL(BoxType.NORMAL,"Nothing",0,0),
-	BONUS(BoxType.LUCK,"Bonus",0,2),
-	MALUS(BoxType.LUCK,"Malus",-2,0),
-	END(BoxType.NORMAL,"End",0,0),
-	TICTACTOE(BoxType.MINIGAMES,"Tris",-2,0),
-	EVEN_OR_ODD(BoxType.MINIGAMES,"Pari o Dispari",-2,0),
-	ROCK_PAPER_SCISSORS(BoxType.MINIGAMES,"Sasso Carta Forbici",3,3),
-	CABLE_CONNECT(BoxType.MINIGAMES,"Collega i cavi",2,2),
-	PHRASE_CATCH(BoxType.MINIGAMES,"",0,0);
-	
-	private BoxType type;
-	private String description;
-	private int penality;
-	private int win;
+    /**
+     * Start Box.
+     */
+    START(BoxType.NORMAL, "Start"),
+    /**
+     * Normal Box.
+     */
+    NORMAL(BoxType.NORMAL, "Normal"),
+    /**
+     * Bonus Box.
+     */
+    BONUS(BoxType.LUCK, "Bonus"),
+    /**
+     * End Box.
+     */
+    END(BoxType.NORMAL, "End"),
+    /**
+     * Tic Tac Toe Box.
+     */
+    TICTACTOE(BoxType.MINIGAMES, "Tic Tac Toe"),
+    /**
+     * Even Or Odd Box.
+     */
+    EVEN_OR_ODD(BoxType.MINIGAMES, "Even Or Odd"),
+    /**
+     * Rock Paper Scissors Box.
+     */
+    ROCK_PAPER_SCISSORS(BoxType.MINIGAMES, "Rock Paper Scissors"),
+    /**
+     * Cable Connect Box.
+     */
+    CABLE_CONNECT(BoxType.MINIGAMES, "Cable Connect"),
+    /**
+     * Phrase Catch Box.
+     */
+    PHRASE_CATCH(BoxType.MINIGAMES, "Phrase Catch"),
+    /**
+     * Space Shooter Box.
+     */
+    SPACESHOOTER(BoxType.MINIGAMES, "Space Shooter"),
+    /**
+     * Memory Box.
+     */
+    MEMORY(BoxType.MINIGAMES, "Memory");
 
-	Box(final BoxType type, final String description,final int penality, final int win) {
-		this.type = type;
-		this.description = description;
-		this.penality = penality;
-		this.win = win;
-	}
+    private BoxType type;
+    private String description;
 
-	public BoxType getType() {
-		return type;
-	}
+    Box(final BoxType type, final String description) {
+        this.type = type;
+        this.description = description;
+    }
 
-	public int getPenality() {
-		return penality;
-	}
+    public BoxType getType() {
+        return type;
+    }
 
-	public int getWin() {
-		return win;
-	}
-
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
 }

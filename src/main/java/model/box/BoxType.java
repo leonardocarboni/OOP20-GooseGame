@@ -1,7 +1,17 @@
 package model.box;
 
 public enum BoxType {
-	NORMAL,
-	MINIGAMES,
-	LUCK
+
+    /**
+     * A Normal Box where nothing happen.
+     */
+    NORMAL,
+    /**
+     * A Minigames Box.
+     */
+    MINIGAMES,
+    /**
+     *  A Luck Box.
+     */
+    LUCK;
 }

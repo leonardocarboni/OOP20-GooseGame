@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label contentDisplay="CENTER" layoutX="245.0" layoutY="37.0" text="Scoreboard" textAlignment="CENTER" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="37.0">
+         <font>
+            <Font name="Candara Bold" size="22.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER" layoutX="101.0" layoutY="78.0" prefHeight="280.0" prefWidth="399.0" AnchorPane.bottomAnchor="77.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="78.0">
+         <children>
+            <HBox fx:id="firstPlayer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <ImageView fx:id="crownImage" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../crown.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="firstNameLabel" text="WINNER">
+                     <font>
+                        <Font name="Candara" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="secondPlayer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <Label fx:id="secondNumberLabel" text="2">
+                     <font>
+                        <Font name="Candara Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="secondNameLabel" text="SECOND">
+                     <font>
+                        <Font name="Candara" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox fx:id="thirdPlayer" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <Label fx:id="thirdNumberLabel" text="3">
+                     <font>
+                        <Font name="Candara Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="thirdNameLabel" text="THIRD">
+                     <font>
+                        <Font name="Candara" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox fx:id="fourthPlayer" alignment="CENTER" prefHeight="100.0" prefWidth="485.0" spacing="15.0">
+               <children>
+                  <Label fx:id="fourthNumberLabel" text="4">
+                     <font>
+                        <Font name="Candara Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fourthNameLabel" text="FOURTH">
+                     <font>
+                        <Font name="Candara" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="190.0" layoutY="369.0" prefHeight="52.0" prefWidth="221.0" spacing="30.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="189.0">
+         <children>
+            <Button fx:id="playAgainButton" mnemonicParsing="false" stylesheets="@menustyle.css" text="PLAY AGAIN" textFill="#f2f2f2">
+               <font>
+                  <Font name="Candara" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="exitButton" mnemonicParsing="false" stylesheets="@menustyle.css" text="EXIT" textFill="#f2f2f2">
+               <font>
+                  <Font name="Candara" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

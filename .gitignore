@@ -35,3 +35,5 @@ hs_err_pid*
 
 # Ignored, as Gradle Buildship generates it on import / refresh
 .classpath
+.DS_Store
+.DS_Store

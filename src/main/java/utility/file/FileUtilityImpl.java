@@ -5,57 +5,57 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.player.PlayerImpl;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
-public class FileUtilityImpl implements FileUtility{
+public class FileUtilityImpl<B> {
 
-	private final String fileName;
-	private final File file;
-	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    private final String fileName;
+    private final File file;
+    private final Gson gson = new GsonBuilder().setPrettyPrinting()
+                                               .disableHtmlEscaping()
+                                               .create();
 
-	public FileUtilityImpl(final String name) {
-		this.fileName = name;
-		this.file  = new File(fileName);
-	}
+    public FileUtilityImpl(final String name) {
+        this.fileName = name;
+        this.file = new File(fileName);
+    }
 
-	public void saveInformation(final List<PlayerImpl> playerList) {
-		if (!file.exists()) {
-			try {
-				file.createNewFile();
-			} catch (IOException e) {
-				System.out.println("Excepton Occured: " + e.toString());
-			}
-		}
-		
-		try (FileWriter writer = new FileWriter(fileName)) {
-			GSON.toJson(playerList, writer);
+    public void saveInformation(final List<B> list) {
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Excepton Occured: " + e.toString());
+            }
+        }
+
+        try (FileWriter writer = new FileWriter(fileName)) {
+            gson.toJson(list, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
-	}
+    }
 
-	public List<PlayerImpl> loadInformation() throws FileNotFoundException {
-		final List<PlayerImpl> rank = new ArrayList<>();
-		if (!file.exists()) {
-			System.out.println("File doesn't exist");
-			throw new FileNotFoundException();
-		}
-		try (Reader reader = new FileReader(fileName)) {
-            final PlayerImpl[] playerArray = GSON.fromJson(reader, PlayerImpl[].class);
-            for (final PlayerImpl p : playerArray) {
-				rank.add(p);
-			}
+    public List<B> loadInformation(final Class<B> classB) throws FileNotFoundException {
+        if (!file.exists()) {
+            System.out.println("File doesn't exist");
+            throw new FileNotFoundException();
+        }
+        final Type listType = TypeToken.getParameterized(List.class, classB).getType();
+        List<B> list = new ArrayList<>();
+        try (JsonReader reader = new JsonReader(new FileReader(fileName))) {
+            list = gson.fromJson(reader, listType);
         } catch (IOException e) {
             e.printStackTrace();
         }
-		return rank;
-	}
-	
+        return list;
+    }
 }
