@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import application.minigame.cableconnect.CableConnectController;
 import application.minigame.evenodd.mainGame.EvenOdd;
 import application.minigame.phrasecatch.PhraseCatchController;
+import application.minigame.rockpaparscissors.RPSController;
 import application.minigame.spaceshooter.mainGame.SpaceShooter;
 import application.minigame.tictactoe.mainGame.TicTacToe;
 import controller.minigame.MinigameController;
@@ -68,7 +69,7 @@ public class GameControllerImpl {
             minigameScene = new EvenOdd();
             break;
         case ROCK_PAPER_SCISSORS:
-            minigameScene = null;
+            minigameScene = new RPSController();
             break;
         case CABLE_CONNECT:
             minigameScene = new CableConnectController();
@@ -85,6 +86,7 @@ public class GameControllerImpl {
         default:
             break;
         }
+        System.out.println( minigameScene.getResult());
         return minigameScene != null ? minigameScene.getResult() : 0;
     }
 
