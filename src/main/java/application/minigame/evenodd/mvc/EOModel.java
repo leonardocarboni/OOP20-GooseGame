@@ -1,6 +1,7 @@
 package application.minigame.evenodd.mvc;
 
 import application.minigame.evenodd.fxItem.Choice;
+import application.minigame.evenodd.mainGame.EvenOdd;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 

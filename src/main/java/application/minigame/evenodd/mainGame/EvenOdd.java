@@ -1,6 +1,8 @@
 package application.minigame.evenodd.mainGame;
 
 import application.minigame.evenodd.mvc.EOView;
+import application.minigame.evenodd.mvc.GettersMVC;
+import controller.minigame.MinigameController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -12,7 +14,13 @@ import javafx.stage.Stage;
  *
  */
 
-public class EvenOdd extends Application {
+public class EvenOdd extends Application implements MinigameController {
+
+
+    public EvenOdd(){
+        start(new Stage());
+    }
+
 
     /**
      * Questa applicazione fa utilizzo dello stackPane.
@@ -51,4 +59,12 @@ public class EvenOdd extends Application {
     }
 
 
+    @Override
+    public int getResult() {
+        if(new GettersMVC().getView().result){
+            return 1;
+        } else{
+            return 2;
+        }
+    }
 }

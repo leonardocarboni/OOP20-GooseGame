@@ -32,7 +32,6 @@ public class EndgameThread extends Thread{
                 final GettersMVC getters = new GettersMVC();
 
                 pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
-                pane.getChildren().add(button.exitButton(Optional.of(handler), "Exit"));
                 if(!getters.getView().isDark){
                     pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
                 } else{

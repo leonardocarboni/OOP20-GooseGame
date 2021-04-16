@@ -6,8 +6,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import application.minigame.cableconnect.CableConnectController;
+import application.minigame.evenodd.mainGame.EvenOdd;
 import application.minigame.phrasecatch.PhraseCatchController;
 import application.minigame.spaceshooter.mainGame.SpaceShooter;
+import application.minigame.tictactoe.mainGame.TicTacToe;
 import controller.minigame.MinigameController;
 import controller.winscreen.WinScreen;
 import controller.winscreen.WinScreenImpl;
@@ -60,10 +62,10 @@ public class GameControllerImpl {
         case BONUS:
             break;
         case TICTACTOE:
-            minigameScene = null;
+            minigameScene = new TicTacToe();
             break;
         case EVEN_OR_ODD:
-            minigameScene = null;
+            minigameScene = new EvenOdd();
             break;
         case ROCK_PAPER_SCISSORS:
             minigameScene = null;
