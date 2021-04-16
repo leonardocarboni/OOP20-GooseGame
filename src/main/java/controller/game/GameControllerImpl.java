@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import application.minigame.cableconnect.CableConnectController;
 import application.minigame.phrasecatch.PhraseCatchController;
+import application.minigame.spaceshooter.mainGame.SpaceShooter;
 import controller.minigame.MinigameController;
 import controller.winscreen.WinScreen;
 import controller.winscreen.WinScreenImpl;
@@ -74,7 +75,7 @@ public class GameControllerImpl {
             minigameScene = new PhraseCatchController();
             break;
         case SPACESHOOTER:
-            minigameScene = null;
+            minigameScene = new SpaceShooter();
             break;
         case MEMORY:
             minigameScene = null;
