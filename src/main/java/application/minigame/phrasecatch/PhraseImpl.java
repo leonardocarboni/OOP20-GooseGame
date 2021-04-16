@@ -14,11 +14,10 @@ public class PhraseImpl implements Phrase {
         final File file = new File(PHRASES_FILENAME);
         try (RandomAccessFile f = new RandomAccessFile(file, "r")) {
             final Random random = new Random();
-            final long randomLocation = random.nextLong() / f.length();
+            final long randomLocation = random.nextInt((int) f.length());
             f.seek(randomLocation);
             f.readLine();
             phrase = f.readLine();
-            f.close();
         } catch (final IOException ex) {
             System.out.println("Couldn't load file");
         }
