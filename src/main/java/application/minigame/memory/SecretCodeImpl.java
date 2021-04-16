@@ -4,19 +4,21 @@ import java.util.Random;
 
 public class SecretCodeImpl implements SecretCode{
 
-    private long secretCode;
-
-    private Random r = new Random();
+    private int secretCode;
+    private final Random r = new Random();
 
     @Override
-    public Long generateSecretCode() {
-        secretCode = r.nextInt(6);
-        System.out.println(secretCode);
+    public int generateSecretCode() {
+        secretCode = r.ints(11111,99999+1)
+                      .filter(i -> !String.valueOf(i).contains("0"))
+                      .limit(1)
+                      .findFirst()
+                      .getAsInt();
         return secretCode;
     }
 
     @Override
-    public int checkCode(Long secretCode) {
+    public int checkCode(int secretCode) {
         return 0;
     }
 }
