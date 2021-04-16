@@ -3,6 +3,7 @@ package application.minigame.memory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
@@ -13,7 +14,13 @@ import java.io.IOException;
 public class MemoryView {
 
     @FXML
-    Label secretCodeLabel;
+    private Button button1, button2, button3, button4, button5, button6, button7, button8, button9;
+
+    @FXML
+    private Button checkButton;
+
+    @FXML
+    private Label secretCodeLabel, resultLabel;
 
     private static final String LAYOUT_LOCATION = "layouts/memory.fxml";
     private static final String LOGO_LOCATION = "logo.png";
