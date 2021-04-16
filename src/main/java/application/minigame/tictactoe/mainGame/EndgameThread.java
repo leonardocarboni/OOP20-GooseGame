@@ -28,7 +28,6 @@ public class EndgameThread extends Thread{
             public void run() {
                 final StackPane pane = new StackPane();
                 final ButtonDropper button = new ButtonDropper();
-                final TTTController handler = new TTTController();
                 final GettersMVC getters = new GettersMVC();
 
                 pane.getChildren().add(button.endGameButton(Optional.empty(), winner));

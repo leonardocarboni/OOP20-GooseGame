@@ -9,7 +9,7 @@ public class InfoGame {
     /**
      * Limit when you win
      */
-        private final int WIN_SCORE = 40;
+        private static final int WIN_SCORE = 40;
         public static final int WIDTH = 600;
         public static final int HEIGHT = 480;
         public static final int SIZE_PLAYER = 60;
@@ -22,7 +22,7 @@ public class InfoGame {
         public static final int EXPLOSION_IMG_NUM = 15;
         public static final int EXPLOSION_WIDTH = 128;
         public static final int EXPLOSION_HEIGHT = 128;
-        public static int score;
+        public static int score = 0;
 
 
     public static double distance(double x1, double y1, double x2, double y2) {

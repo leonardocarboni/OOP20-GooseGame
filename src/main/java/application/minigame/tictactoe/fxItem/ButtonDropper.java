@@ -26,7 +26,7 @@ public class ButtonDropper extends Button {
         btn.setEffect(shadow);
         btn.setBackground(new Background(BackgroundLoader.gameButtonBackground));
         btn.setPrefSize(200,200);
-        btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,100/factor));
+        btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,100/(double)factor));
         btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.eh);
         //btn.addEventFilter(MouseEvent.MOUSE_PRESSED, handler.click);
         btn.addEventFilter(MouseEvent.MOUSE_RELEASED, handler.released);
@@ -45,16 +45,6 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-    public Button exitButton(Optional<TTTController> handler, String winner){
-        Button btn = new Button();
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.get().exit);
-        btn.setBackground(new Background(BackgroundLoader.endGameButton));
-        btn.setText("Exit");
-        btn.setTranslateY(30);
-
-        btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,40));
-        return btn;
-    }
 
     public Button gameDarkModeIcon(Optional<TTTController> handler, String winner){
         Button btn = new Button();

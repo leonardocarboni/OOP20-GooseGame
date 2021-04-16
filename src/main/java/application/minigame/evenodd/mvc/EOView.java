@@ -5,6 +5,7 @@ import application.minigame.evenodd.fxItem.BackgroundLoader;
 import application.minigame.evenodd.fxItem.Choice;
 import application.minigame.evenodd.fxItem.ItemDropper;
 import application.minigame.evenodd.mainGame.EvenOdd;
+import application.minigame.evenodd.mainGame.GettersMVC;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.Node;
@@ -36,11 +37,7 @@ public class EOView {
      */
     public static final EOModel model = new EOModel();
 
-    /**
-     * Creo lo stage.
-     * Questo valore verrà assegnato dalla classe EvenOdd al lancio dell'applicazione.
-     */
-    public Stage stage = null;
+    
 
     /**
      * Lista dei bottoni presenti nel gioco, Pari o Dispari.
@@ -69,9 +66,6 @@ public class EOView {
      */
     public Choice playerChoice;
 
-
-
-
     /**
      * Definizione della task usata per implementare un delay nella GUI
      * Esso setta l'immagine a NULL della imageView, poichè ci sarà l'animazione del dado.
@@ -95,6 +89,7 @@ public class EOView {
             return null;
         }
     };
+
 
     /**
      * Esso crea lo stackPane con i bottoni opportunamente posizionati e riempie la lista di bottoni.
@@ -176,18 +171,16 @@ public class EOView {
         Text text = item.createText("The value generated is: ", Integer.toString(this.resultValue), 50);
         addElementToStackPane(text);
     }
+
     private void createTextChoice(){
-        ItemDropper item = new ItemDropper();
-        Text text = item.createText("Your choice is ", this.playerChoice.toString(), 74);
+        Text text = new ItemDropper().createText("Your choice is ", this.playerChoice.toString(), 74);
         addElementToStackPane(text);
     }
+
 
     private void addElementToStackPane(Node obj){
         EvenOdd.pane.getChildren().add(obj);
     }
 
-    public void setStage(final Stage stage){
-        this.stage = stage;
-    }
 
 }

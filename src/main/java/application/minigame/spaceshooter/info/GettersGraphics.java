@@ -6,15 +6,22 @@ import javafx.scene.canvas.GraphicsContext;
 public class GettersGraphics {
 
     private Canvas canvas = new Canvas(InfoGame.WIDTH, InfoGame.HEIGHT);
-    private GraphicsContext gc;
+    GraphicsContext gc = canvas.getGraphicsContext2D();
 
 
     public GettersGraphics(){
-        this.gc = canvas.getGraphicsContext2D();
+
     }
 
     public Canvas getCanvas(){
         return this.canvas;
     }
 
+    public GraphicsContext getGc() {
+        return gc;
+    }
+
+    public void setGc(GraphicsContext gc) {
+        this.gc = gc;
+    }
 }

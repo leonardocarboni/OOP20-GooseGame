@@ -30,7 +30,7 @@ public class Player {
      * L'animazione dell'esplosione è una imamgine che ha 14 sotto_immagini
      * Questa variabile tiene conto a quale sotto_immagine mi sto riferendo
      */
-    private int steps_img = 0;
+    public int steps_img = 0;
 
     /**
      * Immagine del player
@@ -93,9 +93,9 @@ public class Player {
      * @return true se si toccan
      */
     public boolean touch(final Enemy enemy){
-        double distance_enemy_player = InfoGame.distance(this.position_player.getX() + size / 3, this.position_player.getY() + size ,
-                enemy.position_player.getX() + enemy.size / 3, enemy.position_player.getY() + enemy.size );
-        return distance_enemy_player < enemy.size / 3 + this.size / 3;
+        var distance_enemy_player = InfoGame.distance(this.position_player.getX() + size / (double)3, this.position_player.getY() + size ,
+                enemy.position_player.getX() + enemy.size / (double)3, enemy.position_player.getY() + enemy.size );
+        return distance_enemy_player < enemy.size / (double)3 + this.size / (double)3;
     }
 
     /**

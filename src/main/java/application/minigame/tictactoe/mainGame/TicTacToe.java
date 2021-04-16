@@ -3,11 +3,14 @@ package application.minigame.tictactoe.mainGame;
 import application.minigame.tictactoe.mvc.GettersMVC;
 import application.minigame.tictactoe.mvc.TTTView;
 import controller.minigame.MinigameController;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import view.View;
+import view.ViewType;
 
 import java.sql.Timestamp;
 
@@ -18,6 +21,7 @@ public class TicTacToe extends Application implements MinigameController {
     public final static int GRID_DIM = 3;
     private static final int SCENE_WIDTH = 600;
     private static final int SCENE_HEIGHT = 480;
+    @SuppressFBWarnings("MS_SHOULD_BE_FINAL")
     public static boolean isWin = false;
 
     //creo un istanza del controller
@@ -26,6 +30,8 @@ public class TicTacToe extends Application implements MinigameController {
     public TicTacToe(){
         start(new Stage());
     }
+
+
 
     //avvio della finestra del programma
     @Override
@@ -45,7 +51,7 @@ public class TicTacToe extends Application implements MinigameController {
         GridPane root = view.createButton();
 
         primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
-       primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
 

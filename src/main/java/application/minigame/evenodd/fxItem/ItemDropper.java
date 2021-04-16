@@ -1,7 +1,6 @@
 package application.minigame.evenodd.fxItem;
 
-import application.minigame.evenodd.mainGame.EvenOdd;
-import application.minigame.evenodd.mvc.GettersMVC;
+import application.minigame.evenodd.mainGame.GettersMVC;
 import application.minigame.evenodd.mvc.EOController;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -13,17 +12,13 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import java.util.Optional;
-
 public class ItemDropper extends Button {
 
 
 
     public Button evenButton(EOController handler){
-        final GettersMVC getters = new GettersMVC();
 
         final Button btn = new Button();
-        final DropShadow shadow = new DropShadow();
 
         btn.setTranslateX(-150);
         btn.setTranslateY(150);
@@ -38,10 +33,8 @@ public class ItemDropper extends Button {
     }
 
     public Button oddButton(EOController handler){
-        final GettersMVC getters = new GettersMVC();
 
         final Button btn = new Button();
-        final DropShadow shadow = new DropShadow();
 
         btn.setText("DISPARI");
         btn.setTranslateX(150);
@@ -63,17 +56,6 @@ public class ItemDropper extends Button {
         return text;
     }
 
-
-    public Button exitButton(Optional<EOController> handler, String winner){
-        Button btn = new Button();
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.get().exit);
-        btn.setBackground(new Background(BackgroundLoader.buttonPrincipal));
-        btn.setText("Exit");
-        btn.setTranslateY(30);
-
-        btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,40));
-        return btn;
-    }
 
 
 

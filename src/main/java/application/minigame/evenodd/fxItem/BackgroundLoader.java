@@ -1,6 +1,6 @@
 package application.minigame.evenodd.fxItem;
 
-import application.minigame.evenodd.mvc.GettersMVC;
+import application.minigame.evenodd.mainGame.GettersMVC;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;

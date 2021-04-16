@@ -26,8 +26,8 @@ public class TTTView {
      * Numero di bottoni nella griglia
      */
 
-    private static int GRID_DIM;
-    private static int NUMBER_OF_BUTTON;
+    private int GRID_DIM;
+    private int NUMBER_OF_BUTTON;
 
     /**
      * Creo un'istanza del controller
@@ -49,7 +49,6 @@ public class TTTView {
 
     private static List<Integer> number2 = new ArrayList<>();
 
-    private final List<String> sign = List.of("X", "O");
 
     /**
      * Lista dei bottoni presenti nella griglia principale 3x3
@@ -95,8 +94,7 @@ public class TTTView {
         listBottomButton.add(0,btn.gameDarkModeIcon(Optional.of(handler),""));
         listBottomButton.add(1,btn.pauseButtonIcon(Optional.of(handler),""));
 
-        handler.setListButton(listButtonGrid);
-        handler.setListButtonBottom(listBottomButton);
+
     }
 
 
@@ -137,7 +135,6 @@ public class TTTView {
      */
     public GridPane createButton(){
         final GridPane root = new GridPane();
-        GridPane grid = new GridPane();
 
 
         listButtonGrid.stream()

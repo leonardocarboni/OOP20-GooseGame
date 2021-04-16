@@ -11,10 +11,9 @@ public class Enemy extends Player {
         super(posX,posY,size,image_enemy);
     }
 
-    /**
-     * L'update aggiorna la posizione Y con la funzione calcSpeed()
-     * E se raggiunge la fine dello schermo si distrugge automaticamente
-     */
+
+
+
     public void update(){
         super.update();
         if(!destroyed && !exploding){
@@ -30,7 +29,7 @@ public class Enemy extends Player {
      * @return un intero che è la velocita
      */
     private int calcSpeed(){
-        return (int) (InfoGame.score +2) / 2;
+        return (InfoGame.score +2) / 2;
     }
 
 

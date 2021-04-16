@@ -1,8 +1,6 @@
 package minigameTest.ticTacToe;
 
-import application.minigame.tictactoe.mvc.GettersMVC;
 
-import javafx.scene.control.Button;
 import org.junit.jupiter.api.Test;
 
 
@@ -12,8 +10,8 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ticTacToeTest {
-    private final int bound = 3;
+public class TicTacToeTest {
+    private static final int bound = 3;
     private List<String> listButtonGrid = new ArrayList<>();
     private final List<String> sign = List.of("X", "O");
 

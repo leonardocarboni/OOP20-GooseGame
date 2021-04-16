@@ -53,9 +53,9 @@ public class Shot {
      * @return true se si ha avuto una collisione
      */
     public boolean collide(final Enemy enemy){
-        double distance_enemy_shot = InfoGame.distance(this.position_shot.getX() + size / 3, this.position_shot.getY() + size ,
-                enemy.position_player.getX() + enemy.size / 3, enemy.position_player.getY() + enemy.size );
-        return distance_enemy_shot < enemy.size / 2 + this.size / 2;
+        double distance_enemy_shot = InfoGame.distance(this.position_shot.getX() + size / (double)3, this.position_shot.getY() + size ,
+                enemy.position_player.getX() + enemy.size / (double)3, enemy.position_player.getY() + enemy.size );
+        return distance_enemy_shot < enemy.size / (double)2 + this.size / (double)2;
     }
 
 }

@@ -1,18 +1,15 @@
 package application.minigame.spaceshooter.mainGame;
 
 
-import application.minigame.phrasecatch.PhraseCatchView;
 import application.minigame.spaceshooter.entity.Enemy;
 import application.minigame.spaceshooter.entity.Player;
 import application.minigame.spaceshooter.entity.Shot;
 import application.minigame.spaceshooter.info.GettersGraphics;
 import application.minigame.spaceshooter.info.InfoGame;
-import controller.game.GameControllerImpl;
 import controller.minigame.MinigameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -28,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
+
+
 public class SpaceShooter extends Application implements MinigameController {
 
 
@@ -44,15 +43,14 @@ public class SpaceShooter extends Application implements MinigameController {
      * Take x for move player
      */
     private double mouseX;
-    public static GraphicsContext gc;
+
 
     /**
      * get canvas from class GetterSgraphics
      */
     private Canvas canvas = new GettersGraphics().getCanvas();
+    public static GraphicsContext gc;
     private boolean isOver;
-
-    public boolean isStarted;
 
 
     public SpaceShooter(){
@@ -62,9 +60,10 @@ public class SpaceShooter extends Application implements MinigameController {
     /**
      * @param primaryStage
      */
+
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings({"URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD", "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT"})
     @Override
     public void start(Stage primaryStage) {
-        isStarted = true;
         gc = canvas.getGraphicsContext2D();
 
         /**
@@ -91,7 +90,7 @@ public class SpaceShooter extends Application implements MinigameController {
                 shots.add(player.shot());
             }
             if(this.isOver){
-                stopSpaceShooter();
+                getResult();
             }
         });
 
@@ -113,7 +112,7 @@ public class SpaceShooter extends Application implements MinigameController {
         shots = new ArrayList<>();
         IntStream.range(0,10).forEach(i -> enemies.add(new Enemy(rnd.nextInt(600),0, InfoGame.SIZE_ENEMY,InfoGame.ENEMY_IMG)));
         player = new Player(InfoGame.WIDTH/2,InfoGame.HEIGHT-InfoGame.SIZE_PLAYER,InfoGame.SIZE_PLAYER, InfoGame.PLAYER_IMG);
-        InfoGame.score = 0;
+
     }
 
     /**
@@ -204,10 +203,6 @@ public class SpaceShooter extends Application implements MinigameController {
 
     }
 
-    public void stopSpaceShooter(){
-        getResult();
-    }
-
     public List<Enemy> getEnemies() {
         return enemies;
     }
@@ -223,6 +218,8 @@ public class SpaceShooter extends Application implements MinigameController {
     public boolean getOver() {
         return isOver;
     }
+
+
 
     @Override
     public int getResult() {

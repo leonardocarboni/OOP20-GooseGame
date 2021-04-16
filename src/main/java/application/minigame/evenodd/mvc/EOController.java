@@ -1,11 +1,9 @@
 package application.minigame.evenodd.mvc;
 
+import application.minigame.evenodd.mainGame.GettersMVC;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-
-import java.io.FileNotFoundException;
-import java.util.List;
 
 public class EOController{
 
@@ -36,13 +34,6 @@ public class EOController{
     };
 
 
-
-    public final EventHandler<Event> exit = new EventHandler<Event>() {
-        @Override
-        public void handle(final Event event) {
-            System.exit(1);
-        }
-    };
 
 
 }
