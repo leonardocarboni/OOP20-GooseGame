@@ -6,14 +6,9 @@ import application.minigame.evenodd.mvc.EOController;
 import application.minigame.evenodd.mvc.EOModel;
 import application.minigame.evenodd.mvc.EOView;
 import application.minigame.evenodd.mvc.GettersMVC;
-import application.minigame.spaceshooter.info.InfoGame;
-import javafx.application.Platform;
-import javafx.stage.Stage;
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
-
-import java.util.ArrayList;
 import java.util.Random;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class evenOddTest {
@@ -37,13 +32,13 @@ public class evenOddTest {
 
         model.checkWin(1); // 1 equals to DISPARI
 
-        Assert.assertEquals(Choice.DISPARI,view.playerChoice); //TRUE
+        assertEquals(Choice.DISPARI,view.playerChoice); //TRUE
 
         model.checkWin(0); // 0 equals to DISPARI
 
-        Assert.assertEquals(Choice.PARI,view.playerChoice); //TRUE
+        assertEquals(Choice.PARI,view.playerChoice); //TRUE
 
-        Assert.assertNotEquals(Choice.DISPARI,view.playerChoice); //TRUE
+        assertNotEquals(Choice.DISPARI,view.playerChoice); //TRUE
 
 
     }
