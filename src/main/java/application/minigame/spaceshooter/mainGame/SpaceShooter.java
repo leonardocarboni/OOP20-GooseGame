@@ -1,11 +1,14 @@
 package application.minigame.spaceshooter.mainGame;
 
 
+import application.minigame.phrasecatch.PhraseCatchView;
 import application.minigame.spaceshooter.entity.Enemy;
 import application.minigame.spaceshooter.entity.Player;
 import application.minigame.spaceshooter.entity.Shot;
 import application.minigame.spaceshooter.info.GettersGraphics;
 import application.minigame.spaceshooter.info.InfoGame;
+import controller.game.GameControllerImpl;
+import controller.minigame.MinigameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -25,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
-public class SpaceShooter extends Application {
+public class SpaceShooter extends Application implements MinigameController {
 
 
     private final Random rnd = new Random();
@@ -51,6 +54,10 @@ public class SpaceShooter extends Application {
 
     public boolean isStarted;
 
+
+    public SpaceShooter(){
+        start(new Stage());
+    }
 
     /**
      * @param primaryStage
@@ -198,7 +205,7 @@ public class SpaceShooter extends Application {
     }
 
     public void stopSpaceShooter(){
-        Platform.exit();
+        getResult();
     }
 
     public List<Enemy> getEnemies() {
@@ -215,5 +222,10 @@ public class SpaceShooter extends Application {
 
     public boolean getOver() {
         return isOver;
+    }
+
+    @Override
+    public int getResult() {
+        return InfoGame.score;
     }
 }
