@@ -20,26 +20,24 @@ public class EOModel {
 
     /**
      * Se il valore passatomi dal Controller è 2 (il player ha scelto pari) e il
-     * valore generato dalla Random è pari allora il player ha VINTO.
-     * Se il valore passatomi dal Controller è 1 (il player ha scelto dispari) e il
-     * valore generato dalla Random è dispari allora il player ha VINTO.
-     * Negli altri casi ha perso.
-     * Passo il valore alla view che lo stamperà a video.
+     * valore generato dalla Random è pari allora il player ha VINTO. Se il valore
+     * passatomi dal Controller è 1 (il player ha scelto dispari) e il valore
+     * generato dalla Random è dispari allora il player ha VINTO. Negli altri casi
+     * ha perso. Passo il valore alla view che lo stamperà a video.
      *
      * @param value valore passatomi dal Controller. 1 dispari, 2 pari.
      */
-    public void checkWin(int value){
-        if((value == 2 && rndValue % 2 == 0) || (value == 1 && rndValue % 2 != 0)){
-            getters.getView().result=true;
+    public void checkWin(int value) {
+        if ((value == 2 && rndValue % 2 == 0) || (value == 1 && rndValue % 2 != 0)) {
+            getters.getView().result = true;
         }
-        if(value == 1){
+        if (value == 1) {
             getters.getView().playerChoice = Choice.DISPARI;
-        } else{
+        } else {
             getters.getView().playerChoice = Choice.PARI;
         }
-        getters.getView().resultValue=rndValue;
+        getters.getView().resultValue = rndValue;
 
     }
-
 
 }

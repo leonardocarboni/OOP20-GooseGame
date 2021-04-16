@@ -1,6 +1,5 @@
 package application.minigame.evenodd.mainGame;
 
-import application.minigame.evenodd.mainGame.EvenOdd;
 import application.minigame.evenodd.mvc.EOController;
 import application.minigame.evenodd.mvc.EOModel;
 import application.minigame.evenodd.mvc.EOView;

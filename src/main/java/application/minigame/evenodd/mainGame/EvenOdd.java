@@ -8,20 +8,16 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * Inizializzazione del gioco.
- * Viene creato lo stage, la scene e la view del gioco.
+ * Inizializzazione del gioco. Viene creato lo stage, la scene e la view del
+ * gioco.
  *
  */
 
 public class EvenOdd extends Application implements MinigameController {
 
-
-    public EvenOdd(){
+    public EvenOdd() {
         start(new Stage());
     }
-
-
-
 
     /**
      * Creo la view del gioco per costruire lo stackPane.
@@ -40,14 +36,11 @@ public class EvenOdd extends Application implements MinigameController {
          * Tramite il setter presente nella view, creo lo stage principale.
          */
 
-
         primaryStage.setTitle("Even or Odd");
 
-
-        primaryStage.setScene(new Scene(pane,600,480));
+        primaryStage.setScene(new Scene(pane, 600, 480));
         primaryStage.setResizable(false);
         primaryStage.show();
-
 
     }
 
@@ -55,12 +48,11 @@ public class EvenOdd extends Application implements MinigameController {
         launch(args);
     }
 
-
     @Override
     public int getResult() {
-        if(new GettersMVC().getView().result){
+        if (new GettersMVC().getView().result) {
             return 1;
-        } else{
+        } else {
             return 2;
         }
     }
