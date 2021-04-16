@@ -83,8 +83,8 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
             color = PlayerColor.PINK;
         } else if ("red".equals(s)) {
             color = PlayerColor.RED;
-        } else if ("yellow".equals(s)) {
-            color = PlayerColor.YELLOW;
+        } else if ("green".equals(s)) {
+            color = PlayerColor.GREEN;
         } else {
             color = PlayerColor.BLUE;
         }

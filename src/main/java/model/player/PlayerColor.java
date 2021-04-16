@@ -8,9 +8,9 @@ public enum PlayerColor {
     PINK,
 
     /**
-     * Yellow Color.
+     * Green Color.
      */
-    YELLOW,
+    GREEN,
 
     /**
      * Red Color.
