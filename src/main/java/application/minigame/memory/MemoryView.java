@@ -46,8 +46,7 @@ public class MemoryView {
         }
     }
 
-    public Label getSecretCodeLabel() {
-        return this.secretCodeLabel;
+    private void showSecretLabel() {
     }
 
     public void show() {
