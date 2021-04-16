@@ -86,7 +86,6 @@ public class GameControllerImpl {
         default:
             break;
         }
-        System.out.println( minigameScene.getResult());
         return minigameScene != null ? minigameScene.getResult() : 0;
     }
 

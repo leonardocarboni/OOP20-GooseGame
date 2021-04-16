@@ -6,10 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import view.View;
+import view.MinigameView;
 import view.ViewType;
 
-public class PhraseCatchView extends View {
+public class PhraseCatchView extends MinigameView {
 
     @FXML
     private Button submitButton;
@@ -19,7 +19,7 @@ public class PhraseCatchView extends View {
     private Label textLabel, timeLabel;
 
     public PhraseCatchView() {
-        super.createStage(ViewType.PHRASE_CATCH);
+        super(ViewType.PHRASE_CATCH);
     }
 
     /**

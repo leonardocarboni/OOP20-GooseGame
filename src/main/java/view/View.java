@@ -30,16 +30,11 @@ public class View {
         }
     }
 
-    public void showAndWait() {
-        primaryStage.showAndWait();
-    }
-
-    public void show() {
-        primaryStage.show();
-    }
-
     public void close() {
         primaryStage.close();
     }
 
+    protected Stage getStage() {
+        return this.primaryStage;
+    }
 }

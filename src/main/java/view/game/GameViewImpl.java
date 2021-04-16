@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import view.View;
+import view.NormalView;
 import view.ViewType;
 
 import java.net.URL;
@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
-public class GameViewImpl extends View implements Initializable, GameView {
+public class GameViewImpl extends NormalView implements Initializable, GameView {
 
     @FXML
     private Button diceButton;
@@ -44,7 +44,7 @@ public class GameViewImpl extends View implements Initializable, GameView {
     private static final int SIX = 6;
 
     public GameViewImpl() {
-        super.createStage(ViewType.GAME);
+        super(ViewType.GAME);
     }
 
     @Override

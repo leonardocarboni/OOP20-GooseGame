@@ -1,9 +1,9 @@
 package view;
 
-public class HowToPlayView extends View {
+public class HowToPlayView extends NormalView {
 
     public HowToPlayView() {
-        super.createStage(ViewType.WINSCREEN);
+        super(ViewType.WINSCREEN);
     }
 
 }
