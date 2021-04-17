@@ -16,7 +16,7 @@ public class MemoryController implements MinigameController {
     public MemoryController() {
         view = new MemoryView();
         secretCode = new SecretCodeImpl();
-        countdown = new CountdownImpl(SECONDS,);
+        countdown = new CountdownImpl(SECONDS, view.getRemamingTime());
         view.show();
     }
 

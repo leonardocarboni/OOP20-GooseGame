@@ -20,7 +20,7 @@ public class MemoryView {
     private Button checkButton;
 
     @FXML
-    private Label secretCodeLabel, resultLabel;
+    private Label secretCodeLabel, resultLabel, remaningTimeLabel;
 
     private static final String LAYOUT_LOCATION = "layouts/memory2.fxml";
     private static final String LOGO_LOCATION = "logo.png";
@@ -47,6 +47,10 @@ public class MemoryView {
 
     public void hideSecretLabel() {
 
+    }
+
+    public Label getRemamingTime() {
+        return this.remaningTimeLabel;
     }
 
     public void show() {

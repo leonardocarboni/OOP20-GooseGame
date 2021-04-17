@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import java.util.ArrayList?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="785.0" styleClass="background-image" stylesheets="@memoryStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="785.0" styleClass="background-image" stylesheets="@memoryStyle.css" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <GridPane alignment="CENTER">
@@ -101,7 +101,7 @@
                <Font name="System Bold" size="48.0" />
             </font>
          </Label>
-         <Label fx:id="secretCodeLabel1" layoutX="495.0" layoutY="30.0" text="," textFill="WHITE">
+         <Label  layoutX="495.0" layoutY="30.0" text="," textFill="WHITE">
             <font>
                <Font name="System Bold" size="48.0" />
             </font>
@@ -111,7 +111,7 @@
                <Font name="System Bold" size="48.0" />
             </font>
          </Label>
-         <Label fx:id="remaningTime" layoutX="462.0" layoutY="30.0" text="sec" textFill="WHITE">
+         <Label fx:id="remaningTimeLabel" layoutX="462.0" layoutY="30.0" text="sec" textFill="WHITE">
             <font>
                <Font name="System Bold" size="48.0" />
             </font>
