@@ -51,6 +51,7 @@ public class CableConnectController implements MinigameController {
             if (colorsDone.size() == CABLES) {
                 secondsLeft = (int) remainingSeconds;
                 countdown.shutdown();
+                view.enableQuitButton();
             }
         }
     }
