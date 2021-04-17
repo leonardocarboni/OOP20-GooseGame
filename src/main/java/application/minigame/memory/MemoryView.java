@@ -22,7 +22,7 @@ public class MemoryView {
     @FXML
     private Label secretCodeLabel, resultLabel;
 
-    private static final String LAYOUT_LOCATION = "layouts/memory.fxml";
+    private static final String LAYOUT_LOCATION = "layouts/memory2.fxml";
     private static final String LOGO_LOCATION = "logo.png";
     private final Stage primaryStage = new Stage();
 
@@ -45,7 +45,8 @@ public class MemoryView {
         }
     }
 
-    private void showSecretLabel() {
+    public void hideSecretLabel() {
+
     }
 
     public void show() {
