@@ -8,13 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.util.List;
 
 public class MemoryView {
 
     @FXML
-    private Button button1, button2, button3, button4, button5, button6, button7, button8, button9;
+    private List<Button> listOfButtons;
 
     @FXML
     private Button checkButton;
@@ -29,7 +29,6 @@ public class MemoryView {
     public MemoryView() {
         try {
             System.out.println(ClassLoader.getSystemResource(LAYOUT_LOCATION));
-
             final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
             loader.setController(this);
             final Scene scene = new Scene(loader.load());
