@@ -74,19 +74,6 @@
                </font>
             </Button>
          </GridPane>
-         <fx:define>
-            <ArrayList fx:id="listOfButtons">
-               <fx:reference source="button1" />
-               <fx:reference source="button2" />
-               <fx:reference source="button3" />
-               <fx:reference source="button4" />
-               <fx:reference source="button5" />
-               <fx:reference source="button6" />
-               <fx:reference source="button7" />
-               <fx:reference source="button8" />
-               <fx:reference source="button9" />
-            </ArrayList>
-         </fx:define>
       </HBox>
    </center>
    <top>
@@ -111,7 +98,7 @@
                <Font name="System Bold" size="48.0" />
             </font>
          </Label>
-         <Label fx:id="remaningTimeLabel" layoutX="462.0" layoutY="30.0" text="sec" textFill="WHITE">
+         <Label fx:id="TimeLabel" layoutX="462.0" layoutY="30.0" text="sec" textFill="WHITE">
             <font>
                <Font name="System Bold" size="48.0" />
             </font>

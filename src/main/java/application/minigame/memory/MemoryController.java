@@ -16,7 +16,8 @@ public class MemoryController implements MinigameController {
     public MemoryController() {
         view = new MemoryView();
         secretCode = new SecretCodeImpl();
-        countdown = new CountdownImpl(SECONDS, view.getRemamingTime());
+        countdown = new CountdownImpl(SECONDS, view.getTime());
+        countdown.start();
         view.show();
     }
 
@@ -37,11 +38,13 @@ public class MemoryController implements MinigameController {
     /**
      * An inner class for the event catching in the minigame view.
      */
-    public class SecretCodeCheckHandler implements EventHandler<ActionEvent> {
+    public class CheckHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
+
         }
     }
+
 
 
 }
