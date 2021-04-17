@@ -3,8 +3,10 @@ package application.minigame.tictactoe.mainGame;
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
 import application.minigame.tictactoe.fxItem.ButtonDropper;
 import application.minigame.tictactoe.mvc.GettersMVC;
+import application.minigame.tictactoe.mvc.TTTController;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
@@ -14,11 +16,28 @@ import java.util.Optional;
 
 public class EndgameThread extends Thread {
 
+    private final GettersMVC getters = new GettersMVC();
     private final String winner;
 
     public EndgameThread(String winner) {
         this.winner = winner;
     }
+
+    Task sleep = new Task<Void>() {
+        @Override
+        public Void call() {
+            try {
+                Thread.sleep(2000);
+                Platform.runLater(()->{
+                  getters.getView().stage.close();
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    };
+
 
     /* thread che viene creato dopo che la partita a tris finisce */
     public void run() {
@@ -27,7 +46,6 @@ public class EndgameThread extends Thread {
             public void run() {
                 final StackPane pane = new StackPane();
                 final ButtonDropper button = new ButtonDropper();
-                final GettersMVC getters = new GettersMVC();
 
                 pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
                 if (!getters.getView().isDark) {
@@ -42,9 +60,8 @@ public class EndgameThread extends Thread {
                 ft.play();
 
                 getters.getView().stage.setScene(new Scene(pane, 600, 480));
+                new Thread(sleep).start();
             }
         });
-
     }
-
 }

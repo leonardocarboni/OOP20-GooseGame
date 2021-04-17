@@ -17,6 +17,8 @@ public class GettersMVC {
     private EOView view;
     private EOController controller;
     private EOModel model;
+    private StackPane primaryStage;
+
 
     public EOView getView() {
         this.view = EvenOdd.view;
@@ -32,10 +34,5 @@ public class GettersMVC {
         this.model = EOView.model;
         return this.model;
     }
-
-    public StackPane getPane(){
-        return EvenOdd.pane;
-    }
-
 
 }

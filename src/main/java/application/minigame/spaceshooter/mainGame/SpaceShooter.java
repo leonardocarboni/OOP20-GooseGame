@@ -21,6 +21,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.beans.EventHandler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -49,13 +50,15 @@ public class SpaceShooter extends Application implements MinigameController {
     public static GraphicsContext gc;
     private boolean isOver;
 
-    public SpaceShooter() {
-        start(new Stage());
-    }
-
     /**
      * @param primaryStage
      */
+    public final Stage primaryStage = new Stage();
+
+    public SpaceShooter() {
+        start(primaryStage);
+    }
+
 
     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings({ "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
             "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT" })
@@ -94,10 +97,10 @@ public class SpaceShooter extends Application implements MinigameController {
          * Inizializzo le strutture dati atte a tenere le entità
          */
         initialize();
-        primaryStage.setTitle("SpaceShooter");
-        primaryStage.setScene(new Scene(new StackPane(canvas)));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+        this.primaryStage.setTitle("SpaceShooter");
+        this.primaryStage.setScene(new Scene(new StackPane(canvas)));
+        this.primaryStage.setResizable(false);
+        this.primaryStage.show();
     }
 
     /**
@@ -143,7 +146,16 @@ public class SpaceShooter extends Application implements MinigameController {
             gc.fillText("You lost, score: " + InfoGame.score, 300, 300);
             gc.setFont(Font.font(55));
             gc.setTextAlign(TextAlignment.LEFT);
-
+            gc.drawImage(InfoGame.BUTTON_IMG,250,350,100,50);
+            gc.fillText("Esci", 250, 396, 100);
+            canvas.setOnMouseClicked(event -> {
+                double x = event.getX();
+                double y = event.getY();
+                if(x <350 && x > 250 && y > 350 && y < 450){
+                    System.out.println(2);
+                    this.primaryStage.close();
+                }
+            });
         }
 
         /**

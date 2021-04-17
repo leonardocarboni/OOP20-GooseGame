@@ -15,8 +15,11 @@ import javafx.stage.Stage;
 
 public class EvenOdd extends Application implements MinigameController {
 
+
+    public static final Stage primaryStage = new Stage();
+
     public EvenOdd() {
-        start(new Stage());
+        start(primaryStage);
     }
 
     /**
@@ -36,11 +39,11 @@ public class EvenOdd extends Application implements MinigameController {
          * Tramite il setter presente nella view, creo lo stage principale.
          */
 
-        primaryStage.setTitle("Even or Odd");
+        this.primaryStage.setTitle("Even or Odd");
 
-        primaryStage.setScene(new Scene(pane, 600, 480));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+        this.primaryStage.setScene(new Scene(pane, 600, 480));
+        this.primaryStage.setResizable(false);
+        this.primaryStage.show();
 
     }
 
@@ -55,5 +58,9 @@ public class EvenOdd extends Application implements MinigameController {
         } else {
             return 2;
         }
+    }
+
+    public void close(){
+        this.primaryStage.close();
     }
 }

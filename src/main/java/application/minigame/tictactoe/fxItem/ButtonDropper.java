@@ -58,5 +58,4 @@ public class ButtonDropper extends Button {
         btn.setBackground(new Background(BackgroundLoader.pauseMusic));
         return btn;
     }
-
 }

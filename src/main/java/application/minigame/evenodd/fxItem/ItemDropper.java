@@ -27,7 +27,6 @@ public class ItemDropper extends Button {
 
         return btn;
     }
-
     public Button oddButton(EOController handler) {
 
         final Button btn = new Button();
@@ -42,7 +41,6 @@ public class ItemDropper extends Button {
 
         return btn;
     }
-
     public Text createText(String string, String resultValue, int positionY) {
         Text text = new Text();
         text.setText(string + resultValue.toString());
@@ -51,5 +49,18 @@ public class ItemDropper extends Button {
         text.setFill(Color.BEIGE);
         return text;
     }
+    public Button exitButton(EOController handler) {
 
+        final Button btn = new Button();
+
+        btn.setText("ESCI");
+        btn.setTranslateX(-5);
+        btn.setTranslateY(200);
+        btn.setPrefSize(100, 20);
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.exit);
+        btn.setDisable(true);
+        btn.setBackground(new Background(BackgroundLoader.buttonPrincipal));
+
+        return btn;
+    }
 }

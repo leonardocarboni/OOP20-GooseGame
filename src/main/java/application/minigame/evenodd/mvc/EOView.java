@@ -88,15 +88,17 @@ public class EOView {
     public StackPane createPane() {
         ItemDropper item = new ItemDropper();
         StackPane pane = new StackPane();
-        Button btn1 = item.evenButton(handler);
-        Button btn2 = item.oddButton(handler);
+        Button evenButton = item.evenButton(handler);
+        Button oddButton = item.oddButton(handler);
+        Button exitButton = item.exitButton(handler);
 
-        pane.getChildren().add(btn1);
-        pane.getChildren().add(btn2);
+        pane.getChildren().add(evenButton);
+        pane.getChildren().add(oddButton);
+        pane.getChildren().add(exitButton);
 
         pane.setBackground(new Background(BackgroundLoader.background));
 
-        listButton.addAll(List.of(btn1, btn2));
+        listButton.addAll(List.of(evenButton, oddButton, exitButton));
         return pane;
     }
 

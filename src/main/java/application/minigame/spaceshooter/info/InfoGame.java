@@ -17,6 +17,7 @@ public class InfoGame {
     public static final Image EXPLOSION_IMG = new Image("spaceShooter/explosion.png");
     public static final Image ENEMY_IMG = new Image("spaceShooter/enemy.png");
     public static final Image BACKGROUND_IMG = new Image("spaceShooter/sfondoGalassia.jpg");
+    public static final Image BUTTON_IMG = new Image("spaceShooter/button.png");
     public static final int EXPLOSION_IMG_NUM = 15;
     public static final int EXPLOSION_WIDTH = 128;
     public static final int EXPLOSION_HEIGHT = 128;
