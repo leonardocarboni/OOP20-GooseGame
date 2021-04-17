@@ -30,6 +30,7 @@ public class MemoryController implements MinigameController {
         while (true) {
             if (countdown.getSecondsLeft() == 0) {
                 view.hideSecretLabel();
+                countdown.shutdown();
             }
         }
     }
@@ -38,7 +39,18 @@ public class MemoryController implements MinigameController {
     /**
      * An inner class for the event catching in the minigame view.
      */
-    public class CheckHandler implements EventHandler<ActionEvent> {
+    public class checkHandler implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(final ActionEvent event) {
+        }
+    }
+
+    /**
+     * An inner class for the event catching in the minigame view.
+     */
+    public class buttonHandler implements EventHandler<ActionEvent> {
+
         @Override
         public void handle(final ActionEvent event) {
 
