@@ -1,11 +1,11 @@
 package application.minigame.tictactoe.mvc;
 
+import java.util.List;
+import java.util.function.Consumer;
+
 import application.minigame.tictactoe.mainGame.EndgameThread;
 import application.minigame.tictactoe.mainGame.TicTacToe;
 import javafx.scene.control.Button;
-
-import java.util.List;
-import java.util.function.Consumer;
 
 public class TTTModel {
     /**

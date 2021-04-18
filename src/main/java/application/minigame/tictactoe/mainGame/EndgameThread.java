@@ -3,7 +3,6 @@ package application.minigame.tictactoe.mainGame;
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
 import application.minigame.tictactoe.fxItem.ButtonDropper;
 import application.minigame.tictactoe.mvc.GettersMVC;
-import application.minigame.tictactoe.mvc.TTTController;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -19,11 +18,11 @@ public class EndgameThread extends Thread {
     private final GettersMVC getters = new GettersMVC();
     private final String winner;
 
-    public EndgameThread(String winner) {
+    public EndgameThread(final String winner) {
         this.winner = winner;
     }
 
-    Task sleep = new Task<Void>() {
+    private Task<Void> sleep = new Task<Void>() {
         @Override
         public Void call() {
             try {
@@ -47,7 +46,7 @@ public class EndgameThread extends Thread {
                 final StackPane pane = new StackPane();
                 final ButtonDropper button = new ButtonDropper();
 
-                pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
+                pane.getChildren().add(button.endGameButton(winner));
                 if (!getters.getView().isDark) {
                     pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
                 } else {

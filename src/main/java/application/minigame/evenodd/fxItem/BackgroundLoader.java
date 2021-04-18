@@ -12,8 +12,6 @@ import javafx.scene.layout.BackgroundSize;
  */
 
 public class BackgroundLoader {
-    private final static GettersMVC getters = new GettersMVC();
-
     private static final BackgroundSize bs = new BackgroundSize(300, 400, true, true, true, false);
 
     /* sfondo della schermata finale del gioco */
@@ -32,9 +30,5 @@ public class BackgroundLoader {
 
     public static final BackgroundImage animationGif = new BackgroundImage(new Image("evenodd/tenor.gif"),
             BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, bs);
-
-    static final BackgroundImage pauseMusic = new BackgroundImage(
-            new Image("TicTacToe/Pause.png", 50, 40, false, false), BackgroundRepeat.NO_REPEAT,
-            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 }

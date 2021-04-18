@@ -2,7 +2,6 @@ package application.minigame.tictactoe.mainGame;
 
 import application.minigame.tictactoe.mvc.TTTView;
 import controller.minigame.MinigameController;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
@@ -14,7 +13,7 @@ public class TicTacToe extends Application implements MinigameController {
     public final static int GRID_DIM = 3;
     private static final int SCENE_WIDTH = 600;
     private static final int SCENE_HEIGHT = 480;
-    @SuppressFBWarnings("MS_SHOULD_BE_FINAL")
+    
     public static boolean isWin = false;
 
     // creo un istanza del controller

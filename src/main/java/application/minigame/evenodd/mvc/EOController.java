@@ -12,7 +12,7 @@ public class EOController {
      * Questa variabile mi permette di richiamare le funzionalità del model e della
      * view.
      **/
-    private GettersMVC getters = new GettersMVC();
+    private final GettersMVC getters = new GettersMVC();
 
     /**
      * In caso di click del bottone viene attivato questo handler. Esso valuta il

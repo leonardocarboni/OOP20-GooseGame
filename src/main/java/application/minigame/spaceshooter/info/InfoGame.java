@@ -22,20 +22,9 @@ public class InfoGame {
     public static final int EXPLOSION_WIDTH = 128;
     public static final int EXPLOSION_HEIGHT = 128;
     public static int score = 0;
+    public static boolean isOver = false;
 
-    public static double distance(double x1, double y1, double x2, double y2) {
+    public static double distance(final double x1, final double y1, final double x2, final double y2) {
         return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
     }
-
-    /**
-     * @return Risultato ottenuto
-     */
-    public int getResult() {
-        if (InfoGame.score >= WIN_SCORE) {
-            return InfoGame.score;
-        } else {
-            return 0;
-        }
-    }
-
 }

@@ -3,7 +3,6 @@ package application.minigame.evenodd.mainGame;
 import application.minigame.evenodd.mvc.EOController;
 import application.minigame.evenodd.mvc.EOModel;
 import application.minigame.evenodd.mvc.EOView;
-import javafx.scene.layout.StackPane;
 
 /**
  * Questa classe ritorna la view, controller, model e stackPane dell'applicazione.
@@ -17,7 +16,6 @@ public class GettersMVC {
     private EOView view;
     private EOController controller;
     private EOModel model;
-    private StackPane primaryStage;
 
 
     public EOView getView() {

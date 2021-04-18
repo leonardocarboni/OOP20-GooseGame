@@ -1,6 +1,5 @@
 package application.minigame.tictactoe.mvc;
 
-import application.minigame.tictactoe.mainGame.EndgameThread;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 

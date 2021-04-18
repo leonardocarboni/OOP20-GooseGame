@@ -1,6 +1,7 @@
 package application.minigame.evenodd.mainGame;
 
 import application.minigame.evenodd.mvc.EOView;
+
 import controller.minigame.MinigameController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -14,7 +15,6 @@ import javafx.stage.Stage;
  */
 
 public class EvenOdd extends Application implements MinigameController {
-
 
     public static final Stage primaryStage = new Stage();
 
@@ -39,11 +39,11 @@ public class EvenOdd extends Application implements MinigameController {
          * Tramite il setter presente nella view, creo lo stage principale.
          */
 
-        this.primaryStage.setTitle("Even or Odd");
+        EvenOdd.primaryStage.setTitle("Even or Odd");
 
-        this.primaryStage.setScene(new Scene(pane, 600, 480));
-        this.primaryStage.setResizable(false);
-        this.primaryStage.show();
+        EvenOdd.primaryStage.setScene(new Scene(pane, 600, 480));
+        EvenOdd.primaryStage.setResizable(false);
+        EvenOdd.primaryStage.show();
 
     }
 
@@ -60,7 +60,7 @@ public class EvenOdd extends Application implements MinigameController {
         }
     }
 
-    public void close(){
-        this.primaryStage.close();
+    public void close() {
+        EvenOdd.primaryStage.close();
     }
 }

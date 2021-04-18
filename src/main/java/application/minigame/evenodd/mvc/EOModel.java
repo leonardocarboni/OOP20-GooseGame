@@ -27,7 +27,7 @@ public class EOModel {
      *
      * @param value valore passatomi dal Controller. 1 dispari, 2 pari.
      */
-    public void checkWin(int value) {
+    public void checkWin(final int value) {
         if ((value == 2 && rndValue % 2 == 0) || (value == 1 && rndValue % 2 != 0)) {
             getters.getView().result = true;
         }

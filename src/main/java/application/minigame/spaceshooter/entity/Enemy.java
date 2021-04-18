@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 
 public class Enemy extends Player {
 
-    public Enemy(int posX, int posY, int size, Image image_enemy) {
+    public Enemy(final int posX, final int posY, final int size, final Image image_enemy) {
         super(posX, posY, size, image_enemy);
     }
 

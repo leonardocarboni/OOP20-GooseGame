@@ -1,5 +1,11 @@
 package application.minigame.tictactoe.mvc;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.function.Consumer;
+
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
 import application.minigame.tictactoe.fxItem.ButtonDropper;
 import javafx.event.Event;
@@ -9,12 +15,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-import java.util.function.Consumer;
 
 /**
  * Controller del gioco, esso si occupa della creazione di bottoni, di disegnare
@@ -66,7 +66,7 @@ public class TTTView {
     /**
      * Costruttore della classe controller. Crea la lista dei bottoni nel gioco
      */
-    public TTTView(int gridDim) {
+    public TTTView(final int gridDim) {
         GRID_DIM = gridDim;
         NUMBER_OF_BUTTON = GRID_DIM * GRID_DIM;
 
@@ -88,8 +88,7 @@ public class TTTView {
             listButtonGrid.add(btn.gridButton(handler));
         }
 
-        listBottomButton.add(0, btn.gameDarkModeIcon(Optional.of(handler), ""));
-        listBottomButton.add(1, btn.pauseButtonIcon(Optional.of(handler), ""));
+        listBottomButton.add(0, btn.gameDarkModeIcon(handler));
 
     }
 
@@ -116,7 +115,7 @@ public class TTTView {
      * @param evt          , per prendere il bottone cliccato
      * @param winCondition , controllo se ho vinto
      */
-    public void drawX(Event evt, Consumer<String> winCondition) {
+    public void drawX(final Event evt, final Consumer<String> winCondition) {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             if (evt.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")) {
                 listButtonGrid.get(i).setText("X");
@@ -146,7 +145,7 @@ public class TTTView {
      * 
      * @param event
      */
-    public void releaseButton(Event event) {
+    public void releaseButton(final Event event) {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             if (event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")) {
                 if (!isDark) {

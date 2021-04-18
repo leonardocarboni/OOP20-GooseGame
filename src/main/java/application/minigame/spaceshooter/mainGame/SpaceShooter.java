@@ -3,12 +3,13 @@ package application.minigame.spaceshooter.mainGame;
 import application.minigame.spaceshooter.entity.Enemy;
 import application.minigame.spaceshooter.entity.Player;
 import application.minigame.spaceshooter.entity.Shot;
-import application.minigame.spaceshooter.info.GettersGraphics;
 import application.minigame.spaceshooter.info.InfoGame;
 import controller.minigame.MinigameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -21,7 +22,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.beans.EventHandler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,7 +29,7 @@ import java.util.stream.IntStream;
 
 public class SpaceShooter extends Application implements MinigameController {
 
-    private final Random rnd = new Random();
+    private final Random rnd;
 
     /**
      * List of enemies and shots and player
@@ -46,32 +46,49 @@ public class SpaceShooter extends Application implements MinigameController {
     /**
      * get canvas from class GetterSgraphics
      */
-    private final Canvas canvas = new GettersGraphics().getCanvas();
+    private final Canvas canvas;
     public static GraphicsContext gc;
-    private boolean isOver;
 
     /**
      * @param primaryStage
      */
-    public final Stage primaryStage = new Stage();
+    public Stage primaryStage;
+
 
     public SpaceShooter() {
+        rnd = new Random();
+
+
+        /**
+         * get canvas from class GetterSgraphics
+         */
+         canvas = new Canvas(InfoGame.WIDTH, InfoGame.HEIGHT);
+         gc = canvas.getGraphicsContext2D();;
+
+        /**
+         * @param primaryStage
+         */
+        this.primaryStage = new Stage();
+
         start(primaryStage);
     }
+
 
 
     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings({ "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
             "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT" })
     @Override
     public void start(Stage primaryStage) {
-        gc = canvas.getGraphicsContext2D();
+        this.primaryStage.show();
 
         /**
          * Create a timeline for the animation. Every 60millis run(gc) is executed
          */
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(60), e -> run(gc)));
-        animation.setCycleCount(Timeline.INDEFINITE);
-        animation.play();
+        Platform.runLater(()-> {
+                Timeline animation = new Timeline(new KeyFrame(Duration.millis(30), e -> run(this.gc)));
+                animation.setCycleCount(Timeline.INDEFINITE);
+                animation.play();
+        });
 
         /**
          * Seguo il movimento del cursore. Ogni volta che lo muovo prendo la coordinata
@@ -88,9 +105,6 @@ public class SpaceShooter extends Application implements MinigameController {
             if (shots.size() < 20) {
                 shots.add(player.shot());
             }
-            if (this.isOver) {
-                getResult();
-            }
         });
 
         /**
@@ -100,7 +114,6 @@ public class SpaceShooter extends Application implements MinigameController {
         this.primaryStage.setTitle("SpaceShooter");
         this.primaryStage.setScene(new Scene(new StackPane(canvas)));
         this.primaryStage.setResizable(false);
-        this.primaryStage.show();
     }
 
     /**
@@ -126,34 +139,37 @@ public class SpaceShooter extends Application implements MinigameController {
         /**
          * Scrivo lo score in alto al centro
          */
-        gc.setFill(Color.grayRgb(20));
-        gc.fillRect(0, 0, InfoGame.WIDTH, InfoGame.HEIGHT);
-        gc.setTextAlign(TextAlignment.CENTER);
-        gc.setFont(Font.font(20));
-        gc.setFill(Color.WHITE);
-        gc.fillText("Score: " + InfoGame.score, 300, 17);
+        this.gc.setFill(Color.grayRgb(20));
+        this.gc.fillRect(0, 0, InfoGame.WIDTH, InfoGame.HEIGHT);
+        this.gc.setTextAlign(TextAlignment.CENTER);
+        this.gc.setFont(Font.font(20));
+        this.gc.setFill(Color.WHITE);
+        this.gc.fillText("Score: " + InfoGame.score, 300, 17);
 
         /**
          * Disegno lo sfondo
          */
-        gc.drawImage(InfoGame.BACKGROUND_IMG, 0, 20, InfoGame.WIDTH, InfoGame.HEIGHT);
+        this.gc.drawImage(InfoGame.BACKGROUND_IMG, 0, 20, InfoGame.WIDTH, InfoGame.HEIGHT);
 
         /**
          * Se è finito il gioco, lo scrivo e ritorno il risultato
          */
-        if (isOver) {
-            gc.setFill(Color.RED);
-            gc.fillText("You lost, score: " + InfoGame.score, 300, 300);
-            gc.setFont(Font.font(55));
-            gc.setTextAlign(TextAlignment.LEFT);
-            gc.drawImage(InfoGame.BUTTON_IMG,250,350,100,50);
-            gc.fillText("Esci", 250, 396, 100);
+        if (InfoGame.isOver) {
+            this.gc.setFill(Color.RED);
+            this.gc.fillText("You lost, score: " + InfoGame.score, 300, 300);
+            this.gc.setFont(Font.font(55));
+            this.gc.setTextAlign(TextAlignment.LEFT);
+            this.gc.drawImage(InfoGame.BUTTON_IMG,250,350,100,50);
+            this.gc.fillText("Esci", 250, 396, 100);
             canvas.setOnMouseClicked(event -> {
                 double x = event.getX();
                 double y = event.getY();
                 if(x <350 && x > 250 && y > 350 && y < 450){
-                    System.out.println(2);
+                    InfoGame.isOver = false;
+                    clear();
                     this.primaryStage.close();
+                    getResult();
+
                 }
             });
         }
@@ -173,7 +189,7 @@ public class SpaceShooter extends Application implements MinigameController {
         enemies.stream().peek(Enemy::update).peek(Enemy::draw).forEach(e -> {
             if (player.touch(e) && !player.exploding) {
                 player.explode();
-                isOver = true;
+                InfoGame.isOver = true;
             }
         });
 
@@ -222,16 +238,24 @@ public class SpaceShooter extends Application implements MinigameController {
         return shots;
     }
 
-    public Object getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
     public boolean getOver() {
-        return isOver;
+        return InfoGame.isOver;
     }
 
     @Override
     public int getResult() {
-        return InfoGame.score;
+        int score = InfoGame.score;
+        InfoGame.score = 0;
+        return score;
     }
+
+    public void clear(){
+        enemies.clear();
+        shots.clear();
+    }
+
 }

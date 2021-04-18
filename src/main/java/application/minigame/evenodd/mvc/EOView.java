@@ -60,17 +60,14 @@ public class EOView {
      * l'immagine a NULL della imageView, poichè ci sarà l'animazione del dado.
      * Dopodichè chiama un metodo per restituire l'imageView corretta.
      */
-    Task task1 = new Task<Void>() {
+    Task<Void> task1 = new Task<Void>() {
         @Override
         public Void call() {
             try {
                 Thread.sleep(1000);
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        imgView.setImage(null);
-                        startWinAnimation();
-                    }
+                Platform.runLater(() -> {
+                    imgView.setImage(null);
+                    startWinAnimation();
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -144,7 +141,7 @@ public class EOView {
      * 
      * @param bkg Essa è l'immagine da mostrare in caso di vittoria o di sconfitta
      */
-    private void changeIcon(BackgroundImage bkg) {
+    private void changeIcon(final BackgroundImage bkg) {
         Image imgIcon = new Image(bkg.getImage().getUrl());
         ImageView viewImage = new ImageView(imgIcon);
         viewImage.setFitHeight(200); // no magic number
@@ -168,7 +165,7 @@ public class EOView {
         addElementToStackPane(text);
     }
 
-    private void addElementToStackPane(Node obj) {
+    private void addElementToStackPane(final Node obj) {
         EvenOdd.pane.getChildren().add(obj);
     }
 
