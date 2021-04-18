@@ -21,7 +21,7 @@ public class RPSController implements MinigameController {
         view.setPaperButtonHandler(new PaperClickHandler());
         view.setRockButtonHandler(new RockClickHandler());
         view.setScissorsButtonHandler(new ScissorsClickHandler());
-        view.show();
+        view.showAndWaitResult();
     }
 
     private Choice getComputerChoice() {
@@ -42,16 +42,6 @@ public class RPSController implements MinigameController {
         return 0;
     }
 
-    private void checkEnd() {
-        if (numTurns == 3) {
-            if (numPlayerWin > numComputerWin) {
-                System.out.println("Ha vinto il player");
-            } else {
-                System.out.println("Ha vinto il computer");
-            }
-        }
-    }
-
     /**
      * An inner class for the event catching in the minigame view
      */
@@ -67,7 +57,9 @@ public class RPSController implements MinigameController {
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
-                checkEnd();
+            }
+            if (numTurns == 3){
+                view.enableQuitButton();
             }
         }
     }
@@ -87,7 +79,9 @@ public class RPSController implements MinigameController {
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
-                checkEnd();
+            }
+            if (numTurns == 3){
+                view.enableQuitButton();
             }
         }
     }
@@ -107,7 +101,9 @@ public class RPSController implements MinigameController {
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
-                checkEnd();
+            }
+            if (numTurns == 3){
+                view.enableQuitButton();
             }
         }
     }

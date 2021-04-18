@@ -12,10 +12,12 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import view.MinigameView;
+import view.ViewType;
 
 import java.io.IOException;
 
-public class RPSView {
+public class RPSView extends MinigameView {
     //estendere view su develop
     @FXML
     private Button rockButton, paperButton, scissorsButton;
@@ -26,31 +28,8 @@ public class RPSView {
     @FXML
     private ImageView playerImage, computerImage;
 
-
-    private static final String LAYOUT_LOCATION = "layouts/rps.fxml";
-    private static final String LOGO_LOCATION = "logo.png";
-
-    private final Stage primaryStage = new Stage();
-    private Image image;
-
     public RPSView() {
-        try {
-            System.out.println(ClassLoader.getSystemResource(LAYOUT_LOCATION));
-
-            final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
-            loader.setController(this);
-            final Scene scene = new Scene(loader.load());
-            primaryStage.initModality(Modality.APPLICATION_MODAL);
-            primaryStage.setTitle("[GooseGame] Rock Paper Scissors");
-            primaryStage.getIcons().add(new Image(LOGO_LOCATION));
-            primaryStage.setOnHiding(e -> primaryStage.setIconified(true));
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-
-
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
+        super(ViewType.ROCK_PAPER_SCISSORS);
     }
 
     public void playerWin() {
@@ -106,10 +85,5 @@ public class RPSView {
         }
         return imagePath;
     }
-
-    public void show() {
-        primaryStage.showAndWait();
-    }
-
 
 }
