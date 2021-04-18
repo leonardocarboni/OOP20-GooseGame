@@ -96,7 +96,7 @@ public class RPSView {
     }
 
     private String parseChoiceImagePath(Choice choice) {
-        String imagePath = null;
+        String imagePath;
         if (choice == Choice.ROCK) {
             imagePath = "rockpaperscissors/rock.png";
         } else if (choice == Choice.PAPER) {
