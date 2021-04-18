@@ -48,8 +48,8 @@ public class MemoryView {
         }
     }
 
-    public void hideSecretLabel() {
-        this.secretCodeLabel.setText("*****");
+    public Label getSecretCodeLabel() {
+        return this.secretCodeLabel;
     }
 
     public void showSecretLabel(final String code) {

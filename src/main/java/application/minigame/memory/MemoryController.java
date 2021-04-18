@@ -12,7 +12,8 @@ import java.util.List;
 
 public class MemoryController implements MinigameController {
 
-    private static final int SECONDS = 6;
+    private static final int SECONDS = 7;
+    private static final String ASTERISKS = "*****";
     
     private final SecretCode secretCode;
     private final Countdown countdown;
@@ -22,7 +23,6 @@ public class MemoryController implements MinigameController {
 
     public MemoryController() {
     	final MemoryView view = new MemoryView();
-       
         secretCode = new SecretCodeImpl();
         secretCode.generateSecretCode();
         inputCode = new ArrayList<>();
@@ -30,6 +30,7 @@ public class MemoryController implements MinigameController {
         view.addButtonListener(new CheckHandler());
         view.addButtonNumber(new ButtonsHandler());
         countdown = new CountdownImpl(SECONDS, view.getTime());
+        countdown.editLabelOnEnd(view.getSecretCodeLabel(), ASTERISKS);
         countdown.start();
         view.show();
     }
@@ -45,14 +46,9 @@ public class MemoryController implements MinigameController {
     public class CheckHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
-            double seconsLeft = countdown.getSecondsLeft();
             countdown.shutdown();
-
-            if (seconsLeft == 0.0) {
-                result = -SECONDS;
-            } else {
-                result = (int) seconsLeft - secretCode.checkCode(inputCode);
-            }
+            double seconsLeft = countdown.getSecondsLeft();
+            result = (int) seconsLeft - secretCode.checkCode(inputCode);
         }
     }
 

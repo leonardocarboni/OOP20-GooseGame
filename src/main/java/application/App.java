@@ -11,7 +11,7 @@ public class App extends Application{
 	
     @Override
 	public void start(final Stage primaryStage) throws Exception {
-		final MemoryController mc = new MemoryController();
+		final MenuController mc = new MenuController();
 	}
 	
 	public static void main(final String[] args) {
