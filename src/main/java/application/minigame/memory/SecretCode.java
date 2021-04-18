@@ -6,14 +6,15 @@ public interface SecretCode {
 
     /**
      * Generates a random Secret Code.
-     * @return a random long.
      */
-    List<Integer> generateSecretCode();
+    void generateSecretCode();
 
     /**
      * Confront secretCode with user input.
-     * @param secretCode
+     * @param inputCode
      * @return the number of errors.
      */
-    int checkCode(List<Integer> secretCode);
+    int checkCode(List<Integer> inputCode);
+
+    String getCode();
 }

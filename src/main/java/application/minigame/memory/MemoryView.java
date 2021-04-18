@@ -11,12 +11,13 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.List;
 
 
 public class MemoryView {
 
     @FXML
-    private Button button1, button2, button3, button4, button5, button6, button7, button8, button9;
+    private List<Button> buttonList;
 
     @FXML
     private Button checkButton;
@@ -51,6 +52,10 @@ public class MemoryView {
         this.secretCodeLabel.setText("*****");
     }
 
+    public void showSecretLabel(String code) {
+        this.secretCodeLabel.setText(code);
+    }
+
     public Label getTime() {
         return this.TimeLabel;
     }
@@ -60,20 +65,17 @@ public class MemoryView {
     }
 
     public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
-        button1.setOnAction(eventHandler);
-        button2.setOnAction(eventHandler);
-        button3.setOnAction(eventHandler);
-        button4.setOnAction(eventHandler);
-        button5.setOnAction(eventHandler);
-        button6.setOnAction(eventHandler);
-        button7.setOnAction(eventHandler);
-        button8.setOnAction(eventHandler);
-        button9.setOnAction(eventHandler);
         checkButton.setOnAction(eventHandler);
+    }
+
+    public void addButtonNumber(final EventHandler<ActionEvent> eventHandler) {
+        buttonList.forEach(b -> b.setOnAction(eventHandler));
     }
 
     public void show() {
         this.primaryStage.showAndWait();
     }
+
+
 
 }

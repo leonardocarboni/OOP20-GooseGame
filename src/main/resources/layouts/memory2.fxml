@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import java.util.ArrayList?>
 
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="785.0" styleClass="background-image" stylesheets="@memoryStyle.css" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
@@ -75,6 +76,19 @@
             </Button>
          </GridPane>
       </HBox>
+      <fx:define>
+         <ArrayList fx:id = "buttonList">
+            <fx:reference source="button1" />
+            <fx:reference source="button2" />
+            <fx:reference source="button3" />
+            <fx:reference source="button4" />
+            <fx:reference source="button5" />
+            <fx:reference source="button6" />
+            <fx:reference source="button7" />
+            <fx:reference source="button8" />
+            <fx:reference source="button9" />
+         </ArrayList>
+      </fx:define>
    </center>
    <top>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: rgba(0,0,0,0.6) rgba(0,0,0,0.6);" BorderPane.alignment="CENTER">
