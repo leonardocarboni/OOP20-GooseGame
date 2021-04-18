@@ -1,12 +1,11 @@
 package application.minigame.memory;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class SecretCodeImpl implements SecretCode{
+public class SecretCodeImpl implements SecretCode {
 
     private static final int SIZE = 5;
     private static final int MIN_VALUE_CODE = 1;
@@ -23,11 +22,16 @@ public class SecretCodeImpl implements SecretCode{
     }
 
     @Override
-    public int checkCode(List<Integer> inputCode) {
+    public int checkCode(final List<Integer> inputCode) {
         int errors = 0;
-        for (int i = 0; i < SIZE; i++) {
-            if (secretCode.get(i) != inputCode.get(i)) {
-                errors++;
+
+        if (inputCode.size() < SIZE) {
+            errors = SIZE;
+        } else {
+            for (int i = 0; i < SIZE; i++) {
+                if (secretCode.get(i) != inputCode.get(i)) {
+                    errors++;
+                }
             }
         }
         return errors;

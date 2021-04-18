@@ -12,8 +12,8 @@ import java.util.List;
 
 public class MemoryController implements MinigameController {
 
-    private final static int SECONDS = 10;
-    private final MemoryView view;
+    private static final int SECONDS = 6;
+    
     private final SecretCode secretCode;
     private final Countdown countdown;
     private List<Integer> inputCode;
@@ -21,13 +21,16 @@ public class MemoryController implements MinigameController {
 
 
     public MemoryController() {
-        view = new MemoryView();
+    	final MemoryView view = new MemoryView();
+       
         secretCode = new SecretCodeImpl();
         secretCode.generateSecretCode();
         inputCode = new ArrayList<>();
+        view.showSecretLabel(secretCode.getCode());
+        view.addButtonListener(new CheckHandler());
+        view.addButtonNumber(new ButtonsHandler());
         countdown = new CountdownImpl(SECONDS, view.getTime());
         countdown.start();
-        view.showSecretLabel(secretCode.getCode());
         view.show();
     }
 
@@ -39,23 +42,28 @@ public class MemoryController implements MinigameController {
     /**
      * An inner class for the event catching in the minigame view.
      */
-    public class checkHandler implements EventHandler<ActionEvent> {
-
+    public class CheckHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
-            result = (int)countdown.getSecondsLeft();
+            double seconsLeft = countdown.getSecondsLeft();
             countdown.shutdown();
-            result -= secretCode.checkCode(inputCode);
+
+            if (seconsLeft == 0.0) {
+                result = -SECONDS;
+            } else {
+                result = (int) seconsLeft - secretCode.checkCode(inputCode);
+            }
         }
     }
 
-    public class buttonsHandler implements EventHandler<ActionEvent> {
-
+    /**
+     * An inner class for the event catching in the minigame view.
+     */
+    public class ButtonsHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
-            Button b = (Button) event.getSource();
+            final Button b = (Button) event.getSource();
             inputCode.add(Integer.parseInt(b.getText()));
         }
     }
-
 }

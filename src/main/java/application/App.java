@@ -12,7 +12,6 @@ public class App extends Application{
     @Override
 	public void start(final Stage primaryStage) throws Exception {
 		final MemoryController mc = new MemoryController();
-		System.out.println(mc.getResult());
 	}
 	
 	public static void main(final String[] args) {

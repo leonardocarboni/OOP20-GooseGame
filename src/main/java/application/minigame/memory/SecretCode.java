@@ -16,5 +16,8 @@ public interface SecretCode {
      */
     int checkCode(List<Integer> inputCode);
 
+    /**
+     * @return code as a string
+     */
     String getCode();
 }

@@ -52,7 +52,7 @@ public class MemoryView {
         this.secretCodeLabel.setText("*****");
     }
 
-    public void showSecretLabel(String code) {
+    public void showSecretLabel(final String code) {
         this.secretCodeLabel.setText(code);
     }
 
