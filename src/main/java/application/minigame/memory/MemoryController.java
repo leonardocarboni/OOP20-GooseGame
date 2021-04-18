@@ -1,50 +1,65 @@
 package application.minigame.memory;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import controller.minigame.MinigameController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.GridPane;
+import utility.countdown.Countdown;
+import utility.countdown.CountdownImpl;
 
-import java.awt.*;
-import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class MemoryController implements Initializable {
+public class MemoryController implements MinigameController {
+
+    private static final int SECONDS = 7;
+    private static final String ASTERISKS = "*****";
+    
+    private final SecretCode secretCode;
+    private final Countdown countdown;
+    private List<Integer> inputCode;
+    private int result;
 
 
-
-    @FXML
-    GridPane gridLayoutBOT, gridLayoutPlayer;
-
-    @FXML
-    ProgressBar timeBar;
-
-
-
-    final private Random random = new Random();
-    private List<Pair<Integer,Integer>> posCOM = new ArrayList<>();
-
+    public MemoryController() {
+    	final MemoryView view = new MemoryView();
+        secretCode = new SecretCodeImpl();
+        secretCode.generateSecretCode();
+        inputCode = new ArrayList<>();
+        view.showSecretLabel(secretCode.getCode());
+        view.checkButtonListener(new CheckHandler());
+        view.buttonListener(new ButtonsHandler());
+        countdown = new CountdownImpl(SECONDS, view.getTime());
+        countdown.editLabelOnEnd(view.getSecretCodeLabel(), ASTERISKS);
+        countdown.start();
+        view.show();
+    }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
+    public int getResult() {
+        return result;
     }
 
-    public void fillGridCOM(GridPane gridLayoutBOT){
-       for (int i = 0; i < gridLayoutBOT.getRowCount(); i++) {
-           for (int j = 0; j < gridLayoutBOT.getColumnCount(); j++){
-               var current = new Pair<>(j,i);
-               this.posCOM.add(current);
-
-           }
-       }
+    /**
+     * An inner class for the event catching in the minigame view.
+     */
+    public class CheckHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(final ActionEvent event) {
+            countdown.shutdown();
+            double seconsLeft = countdown.getSecondsLeft();
+            result = (int) seconsLeft - secretCode.checkCode(inputCode);
+        }
     }
 
-
-
-
-
-
+    /**
+     * An inner class for the event catching in the minigame view.
+     */
+    public class ButtonsHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(final ActionEvent event) {
+            final Button b = (Button) event.getSource();
+            inputCode.add(Integer.parseInt(b.getText()));
+        }
+    }
 }
