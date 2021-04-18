@@ -20,7 +20,7 @@ public class MinigameView extends View {
         this.getStage().showAndWait();
     }
 
-    public void enableQuitButton(){
+    public void enableQuitButton() {
         this.quitButton.setDisable(false);
     }
 }

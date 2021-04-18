@@ -39,7 +39,7 @@ public class View {
         return this.primaryStage;
     }
 
-    public Scene getScene(){
+    public Scene getScene() {
         return this.scene;
     }
 }
