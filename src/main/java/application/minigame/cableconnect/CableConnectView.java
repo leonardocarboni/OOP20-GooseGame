@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
-import view.View;
+import view.MinigameView;
 import view.ViewType;
 
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class CableConnectView extends View {
+public class CableConnectView extends MinigameView {
 
     @FXML
     private Button startButton0, startButton1, startButton2, startButton3;
@@ -29,19 +29,25 @@ public class CableConnectView extends View {
 
     private Line currentLine;
 
-    final private Map<Button, Colors> startButtonsMap = new HashMap<>();
-    final private Map<Button, Colors> endButtonsMap = new HashMap<>();
-    final private Set<Colors> colorsDone = new HashSet<>();
+    private final Map<Button, Colors> startButtonsMap = new HashMap<>();
+    private final Map<Button, Colors> endButtonsMap = new HashMap<>();
+    private final Set<Colors> colorsDone = new HashSet<>();
 
-    public CableConnectView(){
-        super.createStage(ViewType.CABLE_CONNECT);
+    private static final String CSS_BG_COLOR = "-fx-background-color: ";
+    private static final String CSS_LINE_STROKE = "-fx-stroke: ";
+    private static final int LINE_STROKE = 5;
+
+    public CableConnectView() {
+        super(ViewType.CABLE_CONNECT);
     }
 
     /**
      * Maps all the start buttons with their own color and the end buttons with a randomized
      * sequence of the same color.
+     * @param startColorsArray - the array of the first four colors.
+     * @param endColorsArray - the array of the last four colors.
      */
-    public void initializeButtonsMap(Colors[] startColorsArray, Colors[] endColorsArray) {
+    public void initializeButtonsMap(final Colors[] startColorsArray, final Colors[] endColorsArray) {
         startButtonsMap.put(startButton0, startColorsArray[0]);
         startButtonsMap.put(startButton1, startColorsArray[1]);
         startButtonsMap.put(startButton2, startColorsArray[2]);
@@ -57,20 +63,20 @@ public class CableConnectView extends View {
      * Initialize start buttons giving them their color (random order).
      */
     public void initializeStartButtons() {
-        startButton0.setStyle("-fx-background-color: "+ startButtonsMap.get(startButton0));
-        startButton1.setStyle("-fx-background-color: "+ startButtonsMap.get(startButton1));
-        startButton2.setStyle("-fx-background-color: "+ startButtonsMap.get(startButton2));
-        startButton3.setStyle("-fx-background-color: "+ startButtonsMap.get(startButton3));
+        startButton0.setStyle(CSS_BG_COLOR + startButtonsMap.get(startButton0));
+        startButton1.setStyle(CSS_BG_COLOR + startButtonsMap.get(startButton1));
+        startButton2.setStyle(CSS_BG_COLOR + startButtonsMap.get(startButton2));
+        startButton3.setStyle(CSS_BG_COLOR + startButtonsMap.get(startButton3));
     }
 
     /**
      * Initialize end buttons giving them their color (random order).
      */
     public void initializeEndButtons() {
-        endButton0.setStyle("-fx-background-color: "+ endButtonsMap.get(endButton0));
-        endButton1.setStyle("-fx-background-color: "+ endButtonsMap.get(endButton1));
-        endButton2.setStyle("-fx-background-color: "+ endButtonsMap.get(endButton2));
-        endButton3.setStyle("-fx-background-color: "+ endButtonsMap.get(endButton3));
+        endButton0.setStyle(CSS_BG_COLOR + endButtonsMap.get(endButton0));
+        endButton1.setStyle(CSS_BG_COLOR + endButtonsMap.get(endButton1));
+        endButton2.setStyle(CSS_BG_COLOR + endButtonsMap.get(endButton2));
+        endButton3.setStyle(CSS_BG_COLOR + endButtonsMap.get(endButton3));
 
         endButton0.setDisable(true);
         endButton1.setDisable(true);
@@ -79,19 +85,19 @@ public class CableConnectView extends View {
     }
 
     /**
-     * generate a starting point for the new line
+     * generate a starting point for the new line.
      * @param color - the color of the line
      * @param x - x coordinate of the scene
      * @param y - y coordinate of the scene
      */
-    private void createLine(Colors color, double x, double y){
+    private void createLine(final Colors color, final double x, final double y) {
         if (currentLine == null) {
             currentLine = new Line(x, y, x, y);
-            currentLine.setStrokeWidth(5);
-            currentLine.setStyle("-fx-stroke: " + color);
+            currentLine.setStrokeWidth(LINE_STROKE);
+            currentLine.setStyle(CSS_LINE_STROKE + color);
             pane.getChildren().add(currentLine);
         } else {
-            currentLine = null ;
+            currentLine = null;
         }
     }
 
@@ -115,7 +121,7 @@ public class CableConnectView extends View {
         });
 
         // set the definitive line end point.
-        endButtonsMap.forEach((button, color) -> button.addEventHandler(ActionEvent.ACTION, e-> {
+        endButtonsMap.forEach((button, color) -> button.addEventHandler(ActionEvent.ACTION, e -> {
             button.setOpacity(1);
             colorsDone.add(color);
             enableOtherButtons();
@@ -126,7 +132,7 @@ public class CableConnectView extends View {
     }
 
     /**
-     * re enables the buttons whom color is not contained in the list
+     * re enables the buttons whom color is not contained in the list.
      */
     private void enableOtherButtons() {
         startButtonsMap.forEach((b, c) -> b.setDisable(colorsDone.contains(c)));
@@ -134,12 +140,12 @@ public class CableConnectView extends View {
     }
 
     /**
-     * disable the buttons with a different color
-     * @param color - the color which doesn't need to be disabled
+     * disable the buttons with a different color.
+     * @param color - the color which doesn't need to be disabled.
      */
-    private void disableOtherButtons(Colors color) {
+    private void disableOtherButtons(final Colors color) {
         startButtonsMap.keySet().forEach(b -> b.setDisable(true));
-        endButtonsMap.forEach((b,c) -> {
+        endButtonsMap.forEach((b, c) -> {
             b.setDisable(!c.equals(color));
             b.setOpacity(1);
         });

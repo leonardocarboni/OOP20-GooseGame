@@ -7,12 +7,13 @@ import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class CountdownImpl implements Countdown{
+public class CountdownImpl implements Countdown {
 
     private static final int DELAY = 0;
     private static final int PERIOD = 100; //every 0.1 seconds
+    private static final double SEC_DECREASE = 0.1;
 
-    final private Timer timer;
+    private final Timer timer;
     private double seconds;
     final private UpdateLabel updateLabelTask;
     final private Label timeLabel;
@@ -27,18 +28,18 @@ public class CountdownImpl implements Countdown{
     }
 
     @Override
-    public void start(){
+    public void start() {
         timer.schedule(updateLabelTask, DELAY, PERIOD);
     }
 
     @Override
-    public void shutdown(){
+    public void shutdown() {
         timer.cancel();
         timer.purge();
     }
 
     @Override
-    public double getSecondsLeft(){
+    public double getSecondsLeft() {
         return this.seconds;
     }
 
@@ -49,19 +50,19 @@ public class CountdownImpl implements Countdown{
     }
 
     /**
-     * Utility class that extends TimerTask
+     * Utility class that extends TimerTask.
      */
     private class UpdateLabel extends TimerTask {
 
         /**
-         *  Updates the label with left seconds value (seconds.decimal)
+         *  Updates the label with left seconds value (seconds.decimal).
          */
         @Override
         public void run() {
             Platform.runLater(() -> {
                 if (seconds >= 0) {
                     timeLabel.setText(String.format("%.1f", seconds));
-                    seconds = seconds - 0.1;
+                    seconds = seconds - SEC_DECREASE;
                 } else {
                     shutdown();
                     if (lableToHide.isPresent()) {

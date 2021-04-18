@@ -1,6 +1,8 @@
-package application.minigame.evenodd.mvc;
+package application.minigame.evenodd.mainGame;
 
-import application.minigame.evenodd.mainGame.EvenOdd;
+import application.minigame.evenodd.mvc.EOController;
+import application.minigame.evenodd.mvc.EOModel;
+import application.minigame.evenodd.mvc.EOView;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -15,6 +17,8 @@ public class GettersMVC {
     private EOView view;
     private EOController controller;
     private EOModel model;
+    private StackPane primaryStage;
+
 
     public EOView getView() {
         this.view = EvenOdd.view;
@@ -30,10 +34,5 @@ public class GettersMVC {
         this.model = EOView.model;
         return this.model;
     }
-
-    public StackPane getPane(){
-        return EvenOdd.pane;
-    }
-
 
 }

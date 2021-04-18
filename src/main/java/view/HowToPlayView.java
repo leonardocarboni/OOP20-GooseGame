@@ -1,45 +1,28 @@
 package view;
 
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Screen;
-import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import model.box.Box;
 
-import java.io.IOException;
+public class HowToPlayView extends NormalView {
 
-public class HowToPlayView {
+    private static final String MAINGAMEDESC = "Main game desc";
 
-    private final Stage primaryStage = new Stage();
-    private static final String LAYOUT_LOCATION = "layouts/howtoplay.fxml";
-    private static final String LOGO_LOCATION = "logo.png";
+    @FXML
+    private Label howToPlayDescLabel, cableConnectDescLabel, ticTacToeDescLabel, phraseCatchDescLabel,
+            memoryDescLabel, rockPaperScissorsDescLabel, spaceShooterDescLabel, evenOrOddDescLabel;
 
-    public HowToPlayView(){
-        try {
-            final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-            final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
-            loader.setController(this);
-            final TabPane tabPane = loader.load();
-            final Scene scene = new Scene(tabPane, screenBounds.getWidth() / 2, screenBounds.getHeight() / 2);
-            /* Stage configuration */
-            primaryStage.setTitle("[GooseGame] How To Play");
-            primaryStage.initModality(Modality.APPLICATION_MODAL);
-            primaryStage.getIcons().add(new Image(LOGO_LOCATION));
-            primaryStage.setOnHiding(e -> {
-                primaryStage.setIconified(true);
-            });
-            primaryStage.setScene(scene);
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
+    public HowToPlayView() {
+        super(ViewType.HOWTOPLAY);
+        howToPlayDescLabel.setText(MAINGAMEDESC);
+        cableConnectDescLabel.setText(Box.CABLE_CONNECT.getDescription());
+        ticTacToeDescLabel.setText(Box.TICTACTOE.getDescription());
+        phraseCatchDescLabel.setText(Box.PHRASE_CATCH.getDescription());
+        memoryDescLabel.setText(Box.MEMORY.getDescription());
+        rockPaperScissorsDescLabel.setText(Box.ROCK_PAPER_SCISSORS.getDescription());
+        spaceShooterDescLabel.setText(Box.SPACESHOOTER.getDescription());
+        evenOrOddDescLabel.setText(Box.EVEN_OR_ODD.getDescription());
     }
 
-    public void show() {
-        primaryStage.show();
-    }
 
 }

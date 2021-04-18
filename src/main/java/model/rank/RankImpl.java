@@ -6,30 +6,30 @@ import java.util.List;
 
 import model.player.PlayerImpl;
 
-public class RankImpl implements Rank{
-	
-	private List<PlayerImpl> ranking;
+public class RankImpl implements Rank {
 
-	public RankImpl() {
-		ranking = new ArrayList<>();
-	}
+    private List<PlayerImpl> ranking;
 
-	@Override
-	public void updateRanking() {
-		ranking.sort(Comparator.comparing(PlayerImpl::getBoardPosition).reversed());
-	}
+    public RankImpl() {
+        ranking = new ArrayList<>();
+    }
 
-	@Override
-	public List<PlayerImpl> getRanking() {
-		return ranking;
-	}
+    @Override
+    public void updateRanking() {
+        ranking.sort(Comparator.comparing(PlayerImpl::getBoardPosition).reversed());
+    }
 
-	@Override
-	public void setRanking(final List<PlayerImpl> list) {
-		if(list.isEmpty()) {
-			throw new IllegalArgumentException();
-		}
-		ranking = list;
-	}
-	
+    @Override
+    public List<PlayerImpl> getRanking() {
+        return ranking;
+    }
+
+    @Override
+    public void setRanking(final List<PlayerImpl> list) {
+        if (list.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        ranking = list;
+    }
+
 }

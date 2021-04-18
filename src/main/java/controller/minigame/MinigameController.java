@@ -2,5 +2,9 @@ package controller.minigame;
 
 public interface MinigameController {
 
-	int getResult();
+    /**
+     * 
+     * @return result of minigame.
+     */
+    int getResult();
 }

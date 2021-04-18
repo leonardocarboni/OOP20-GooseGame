@@ -1,24 +1,28 @@
 package controller.winscreen;
 
 import controller.playerchooser.PlayerChooserControllerImpl;
-import model.player.Player;
 
+import model.player.PlayerImpl;
 import view.WinScreenView;
 
 import java.util.List;
 
-public class WinScreenImpl implements WinScreen{
+public class WinScreenImpl implements WinScreen {
 
-    public WinScreenImpl(List<Player> playersList){
-        WinScreenView view = new WinScreenView();
+    private final WinScreenView view;
 
+    public <T> WinScreenImpl() {
+        view = new WinScreenView();
+    }
+
+    public void start(final List<PlayerImpl> playersList) {
         view.addButtonListener(e -> {
-            PlayerChooserControllerImpl pc = new PlayerChooserControllerImpl();
+            final PlayerChooserControllerImpl pc = new PlayerChooserControllerImpl();
+            pc.start();
             view.close();
         });
 
         view.setPlayers(playersList);
         view.show();
-
     }
 }

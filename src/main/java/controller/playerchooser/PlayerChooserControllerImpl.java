@@ -12,101 +12,106 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.player.PlayerColor;
 import model.player.PlayerImpl;
-import utility.file.FileUtility;
 import utility.file.FileUtilityImpl;
 import view.ViewType;
 import view.playerchooser.PlayersChooserViewImpl;
 
-public class PlayerChooserControllerImpl implements PlayerChooser{
+public class PlayerChooserControllerImpl implements PlayerChooser {
 
-	final private static String FILE_NAME = "NamePlayers.json";
-	
-	final private PlayersChooserViewImpl view;
-    final private List<PlayerImpl> playersList = new ArrayList<>();
-    final private FileUtility<String> s = new FileUtilityImpl<>(FILE_NAME);
+    private static final  String FILE_NAME = "NamePlayers.json";
+
+    private final PlayersChooserViewImpl view;
+    private final List<PlayerImpl> playersList = new ArrayList<>();
+    private final FileUtilityImpl<String> s = new FileUtilityImpl<>(FILE_NAME);
 
     public PlayerChooserControllerImpl() {
-    	view = new PlayersChooserViewImpl();
-    	view.createStage(ViewType.CHOOSE_PLAYER);
-    	view.setTextComboBox(loadNamesBox());
-    	view.addButtonListener(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(final ActionEvent event) {
-				checkContrains();
-			}
-		});
-    	view.show();
-	}
+        view = new PlayersChooserViewImpl();
+    }
+
+    public void start() {
+        view.createStage(ViewType.CHOOSE_PLAYER);
+        view.setTextComboBox(loadNamesBox());
+        view.addButtonListener(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                checkContrains();
+            }
+        });
+        view.show();
+    }
 
     /**
-     * Function to check if users wrote unique names and if there are at least two players
-     * In this case this function create the controller of the Game
+     * Function to check if users wrote unique names and if there are at least two
+     * players. In this case this function create the controller of the Game
      */
-    public void checkContrains () {
-    	System.out.println(view.getPlayersInfo());
-    	final Map<String,String> playersNameNotNull = view.getPlayersInfo()
-    										.entrySet()
-    										.stream()
-											.filter(t -> !"".equals(t.getValue()))
-											.collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
-    	System.out.println(playersNameNotNull);
-    	final int numPlayers = playersNameNotNull.size();
-        final int numUniqueNames = (int) playersNameNotNull
-        									.values()
-        									.stream()
-        									.distinct()
-        									.count();
-        if (numPlayers < 2){
-        	view.setErrorLabelText("YOU MUST ENTER AT LEAST 2 PLAYERS");
+    private void checkContrains() {
+        final Map<String, String> playersNameNotNull = view.getPlayersInfo()
+                                                           .entrySet()
+                                                           .stream()
+                                                           .filter(t -> !"".equals(t.getValue()))
+                                                           .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        final int numPlayers = playersNameNotNull.size();
+        final int numUniqueNames = (int) playersNameNotNull.values().stream().distinct().count();
+
+        if (numPlayers < 2) {
+            view.setErrorLabelText("YOU MUST ENTER AT LEAST 2 PLAYERS");
         } else if (numPlayers == numUniqueNames) {
-        	for (final Entry<String, String> player : playersNameNotNull.entrySet()) {
-				playersList.add(new PlayerImpl(player.getValue(),stringToEnum(player.getKey())));
-			}
+            final List<String> playerNames = new ArrayList<>();
+            for (final Entry<String, String> player : playersNameNotNull.entrySet()) {
+                playersList.add(new PlayerImpl(player.getValue(), stringToEnum(player.getKey())));
+                playerNames.add(player.getValue());
+            }
             view.close();
-            final GameControllerImpl c = new GameControllerImpl(playersList);
+            saveNamesBox(playerNames);
+            final GameControllerImpl c = new GameControllerImpl();
+            c.startGame(playersList);
+        } else {
+            view.setErrorLabelText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");
         }
-        else{
-        	view.setErrorLabelText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");
-        }
-    	
     }
 
     /**
-     * Function to convert a string to an enum 
-     * @param s color name passed as string
-     * @return PlayerColor 
+     * Function to convert a string to an enum.
+     * 
+     * @param s color name passed as string.
+     * @return PlayerColor
      */
-    public PlayerColor stringToEnum(final String s) {
-    	PlayerColor color;
-    	if("pink".equals(s)) {
-    		color = PlayerColor.PINK;
-    	}else if ("red".equals(s)) {
-    		color = PlayerColor.RED;
-    	}else if ("yellow".equals(s)) {
-    		color = PlayerColor.YELLOW;
-    	}else { 
-    		color = PlayerColor.BLUE;
-    	}
-    	return color;
+    private PlayerColor stringToEnum(final String s) {
+        PlayerColor color;
+        if ("pink".equals(s)) {
+            color = PlayerColor.PINK;
+        } else if ("red".equals(s)) {
+            color = PlayerColor.RED;
+        } else if ("green".equals(s)) {
+            color = PlayerColor.GREEN;
+        } else {
+            color = PlayerColor.BLUE;
+        }
+        return color;
     }
 
     /**
-     * Load names from the file and put them inside of ComboBox
+     * Load names from the file and put them inside of ComboBox.
+     * 
+     * @return list with names loaded from file.
      */
     private List<String> loadNamesBox() {
-    	List<String> playerNames = new ArrayList<>();
-    	try {
-			playerNames = s.loadInformation();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-    	return playerNames;
+        List<String> playerNames;
+        try {
+            playerNames = s.loadInformation(String.class);
+        } catch (FileNotFoundException e) {
+            playerNames = new ArrayList<>();
+        }
+        return playerNames;
     }
 
     /**
-     * Save names wrote by users in the file
+     * Save names wrote by users in the file.
+     * 
+     * @param namePlayers
      */
-    public void saveNamesBox(final List<String> namePlayers) {
-    	s.saveInformation(namePlayers);
+    private void saveNamesBox(final List<String> namePlayers) {
+        s.saveInformation(namePlayers, true, String.class);
     }
 }

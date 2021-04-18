@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import view.View;
+import view.NormalView;
 import view.ViewType;
 
 import java.net.URL;
@@ -20,103 +20,114 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
 
-public class GameViewImpl extends View implements Initializable,GameView {
+public class GameViewImpl extends NormalView implements Initializable, GameView {
 
-	@FXML
+    @FXML
     private Button diceButton;
-	@FXML
-	private Label currentPlayerLabel;
-	@FXML
-	private ImageView diceImage;
-	@FXML
-	private List<Label> scoreBoard;
-	@FXML 
-	private List<HBox> gameboard;
-	@FXML
-	private Label gameState;
+    @FXML
+    private Label currentPlayerLabel;
+    @FXML
+    private ImageView diceImage;
+    @FXML
+    private List<Label> scoreBoard;
+    @FXML
+    private List<HBox> gameboard;
+    @FXML
+    private Label gameState;
 
-	public GameViewImpl() {
-		super.createStage(ViewType.GAME);
-	}
+    private static final float RADIUS_CIRCLE = 5.0f;
+    private static final int ONE = 1;
+    private static final int TWO = 2;
+    private static final int THREE = 3;
+    private static final int FOUR = 4;
+    private static final int FIVE = 5;
+    private static final int SIX = 6;
 
-	@Override
+    public GameViewImpl() {
+        super(ViewType.GAME);
+    }
+
+    @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-	}
+    }
 
-	@Override
-	public void changeImageDice(final int value) {
-		String nameDiceImage = "";
-		switch(value) {
-		case 1:
-			nameDiceImage = "diceOne.png";
-			break;
-		case 2:
-			nameDiceImage = "diceTwo.png";
-			break;
-		case 3:
-			nameDiceImage = "diceThree.png";
-			break;
-		case 4:
-			nameDiceImage = "diceFour.png";
-			break;
-		case 5:
-			nameDiceImage = "diceFive.png";
-			break;
-		case 6:
-			nameDiceImage = "diceSix.png";
-			break;
-		}
-		diceImage.setImage(new Image(ClassLoader.getSystemResource("dice/" + nameDiceImage).toString()));
-	}
+    @Override
+    public void changeImageDice(final int value) {
+        String nameDiceImage = "";
+        switch (value) {
+            case ONE:
+                nameDiceImage = "diceOne.png";
+                break;
+            case TWO:
+                nameDiceImage = "diceTwo.png";
+                break;
+            case THREE:
+                nameDiceImage = "diceThree.png";
+                break;
+            case FOUR:
+                nameDiceImage = "diceFour.png";
+                break;
+            case FIVE:
+                nameDiceImage = "diceFive.png";
+                break;
+            case SIX:
+                nameDiceImage = "diceSix.png";
+                break;
+            default:
+                break;
+        }
+        diceImage.setImage(new Image(ClassLoader.getSystemResource("dice/" + nameDiceImage).toString()));
+    }
 
-	@Override
-	public void changeScoreboard(final List<String> list) {
-		int i = 0;
-		for (final String p : list) {
-			scoreBoard.get(i).setText(p);
-			i++;
-		}
-	}
+    @Override
+    public void changeScoreboard(final List<String> list) {
+        int i = 0;
+        for (final String p : list) {
+            scoreBoard.get(i).setText(p);
+            i++;
+        }
+    }
 
-	@Override
-	public void changeGameStateLabel(final String s) {
-		gameState.setText(s);
-	}
+    @Override
+    public void changeGameStateLabel(final String s) {
+        gameState.setText(s);
+    }
 
-	@Override
-	public void changePlayerLabel(final String s) {
-		currentPlayerLabel.setText(s);
-	}
+    @Override
+    public void changePlayerLabel(final String s) {
+        currentPlayerLabel.setText(s);
+    }
 
-	@Override
-	public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
+    @Override
+    public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
         diceButton.setOnAction(eventHandler);
     }
 
-	@Override
-	public void resetAllBoxes() {
-		for(final HBox hb : gameboard) {
-			hb.getChildren().clear();
-		}
-	}
+    @Override
+    public void resetAllBoxes() {
+        for (final HBox hb : gameboard) {
+            hb.getChildren().clear();
+        }
+    }
 
-	@Override
-	public void changeAllBoxes(final Map<Color,Integer> position) {
-		resetAllBoxes();
-		for (final Entry<Color,Integer> p : position.entrySet()) {
-			System.out.println(p.getValue());
-			gameboard.get(p.getValue()).getChildren().add(createCircle(p.getKey()));
-		}
-	}
+    @Override
+    public void changeAllBoxes(final Map<Color, Integer> position) {
+        resetAllBoxes();
+        for (final Entry<Color, Integer> p : position.entrySet()) {
+            System.out.println(p.getValue());
+            gameboard.get(p.getValue()).getChildren().add(createCircle(p.getKey()));
+        }
+    }
 
-	/*
-	 * @param Color -  color passed that represents the player
-	 * @return Circle - node 
-	 */
-	private Circle createCircle(final Color c) {
-		final Circle circle = new Circle();
-		circle.setFill(c);
-		circle.setRadius(5.0f);
-		return circle;
-	}
+    /*
+     * @param Color - color passed that represents the player
+     * 
+     * @return Circle - node
+     */
+    private Circle createCircle(final Color c) {
+        final Circle circle = new Circle();
+        circle.setFill(c);
+        circle.setRadius(RADIUS_CIRCLE);
+        return circle;
+    }
 }
