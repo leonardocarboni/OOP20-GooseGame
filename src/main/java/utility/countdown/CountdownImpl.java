@@ -17,7 +17,7 @@ public class CountdownImpl implements Countdown {
     private double seconds;
     final private UpdateLabel updateLabelTask;
     final private Label timeLabel;
-    private Optional<Label> lableToHide;
+    private Optional<Label> labelToHide;
     private String labelText;
 
     public CountdownImpl(final int seconds, final Label timeLabel) {
@@ -45,7 +45,7 @@ public class CountdownImpl implements Countdown {
 
     @Override
     public void editLabelOnEnd(Label labelToEdit, String text) {
-        this.lableToHide = Optional.of(labelToEdit);
+        this.labelToHide = Optional.of(labelToEdit);
         this.labelText = text;
     }
 
@@ -65,8 +65,8 @@ public class CountdownImpl implements Countdown {
                     seconds = seconds - SEC_DECREASE;
                 } else {
                     shutdown();
-                    if (lableToHide.isPresent()) {
-                        lableToHide.get().setText(labelText);
+                    if (labelToHide.isPresent()) {
+                        labelToHide.get().setText(labelText);
                     }
                 }
             });

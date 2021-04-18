@@ -14,7 +14,8 @@ public class MemoryController implements MinigameController {
 
     private static final int SECONDS = 7;
     private static final String ASTERISKS = "*****";
-    
+
+    final MemoryView view;
     private final SecretCode secretCode;
     private final Countdown countdown;
     private List<Integer> inputCode;
@@ -22,7 +23,7 @@ public class MemoryController implements MinigameController {
 
 
     public MemoryController() {
-    	final MemoryView view = new MemoryView();
+    	view = new MemoryView();
         secretCode = new SecretCodeImpl();
         secretCode.generateSecretCode();
         inputCode = new ArrayList<>();
@@ -32,7 +33,7 @@ public class MemoryController implements MinigameController {
         countdown = new CountdownImpl(SECONDS, view.getTime());
         countdown.editLabelOnEnd(view.getSecretCodeLabel(), ASTERISKS);
         countdown.start();
-        view.show();
+        view.showAndWaitResult();
     }
 
     @Override
@@ -49,6 +50,7 @@ public class MemoryController implements MinigameController {
             countdown.shutdown();
             double seconsLeft = countdown.getSecondsLeft();
             result = (int) seconsLeft - secretCode.checkCode(inputCode);
+            view.enableQuitButton();
         }
     }
 
