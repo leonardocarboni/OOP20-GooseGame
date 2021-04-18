@@ -20,7 +20,7 @@ public class MemoryView {
     private List<Button> buttonList;
 
     @FXML
-    private Button checkButton;
+    private Button checkButton, quitButton;
 
     @FXML
     private Label secretCodeLabel, resultLabel, TimeLabel;

@@ -77,7 +77,7 @@
          </GridPane>
       </HBox>
       <fx:define>
-         <ArrayList fx:id = "buttonList">
+         <ArrayList fx:id="buttonList">
             <fx:reference source="button1" />
             <fx:reference source="button2" />
             <fx:reference source="button3" />
@@ -102,7 +102,7 @@
                <Font name="System Bold" size="48.0" />
             </font>
          </Label>
-         <Label  layoutX="495.0" layoutY="30.0" text="," textFill="WHITE">
+         <Label layoutX="495.0" layoutY="30.0" text="," textFill="WHITE">
             <font>
                <Font name="System Bold" size="48.0" />
             </font>
@@ -120,23 +120,17 @@
       </HBox>
    </top>
    <bottom>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0"
-            style="-fx-background-color: rgba(0,0,0,0.6);" BorderPane.alignment="CENTER_RIGHT">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: rgba(0,0,0,0.6);" BorderPane.alignment="CENTER_RIGHT">
          <Button fx:id="checkButton" alignment="CENTER" mnemonicParsing="false" text="Check">
             <font>
-               <Font size="24.0"/>
+               <Font size="24.0" />
             </font>
          </Button>
-         <Label text="You" textFill="WHITE">
+         <Button fx:id="quitButton" alignment="CENTER" layoutX="354.0" layoutY="38.0" mnemonicParsing="false" text="Quit">
             <font>
-               <Font name="System Bold" size="36.0"/>
+               <Font size="24.0" />
             </font>
-         </Label>
-         <Label fx:id="resultLabel" layoutX="445.0" layoutY="52.0" text="Result" textFill="WHITE">
-            <font>
-               <Font name="System Bold" size="36.0"/>
-            </font>
-         </Label>
+         </Button>
       </HBox>
    </bottom>
 </BorderPane>
