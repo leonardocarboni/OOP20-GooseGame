@@ -48,8 +48,8 @@ public class MemoryController implements MinigameController {
         @Override
         public void handle(final ActionEvent event) {
             countdown.shutdown();
-            double seconsLeft = countdown.getSecondsLeft();
-            result = (int) seconsLeft - secretCode.checkCode(inputCode);
+            double secondsLeft = countdown.getSecondsLeft();
+            result = (int) secondsLeft - secretCode.checkCode(inputCode);
             view.enableQuitButton();
         }
     }
