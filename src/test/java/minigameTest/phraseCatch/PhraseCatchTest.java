@@ -1,4 +1,4 @@
-package phrasecatchtest;
+package minigameTest.phraseCatch;
 
 import application.minigame.phrasecatch.Phrase;
 import application.minigame.phrasecatch.PhraseImpl;

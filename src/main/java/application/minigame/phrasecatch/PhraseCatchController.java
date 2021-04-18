@@ -29,7 +29,7 @@ public class PhraseCatchController implements MinigameController {
         countdown = new CountdownImpl(SECONDS, view.getTimeLabel());
         countdown.start();
 
-        view.showAndWait();
+        view.showAndWaitResult();
     }
 
     @Override
@@ -45,6 +45,7 @@ public class PhraseCatchController implements MinigameController {
         public void handle(final ActionEvent event) {
             final double remainingTime = countdown.getSecondsLeft();
             countdown.shutdown();
+            view.enableQuitButton();
             final String textRead = view.getInputText();
             final int errorsMade = phrase.checkText(textRead);
             if (remainingTime == 0.0 || errorsMade >= MAX_ERRORS) {

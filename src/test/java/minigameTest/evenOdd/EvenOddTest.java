@@ -5,30 +5,28 @@ import application.minigame.evenodd.mainGame.EvenOdd;
 import application.minigame.evenodd.mvc.EOController;
 import application.minigame.evenodd.mvc.EOModel;
 import application.minigame.evenodd.mvc.EOView;
-import application.minigame.evenodd.mvc.GettersMVC;
+import application.minigame.evenodd.mainGame.GettersMVC;
 import org.junit.jupiter.api.*;
 import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class evenOddTest {
+public class EvenOddTest {
 
     EOModel model = null;
     GettersMVC getters = new GettersMVC();
     private final Random rnd = new Random();
     private final int rndValue = rnd.nextInt(10);
     EOView view = null;
-    EOController controller = null;
-    EvenOdd eo = null;
 
     @Test
     @DisplayName("Check win")
     public void checkWin(){
 
-        eo = new EvenOdd();
+
         view = getters.getView();
         model = getters.getModel();
-        controller = getters.getController();
+
 
         model.checkWin(1); // 1 equals to DISPARI
 

@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
-import view.View;
+import view.MinigameView;
 import view.ViewType;
 
 import java.util.HashMap;
@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class CableConnectView extends View {
+public class CableConnectView extends MinigameView {
 
     @FXML
     private Button startButton0, startButton1, startButton2, startButton3;
@@ -38,7 +38,7 @@ public class CableConnectView extends View {
     private static final int LINE_STROKE = 5;
 
     public CableConnectView() {
-        super.createStage(ViewType.CABLE_CONNECT);
+        super(ViewType.CABLE_CONNECT);
     }
 
     /**

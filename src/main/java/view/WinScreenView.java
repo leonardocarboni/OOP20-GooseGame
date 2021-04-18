@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WinScreenView extends View {
+public class WinScreenView extends NormalView {
     @FXML
     private Button playAgainButton, exitButton;
     @FXML
@@ -27,7 +27,7 @@ public class WinScreenView extends View {
     private static final int FADING_DURATION_MILLIS = 2000;
 
     public WinScreenView() {
-        super.createStage(ViewType.WINSCREEN);
+        super(ViewType.WINSCREEN);
         firstPlayer.setVisible(false);
         secondPlayer.setVisible(false);
         thirdPlayer.setVisible(false);

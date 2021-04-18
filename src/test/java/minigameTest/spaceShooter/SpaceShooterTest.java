@@ -22,7 +22,6 @@ public class SpaceShooterTest {
         assertNull(game.getEnemies());
         assertNull(game.getPlayer());
         assertNull(game.getShots());
-        assertFalse(game.isStarted);
     }
 
 
@@ -103,11 +102,6 @@ public class SpaceShooterTest {
             assertFalse(collision);
         }
 
-    }
-
-    @Test
-    public void startSpaceShooter() {
-        assertFalse(game.isStarted);
     }
 
     private double distance(double x1, double y1, double x2, double y2) {
