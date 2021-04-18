@@ -23,7 +23,7 @@ public class MemoryView {
     private Button checkButton, quitButton;
 
     @FXML
-    private Label secretCodeLabel, resultLabel, TimeLabel;
+    private Label secretCodeLabel, timeLabel;
 
     private static final String LAYOUT_LOCATION = "layouts/memory2.fxml";
     private static final String LOGO_LOCATION = "logo.png";
@@ -57,18 +57,14 @@ public class MemoryView {
     }
 
     public Label getTime() {
-        return this.TimeLabel;
+        return this.timeLabel;
     }
 
-    public Label getResultLabel() {
-        return this.resultLabel;
-    }
-
-    public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
+    public void checkButtonListener(final EventHandler<ActionEvent> eventHandler) {
         checkButton.setOnAction(eventHandler);
     }
 
-    public void addButtonNumber(final EventHandler<ActionEvent> eventHandler) {
+    public void buttonListener(final EventHandler<ActionEvent> eventHandler) {
         buttonList.forEach(b -> b.setOnAction(eventHandler));
     }
 

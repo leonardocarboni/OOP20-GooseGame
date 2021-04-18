@@ -27,8 +27,8 @@ public class MemoryController implements MinigameController {
         secretCode.generateSecretCode();
         inputCode = new ArrayList<>();
         view.showSecretLabel(secretCode.getCode());
-        view.addButtonListener(new CheckHandler());
-        view.addButtonNumber(new ButtonsHandler());
+        view.checkButtonListener(new CheckHandler());
+        view.buttonListener(new ButtonsHandler());
         countdown = new CountdownImpl(SECONDS, view.getTime());
         countdown.editLabelOnEnd(view.getSecretCodeLabel(), ASTERISKS);
         countdown.start();
