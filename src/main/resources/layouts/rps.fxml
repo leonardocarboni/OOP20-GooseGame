@@ -98,6 +98,11 @@
                   <Font name="System Bold" size="48.0" />
                </font>
             </Label>
+            <Button fx:id="quitButton" mnemonicParsing="false" text="Quit">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
    </top>
