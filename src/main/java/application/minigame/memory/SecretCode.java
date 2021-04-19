@@ -11,7 +11,7 @@ public interface SecretCode {
 
     /**
      * Confront secretCode with user input.
-     * @param inputCode
+     * @param inputCode code entered by the user
      * @return the number of errors.
      */
     int checkCode(List<Integer> inputCode);
