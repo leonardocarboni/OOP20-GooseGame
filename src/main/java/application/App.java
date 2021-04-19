@@ -1,6 +1,6 @@
 package application;
 
-import application.minigame.threecardgame.TreeCardController;
+import application.minigame.threecardgame.ThreeCardController;
 import controller.menu.MenuController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -9,7 +9,7 @@ public class App extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        final TreeCardController menu = new TreeCardController();
+        final ThreeCardController menu = new ThreeCardController();
     }
 
     public static void main(final String[] args) {

@@ -15,9 +15,9 @@
          <children>
             <VBox alignment="CENTER" prefHeight="180.0" prefWidth="290.0">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="sxButton" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fx:id="sxButton" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../treeCard/arrowUp.png" />
                            </image></ImageView>
@@ -27,9 +27,9 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="180.0" prefWidth="290.0">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="centerButton" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fx:id="centerButton" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView  fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../treeCard/arrowUp.png" />
                            </image></ImageView>
@@ -39,9 +39,9 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="180.0" prefWidth="290.0">
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="dxButton" mnemonicParsing="false">
                      <graphic>
-                        <ImageView fx:id="dxButton" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView  fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../treeCard/arrowUp.png" />
                            </image></ImageView>

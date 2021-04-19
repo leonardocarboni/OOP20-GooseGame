@@ -4,12 +4,12 @@ import controller.minigame.MinigameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class TreeCardController implements MinigameController {
+public class ThreeCardController implements MinigameController {
 
-    private TreeCardView view;
+    private ThreeCardView view;
 
-    public TreeCardController() {
-        view = new TreeCardView();
+    public ThreeCardController() {
+        view = new ThreeCardView();
 
         view.show();
     }

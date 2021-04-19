@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class TreeCardView {
+public class ThreeCardView {
 
     @FXML
     private Button quitButton, sxButton, centerButton, dxButton;
@@ -27,7 +27,7 @@ public class TreeCardView {
     private final Stage primaryStage = new Stage();
     private Image image;
 
-    public TreeCardView() {
+    public ThreeCardView() {
         try {
             final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(LAYOUT_LOCATION));
             loader.setController(this);
