@@ -8,7 +8,7 @@ public enum Choice {
     SCISSORS;
 
     public static Choice getRandomChoice() {
-        Random r = new Random();
+        final Random r = new Random();
         return Choice.values()[r.nextInt(Choice.values().length)];
     }
 }
