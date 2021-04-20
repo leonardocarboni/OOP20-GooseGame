@@ -26,9 +26,6 @@ public class ThreeCardController implements MinigameController {
 
     @Override
     public int getResult() {
-       if (checkTurns()) {
-           return PROGRESS_IN_GAME;
-       }
        return 0;
     }
 
@@ -38,12 +35,12 @@ public class ThreeCardController implements MinigameController {
     public class SxClickHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            playerChoice = Choice.SX_POS;
-
-            if (getWin(playerChoice, computerChoice)) {
+            if (checkTurns()) {
+                playerChoice = Choice.SX_POS;
                 setWin();
+                view.setImages(computerChoice);
+                view.setEnableNextRoundButton();
             }
-            view.setImages(computerChoice);
         }
     }
 
@@ -53,13 +50,11 @@ public class ThreeCardController implements MinigameController {
     public class CenterClickHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            if (numTurns < 3) {
+            if (checkTurns()) {
                 playerChoice = Choice.CENTER_POS;
-
-                if (getWin(playerChoice, computerChoice)) {
-                    setWin();
-                }
+                setWin();
                 view.setImages(computerChoice);
+                view.setEnableNextRoundButton();
             }
         }
     }
@@ -70,13 +65,11 @@ public class ThreeCardController implements MinigameController {
     public class DxClickHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            if (numTurns < 3) {
+            if (checkTurns()) {
                 playerChoice = Choice.DX_POS;
-
-                if (getWin(playerChoice, computerChoice)) {
-                    setWin();
-                }
+                setWin();
                 view.setImages(computerChoice);
+                view.setEnableNextRoundButton();
             }
         }
     }
@@ -85,7 +78,12 @@ public class ThreeCardController implements MinigameController {
         @Override
         public void handle(ActionEvent event) {
             view.setBackImage();
-            computerChoice = Choice.getRandomChoice();
+            if (checkTurns()) {
+                computerChoice = Choice.getRandomChoice();
+            } else {
+                view.setDisableNextRoundButton();
+            }
+
         }
     }
 
@@ -102,7 +100,7 @@ public class ThreeCardController implements MinigameController {
      * @return true if is over the minigame
      */
     private boolean checkTurns() {
-        return numTurns == 3 || numPlayerWin == 2 || numComputerWin == 2;
+        return numTurns < 3 && numPlayerWin < 2 && numComputerWin < 2;
     }
 
     private void setWin() {

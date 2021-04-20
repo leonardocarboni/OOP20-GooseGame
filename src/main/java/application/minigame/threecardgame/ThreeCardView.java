@@ -28,7 +28,7 @@ public class ThreeCardView {
 
     private static final String LAYOUT_LOCATION = "layouts/three-card.fxml";
     private static final String LOGO_LOCATION = "logo.png";
-    private static final String BACK_IMAGE = "../logo.png";
+    private static final String BACK_IMAGE = "logo.png";
     private static final String RIGHT_IMAGE = "threeCard/right.jpg";
     private static final String WRONG_IMAGE = "threeCard/wrong.png";
 
@@ -50,6 +50,7 @@ public class ThreeCardView {
         }catch(IOException e) {
             e.printStackTrace();
         }
+        setDisableNextRoundButton();
     }
 
     public void setSxButton(EventHandler<ActionEvent> e) {
@@ -61,7 +62,7 @@ public class ThreeCardView {
     }
 
     public void setDxButton(EventHandler<ActionEvent> e) {
-        this.centerButton.setOnAction(e);
+        this.dxButton.setOnAction(e);
     }
 
     public void setContinueButton(EventHandler<ActionEvent> e) {
@@ -104,5 +105,13 @@ public class ThreeCardView {
 
     public void show() {
         primaryStage.showAndWait();
+    }
+
+    public void setDisableNextRoundButton() {
+        nextRoundButton.setDisable(true);
+    }
+
+    public void setEnableNextRoundButton() {
+        nextRoundButton.setDisable(false);
     }
 }
