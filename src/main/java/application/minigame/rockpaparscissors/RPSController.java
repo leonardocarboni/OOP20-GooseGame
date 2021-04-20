@@ -52,7 +52,7 @@ public class RPSController implements MinigameController {
                 numTurns++;
                 playerChoice = Choice.ROCK;
                 final Choice computerChoice = getComputerChoice();
-                //final RPSGameState winner = getWinner(Choice.ROCK, computerChoice);
+                final RPSGameState winner = getWinner(Choice.ROCK, computerChoice);
                 view.setPlayerChoiceImage(Choice.ROCK);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
@@ -74,7 +74,7 @@ public class RPSController implements MinigameController {
                 numTurns++;
                 playerChoice = Choice.PAPER;
                 final Choice computerChoice = getComputerChoice();
-                //final RPSGameState winner = getWinner(Choice.PAPER, computerChoice);
+                final RPSGameState winner = getWinner(Choice.PAPER, computerChoice);
                 view.setPlayerChoiceImage(Choice.PAPER);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
@@ -96,7 +96,7 @@ public class RPSController implements MinigameController {
                 numTurns++;
                 playerChoice = Choice.SCISSORS;
                 final Choice computerChoice = getComputerChoice();
-                //final RPSGameState winner = getWinner(Choice.SCISSORS, computerChoice);
+                final RPSGameState winner = getWinner(Choice.SCISSORS, computerChoice);
                 view.setPlayerChoiceImage(Choice.SCISSORS);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
