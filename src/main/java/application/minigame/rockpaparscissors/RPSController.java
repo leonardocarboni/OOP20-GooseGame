@@ -58,7 +58,7 @@ public class RPSController implements MinigameController {
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
             }
-            if (numTurns == 3){
+            if (checkTurns()){
                 view.enableQuitButton();
             }
         }
@@ -80,7 +80,7 @@ public class RPSController implements MinigameController {
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
             }
-            if (numTurns == 3){
+            if (checkTurns()){
                 view.enableQuitButton();
             }
         }
@@ -102,10 +102,14 @@ public class RPSController implements MinigameController {
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
             }
-            if (numTurns == 3){
+            if (checkTurns()){
                 view.enableQuitButton();
             }
         }
+    }
+
+    private boolean checkTurns() {
+        return numTurns == 3 || numPlayerWin == 2 || numComputerWin == 2;
     }
 
     public RPSGameState getWinner(Choice playerChoice, Choice computerChoice) {
