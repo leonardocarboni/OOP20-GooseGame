@@ -19,7 +19,7 @@
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../treeCard/arrowUp.png" />
+                              <Image url="@../threeCard/arrowUp.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -31,7 +31,7 @@
                      <graphic>
                         <ImageView  fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../treeCard/arrowUp.png" />
+                              <Image url="@../threeCard/arrowUp.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
@@ -43,7 +43,7 @@
                      <graphic>
                         <ImageView  fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../treeCard/arrowUp.png" />
+                              <Image url="@../threeCard/arrowUp.png" />
                            </image></ImageView>
                      </graphic>
                   </Button>
