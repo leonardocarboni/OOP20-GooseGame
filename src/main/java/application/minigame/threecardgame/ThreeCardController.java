@@ -80,7 +80,6 @@ public class ThreeCardController implements MinigameController {
             view.setBackImage();
             if (checkTurns()) {
                 computerChoice = Choice.getRandomChoice();
-            } else {
                 view.setDisableNextRoundButton();
             }
 
