@@ -43,7 +43,7 @@ public class RPSController implements MinigameController {
     }
 
     /**
-     * An inner class for the event catching in the minigame view
+     * An inner class for the event catching in the minigame view.
      */
     public class RockClickHandler implements EventHandler<ActionEvent> {
         @Override
@@ -65,7 +65,7 @@ public class RPSController implements MinigameController {
     }
 
     /**
-     * An inner class for the event catching in the minigame view
+     * An inner class for the event catching in the minigame view.
      */
     public class PaperClickHandler implements EventHandler<ActionEvent> {
         @Override
@@ -87,7 +87,7 @@ public class RPSController implements MinigameController {
     }
 
     /**
-     * An inner class for the event catching in the minigame view
+     * An inner class for the event catching in the minigame view.
      */
     public class  ScissorsClickHandler implements EventHandler<ActionEvent> {
         @Override
