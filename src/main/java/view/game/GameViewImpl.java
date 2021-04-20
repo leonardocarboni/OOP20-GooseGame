@@ -130,8 +130,8 @@ public class GameViewImpl extends NormalView implements Initializable, GameView 
     }
 
     @Override
-    public void showResult(int result){
+    public void showResult(final int result) {
         mgResultLabel.setVisible(true);
-        gameState.setText( String.valueOf(result));
+        gameState.setText(String.valueOf(result));
     }
 }

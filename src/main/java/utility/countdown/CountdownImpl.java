@@ -15,8 +15,8 @@ public class CountdownImpl implements Countdown {
 
     private final Timer timer;
     private double seconds;
-    final private UpdateLabel updateLabelTask;
-    final private Label timeLabel;
+    private final UpdateLabel updateLabelTask;
+    private final Label timeLabel;
     private Optional<Label> labelToHide;
     private String labelText;
 
@@ -44,7 +44,7 @@ public class CountdownImpl implements Countdown {
     }
 
     @Override
-    public void editLabelOnEnd(Label labelToEdit, String text) {
+    public void editLabelOnEnd(final Label labelToEdit, final String text) {
         this.labelToHide = Optional.of(labelToEdit);
         this.labelText = text;
     }

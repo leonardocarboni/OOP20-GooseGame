@@ -13,7 +13,7 @@ public class BoardImpl implements Board {
     private final int size;
     private final List<Box> boxes;
     private static final int BOARD_LIMIT = 2;
-
+    private static final int MINIGAME_INTERVAL = 5;
     public BoardImpl(final int size) {
         this.size = size;
         this.boxes = new ArrayList<>(size);
@@ -24,20 +24,13 @@ public class BoardImpl implements Board {
         checkSize(size);
         final List<Box> minigames = getAllBoxesByType(BoxType.MINIGAMES);
         boxes.add(Box.START);
-        int addSpecial = 0;
-        boolean addMinigames = false;
+        int addMinigame = 0;
         for (int i = 0; i < size - 1; i++) {
-            if (addSpecial == 2) {
-                if (addMinigames) {
-                    boxes.add(minigames.get(randomValue(0, minigames.size() - 1)));
-                } else {
-                    boxes.add(Box.BONUS);
-                }
-                addMinigames = addMinigames ? false : true;
-                addSpecial = 0;
+            if (addMinigame == MINIGAME_INTERVAL) {
+               boxes.add(minigames.get(randomValue(0, minigames.size() - 1)));
             } else {
                 boxes.add(Box.NORMAL);
-                addSpecial++;
+                addMinigame++;
             }
         }
         boxes.add(Box.END);
