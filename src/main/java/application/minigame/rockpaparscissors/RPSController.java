@@ -6,13 +6,13 @@ import javafx.event.EventHandler;
 
 public class RPSController implements MinigameController {
 
-    private final static int PROGRESS_IN_GAME = 3;
-    private final static int COME_BACK_IN_GAME = -3;
+    private static final int PROGRESS_IN_GAME = 3;
+    private static final int COME_BACK_IN_GAME = -3;
     private final RPSView view;
 
-    private int numPlayerWin = 0;
-    private int numComputerWin = 0;
-    private int numTurns = 0;
+    private int numPlayerWin;
+    private int numComputerWin;
+    private int numTurns;
     private Choice playerChoice;
 
 
@@ -31,9 +31,9 @@ public class RPSController implements MinigameController {
     @Override
     public int getResult() {
         if (numTurns == 3) {
-            if (getWinner(playerChoice,getComputerChoice()) == RPSGameState.DRAW) {
+            if (getWinner(playerChoice, getComputerChoice()) == RPSGameState.DRAW) {
                 return 0;
-            } else if (getWinner(playerChoice,getComputerChoice()) == RPSGameState.COMPUTER_WIN){
+            } else if (getWinner(playerChoice, getComputerChoice()) == RPSGameState.COMPUTER_WIN) {
                 return PROGRESS_IN_GAME;
             } else {
                 return COME_BACK_IN_GAME;
@@ -47,12 +47,12 @@ public class RPSController implements MinigameController {
      */
     public class RockClickHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event) {
+        public void handle(final ActionEvent event) {
             if (numTurns < 3) {
                 numTurns++;
                 playerChoice = Choice.ROCK;
-                Choice computerChoice = getComputerChoice();
-                RPSGameState winner = getWinner(Choice.ROCK, computerChoice);
+                final Choice computerChoice = getComputerChoice();
+                //final RPSGameState winner = getWinner(Choice.ROCK, computerChoice);
                 view.setPlayerChoiceImage(Choice.ROCK);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
@@ -69,12 +69,12 @@ public class RPSController implements MinigameController {
      */
     public class PaperClickHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event) {
+        public void handle(final ActionEvent event) {
             if (numTurns < 3) {
                 numTurns++;
                 playerChoice = Choice.PAPER;
-                Choice computerChoice = getComputerChoice();
-                RPSGameState winner = getWinner(Choice.PAPER, computerChoice);
+                final Choice computerChoice = getComputerChoice();
+                //final RPSGameState winner = getWinner(Choice.PAPER, computerChoice);
                 view.setPlayerChoiceImage(Choice.PAPER);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
@@ -91,12 +91,12 @@ public class RPSController implements MinigameController {
      */
     public class  ScissorsClickHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event) {
+        public void handle(final ActionEvent event) {
             if (numTurns < 3) {
                 numTurns++;
                 playerChoice = Choice.SCISSORS;
-                Choice computerChoice = getComputerChoice();
-                RPSGameState winner = getWinner(Choice.SCISSORS, computerChoice);
+                final Choice computerChoice = getComputerChoice();
+                //final RPSGameState winner = getWinner(Choice.SCISSORS, computerChoice);
                 view.setPlayerChoiceImage(Choice.SCISSORS);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
@@ -112,7 +112,7 @@ public class RPSController implements MinigameController {
         return numTurns == 3 || numPlayerWin == 2 || numComputerWin == 2;
     }
 
-    public RPSGameState getWinner(Choice playerChoice, Choice computerChoice) {
+    public RPSGameState getWinner(final Choice playerChoice, final Choice computerChoice) {
         if (playerChoice.equals(computerChoice)) {
             view.draw();
             numTurns--;
