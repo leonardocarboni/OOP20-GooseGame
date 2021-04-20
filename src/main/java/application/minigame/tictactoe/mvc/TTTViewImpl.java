@@ -2,12 +2,12 @@ package application.minigame.tictactoe.mvc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 import java.util.function.Consumer;
 
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
-import application.minigame.tictactoe.fxItem.ButtonDropper;
+import application.minigame.tictactoe.fxItem.ItemFactoryImpl;
+import application.minigame.tictactoe.interfaces.TTTView;
 import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -17,56 +17,55 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
- * Controller del gioco, esso si occupa della creazione di bottoni, di disegnare
- * la "O" e vedere chi vince
+ * View of the game. {@link TTTView}
  */
-public class TTTView {
-
-    /**
-     * Numero di bottoni nella griglia
-     */
+public class TTTViewImpl implements TTTView {
 
     private int GRID_DIM;
     private int NUMBER_OF_BUTTON;
 
     /**
-     * Creo un'istanza del controller
+     * Create an instance of the controller.
      */
-    public static final TTTController handler = new TTTController();
+    public static final TTTControllerImpl handler = new TTTControllerImpl();
 
     /**
-     * Creo un istanza model per vedere chi ha vinto
+     * Create an instance of the controller for checks who is the winner.
      */
-    public static final TTTModel model = new TTTModel();
+    public static final TTTModelImpl model = new TTTModelImpl();
 
     /**
-     * Creo lo stage
+     * Create the stage.
      */
-    public Stage stage = new Stage();
+    public Stage stage;
+
+
 
     private static List<Integer> number = new ArrayList<>();
 
     private static List<Integer> number2 = new ArrayList<>();
 
     /**
-     * Lista dei bottoni presenti nella griglia principale 3x3
+     * List of buttons present in the main 3x3 grid.
      */
     private static final List<Button> listButtonGrid = new ArrayList<>();
 
     /**
-     * Lista dei bottono sotto la griglia 3x3
+     * List of buttons under the 3x3 grid.
      */
     private final List<Button> listBottomButton = new ArrayList<>();
 
     /**
-     * Serve per vedere se la dark mode è selezionata
+     * It is used to see if dark mode is selected
      */
     public boolean isDark = false;
 
+    final ItemFactoryImpl btn = new ItemFactoryImpl();
+
     /**
-     * Costruttore della classe controller. Crea la lista dei bottoni nel gioco
+     * Controller class constructor. Create the button list in the game.
      */
-    public TTTView(final int gridDim) {
+    public TTTViewImpl(final int gridDim) {
         GRID_DIM = gridDim;
         NUMBER_OF_BUTTON = GRID_DIM * GRID_DIM;
 
@@ -75,7 +74,6 @@ public class TTTView {
                 number2.add(j, i);
             }
         }
-        System.out.println(number2);
 
         for (int i = GRID_DIM - 1; i >= 0; i--) {
             for (int j = 0; j < GRID_DIM; j++) {
@@ -83,18 +81,21 @@ public class TTTView {
             }
         }
 
-        final ButtonDropper btn = new ButtonDropper();
+        /**
+         * Add the buttons on the List.
+         */
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             listButtonGrid.add(btn.gridButton(handler));
         }
 
+        /**
+         * Add the change color button.
+         */
         listBottomButton.add(0, btn.gameDarkModeIcon(handler));
 
     }
 
-    /**
-     * Il computer vede dove puo disegnare un "O" in maniera casuale
-     */
+    @Override
     public void drawO() {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             final Random rnd = new Random();
@@ -107,14 +108,7 @@ public class TTTView {
         }
     }
 
-    /**
-     * Disegna una X, creando un numero casuale e controllando quell'indice nella
-     * lista dei bottoni, se quel valore è "" allora disegna una X, altrimenti rifà
-     * il procedimento
-     * 
-     * @param evt          , per prendere il bottone cliccato
-     * @param winCondition , controllo se ho vinto
-     */
+    @Override
     public void drawX(final Event evt, final Consumer<String> winCondition) {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             if (evt.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")) {
@@ -125,11 +119,7 @@ public class TTTView {
         }
     }
 
-    /**
-     * Inserisco i bottoni creati nel costruttore nel pannello
-     * 
-     * @return Griglia coi bottni
-     */
+    @Override
     public GridPane createButton() {
         final GridPane root = new GridPane();
 
@@ -140,11 +130,7 @@ public class TTTView {
         return root;
     }
 
-    /**
-     * In caso sia selezionata la darkMode devo mettere uno specifico colore
-     * 
-     * @param event
-     */
+    @Override
     public void releaseButton(final Event event) {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             if (event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")) {
@@ -156,9 +142,7 @@ public class TTTView {
         }
     }
 
-    /**
-     * Se seleziono la darkMode cambio il colore di tutti i bottoni
-     */
+    @Override
     public void changeColor() {
         if (!isDark) {
             isDark = true;
@@ -172,7 +156,7 @@ public class TTTView {
     }
 
     /**
-     * Funzione a supporto del cambio colore, li mette neri
+     * Function in support of color change, puts them black.
      */
     private void changeAllDark() {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
@@ -181,12 +165,19 @@ public class TTTView {
     }
 
     /**
-     * Funzione a supporto del cambio colore, li mette bianchi
+     * Function in support of color change, puts them white.
      */
     private void changeAllWhite() {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
         }
+    }
+
+    /**
+     * Clear the button text.
+     */
+    public static void clear(){
+        listButtonGrid.stream().forEach(i -> i.setText(""));
     }
 
     public void setStage(final Stage stage) {

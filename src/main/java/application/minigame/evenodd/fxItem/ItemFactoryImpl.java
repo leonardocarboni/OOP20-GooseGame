@@ -1,6 +1,7 @@
 package application.minigame.evenodd.fxItem;
 
-import application.minigame.evenodd.mvc.EOController;
+import application.minigame.evenodd.interfaces.ItemFactory;
+import application.minigame.evenodd.mvc.EOControllerImpl;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -10,10 +11,13 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class ItemDropper extends Button {
+/**
+ * This class gives pre-made buttons. {@link ItemFactory}
+ */
+public class ItemFactoryImpl extends Button implements ItemFactory {
 
-    public Button evenButton(EOController handler) {
-
+    @Override
+    public Button evenButton(EOControllerImpl handler) {
         final Button btn = new Button();
 
         btn.setTranslateX(-150);
@@ -27,7 +31,9 @@ public class ItemDropper extends Button {
 
         return btn;
     }
-    public Button oddButton(EOController handler) {
+
+    @Override
+    public Button oddButton(EOControllerImpl handler) {
 
         final Button btn = new Button();
 
@@ -41,6 +47,8 @@ public class ItemDropper extends Button {
 
         return btn;
     }
+
+    @Override
     public Text createText(String string, String resultValue, int positionY) {
         Text text = new Text();
         text.setText(string + resultValue.toString());
@@ -49,7 +57,9 @@ public class ItemDropper extends Button {
         text.setFill(Color.BEIGE);
         return text;
     }
-    public Button exitButton(EOController handler) {
+
+    @Override
+    public Button exitButton(EOControllerImpl handler) {
 
         final Button btn = new Button();
 

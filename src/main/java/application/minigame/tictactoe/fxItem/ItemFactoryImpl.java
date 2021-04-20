@@ -1,7 +1,8 @@
 package application.minigame.tictactoe.fxItem;
 
+import application.minigame.tictactoe.interfaces.ItemFactory;
 import application.minigame.tictactoe.mvc.GettersMVC;
-import application.minigame.tictactoe.mvc.TTTController;
+import application.minigame.tictactoe.mvc.TTTControllerImpl;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
@@ -10,11 +11,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
-public class ButtonDropper extends Button {
+/**
+ * Item factory {@link ItemFactory}
+ */
+public class ItemFactoryImpl extends Button implements ItemFactory {
 
-    // metodo che consente di creare il bottone presente nella griglia
-    // prende come valore un handler per un bottone
-    public Button gridButton(final TTTController handler) {
+    public Button gridButton(final TTTControllerImpl handler) {
         final GettersMVC getters = new GettersMVC();
         final int factor = getters.getSize();
 
@@ -30,7 +32,6 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-    /* metodo che restituisce il bottone presente alla fine del gioco */
     public Button endGameButton(final String winner) {
         Button btn = new Button();
         btn.setBackground(new Background(BackgroundLoader.endGameButton));
@@ -41,7 +42,7 @@ public class ButtonDropper extends Button {
         return btn;
     }
 
-    public Button gameDarkModeIcon(final TTTController handler) {
+    public Button gameDarkModeIcon(final TTTControllerImpl handler) {
         Button btn = new Button();
         btn.setMinSize(50, 40);
         btn.setBackground(new Background(BackgroundLoader.darkButtonIcon));

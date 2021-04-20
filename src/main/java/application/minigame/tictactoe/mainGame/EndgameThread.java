@@ -1,7 +1,7 @@
 package application.minigame.tictactoe.mainGame;
 
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
-import application.minigame.tictactoe.fxItem.ButtonDropper;
+import application.minigame.tictactoe.fxItem.ItemFactoryImpl;
 import application.minigame.tictactoe.mvc.GettersMVC;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
@@ -11,8 +11,9 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
-import java.util.Optional;
-
+/**
+ * Final thread.
+ */
 public class EndgameThread extends Thread {
 
     private final GettersMVC getters = new GettersMVC();
@@ -26,7 +27,7 @@ public class EndgameThread extends Thread {
         @Override
         public Void call() {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 Platform.runLater(()->{
                   getters.getView().stage.close();
                 });
@@ -38,29 +39,28 @@ public class EndgameThread extends Thread {
     };
 
 
-    /* thread che viene creato dopo che la partita a tris finisce */
+    /**
+     * Create the pane and close it after 1 sec.
+     */
     public void run() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                final StackPane pane = new StackPane();
-                final ButtonDropper button = new ButtonDropper();
+        Platform.runLater(() -> {
+            final StackPane pane = new StackPane();
+            final ItemFactoryImpl button = new ItemFactoryImpl();
 
-                pane.getChildren().add(button.endGameButton(winner));
-                if (!getters.getView().isDark) {
-                    pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
-                } else {
-                    pane.setBackground(new Background(BackgroundLoader.endGameButtonBackgroundBlack));
-                }
-
-                FadeTransition ft = new FadeTransition(Duration.millis(2000), pane);
-                ft.setFromValue(0.0);
-                ft.setToValue(1.0);
-                ft.play();
-
-                getters.getView().stage.setScene(new Scene(pane, 600, 480));
-                new Thread(sleep).start();
+            pane.getChildren().add(button.endGameButton(winner));
+            if (!getters.getView().isDark) {
+                pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
+            } else {
+                pane.setBackground(new Background(BackgroundLoader.endGameButtonBackgroundBlack));
             }
+
+            FadeTransition ft = new FadeTransition(Duration.millis(2000), pane);
+            ft.setFromValue(0.0);
+            ft.setToValue(1.0);
+            ft.play();
+
+            getters.getView().stage.setScene(new Scene(pane, 600, 480));
+            new Thread(sleep).start();
         });
     }
 }

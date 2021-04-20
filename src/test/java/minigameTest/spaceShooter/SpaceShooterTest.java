@@ -1,29 +1,15 @@
 package minigameTest.spaceShooter;
 
-import application.minigame.spaceshooter.info.InfoGame;
-import application.minigame.spaceshooter.mainGame.SpaceShooter;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static application.minigame.spaceshooter.info.InfoGame;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Random;
+
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
 public class SpaceShooterTest {
-
-    SpaceShooter game = new SpaceShooter();
-
-
-    @Test
-    @DisplayName("Test start of the game")
-    public void start() {
-        assertEquals(false, game.getOver() );
-        assertNull(game.getEnemies());
-        assertNull(game.getPlayer());
-        assertNull(game.getShots());
-    }
-
 
 
     @Test

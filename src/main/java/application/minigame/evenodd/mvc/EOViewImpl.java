@@ -2,10 +2,8 @@ package application.minigame.evenodd.mvc;
 
 import application.minigame.evenodd.fxItem.BackgroundLoader;
 import application.minigame.evenodd.fxItem.Choice;
-import application.minigame.evenodd.fxItem.ItemDropper;
-import application.minigame.evenodd.mainGame.EvenOdd;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
+import application.minigame.evenodd.fxItem.ItemFactoryImpl;
+import application.minigame.evenodd.interfaces.EOView;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -18,17 +16,17 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EOView {
+public class EOViewImpl implements EOView {
 
     /**
      * Creo un'istanza del controller.
      */
-    public static final EOController handler = new EOController();
+    public static final EOControllerImpl handler = new EOControllerImpl();
 
     /**
      * Creo un istanza model.
      */
-    public static final EOModel model = new EOModel();
+    public static final EOModelImpl model = new EOModelImpl();
 
     /**
      * Lista dei bottoni presenti nel gioco, Pari o Dispari.
@@ -55,26 +53,9 @@ public class EOView {
      */
     public Choice playerChoice;
 
-    /**
-     * Definizione della task usata per implementare un delay nella GUI Esso setta
-     * l'immagine a NULL della imageView, poichè ci sarà l'animazione del dado.
-     * Dopodichè chiama un metodo per restituire l'imageView corretta.
-     */
-    Task<Void> task1 = new Task<Void>() {
-        @Override
-        public Void call() {
-            try {
-                Thread.sleep(1000);
-                Platform.runLater(() -> {
-                    imgView.setImage(null);
-                    startWinAnimation();
-                });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    };
+    public StackPane pane = null;
+
+
 
     /**
      * Esso crea lo stackPane con i bottoni opportunamente posizionati e riempie la
@@ -83,7 +64,7 @@ public class EOView {
      * @return Il pannello di gioco
      */
     public StackPane createPane() {
-        ItemDropper item = new ItemDropper();
+        ItemFactoryImpl item = new ItemFactoryImpl();
         StackPane pane = new StackPane();
         Button evenButton = item.evenButton(handler);
         Button oddButton = item.oddButton(handler);
@@ -95,31 +76,24 @@ public class EOView {
 
         pane.setBackground(new Background(BackgroundLoader.background));
 
-        listButton.addAll(List.of(evenButton, oddButton, exitButton));
+
+        listButton.add(0, evenButton);
+        listButton.add(1, oddButton);
+        listButton.add(2, exitButton);
+
+        this.pane  = pane;
         return pane;
     }
 
-    public void startAnimation() {
-        startGifAnimation();
-        new Thread(task1).start();
-    }
-
-    private void startGifAnimation() {
-        changeIcon(BackgroundLoader.animationGif);
-    }
-
-    /**
-     * In base al risultato (dato dal model) setto l'immagine winner o loser
-     */
-    private void startWinAnimation() {
+    public void resultPlayer(){
+        if(result){
+            winImage();
+        } else{
+            loseImage();
+        }
         createText();
         createTextChoice();
-        if (result) {
-            task1.setOnSucceeded(event -> winImage());
-        } else {
-            task1.setOnSucceeded(event -> loseImage());
-        }
-        new Thread(task1).start();
+        result = false;
     }
 
     /**
@@ -138,13 +112,13 @@ public class EOView {
 
     /**
      * Il metodo verrà chiamato una volta noto il vincitore.
-     * 
+     *
      * @param bkg Essa è l'immagine da mostrare in caso di vittoria o di sconfitta
      */
-    private void changeIcon(final BackgroundImage bkg) {
+    private void changeIcon(BackgroundImage bkg) {
         Image imgIcon = new Image(bkg.getImage().getUrl());
         ImageView viewImage = new ImageView(imgIcon);
-        viewImage.setFitHeight(200); // no magic number
+        viewImage.setFitHeight(200);
         viewImage.setFitWidth(400);
         this.imgView = viewImage;
         viewImage.setTranslateY(-100);
@@ -155,18 +129,18 @@ public class EOView {
      * Crea il testo che mi dice il valore generato dalla model.
      */
     private void createText() {
-        ItemDropper item = new ItemDropper();
+        ItemFactoryImpl item = new ItemFactoryImpl();
         Text text = item.createText("The value generated is: ", Integer.toString(this.resultValue), 50);
         addElementToStackPane(text);
     }
 
     private void createTextChoice() {
-        Text text = new ItemDropper().createText("Your choice is ", this.playerChoice.toString(), 74);
+        Text text = new ItemFactoryImpl().createText("Your choice is ", this.playerChoice.toString(), 74);
         addElementToStackPane(text);
     }
 
-    private void addElementToStackPane(final Node obj) {
-        EvenOdd.pane.getChildren().add(obj);
+    private void addElementToStackPane(Node obj) {
+        this.pane.getChildren().add(obj);
     }
 
 }
