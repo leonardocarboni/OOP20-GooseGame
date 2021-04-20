@@ -18,7 +18,7 @@ import java.io.IOException;
 public class ThreeCardView {
 
     @FXML
-    private Button quitButton, sxButton, centerButton, dxButton;
+    private Button quitButton, sxButton, centerButton, dxButton, nextRoundButton;
 
     @FXML
     private Label playerScoreLabel, computerScoreLabel;
@@ -62,6 +62,10 @@ public class ThreeCardView {
 
     public void setDxButton(EventHandler<ActionEvent> e) {
         this.centerButton.setOnAction(e);
+    }
+
+    public void setContinueButton(EventHandler<ActionEvent> e) {
+        this.nextRoundButton.setOnAction(e);
     }
 
     public void setPlayerScoreLabel(int score) {

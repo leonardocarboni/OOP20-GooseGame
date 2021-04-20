@@ -19,6 +19,7 @@ public class ThreeCardController implements MinigameController {
         view.setSxButton(new SxClickHandler());
         view.setCenterButton(new CenterClickHandler());
         view.setDxButton(new DxClickHandler());
+        view.setContinueButton(new ContinueHandler());
         computerChoice = Choice.getRandomChoice();
         view.show();
     }
@@ -42,6 +43,7 @@ public class ThreeCardController implements MinigameController {
             if (getWin(playerChoice, computerChoice)) {
                 setWin();
             }
+            view.setImages(computerChoice);
         }
     }
 
@@ -57,6 +59,7 @@ public class ThreeCardController implements MinigameController {
                 if (getWin(playerChoice, computerChoice)) {
                     setWin();
                 }
+                view.setImages(computerChoice);
             }
         }
     }
@@ -73,7 +76,16 @@ public class ThreeCardController implements MinigameController {
                 if (getWin(playerChoice, computerChoice)) {
                     setWin();
                 }
+                view.setImages(computerChoice);
             }
+        }
+    }
+
+    public class ContinueHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            view.setBackImage();
+            computerChoice = Choice.getRandomChoice();
         }
     }
 
@@ -103,7 +115,6 @@ public class ThreeCardController implements MinigameController {
             numComputerWin++;
             view.setComputerScoreLabel(numComputerWin);
         }
-        view.setImages(computerChoice);
     }
 
 }
