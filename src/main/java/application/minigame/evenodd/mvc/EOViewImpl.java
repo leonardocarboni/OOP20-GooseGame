@@ -143,18 +143,6 @@ public class EOViewImpl implements EOView {
         return listButton;
     }
 
-    public void setListButton(final List<Button> listButton) {
-        this.listButton = listButton;
-    }
-
-    public ImageView getImgView() {
-        return imgView;
-    }
-
-    public void setImgView(final ImageView imgView) {
-        this.imgView = imgView;
-    }
-
     public boolean isResult() {
         return result;
     }
@@ -163,28 +151,11 @@ public class EOViewImpl implements EOView {
         this.result = result;
     }
 
-    public int getResultValue() {
-        return resultValue;
-    }
-
     public void setResultValue(final int resultValue) {
         this.resultValue = resultValue;
-    }
-
-    public Choice getPlayerChoice() {
-        return playerChoice;
     }
 
     public void setPlayerChoice(final Choice playerChoice) {
         this.playerChoice = playerChoice;
     }
-
-    public StackPane getPane() {
-        return pane;
-    }
-
-    public void setPane(final StackPane pane) {
-        this.pane = pane;
-    }
-
 }
