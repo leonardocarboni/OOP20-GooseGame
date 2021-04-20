@@ -1,13 +1,9 @@
 package application.minigame.rockpaparscissors;
 
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.stage.Modality;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
@@ -15,10 +11,9 @@ import javafx.scene.control.Label;
 import view.MinigameView;
 import view.ViewType;
 
-import java.io.IOException;
 
 public class RPSView extends MinigameView {
-    //estendere view su develop
+
     @FXML
     private Button rockButton, paperButton, scissorsButton;
 
@@ -46,35 +41,35 @@ public class RPSView extends MinigameView {
         resultLabel.setText("Draw");
     }
 
-    public void setRockButtonHandler(EventHandler<ActionEvent> e) {
+    public void setRockButtonHandler(final EventHandler<ActionEvent> e) {
         rockButton.setOnAction(e);
     }
 
-    public void setPaperButtonHandler(EventHandler<ActionEvent> e) {
+    public void setPaperButtonHandler(final EventHandler<ActionEvent> e) {
         paperButton.setOnAction(e);
     }
 
-    public void setScissorsButtonHandler(EventHandler<ActionEvent> e) {
+    public void setScissorsButtonHandler(final EventHandler<ActionEvent> e) {
         scissorsButton.setOnAction(e);
     }
 
-    public void setPlayerScoreLabel(int score) {
-        playerScoreLabel.setText("" + score);
+    public void setPlayerScoreLabel(final int score) {
+        playerScoreLabel.setText(" " + score);
     }
 
-    public void setComputerScoreLabel(int score) {
-        computerScoreLabel.setText("" + score);
+    public void setComputerScoreLabel(final int score) {
+        computerScoreLabel.setText(" " + score);
     }
 
-    public void setPlayerChoiceImage(Choice choice) {
+    public void setPlayerChoiceImage(final Choice choice) {
         playerImage.setImage(new Image(parseChoiceImagePath(choice)));
     }
 
-    public void setComputerChoiceImage(Choice choice) {
+    public void setComputerChoiceImage(final Choice choice) {
         computerImage.setImage(new Image(parseChoiceImagePath(choice)));
     }
 
-    private String parseChoiceImagePath(Choice choice) {
+    private String parseChoiceImagePath(final Choice choice) {
         String imagePath;
         if (choice == Choice.ROCK) {
             imagePath = "rockpaperscissors/rock.png";
