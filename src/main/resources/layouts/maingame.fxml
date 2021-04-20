@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import java.util.ArrayList?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
+<?import java.util.ArrayList?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);" stylesheets="@maingamestyle.css" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane fx:id="gameGrid" alignment="CENTER" layoutX="44.0" layoutY="239.0" prefHeight="531.0" prefWidth="912.0" style="-fx-background-color: FCFCFC;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="239.0">
@@ -402,5 +395,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Label fx:id="mgResultLabel" layoutX="542.0" layoutY="207.0" text="MINIGAME RESULT:" visible="false" AnchorPane.rightAnchor="353.0" AnchorPane.topAnchor="207.0" />
    </children>
 </AnchorPane>

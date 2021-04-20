@@ -2,60 +2,43 @@ package minigameTest.evenOdd;
 
 import application.minigame.evenodd.fxItem.Choice;
 import application.minigame.evenodd.mainGame.EvenOdd;
-import application.minigame.evenodd.mvc.EOController;
-import application.minigame.evenodd.mvc.EOModel;
-import application.minigame.evenodd.mvc.EOView;
-import application.minigame.evenodd.mainGame.GettersMVC;
+import controller.minigame.MinigameController;
 import org.junit.jupiter.api.*;
-import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class EvenOddTest {
 
-    EOModel model = null;
-    GettersMVC getters = new GettersMVC();
-    private final Random rnd = new Random();
-    private final int rndValue = rnd.nextInt(10);
-    EOView view = null;
+    Choice choice = null;
 
     @Test
     @DisplayName("Check win")
     public void checkWin(){
+        assertEquals(true,checkWin(1,3)); //TRUE
+        assertEquals(Choice.DISPARI,choice); // it is odd
 
+        assertEquals(true,checkWin(2,4)); //TRUE
+        assertEquals(Choice.PARI,choice); // it is even
 
-        view = getters.getView();
-        model = getters.getModel();
-
-
-        model.checkWin(1); // 1 equals to DISPARI
-
-        assertEquals(Choice.DISPARI,view.playerChoice); //TRUE
-
-        model.checkWin(0); // 0 equals to DISPARI
-
-        assertEquals(Choice.PARI,view.playerChoice); //TRUE
-
-        assertNotEquals(Choice.DISPARI,view.playerChoice); //TRUE
-
-
+        assertNotEquals(false,checkWin(1,4)); //TRUE
+        assertNotEquals(Choice.PARI,choice); // it is odd but even is generated
     }
 
 
 
 
 
-    public void checkWin(int value){
-        if((value == 2 && rndValue % 2 == 0) || (value == 1 && rndValue % 2 != 0)){
-            getters.getView().result=true;
-        }
+    public boolean checkWin(int value, int testValue){
         if(value == 1){
-            getters.getView().playerChoice = Choice.DISPARI;
+            choice = Choice.DISPARI;
         } else{
-            getters.getView().playerChoice = Choice.PARI;
+            choice = Choice.PARI;
         }
-        getters.getView().resultValue=rndValue;
-
+        if((value == 2 && testValue % 2 == 0) || (value == 1 && testValue+1 % 2 != 0)){
+            return true;
+        }
+        return false;
     }
 
 

@@ -1,35 +1,35 @@
 package application.minigame.evenodd.mainGame;
 
-import application.minigame.evenodd.mvc.EOController;
-import application.minigame.evenodd.mvc.EOModel;
-import application.minigame.evenodd.mvc.EOView;
+import application.minigame.evenodd.mvc.EOControllerImpl;
+import application.minigame.evenodd.mvc.EOModelImpl;
+import application.minigame.evenodd.mvc.EOViewImpl;
 
 /**
- * Questa classe ritorna la view, controller, model e stackPane dell'applicazione.
- * Esegue chiamate statiche alle classi EvenOdd e EOView per memorizzare la
- * view, model, controller e stackPane.
+ * This class returns the view, controller, model, and stackPane of the application.
+ * Make static calls to the EvenOdd and EOView classes to store the
+ * view, model, controller and stackPane.
  *
  */
 
 public class GettersMVC {
 
-    private EOView view;
-    private EOController controller;
-    private EOModel model;
+    private EOViewImpl view;
+    private EOControllerImpl controller;
+    private EOModelImpl model;
 
 
-    public EOView getView() {
+    public EOViewImpl getView() {
         this.view = EvenOdd.view;
         return this.view;
     }
 
-    public EOController getController() {
-        this.controller = EOView.handler;
+    public EOControllerImpl getController() {
+        this.controller = EOViewImpl.handler;
         return this.controller;
     }
 
-    public EOModel getModel() {
-        this.model = EOView.model;
+    public EOModelImpl getModel() {
+        this.model = EOViewImpl.model;
         return this.model;
     }
 

@@ -1,7 +1,6 @@
 package application.minigame.evenodd.mainGame;
 
-import application.minigame.evenodd.mvc.EOView;
-
+import application.minigame.evenodd.mvc.EOViewImpl;
 import controller.minigame.MinigameController;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,6 +15,7 @@ import javafx.stage.Stage;
 
 public class EvenOdd extends Application implements MinigameController {
 
+
     public static final Stage primaryStage = new Stage();
 
     public EvenOdd() {
@@ -25,12 +25,10 @@ public class EvenOdd extends Application implements MinigameController {
     /**
      * Creo la view del gioco per costruire lo stackPane.
      */
-    public static final EOView view = new EOView();
+    public static final EOViewImpl view = new EOViewImpl();
 
-    /**
-     * Questa applicazione fa utilizzo dello stackPane.
-     */
-    public static final StackPane pane = view.createPane();
+
+
 
     @Override
     public void start(final Stage primaryStage) {
@@ -39,11 +37,16 @@ public class EvenOdd extends Application implements MinigameController {
          * Tramite il setter presente nella view, creo lo stage principale.
          */
 
-        EvenOdd.primaryStage.setTitle("Even or Odd");
+        /**
+         * Questa applicazione fa utilizzo dello stackPane.
+         */
+        final StackPane pane = view.createPane();
 
-        EvenOdd.primaryStage.setScene(new Scene(pane, 600, 480));
-        EvenOdd.primaryStage.setResizable(false);
-        EvenOdd.primaryStage.show();
+        this.primaryStage.setTitle("Even or Odd");
+
+        this.primaryStage.setScene(new Scene(pane, 600, 480));
+        this.primaryStage.setResizable(false);
+        this.primaryStage.show();
 
     }
 
@@ -60,7 +63,7 @@ public class EvenOdd extends Application implements MinigameController {
         }
     }
 
-    public void close() {
-        EvenOdd.primaryStage.close();
+    public void close(){
+        this.primaryStage.close();
     }
 }

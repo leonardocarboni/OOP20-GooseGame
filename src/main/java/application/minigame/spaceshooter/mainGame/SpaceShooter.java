@@ -1,15 +1,14 @@
 package application.minigame.spaceshooter.mainGame;
 
 import application.minigame.spaceshooter.entity.Enemy;
-import application.minigame.spaceshooter.entity.Player;
-import application.minigame.spaceshooter.entity.Shot;
+import application.minigame.spaceshooter.entity.PlayerImpl;
+import application.minigame.spaceshooter.entity.ShotImpl;
 import application.minigame.spaceshooter.info.InfoGame;
 import controller.minigame.MinigameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -29,14 +28,14 @@ import java.util.stream.IntStream;
 
 public class SpaceShooter extends Application implements MinigameController {
 
-    private final Random rnd;
+    private final Random rnd = new Random();
 
     /**
      * List of enemies and shots and player
      */
     private List<Enemy> enemies;
-    private List<Shot> shots;
-    private Player player;
+    private List<ShotImpl> shots;
+    private PlayerImpl player;
 
     /**
      * Take x for move player
@@ -46,32 +45,14 @@ public class SpaceShooter extends Application implements MinigameController {
     /**
      * get canvas from class GetterSgraphics
      */
-    private final Canvas canvas;
+    private final Canvas canvas = new Canvas(InfoGame.WIDTH,InfoGame.HEIGHT);
     public static GraphicsContext gc;
 
-    /**
-     * @param primaryStage
-     */
-    public Stage primaryStage;
-
+    private Stage d = null;
 
     public SpaceShooter() {
-        rnd = new Random();
-
-
-        /**
-         * get canvas from class GetterSgraphics
-         */
-         canvas = new Canvas(InfoGame.WIDTH, InfoGame.HEIGHT);
-         gc = canvas.getGraphicsContext2D();;
-
-        /**
-         * @param primaryStage
-         */
-        this.primaryStage = new Stage();
-
-        start(primaryStage);
-    }
+       start(new Stage());
+   }
 
 
 
@@ -79,7 +60,9 @@ public class SpaceShooter extends Application implements MinigameController {
             "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT" })
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage.show();
+        d = primaryStage;
+        gc = canvas.getGraphicsContext2D();
+        primaryStage.show();
 
         /**
          * Create a timeline for the animation. Every 60millis run(gc) is executed
@@ -91,15 +74,13 @@ public class SpaceShooter extends Application implements MinigameController {
         });
 
         /**
-         * Seguo il movimento del cursore. Ogni volta che lo muovo prendo la coordinata
-         * X.
+         * Take the X of the click.
          */
         canvas.setCursor(Cursor.MOVE);
         canvas.setOnMouseMoved(e -> mouseX = e.getX());
 
         /**
-         * Ogni volta che clicco, sparo un colpo. Se la variabile isOver è true allora
-         * riinizio tutto da capo.
+         * If number of shots are less than 20 i can add a shot.
          */
         canvas.setOnMouseClicked(e -> {
             if (shots.size() < 20) {
@@ -107,37 +88,35 @@ public class SpaceShooter extends Application implements MinigameController {
             }
         });
 
-        /**
-         * Inizializzo le strutture dati atte a tenere le entità
-         */
         initialize();
-        this.primaryStage.setTitle("SpaceShooter");
-        this.primaryStage.setScene(new Scene(new StackPane(canvas)));
-        this.primaryStage.setResizable(false);
+        primaryStage.setTitle("SpaceShooter");
+        primaryStage.setScene(new Scene(new StackPane(canvas)));
+        primaryStage.setResizable(false);
     }
 
     /**
-     * Inizializzo la lista di nemici, colpi, creo il player e setto lo score a 0
+     * Initialize the variables of the game.
      */
     public void initialize() {
         enemies = new ArrayList<>();
         shots = new ArrayList<>();
         IntStream.range(0, 10)
                 .forEach(i -> enemies.add(new Enemy(rnd.nextInt(600), 0, InfoGame.SIZE_ENEMY, InfoGame.ENEMY_IMG)));
-        player = new Player(InfoGame.WIDTH / 2, InfoGame.HEIGHT - InfoGame.SIZE_PLAYER, InfoGame.SIZE_PLAYER,
+        player = new PlayerImpl(InfoGame.WIDTH / 2, InfoGame.HEIGHT - InfoGame.SIZE_PLAYER, InfoGame.SIZE_PLAYER,
                 InfoGame.PLAYER_IMG);
 
     }
 
     /**
-     * Metodo che viene eseguito ogni 60millis
+     * This method is executed every time.
      * 
-     * @param gc GraphicsContext dato dalla classe GettersGraphics
+     * @param gc GraphicsContext.
+     *
      */
     private void run(GraphicsContext gc) {
 
         /**
-         * Scrivo lo score in alto al centro
+         * Write the score up center.
          */
         this.gc.setFill(Color.grayRgb(20));
         this.gc.fillRect(0, 0, InfoGame.WIDTH, InfoGame.HEIGHT);
@@ -147,12 +126,12 @@ public class SpaceShooter extends Application implements MinigameController {
         this.gc.fillText("Score: " + InfoGame.score, 300, 17);
 
         /**
-         * Disegno lo sfondo
+         * Draw the background.
          */
         this.gc.drawImage(InfoGame.BACKGROUND_IMG, 0, 20, InfoGame.WIDTH, InfoGame.HEIGHT);
 
         /**
-         * Se è finito il gioco, lo scrivo e ritorno il risultato
+         * If the game is over i draw your score and a button for close the game.
          */
         if (InfoGame.isOver) {
             this.gc.setFill(Color.RED);
@@ -161,13 +140,14 @@ public class SpaceShooter extends Application implements MinigameController {
             this.gc.setTextAlign(TextAlignment.LEFT);
             this.gc.drawImage(InfoGame.BUTTON_IMG,250,350,100,50);
             this.gc.fillText("Esci", 250, 396, 100);
+
             canvas.setOnMouseClicked(event -> {
                 double x = event.getX();
                 double y = event.getY();
                 if(x <350 && x > 250 && y > 350 && y < 450){
                     InfoGame.isOver = false;
                     clear();
-                    this.primaryStage.close();
+                    d.close();
                     getResult();
 
                 }
@@ -175,16 +155,16 @@ public class SpaceShooter extends Application implements MinigameController {
         }
 
         /**
-         * Aggiorno il player, lo disegno e setto la nuova posizione, con la nuova X
+         * Update the player and draw it.
          */
         player.update();
         player.draw();
         player.position_player = new Point2D(mouseX, player.position_player.getY());
 
         /**
-         * Streammo nella lista dei nemici, per ognuno lo aggiorno e lo disegno.
-         * Controllo che i nemici abbiano toccato il player. Se lo tocca isOver diventa
-         * true e il player esplode.
+         * We will stream into the list of enemies, for each I update and draw it.
+         * Check that the enemies have touched the player. If you touch it, isOver becomes
+         * true and the player explodes.
          */
         enemies.stream().peek(Enemy::update).peek(Enemy::draw).forEach(e -> {
             if (player.touch(e) && !player.exploding) {
@@ -194,15 +174,14 @@ public class SpaceShooter extends Application implements MinigameController {
         });
 
         /**
-         * Per ogni shot nella lista shots, Se la y è fuori dallo schermo o se noShot è
-         * true allora lo rimuovo dalla lista Aggiorno e disegno i colpi.
-         *
-         * Il secondo for, gestisce le collisioni dei shot coi nemici Se colpisce il
-         * nemico e se non c'è l'animazione dell'esplosione allora lo faccio esplodere
-         * ed elimino il colpo, aumento lo score.
+         * For each shot in the shots list, if the y is off screen or if noShot is
+         * true then I remove it from the Update list and draw hits.
+         * The second for, handles collisions of shots with enemies If it hits the
+         * enemy and if there is no explosion animation then I make it explode
+         * and I eliminate the blow, I increase the score.
          */
         for (int i = shots.size() - 1; i >= 0; i--) {
-            Shot shot = shots.get(i);
+            ShotImpl shot = shots.get(i);
             if (shot.position_shot.getY() < 0 || shot.noShot) {
                 shots.remove(i);
                 continue;
@@ -219,8 +198,7 @@ public class SpaceShooter extends Application implements MinigameController {
         }
 
         /**
-         * Controllo nella lista dei nemici, se la variabile destroyed è true, ricreo il
-         * nemico
+         * Check if the enemies is destroyed, if it is i recreate it.
          */
         for (int i = enemies.size() - 1; i >= 0; i--) {
             if (enemies.get(i).destroyed) {
@@ -230,20 +208,12 @@ public class SpaceShooter extends Application implements MinigameController {
 
     }
 
-    public List<Enemy> getEnemies() {
-        return enemies;
+    public static void main(String[] args) {
+        launch(args);
     }
 
-    public List<Shot> getShots() {
-        return shots;
-    }
-
-    public Player getPlayer() {
+    public PlayerImpl getPlayer() {
         return player;
-    }
-
-    public boolean getOver() {
-        return InfoGame.isOver;
     }
 
     @Override
@@ -253,6 +223,9 @@ public class SpaceShooter extends Application implements MinigameController {
         return score;
     }
 
+    /**
+     * Clear the list of enemies and shots.
+     */
     public void clear(){
         enemies.clear();
         shots.clear();

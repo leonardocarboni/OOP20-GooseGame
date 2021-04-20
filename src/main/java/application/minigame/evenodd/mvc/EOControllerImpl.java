@@ -6,32 +6,37 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
-public class EOController {
+public class EOControllerImpl {
 
     /**
-     * Questa variabile mi permette di richiamare le funzionalità del model e della
+     * This variable allows me to call up the functionality of the model and the
      * view.
      **/
     private final GettersMVC getters = new GettersMVC();
 
     /**
-     * In caso di click del bottone viene attivato questo handler. Esso valuta il
-     * testo del bottone, e in base a quest'ultimo chiamo la model.
+     * If the button is clicked, this handler is activated. It evaluates the
+     * text of the button, and based on the latter I call the model.
      *
-     * Se pari chiamo la checkWin con 2. Se dispari chiamo la checkWin con 1.
-     * Disattivo i bottoni nella view.
+     * If even I call checkWin with 2. If odd I call checkWin with 1.
+     * I disable the buttons in the view.
      */
     public final EventHandler<Event> click = event -> {
-        getters.getView().startAnimation();
         if (((Button) event.getSource()).getText() == "PARI") {
             getters.getModel().checkWin(2);
         } else {
             getters.getModel().checkWin(1);
         }
-        getters.getView().listButton.stream().forEach(i -> i.setDisable(true));
+
+
+        getters.getView().listButton.get(0).setDisable(true);
+        getters.getView().listButton.get(1).setDisable(true);
         getters.getView().listButton.get(2).setDisable(false);
     };
 
+    /**
+     * This handler close the application.
+     */
     public final EventHandler<Event> exit = event -> {
         EvenOdd.primaryStage.close();
     };

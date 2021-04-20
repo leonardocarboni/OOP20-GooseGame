@@ -3,28 +3,34 @@ package application.minigame.tictactoe.mvc;
 import java.util.List;
 import java.util.function.Consumer;
 
+import application.minigame.tictactoe.interfaces.TTTModel;
 import application.minigame.tictactoe.mainGame.EndgameThread;
 import application.minigame.tictactoe.mainGame.TicTacToe;
 import javafx.scene.control.Button;
 
-public class TTTModel {
-    /**
-     * Numero di click che viene fatto, viene usata in caso che nessuno vinca
-     */
+/**
+ * Model of the game. {@link TTTModel}
+ */
+public class TTTModelImpl implements TTTModel {
+
     private int numberOfClick = 0;
     private final GettersMVC getters = new GettersMVC();
+
+    /**
+     * This is the grid dim, used for algorithm.
+     */
     private final int bound = getters.getSize();
+
+    /**
+     * Button of the grid.
+     */
     private List<Button> listButtonGrid;
     private final List<String> sign = List.of("X", "O");
 
-    /**
-     * Metodo che ritorna il vincitore
-     * 
-     * @return Stringa vincitore
-     */
+    @Override
     public String checkWin() {
         this.numberOfClick++;
-        this.listButtonGrid = TTTView.getListButton();
+        this.listButtonGrid = TTTViewImpl.getListButton();
         for (int i = 0; i <= (bound) * (bound - 1); i += bound) {
             for (int j = 0; j < 2; j++) {
                 int counter = 0;
@@ -53,7 +59,7 @@ public class TTTModel {
         }
         for (int j = 0; j < 2; j++) {
             int counter = 0;
-            for (int i = 0; i < bound * bound; i += bound + 1) {
+            for (int i = 0; i <= (bound * bound)-1; i += bound+1 ) {
                 if (listButtonGrid.get(i).getText().equals(sign.get(j))) {
                     counter++;
                 }
@@ -64,7 +70,7 @@ public class TTTModel {
         }
         for (int j = 0; j < 2; j++) {
             int counter = 0;
-            for (int i = bound - 1; i < bound * bound; i += bound - 1) {
+            for (int i = bound - 1; i <= (bound * bound); i += bound - 1) {
                 if (listButtonGrid.get(i).getText().equals(sign.get(j))) {
                     counter++;
                 }
@@ -74,15 +80,19 @@ public class TTTModel {
             }
         }
 
-        if (numberOfClick == bound * bound) {
+        if (numberOfClick >= bound * bound) {
             return "No one";
         }
         return "";
     }
 
+    /**
+     * Used for check the winner and start the end game thread.
+     */
     public final Consumer<String> winCondition = winner -> {
         if (!winner.equals("")) {
             TicTacToe.isWin = true;
+
             EndgameThread my = new EndgameThread(winner);
             my.start();
         }
