@@ -63,7 +63,6 @@ public class GameControllerImpl {
         case BONUS:
             break;
         case TICTACTOE:
-            minigameScene = new TicTacToe();
             break;
         case EVEN_OR_ODD:
             minigameScene = new EvenOdd();

@@ -16,7 +16,7 @@ public class RPSController implements MinigameController {
     private Choice playerChoice;
 
 
-    public RPSController(){
+    public RPSController() {
         view = new RPSView();
         view.setPaperButtonHandler(new PaperClickHandler());
         view.setRockButtonHandler(new RockClickHandler());
@@ -58,7 +58,7 @@ public class RPSController implements MinigameController {
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
             }
-            if (checkTurns()){
+            if (checkTurns()) {
                 view.enableQuitButton();
             }
         }
@@ -80,7 +80,7 @@ public class RPSController implements MinigameController {
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
             }
-            if (checkTurns()){
+            if (checkTurns()) {
                 view.enableQuitButton();
             }
         }
@@ -102,7 +102,7 @@ public class RPSController implements MinigameController {
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
             }
-            if (checkTurns()){
+            if (checkTurns()) {
                 view.enableQuitButton();
             }
         }
