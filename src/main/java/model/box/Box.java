@@ -11,10 +11,6 @@ public enum Box {
      */
     NORMAL(BoxType.NORMAL, "Normal"),
     /**
-     * Bonus Box.
-     */
-    BONUS(BoxType.LUCK, "Bonus"),
-    /**
      * End Box.
      */
     END(BoxType.NORMAL, "End"),
@@ -33,13 +29,13 @@ public enum Box {
     /**
      * Cable Connect Box.
      */
-    CABLE_CONNECT(BoxType.MINIGAMES, "In this minigame you have to connect the 4 colored cables starting\n" +
-            "from the boxes on the left and ending in the corresponding boxes on the right"),
+    CABLE_CONNECT(BoxType.MINIGAMES, "In this minigame you have to connect the 4 colored cables starting\n" 
+     + "from the boxes on the left and ending in the corresponding boxes on the right"),
     /**
      * Phrase Catch Box.
      */
-    PHRASE_CATCH(BoxType.MINIGAMES, "In this minigame you have to write the sentence that is proposed to\n" +
-            "you in the shortest possible time, making the minimum number of mistakes possible."),
+    PHRASE_CATCH(BoxType.MINIGAMES, "In this minigame you have to write the sentence that is proposed to\n" 
+     + "you in the shortest possible time, making the minimum number of mistakes possible."),
     /**
      * Space Shooter Box.
      */

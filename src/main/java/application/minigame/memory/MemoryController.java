@@ -15,15 +15,15 @@ public class MemoryController implements MinigameController {
     private static final int SECONDS = 7;
     private static final String ASTERISKS = "*****";
 
-    final MemoryView view;
+    private final MemoryView view;
     private final SecretCode secretCode;
     private final Countdown countdown;
-    private List<Integer> inputCode;
+    private final List<Integer> inputCode;
     private int result;
 
 
     public MemoryController() {
-    	view = new MemoryView();
+        view = new MemoryView();
         secretCode = new SecretCodeImpl();
         secretCode.generateSecretCode();
         inputCode = new ArrayList<>();
@@ -48,7 +48,7 @@ public class MemoryController implements MinigameController {
         @Override
         public void handle(final ActionEvent event) {
             countdown.shutdown();
-            double secondsLeft = countdown.getSecondsLeft();
+            final double secondsLeft = countdown.getSecondsLeft();
             result = (int) secondsLeft - secretCode.checkCode(inputCode);
             view.enableQuitButton();
         }

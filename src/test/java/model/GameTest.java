@@ -26,6 +26,7 @@ class GameTest {
         list.add(new PlayerImpl("Ciao2", PlayerColor.PINK));
         list.add(new PlayerImpl("Ciao4", PlayerColor.PINK));
     }
+
     @Test
     void test() {
         g.start(list);

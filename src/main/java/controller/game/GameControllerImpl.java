@@ -10,7 +10,6 @@ import application.minigame.evenodd.mainGame.EvenOdd;
 import application.minigame.phrasecatch.PhraseCatchController;
 import application.minigame.rockpaparscissors.RPSController;
 import application.minigame.spaceshooter.mainGame.SpaceShooter;
-import application.minigame.tictactoe.mainGame.TicTacToe;
 import controller.minigame.MinigameController;
 import controller.winscreen.WinScreen;
 import controller.winscreen.WinScreenImpl;
@@ -60,10 +59,7 @@ public class GameControllerImpl {
     public int checkMinigames(final Box box) {
         MinigameController minigameScene = null;
         switch (box) {
-        case BONUS:
-            break;
         case TICTACTOE:
-            minigameScene = new TicTacToe();
             break;
         case EVEN_OR_ODD:
             minigameScene = new EvenOdd();
@@ -126,7 +122,7 @@ public class GameControllerImpl {
             if (game.endGame()) {
                 endGamefunction();
             }
-            int miniGameResult = checkMinigames(game.playCurrentPlayer());
+            final int miniGameResult = checkMinigames(game.playCurrentPlayer());
             game.movePlayer(miniGameResult);
             view.showResult(miniGameResult);
             view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
