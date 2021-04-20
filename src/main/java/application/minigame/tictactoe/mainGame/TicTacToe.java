@@ -1,6 +1,5 @@
 package application.minigame.tictactoe.mainGame;
 
-import application.minigame.tictactoe.interfaces.TTTView;
 import application.minigame.tictactoe.mvc.TTTViewImpl;
 import controller.minigame.MinigameController;
 import javafx.application.Application;
@@ -9,9 +8,10 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class TicTacToe extends Application implements MinigameController {
-
-
-    public static int GRID_DIM;
+    /**
+     * Dimension of the grid.
+     */
+    private static int gridDim = (int) Math.floor(Math.random()*(6-3+1)+3);
 
     /**
      * Width and Height of the game.
@@ -20,30 +20,27 @@ public class TicTacToe extends Application implements MinigameController {
     private static final int SCENE_HEIGHT = 480;
 
     /**
-     * When you win this variable becomes true.
-     * If you lose it remains false.
+     * When you win this variable becomes true. If you lose it remains false.
      */
-    public static boolean isWin = false;
+    private static boolean isWin = false;
 
     /**
      * Create an instance of the view.
      */
-    public static final TTTViewImpl view = new TTTViewImpl(GRID_DIM);
-
-    public static final Stage primaryStage = new Stage();
-
+    public static TTTViewImpl VIEW = new TTTViewImpl();
     /**
-     * Constructor, it takes a grid dim.
-     * The dim can be: 3,4,5,6
-     * @param gridDim
+     * Set the primary stage.
      */
-    public TicTacToe(int gridDim)  {
-        GRID_DIM = gridDim;
-        start(primaryStage);
+    public static final Stage PRIMARY_STAGE = new Stage();
+
+
+    public TicTacToe() {
+        start(PRIMARY_STAGE);
     }
 
     /**
-     * Start the game
+     * Start the game.
+     *
      * @param primaryStage
      */
     @Override
@@ -53,14 +50,14 @@ public class TicTacToe extends Application implements MinigameController {
          * Set the principal Stage
          */
 
-        view.setStage(primaryStage);
+        VIEW.setStage(primaryStage);
 
         primaryStage.setTitle("TicTacToe");
 
         /**
          * The view return the grid panel with buttons in it
          */
-        GridPane root = view.createButton();
+        GridPane root = VIEW.createButton();
 
         primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
         primaryStage.setResizable(false);
@@ -80,5 +77,25 @@ public class TicTacToe extends Application implements MinigameController {
         } else {
             return 0;
         }
+    }
+
+    public static int getGridDim() {
+        return gridDim;
+    }
+
+    public static boolean isWin() {
+        return isWin;
+    }
+
+    public static void setWin(final boolean isWin) {
+        TicTacToe.isWin = isWin;
+    }
+
+    public static int getSceneWidth() {
+        return SCENE_WIDTH;
+    }
+
+    public static int getSceneHeight() {
+        return SCENE_HEIGHT;
     }
 }

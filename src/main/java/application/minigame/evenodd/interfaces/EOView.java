@@ -11,7 +11,4 @@ public interface EOView {
      */
     StackPane createPane();
 
-
-
-
 }

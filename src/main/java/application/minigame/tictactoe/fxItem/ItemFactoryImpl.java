@@ -12,7 +12,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
 /**
- * Item factory {@link ItemFactory}
+ * Item factory {@link ItemFactory}.
  */
 public class ItemFactoryImpl extends Button implements ItemFactory {
 
@@ -23,18 +23,17 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
         final Button btn = new Button();
         final DropShadow shadow = new DropShadow();
         btn.setEffect(shadow);
-        btn.setBackground(new Background(BackgroundLoader.gameButtonBackground));
+        btn.setBackground(new Background(BackgroundLoader.GAME_BUTTON_BACKGROUND));
         btn.setPrefSize(200, 200);
         btn.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 100 / (double) factor));
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.eh);
-        btn.addEventFilter(MouseEvent.MOUSE_RELEASED, handler.released);
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.getClick());
 
         return btn;
     }
 
     public Button endGameButton(final String winner) {
         Button btn = new Button();
-        btn.setBackground(new Background(BackgroundLoader.endGameButton));
+        btn.setBackground(new Background(BackgroundLoader.END_GAME_BACKGROUND));
         btn.setText("The winner is: " + winner);
         btn.setTranslateY(-130);
 
@@ -45,8 +44,8 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
     public Button gameDarkModeIcon(final TTTControllerImpl handler) {
         Button btn = new Button();
         btn.setMinSize(50, 40);
-        btn.setBackground(new Background(BackgroundLoader.darkButtonIcon));
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.changeDarkModeButton);
+        btn.setBackground(new Background(BackgroundLoader.CHANGE_COLOR_BUTTON));
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.getChangeDarkModeButton());
         return btn;
     }
 }

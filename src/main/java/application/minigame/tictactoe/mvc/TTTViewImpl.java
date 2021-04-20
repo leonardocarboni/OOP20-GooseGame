@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
 import application.minigame.tictactoe.fxItem.ItemFactoryImpl;
 import application.minigame.tictactoe.interfaces.TTTView;
+import application.minigame.tictactoe.mainGame.TicTacToe;
 import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -20,24 +21,30 @@ import javafx.stage.Stage;
  * View of the game. {@link TTTView}
  */
 public class TTTViewImpl implements TTTView {
+    /**
+     * Dimension of the grid
+     */
+    private int gridDim = TicTacToe.getGridDim();
 
-    private int GRID_DIM;
+    /**
+     * Number of the button in the grid.
+     */
     private int NUMBER_OF_BUTTON;
 
     /**
      * Create an instance of the controller.
      */
-    public static final TTTControllerImpl handler = new TTTControllerImpl();
+    public static final TTTControllerImpl HANDLER = new TTTControllerImpl();
 
     /**
      * Create an instance of the controller for checks who is the winner.
      */
-    public static final TTTModelImpl model = new TTTModelImpl();
+    public static final TTTModelImpl MODEL = new TTTModelImpl();
 
     /**
      * Create the stage.
      */
-    public Stage stage;
+    private Stage stage;
 
 
 
@@ -48,7 +55,7 @@ public class TTTViewImpl implements TTTView {
     /**
      * List of buttons present in the main 3x3 grid.
      */
-    private static final List<Button> listButtonGrid = new ArrayList<>();
+    private static final List<Button> LIST_BUTTON_GRID = new ArrayList<>();
 
     /**
      * List of buttons under the 3x3 grid.
@@ -58,25 +65,27 @@ public class TTTViewImpl implements TTTView {
     /**
      * It is used to see if dark mode is selected
      */
-    public boolean isDark = false;
+    private boolean isDark = false;
 
-    final ItemFactoryImpl btn = new ItemFactoryImpl();
+    /**
+     * Button factory for use button.
+     */
+    private final ItemFactoryImpl btn = new ItemFactoryImpl();
 
     /**
      * Controller class constructor. Create the button list in the game.
      */
-    public TTTViewImpl(final int gridDim) {
-        GRID_DIM = gridDim;
-        NUMBER_OF_BUTTON = GRID_DIM * GRID_DIM;
+    public TTTViewImpl() {
+        NUMBER_OF_BUTTON = this.gridDim * this.gridDim;
 
-        for (int i = GRID_DIM - 2; i >= 0; i--) {
+        for (int i = this.gridDim - 2; i >= 0; i--) {
             for (int j = 0; j < 1; j++) {
                 number2.add(j, i);
             }
         }
 
-        for (int i = GRID_DIM - 1; i >= 0; i--) {
-            for (int j = 0; j < GRID_DIM; j++) {
+        for (int i = this.gridDim - 1; i >= 0; i--) {
+            for (int j = 0; j < this.gridDim; j++) {
                 number.add(j, i);
             }
         }
@@ -85,13 +94,13 @@ public class TTTViewImpl implements TTTView {
          * Add the buttons on the List.
          */
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
-            listButtonGrid.add(btn.gridButton(handler));
+            LIST_BUTTON_GRID.add(btn.gridButton(HANDLER));
         }
 
         /**
          * Add the change color button.
          */
-        listBottomButton.add(0, btn.gameDarkModeIcon(handler));
+        listBottomButton.add(0, btn.gameDarkModeIcon(HANDLER));
 
     }
 
@@ -99,10 +108,10 @@ public class TTTViewImpl implements TTTView {
     public void drawO() {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
             final Random rnd = new Random();
-            final int numCase = rnd.nextInt(GRID_DIM * GRID_DIM);
-            if (listButtonGrid.get(numCase).getText().equals("")) {
-                listButtonGrid.get(numCase).setText("O");
-                model.winCondition.accept(model.checkWin());
+            final int numCase = rnd.nextInt(gridDim * gridDim);
+            if (LIST_BUTTON_GRID.get(numCase).getText().equals("")) {
+                LIST_BUTTON_GRID.get(numCase).setText("O");
+                MODEL.getWinCondition().accept(MODEL.checkWin());
                 return;
             }
         }
@@ -111,9 +120,9 @@ public class TTTViewImpl implements TTTView {
     @Override
     public void drawX(final Event evt, final Consumer<String> winCondition) {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
-            if (evt.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")) {
-                listButtonGrid.get(i).setText("X");
-                winCondition.accept(model.checkWin());
+            if (evt.getSource().equals(LIST_BUTTON_GRID.get(i)) && LIST_BUTTON_GRID.get(i).getText().equals("")) {
+                LIST_BUTTON_GRID.get(i).setText("X");
+                winCondition.accept(MODEL.checkWin());
                 drawO();
             }
         }
@@ -123,9 +132,9 @@ public class TTTViewImpl implements TTTView {
     public GridPane createButton() {
         final GridPane root = new GridPane();
 
-        listButtonGrid.stream().forEach(
-                i -> root.add(i, listButtonGrid.indexOf(i) % GRID_DIM, number.get(listButtonGrid.indexOf(i)), 1, 1));
-        listBottomButton.stream().forEach(i -> root.add(i, number2.get(listBottomButton.indexOf(i)), GRID_DIM, 1, 1));
+        LIST_BUTTON_GRID.stream().forEach(
+                i -> root.add(i, LIST_BUTTON_GRID.indexOf(i) % gridDim, number.get(LIST_BUTTON_GRID.indexOf(i)), 1, 1));
+        listBottomButton.stream().forEach(i -> root.add(i, number2.get(listBottomButton.indexOf(i)), gridDim, 1, 1));
         root.setBackground(new Background(new BackgroundFill(Color.BEIGE, null, null)));
         return root;
     }
@@ -133,10 +142,10 @@ public class TTTViewImpl implements TTTView {
     @Override
     public void releaseButton(final Event event) {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
-            if (event.getSource().equals(listButtonGrid.get(i)) && listButtonGrid.get(i).getText().equals("")) {
+            if (event.getSource().equals(LIST_BUTTON_GRID.get(i)) && LIST_BUTTON_GRID.get(i).getText().equals("")) {
                 if (!isDark) {
                 } else {
-                    listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackgroundBlack));
+                    LIST_BUTTON_GRID.get(i).setBackground(new Background(BackgroundLoader.GAME_BUTTON_BACKGROUND_BLACK));
                 }
             }
         }
@@ -147,11 +156,11 @@ public class TTTViewImpl implements TTTView {
         if (!isDark) {
             isDark = true;
             changeAllDark();
-            listBottomButton.get(0).setBackground(new Background(BackgroundLoader.darkButtonIconDark));
+            listBottomButton.get(0).setBackground(new Background(BackgroundLoader.CHANGE_COLOR_BUTTON));
         } else if (isDark) {
             isDark = false;
             changeAllWhite();
-            listBottomButton.get(0).setBackground(new Background(BackgroundLoader.darkButtonIcon));
+            listBottomButton.get(0).setBackground(new Background(BackgroundLoader.DARK_BUTTON_ICON));
         }
     }
 
@@ -160,7 +169,7 @@ public class TTTViewImpl implements TTTView {
      */
     private void changeAllDark() {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
-            listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackgroundBlack));
+            LIST_BUTTON_GRID.get(i).setBackground(new Background(BackgroundLoader.GAME_BUTTON_BACKGROUND_BLACK));
         }
     }
 
@@ -169,7 +178,7 @@ public class TTTViewImpl implements TTTView {
      */
     private void changeAllWhite() {
         for (int i = 0; i < NUMBER_OF_BUTTON; i++) {
-            listButtonGrid.get(i).setBackground(new Background(BackgroundLoader.gameButtonBackground));
+            LIST_BUTTON_GRID.get(i).setBackground(new Background(BackgroundLoader.GAME_BUTTON_BACKGROUND));
         }
     }
 
@@ -177,7 +186,7 @@ public class TTTViewImpl implements TTTView {
      * Clear the button text.
      */
     public static void clear(){
-        listButtonGrid.stream().forEach(i -> i.setText(""));
+        LIST_BUTTON_GRID.stream().forEach(i -> i.setText(""));
     }
 
     public void setStage(final Stage stage) {
@@ -185,7 +194,14 @@ public class TTTViewImpl implements TTTView {
     }
 
     public static List<Button> getListButton() {
-        return listButtonGrid;
+        return LIST_BUTTON_GRID;
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
+    public boolean isDark() {
+        return isDark;
+    }
 }

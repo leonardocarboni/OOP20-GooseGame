@@ -14,52 +14,62 @@ public class ShotImpl implements Shot {
     /**
      * Vector position.
      */
-    public Point2D position_shot;
+    private Point2D positionShot;
     private final int size;
 
     /**
      * Speed based on score.
      */
-    private final int speed = InfoGame.score + 5;
+    private final int speed = InfoGame.getScore() + 5;
 
     /**
      * If true the shot must be removed from graphics.
      */
-    public boolean noShot;
+    private boolean noShot;
 
     private final GraphicsContext gc;
 
     /**
      * Create the shot.
+     * 
      * @param posX of the shot.
      * @param posY of the shot.
      * @param size of the shot.
      */
     public ShotImpl(final int posX, final int posY, final int size) {
-        position_shot = new Point2D(posX, posY);
+        positionShot = new Point2D(posX, posY);
         this.size = size;
-        this.gc = SpaceShooter.gc;
+        this.gc = SpaceShooter.getGc();
     }
-
 
     @Override
     public void update() {
-        position_shot = new Point2D(position_shot.getX(), position_shot.getY() - speed);
+        positionShot = new Point2D(positionShot.getX(), positionShot.getY() - speed);
     }
-
 
     @Override
     public void draw() {
-        gc.fillOval(position_shot.getX(), position_shot.getY(), size, size);
+        gc.fillOval(positionShot.getX(), positionShot.getY(), size, size);
     }
-
 
     @Override
     public boolean collide(final Enemy enemy) {
-        double distance_enemy_shot = InfoGame.distance(this.position_shot.getX() + size / (double) 3,
-                this.position_shot.getY() + size, enemy.position_player.getX() + enemy.size / (double) 3,
-                enemy.position_player.getY() + enemy.size);
-        return distance_enemy_shot < enemy.size / (double) 2 + this.size / (double) 2;
+        double distanceEnemyShot = InfoGame.distance(this.positionShot.getX() + size / (double) 3,
+                this.positionShot.getY() + size, enemy.getPositionPlayer().getX() + enemy.getSize() / (double) 3,
+                enemy.getPositionPlayer().getY() + enemy.getSize());
+        return distanceEnemyShot < enemy.getSize() / (double) 2 + this.size / (double) 2;
+    }
+
+    public Point2D getPositionShot() {
+        return positionShot;
+    }
+
+    public boolean isNoShot() {
+        return noShot;
+    }
+
+    public void setNoShot(final boolean noShot) {
+        this.noShot = noShot;
     }
 
 }

@@ -114,7 +114,7 @@ public class GameControllerImpl {
     }
 
     /**
-     * Change view and call model method according the game state.
+     * Change view and call MODEL method according the game state.
      */
     public void changeViewGameState() {
         if (game.getStateGame().equals(StateGame.CHOOSE_STARTING_QUEUE)) {

@@ -9,36 +9,43 @@ import javafx.scene.control.Button;
 public class EOControllerImpl {
 
     /**
-     * This variable allows me to call up the functionality of the model and the
+     * This variable allows me to call up the functionality of the MODEL and the
      * view.
      **/
     private final GettersMVC getters = new GettersMVC();
 
     /**
-     * If the button is clicked, this handler is activated. It evaluates the
-     * text of the button, and based on the latter I call the model.
+     * If the button is clicked, this HANDLER is activated. It evaluates the text of
+     * the button, and based on the latter I call the MODEL.
      *
-     * If even I call checkWin with 2. If odd I call checkWin with 1.
-     * I disable the buttons in the view.
+     * If even I call checkWin with 2. If odd I call checkWin with 1. I disable the
+     * buttons in the view.
      */
-    public final EventHandler<Event> click = event -> {
+    private final EventHandler<Event> click = event -> {
         if (((Button) event.getSource()).getText() == "PARI") {
             getters.getModel().checkWin(2);
         } else {
             getters.getModel().checkWin(1);
         }
 
-
-        getters.getView().listButton.get(0).setDisable(true);
-        getters.getView().listButton.get(1).setDisable(true);
-        getters.getView().listButton.get(2).setDisable(false);
+        getters.getView().getListButton().get(0).setDisable(true);
+        getters.getView().getListButton().get(1).setDisable(true);
+        getters.getView().getListButton().get(2).setDisable(false);
     };
 
     /**
-     * This handler close the application.
+     * This HANDLER close the application.
      */
-    public final EventHandler<Event> exit = event -> {
-        EvenOdd.primaryStage.close();
+    private final EventHandler<Event> exit = event -> {
+        EvenOdd.PRIMARY_STAGE.close();
     };
+
+    public EventHandler<Event> getClick() {
+        return click;
+    }
+
+    public EventHandler<Event> getExit() {
+        return exit;
+    }
 
 }

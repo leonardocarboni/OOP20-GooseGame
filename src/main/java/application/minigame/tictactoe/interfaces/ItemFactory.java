@@ -5,10 +5,10 @@ import javafx.scene.control.Button;
 
 public interface ItemFactory {
 
-    Button gridButton(final TTTControllerImpl handler);
+    Button gridButton(TTTControllerImpl handler);
 
     /* metodo che restituisce il bottone presente alla fine del gioco */
-    Button endGameButton(final String winner);
+    Button endGameButton(String winner);
 
-    Button gameDarkModeIcon(final TTTControllerImpl handler);
+    Button gameDarkModeIcon(TTTControllerImpl handler);
 }

@@ -1,5 +1,10 @@
 package application.minigame.spaceshooter.mainGame;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+
 import application.minigame.spaceshooter.entity.Enemy;
 import application.minigame.spaceshooter.entity.PlayerImpl;
 import application.minigame.spaceshooter.entity.ShotImpl;
@@ -21,56 +26,56 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
-
 public class SpaceShooter extends Application implements MinigameController {
 
     private final Random rnd = new Random();
 
     /**
-     * List of enemies and shots and player
+     * List of enemies and shots and player.
      */
     private List<Enemy> enemies;
     private List<ShotImpl> shots;
     private PlayerImpl player;
 
     /**
-     * Take x for move player
+     * Take x for move player.
      */
     private double mouseX;
 
     /**
-     * get canvas from class GetterSgraphics
+     * get canvas from class GetterSgraphics.
      */
-    private final Canvas canvas = new Canvas(InfoGame.WIDTH,InfoGame.HEIGHT);
-    public static GraphicsContext gc;
-
-    private Stage d = null;
+    private Canvas canvas;
+    /**
+     * Graphics of the game.
+     */
+    private static GraphicsContext gc;
+    /**
+     * Stage of the main game.
+     */
+    private Stage primaryStage;
 
     public SpaceShooter() {
-       start(new Stage());
-   }
-
-
+        primaryStage = new Stage();
+        start(primaryStage);
+    }
 
     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings({ "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
             "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT" })
     @Override
-    public void start(Stage primaryStage) {
-        d = primaryStage;
+    public void start(final Stage primaryStage) {
+        canvas = new Canvas(InfoGame.WIDTH, InfoGame.HEIGHT);
+
         gc = canvas.getGraphicsContext2D();
         primaryStage.show();
 
         /**
          * Create a timeline for the animation. Every 60millis run(gc) is executed
          */
-        Platform.runLater(()-> {
-                Timeline animation = new Timeline(new KeyFrame(Duration.millis(30), e -> run(this.gc)));
-                animation.setCycleCount(Timeline.INDEFINITE);
-                animation.play();
+        Platform.runLater(() -> {
+            Timeline animation = new Timeline(new KeyFrame(Duration.millis(InfoGame.FRAME), e -> run(SpaceShooter.gc)));
+            animation.setCycleCount(Timeline.INDEFINITE);
+            animation.play();
         });
 
         /**
@@ -83,7 +88,7 @@ public class SpaceShooter extends Application implements MinigameController {
          * If number of shots are less than 20 i can add a shot.
          */
         canvas.setOnMouseClicked(e -> {
-            if (shots.size() < 20) {
+            if (shots.size() < InfoGame.MAX_SHOT) {
                 shots.add(player.shot());
             }
         });
@@ -101,7 +106,7 @@ public class SpaceShooter extends Application implements MinigameController {
         enemies = new ArrayList<>();
         shots = new ArrayList<>();
         IntStream.range(0, 10)
-                .forEach(i -> enemies.add(new Enemy(rnd.nextInt(600), 0, InfoGame.SIZE_ENEMY, InfoGame.ENEMY_IMG)));
+                .forEach(i -> enemies.add(new Enemy(rnd.nextInt(InfoGame.WIDTH), 0, InfoGame.SIZE_ENEMY, InfoGame.ENEMY_IMG)));
         player = new PlayerImpl(InfoGame.WIDTH / 2, InfoGame.HEIGHT - InfoGame.SIZE_PLAYER, InfoGame.SIZE_PLAYER,
                 InfoGame.PLAYER_IMG);
 
@@ -113,41 +118,41 @@ public class SpaceShooter extends Application implements MinigameController {
      * @param gc GraphicsContext.
      *
      */
-    private void run(GraphicsContext gc) {
+    private void run(final GraphicsContext gc) {
 
         /**
          * Write the score up center.
          */
-        this.gc.setFill(Color.grayRgb(20));
-        this.gc.fillRect(0, 0, InfoGame.WIDTH, InfoGame.HEIGHT);
-        this.gc.setTextAlign(TextAlignment.CENTER);
-        this.gc.setFont(Font.font(20));
-        this.gc.setFill(Color.WHITE);
-        this.gc.fillText("Score: " + InfoGame.score, 300, 17);
+        SpaceShooter.gc.setFill(Color.grayRgb(20));
+        SpaceShooter.gc.fillRect(0, 0, InfoGame.WIDTH, InfoGame.HEIGHT);
+        SpaceShooter.gc.setTextAlign(TextAlignment.CENTER);
+        SpaceShooter.gc.setFont(Font.font(20));
+        SpaceShooter.gc.setFill(Color.WHITE);
+        SpaceShooter.gc.fillText("Score: " + InfoGame.getScore(), 300, 17);
 
         /**
          * Draw the background.
          */
-        this.gc.drawImage(InfoGame.BACKGROUND_IMG, 0, 20, InfoGame.WIDTH, InfoGame.HEIGHT);
+        SpaceShooter.gc.drawImage(InfoGame.BACKGROUND_IMG, 0, 20, InfoGame.WIDTH, InfoGame.HEIGHT);
 
         /**
          * If the game is over i draw your score and a button for close the game.
          */
-        if (InfoGame.isOver) {
-            this.gc.setFill(Color.RED);
-            this.gc.fillText("You lost, score: " + InfoGame.score, 300, 300);
-            this.gc.setFont(Font.font(55));
-            this.gc.setTextAlign(TextAlignment.LEFT);
-            this.gc.drawImage(InfoGame.BUTTON_IMG,250,350,100,50);
-            this.gc.fillText("Esci", 250, 396, 100);
+        if (InfoGame.isOver()) {
+            SpaceShooter.gc.setFill(Color.RED);
+            SpaceShooter.gc.fillText("You lost, score: " + InfoGame.getScore(), 300, 300);
+            SpaceShooter.gc.setFont(Font.font(55));
+            SpaceShooter.gc.setTextAlign(TextAlignment.LEFT);
+            SpaceShooter.gc.drawImage(InfoGame.BUTTON_IMG, 250, 350, 100, 50);
+            SpaceShooter.gc.fillText("Esci", 250, 396, 100);
 
             canvas.setOnMouseClicked(event -> {
                 double x = event.getX();
                 double y = event.getY();
-                if(x <350 && x > 250 && y > 350 && y < 450){
-                    InfoGame.isOver = false;
+                if (x < 350 && x > 250 && y > 350 && y < 450) {
+                    InfoGame.setOver(false);
                     clear();
-                    d.close();
+                    primaryStage.close();
                     getResult();
 
                 }
@@ -159,40 +164,40 @@ public class SpaceShooter extends Application implements MinigameController {
          */
         player.update();
         player.draw();
-        player.position_player = new Point2D(mouseX, player.position_player.getY());
+        player.setPositionPlayer(new Point2D(mouseX, player.getPositionPlayer().getY()));
 
         /**
-         * We will stream into the list of enemies, for each I update and draw it.
-         * Check that the enemies have touched the player. If you touch it, isOver becomes
+         * We will stream into the list of enemies, for each I update and draw it. Check
+         * that the enemies have touched the player. If you touch it, isOver becomes
          * true and the player explodes.
          */
         enemies.stream().peek(Enemy::update).peek(Enemy::draw).forEach(e -> {
-            if (player.touch(e) && !player.exploding) {
+            if (player.touch(e) && !player.isExploding()) {
                 player.explode();
-                InfoGame.isOver = true;
+                InfoGame.setOver(true);
             }
         });
 
         /**
-         * For each shot in the shots list, if the y is off screen or if noShot is
-         * true then I remove it from the Update list and draw hits.
-         * The second for, handles collisions of shots with enemies If it hits the
-         * enemy and if there is no explosion animation then I make it explode
-         * and I eliminate the blow, I increase the score.
+         * For each shot in the shots list, if the y is off screen or if noShot is true
+         * then I remove it from the Update list and draw hits. The second for, handles
+         * collisions of shots with enemies If it hits the enemy and if there is no
+         * explosion animation then I make it explode and I eliminate the blow, I
+         * increase the score.
          */
         for (int i = shots.size() - 1; i >= 0; i--) {
             ShotImpl shot = shots.get(i);
-            if (shot.position_shot.getY() < 0 || shot.noShot) {
+            if (shot.getPositionShot().getY() < 0 || shot.isNoShot()) {
                 shots.remove(i);
                 continue;
             }
             shot.update();
             shot.draw();
             for (Enemy enemy : enemies) {
-                if (shot.collide(enemy) && !enemy.exploding) {
-                    InfoGame.score++;
+                if (shot.collide(enemy) && !enemy.isExploding()) {
+                    InfoGame.setScore(InfoGame.getScore() + 1);
                     enemy.explode();
-                    shot.noShot = true;
+                    shot.setNoShot(true);
                 }
             }
         }
@@ -201,14 +206,14 @@ public class SpaceShooter extends Application implements MinigameController {
          * Check if the enemies is destroyed, if it is i recreate it.
          */
         for (int i = enemies.size() - 1; i >= 0; i--) {
-            if (enemies.get(i).destroyed) {
-                enemies.set(i, new Enemy(rnd.nextInt(450), 0, InfoGame.SIZE_ENEMY, InfoGame.ENEMY_IMG));
+            if (enemies.get(i).isDestroyed()) {
+                enemies.set(i, new Enemy(rnd.nextInt(InfoGame.WIDTH), 0, InfoGame.SIZE_ENEMY, InfoGame.ENEMY_IMG));
             }
         }
 
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         launch(args);
     }
 
@@ -218,17 +223,21 @@ public class SpaceShooter extends Application implements MinigameController {
 
     @Override
     public int getResult() {
-        int score = InfoGame.score;
-        InfoGame.score = 0;
+        int score = InfoGame.getScore();
+        InfoGame.setScore(0);
         return score;
     }
 
     /**
      * Clear the list of enemies and shots.
      */
-    public void clear(){
+    public void clear() {
         enemies.clear();
         shots.clear();
+    }
+
+    public static GraphicsContext getGc() {
+        return gc;
     }
 
 }

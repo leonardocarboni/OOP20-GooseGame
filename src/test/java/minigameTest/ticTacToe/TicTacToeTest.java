@@ -1,10 +1,7 @@
 package minigameTest.ticTacToe;
 
 
-import application.minigame.tictactoe.mainGame.TicTacToe;
-import javafx.application.Platform;
-import javafx.stage.Stage;
-import model.player.PlayerColor;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

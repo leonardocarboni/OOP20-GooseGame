@@ -5,9 +5,9 @@ import application.minigame.evenodd.mvc.EOModelImpl;
 import application.minigame.evenodd.mvc.EOViewImpl;
 
 /**
- * This class returns the view, controller, model, and stackPane of the application.
- * Make static calls to the EvenOdd and EOView classes to store the
- * view, model, controller and stackPane.
+ * This class returns the view, controller, MODEL, and stackPane of the
+ * application. Make static calls to the EvenOdd and EOView classes to store the
+ * view, MODEL, controller and stackPane.
  *
  */
 
@@ -17,19 +17,18 @@ public class GettersMVC {
     private EOControllerImpl controller;
     private EOModelImpl model;
 
-
     public EOViewImpl getView() {
-        this.view = EvenOdd.view;
+        this.view = EvenOdd.EO_VIEW;
         return this.view;
     }
 
     public EOControllerImpl getController() {
-        this.controller = EOViewImpl.handler;
+        this.controller = EOViewImpl.HANDLER;
         return this.controller;
     }
 
     public EOModelImpl getModel() {
-        this.model = EOViewImpl.model;
+        this.model = EOViewImpl.MODEL;
         return this.model;
     }
 

@@ -59,7 +59,7 @@ public class TTTModelImpl implements TTTModel {
         }
         for (int j = 0; j < 2; j++) {
             int counter = 0;
-            for (int i = 0; i <= (bound * bound)-1; i += bound+1 ) {
+            for (int i = 0; i <= (bound * bound) - 1; i += bound + 1) {
                 if (listButtonGrid.get(i).getText().equals(sign.get(j))) {
                     counter++;
                 }
@@ -89,13 +89,17 @@ public class TTTModelImpl implements TTTModel {
     /**
      * Used for check the winner and start the end game thread.
      */
-    public final Consumer<String> winCondition = winner -> {
+    private final Consumer<String> winCondition = winner -> {
         if (!winner.equals("")) {
-            TicTacToe.isWin = true;
+            TicTacToe.setWin(true);
 
             EndgameThread my = new EndgameThread(winner);
             my.start();
         }
     };
+
+    public Consumer<String> getWinCondition() {
+        return winCondition;
+    }
 
 }

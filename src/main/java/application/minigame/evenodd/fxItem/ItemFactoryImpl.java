@@ -17,23 +17,23 @@ import javafx.scene.text.Text;
 public class ItemFactoryImpl extends Button implements ItemFactory {
 
     @Override
-    public Button evenButton(EOControllerImpl handler) {
+    public Button evenButton(final EOControllerImpl handler) {
         final Button btn = new Button();
 
         btn.setTranslateX(-150);
         btn.setTranslateY(150);
         btn.setText("PARI");
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.click);
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.getClick());
 
         btn.setPrefSize(200, 50);
 
-        btn.setBackground(new Background(BackgroundLoader.buttonPrincipal));
+        btn.setBackground(new Background(BackgroundLoader.BUTTON_PRINCIPAL));
 
         return btn;
     }
 
     @Override
-    public Button oddButton(EOControllerImpl handler) {
+    public Button oddButton(final EOControllerImpl handler) {
 
         final Button btn = new Button();
 
@@ -41,15 +41,15 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
         btn.setTranslateX(150);
         btn.setTranslateY(150);
         btn.setPrefSize(200, 50);
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.click);
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.getClick());
 
-        btn.setBackground(new Background(BackgroundLoader.buttonPrincipal));
+        btn.setBackground(new Background(BackgroundLoader.BUTTON_PRINCIPAL));
 
         return btn;
     }
 
     @Override
-    public Text createText(String string, String resultValue, int positionY) {
+    public Text createText(final String string, final String resultValue, final int positionY) {
         Text text = new Text();
         text.setText(string + resultValue.toString());
         text.setTranslateY(positionY);
@@ -59,7 +59,7 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
     }
 
     @Override
-    public Button exitButton(EOControllerImpl handler) {
+    public Button exitButton(final EOControllerImpl handler) {
 
         final Button btn = new Button();
 
@@ -67,9 +67,9 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
         btn.setTranslateX(-5);
         btn.setTranslateY(200);
         btn.setPrefSize(100, 20);
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.exit);
+        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.getExit());
         btn.setDisable(true);
-        btn.setBackground(new Background(BackgroundLoader.buttonPrincipal));
+        btn.setBackground(new Background(BackgroundLoader.BUTTON_PRINCIPAL));
 
         return btn;
     }
