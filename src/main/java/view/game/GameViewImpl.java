@@ -25,15 +25,13 @@ public class GameViewImpl extends NormalView implements Initializable, GameView 
     @FXML
     private Button diceButton;
     @FXML
-    private Label currentPlayerLabel;
-    @FXML
     private ImageView diceImage;
     @FXML
     private List<Label> scoreBoard;
     @FXML
     private List<HBox> gameboard;
     @FXML
-    private Label gameState;
+    private Label currentPlayerLabel, gameState, mgResultLabel;
 
     private static final float RADIUS_CIRCLE = 5.0f;
     private static final int ONE = 1;
@@ -129,5 +127,11 @@ public class GameViewImpl extends NormalView implements Initializable, GameView 
         circle.setFill(c);
         circle.setRadius(RADIUS_CIRCLE);
         return circle;
+    }
+
+    @Override
+    public void showResult(int result){
+        mgResultLabel.setVisible(true);
+        gameState.setText( String.valueOf(result));
     }
 }
