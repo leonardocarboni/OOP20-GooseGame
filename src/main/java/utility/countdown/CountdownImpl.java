@@ -3,6 +3,7 @@ package utility.countdown;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,6 +17,8 @@ public class CountdownImpl implements Countdown {
     private double seconds;
     private final UpdateLabel updateLabelTask;
     private final Label timeLabel;
+    private Optional<Label> labelToHide;
+    private String labelText;
 
     public CountdownImpl(final int seconds, final Label timeLabel) {
         this.seconds = seconds;
@@ -40,6 +43,12 @@ public class CountdownImpl implements Countdown {
         return this.seconds;
     }
 
+    @Override
+    public void editLabelOnEnd(final Label labelToEdit, final String text) {
+        this.labelToHide = Optional.of(labelToEdit);
+        this.labelText = text;
+    }
+
     /**
      * Utility class that extends TimerTask.
      */
@@ -56,6 +65,9 @@ public class CountdownImpl implements Countdown {
                     seconds = seconds - SEC_DECREASE;
                 } else {
                     shutdown();
+                    if (labelToHide.isPresent()) {
+                        labelToHide.get().setText(labelText);
+                    }
                 }
             });
         }

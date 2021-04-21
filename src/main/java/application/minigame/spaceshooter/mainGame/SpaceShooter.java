@@ -1,13 +1,14 @@
 package application.minigame.spaceshooter.mainGame;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 
-import application.minigame.phrasecatch.PhraseCatchView;
 import application.minigame.spaceshooter.entity.Enemy;
-import application.minigame.spaceshooter.entity.Player;
-import application.minigame.spaceshooter.entity.Shot;
-import application.minigame.spaceshooter.info.GettersGraphics;
+import application.minigame.spaceshooter.entity.PlayerImpl;
+import application.minigame.spaceshooter.entity.ShotImpl;
 import application.minigame.spaceshooter.info.InfoGame;
-import controller.game.GameControllerImpl;
 import controller.minigame.MinigameController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -24,208 +25,219 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
-public class SpaceShooter extends Application implements MinigameController {
 
+public class SpaceShooter extends Application implements MinigameController {
 
     private final Random rnd = new Random();
 
     /**
-     * List of enemies and shots and player
+     * List of enemies and shots and player.
      */
     private List<Enemy> enemies;
-    private List<Shot> shots;
-    private Player player;
+    private List<ShotImpl> shots;
+    private PlayerImpl player;
 
     /**
-     * Take x for move player
+     * Take x for move player.
      */
     private double mouseX;
-    public static GraphicsContext gc;
 
     /**
-     * get canvas from class GetterSgraphics
+     * get canvas from class GetterSgraphics.
      */
-    private Canvas canvas = new GettersGraphics().getCanvas();
-    private boolean isOver;
+    private Canvas canvas;
+    /**
+     * Graphics of the game.
+     */
+    private static GraphicsContext gc;
+    /**
+     * Stage of the main game.
+     */
+    private Stage primaryStage;
 
-    public boolean isStarted;
-
-
-    public SpaceShooter(){
-        start(new Stage());
+    public SpaceShooter() {
+        primaryStage = new Stage();
+        start(primaryStage);
     }
 
-    /**
-     * @param primaryStage
-     */
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings({ "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
+            "RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT" })
     @Override
-    public void start(Stage primaryStage) {
-        isStarted = true;
+    public void start(final Stage primaryStage) {
+        canvas = new Canvas(InfoGame.WIDTH, InfoGame.HEIGHT);
+
         gc = canvas.getGraphicsContext2D();
+        primaryStage.show();
 
         /**
-         * Create a timeline for the animation.
-         * Every 60millis run(gc) is executed
+         * Create a timeline for the animation. Every 60millis run(gc) is executed
          */
-        Timeline animation = new Timeline(new KeyFrame(Duration.millis(60), e -> run(gc)));
-        animation.setCycleCount(Timeline.INDEFINITE);
-        animation.play();
+        Platform.runLater(() -> {
+            Timeline animation = new Timeline(new KeyFrame(Duration.millis(InfoGame.FRAME), e -> run(SpaceShooter.gc)));
+            animation.setCycleCount(Timeline.INDEFINITE);
+            animation.play();
+        });
 
         /**
-         * Seguo il movimento del cursore.
-         * Ogni volta che lo muovo prendo la coordinata X.
+         * Take the X of the click.
          */
         canvas.setCursor(Cursor.MOVE);
         canvas.setOnMouseMoved(e -> mouseX = e.getX());
 
         /**
-         * Ogni volta che clicco, sparo un colpo.
-         * Se la variabile isOver è true allora riinizio tutto da capo.
+         * If number of shots are less than 20 i can add a shot.
          */
         canvas.setOnMouseClicked(e -> {
-            if(shots.size() < 20) {
+            if (shots.size() < InfoGame.MAX_SHOT) {
                 shots.add(player.shot());
-            }
-            if(this.isOver){
-                stopSpaceShooter();
             }
         });
 
-        /**
-         * Inizializzo le strutture dati atte a tenere le entità
-         */
         initialize();
         primaryStage.setTitle("SpaceShooter");
         primaryStage.setScene(new Scene(new StackPane(canvas)));
         primaryStage.setResizable(false);
-        primaryStage.show();
     }
 
     /**
-     * Inizializzo la lista di nemici, colpi, creo il player e setto lo score a 0
+     * Initialize the variables of the game.
      */
-    public void initialize(){
+    public void initialize() {
         enemies = new ArrayList<>();
         shots = new ArrayList<>();
-        IntStream.range(0,10).forEach(i -> enemies.add(new Enemy(rnd.nextInt(600),0, InfoGame.SIZE_ENEMY,InfoGame.ENEMY_IMG)));
-        player = new Player(InfoGame.WIDTH/2,InfoGame.HEIGHT-InfoGame.SIZE_PLAYER,InfoGame.SIZE_PLAYER, InfoGame.PLAYER_IMG);
-        InfoGame.score = 0;
+        IntStream.range(0, 10)
+                .forEach(i -> enemies.add(new Enemy(rnd.nextInt(InfoGame.WIDTH), 0, InfoGame.SIZE_ENEMY, InfoGame.ENEMY_IMG)));
+        player = new PlayerImpl(InfoGame.WIDTH / 2, InfoGame.HEIGHT - InfoGame.SIZE_PLAYER, InfoGame.SIZE_PLAYER,
+                InfoGame.PLAYER_IMG);
+
     }
 
     /**
-     * Metodo che viene eseguito ogni 60millis
-     * @param gc GraphicsContext dato dalla classe GettersGraphics
+     * This method is executed every time.
+     * 
+     * @param gc GraphicsContext.
+     *
      */
-    private void run(GraphicsContext gc) {
+    private void run(final GraphicsContext gc) {
 
         /**
-         * Scrivo lo score in alto al centro
+         * Write the score up center.
          */
-        gc.setFill(Color.grayRgb(20));
-        gc.fillRect(0, 0, InfoGame.WIDTH, InfoGame.HEIGHT);
-        gc.setTextAlign(TextAlignment.CENTER);
-        gc.setFont(Font.font(20));
-        gc.setFill(Color.WHITE);
-        gc.fillText("Score: " + InfoGame.score, 300,  17);
+        SpaceShooter.gc.setFill(Color.grayRgb(20));
+        SpaceShooter.gc.fillRect(0, 0, InfoGame.WIDTH, InfoGame.HEIGHT);
+        SpaceShooter.gc.setTextAlign(TextAlignment.CENTER);
+        SpaceShooter.gc.setFont(Font.font(20));
+        SpaceShooter.gc.setFill(Color.WHITE);
+        SpaceShooter.gc.fillText("Score: " + InfoGame.getScore(), 300, 17);
 
         /**
-         * Disegno lo sfondo
+         * Draw the background.
          */
-        gc.drawImage(InfoGame.BACKGROUND_IMG,0,20,InfoGame.WIDTH,InfoGame.HEIGHT);
+        SpaceShooter.gc.drawImage(InfoGame.BACKGROUND_IMG, 0, 20, InfoGame.WIDTH, InfoGame.HEIGHT);
 
         /**
-         * Se è finito il gioco, lo scrivo e ritorno il risultato
+         * If the game is over i draw your score and a button for close the game.
          */
-        if(isOver){
-            gc.setFill(Color.RED);
-            gc.fillText("You lost, score: " + InfoGame.score, 300, 300);
-            gc.setFont(Font.font(55));
-            gc.setTextAlign(TextAlignment.LEFT);
+        if (InfoGame.isOver()) {
+            SpaceShooter.gc.setFill(Color.RED);
+            SpaceShooter.gc.fillText("You lost, score: " + InfoGame.getScore(), 300, 300);
+            SpaceShooter.gc.setFont(Font.font(55));
+            SpaceShooter.gc.setTextAlign(TextAlignment.LEFT);
+            SpaceShooter.gc.drawImage(InfoGame.BUTTON_IMG, 250, 350, 100, 50);
+            SpaceShooter.gc.fillText("Esci", 250, 396, 100);
 
+            canvas.setOnMouseClicked(event -> {
+                double x = event.getX();
+                double y = event.getY();
+                if (x < 350 && x > 250 && y > 350 && y < 450) {
+                    InfoGame.setOver(false);
+                    clear();
+                    primaryStage.close();
+                    getResult();
+
+                }
+            });
         }
 
         /**
-         * Aggiorno il player, lo disegno e setto la nuova posizione, con la nuova X
+         * Update the player and draw it.
          */
         player.update();
         player.draw();
-        player.position_player = new Point2D(mouseX,player.position_player.getY() );
+        player.setPositionPlayer(new Point2D(mouseX, player.getPositionPlayer().getY()));
 
         /**
-         * Streammo nella lista dei nemici, per ognuno lo aggiorno e lo disegno.
-         * Controllo che i nemici abbiano toccato il player.
-         * Se lo tocca isOver diventa true e il player esplode.
+         * We will stream into the list of enemies, for each I update and draw it. Check
+         * that the enemies have touched the player. If you touch it, isOver becomes
+         * true and the player explodes.
          */
         enemies.stream().peek(Enemy::update).peek(Enemy::draw).forEach(e -> {
-            if(player.touch(e) && !player.exploding){
+            if (player.touch(e) && !player.isExploding()) {
                 player.explode();
-                isOver = true;
+                InfoGame.setOver(true);
             }
         });
 
         /**
-         * Per ogni shot nella lista shots, Se la y è fuori dallo schermo o se noShot è true
-         * allora lo rimuovo dalla lista
-         * Aggiorno e disegno i colpi.
-         *
-         * Il secondo for, gestisce le collisioni dei shot coi nemici
-         * Se colpisce il nemico e se non c'è l'animazione dell'esplosione allora lo
-         * faccio esplodere ed elimino il colpo, aumento lo score.
+         * For each shot in the shots list, if the y is off screen or if noShot is true
+         * then I remove it from the Update list and draw hits. The second for, handles
+         * collisions of shots with enemies If it hits the enemy and if there is no
+         * explosion animation then I make it explode and I eliminate the blow, I
+         * increase the score.
          */
-        for(int i = shots.size()-1; i >= 0; i--){
-            Shot shot = shots.get(i);
-            if(shot.position_shot.getY() < 0 || shot.noShot){
+        for (int i = shots.size() - 1; i >= 0; i--) {
+            ShotImpl shot = shots.get(i);
+            if (shot.getPositionShot().getY() < 0 || shot.isNoShot()) {
                 shots.remove(i);
                 continue;
             }
             shot.update();
             shot.draw();
-            for(Enemy enemy: enemies){
-                if(shot.collide(enemy) && !enemy.exploding){
-                    InfoGame.score++;
+            for (Enemy enemy : enemies) {
+                if (shot.collide(enemy) && !enemy.isExploding()) {
+                    InfoGame.setScore(InfoGame.getScore() + 1);
                     enemy.explode();
-                    shot.noShot = true;
+                    shot.setNoShot(true);
                 }
             }
         }
 
         /**
-         * Controllo nella lista dei nemici, se la variabile destroyed è true, ricreo il nemico
+         * Check if the enemies is destroyed, if it is i recreate it.
          */
-        for(int i = enemies.size()-1; i >= 0; i--){
-            if(enemies.get(i).destroyed){
-                enemies.set(i, new Enemy(rnd.nextInt(450),0,InfoGame.SIZE_ENEMY,InfoGame.ENEMY_IMG));
+        for (int i = enemies.size() - 1; i >= 0; i--) {
+            if (enemies.get(i).isDestroyed()) {
+                enemies.set(i, new Enemy(rnd.nextInt(InfoGame.WIDTH), 0, InfoGame.SIZE_ENEMY, InfoGame.ENEMY_IMG));
             }
         }
 
     }
 
-    public void stopSpaceShooter(){
-        getResult();
+    public static void main(final String[] args) {
+        launch(args);
     }
 
-    public List<Enemy> getEnemies() {
-        return enemies;
-    }
-
-    public List<Shot> getShots() {
-        return shots;
-    }
-
-    public Object getPlayer() {
+    public PlayerImpl getPlayer() {
         return player;
-    }
-
-    public boolean getOver() {
-        return isOver;
     }
 
     @Override
     public int getResult() {
-        return InfoGame.score;
+        int score = InfoGame.getScore();
+        InfoGame.setScore(0);
+        return score;
     }
+
+    /**
+     * Clear the list of enemies and shots.
+     */
+    public void clear() {
+        enemies.clear();
+        shots.clear();
+    }
+
+    public static GraphicsContext getGc() {
+        return gc;
+    }
+
 }

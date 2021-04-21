@@ -19,25 +19,25 @@ public enum ViewType {
      */
     CABLE_CONNECT("Minigame Cable Connect", "layouts/cableconnect.fxml"),
     /**
-     * Even Or Odd Type.
-     */
-    EVEN_OR_ODD("Minigame Ever Or Odd", "layouts/.fxml"),
-    /**
      * Rock Paper Scissors Type.
      */
-    ROCK_PAPER_SCISSORS("Minigame ROCK PAPER SCISSORS", "layouts/.fxml"),
+    ROCK_PAPER_SCISSORS("Minigame ROCK PAPER SCISSORS", "layouts/rps.fxml"),
     /**
-     * Tic Tac Toe Type.
+     * Memory Type.
      */
-    TICTACTOE("Minigame Tic Tac Toe", ""),
+    MEMORY("Minigame Memory", "layouts/memory.fxml"),
+    /**
+     * Phrase Catch Type.
+     */
+    PHRASE_CATCH("Phrase Catch", "layouts/phrasecatch.fxml"),
     /**
      * WinScreen Type.
      */
     WINSCREEN("Final Scoreboard", "layouts/winscreen.fxml"),
     /**
-     * Phrase Catch Type.
+     * How to play Type.
      */
-    PHRASE_CATCH("Phrase Catch", "layouts/phrasecatch.fxml");
+    HOWTOPLAY("How To Play", "layouts/howtoplay.fxml");
 
     private String title;
     private String layoutLocation;

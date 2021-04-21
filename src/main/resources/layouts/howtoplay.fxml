@@ -12,7 +12,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@howtoplaystyle.css">
                <children>
-                  <Label fx:id="howtoplay_desc" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="HOW_TO PLAY_DESC" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                  <Label fx:id="howToPlayDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="MAIN_GAME_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font></Label>
@@ -23,7 +23,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
                <children>
-                  <Label fx:id="cableconnect_desc" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="CABLECONNECT_DESC" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                  <Label fx:id="cableConnectDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="CABLECONNECT_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
@@ -36,7 +36,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
                <children>
-                  <Label fx:id="tictactoe_desc" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="TICTACTOE_DESC" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                  <Label fx:id="ticTacToeDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="TICTACTOE_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
@@ -49,7 +49,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
                <children>
-                  <Label fx:id="phrasecatch_desc" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="PHRASECATCH_DESC" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                  <Label fx:id="phraseCatchDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="PHRASECATCH_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
@@ -62,7 +62,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
                <children>
-                  <Label fx:id="memory_desc" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="MEMORY_DESC" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                  <Label fx:id="memoryDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="MEMORY_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
@@ -75,7 +75,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="432.0" prefWidth="767.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
                <children>
-                  <Label fx:id="rockpaperscissors_desc" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="ROCKPAPERSCISSORS_DESC" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                  <Label fx:id="rockPaperScissorsDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="ROCKPAPERSCISSORS_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
@@ -88,7 +88,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
                <children>
-                  <Label fx:id="spaceinvaders_desc" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="SPACEINVADERS_DESC" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                  <Label fx:id="spaceShooterDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="SPACEINVADERS_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>
@@ -101,7 +101,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
                <children>
-                  <Label fx:id="evenorodd_desc" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="EVENORODD_DESC" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                  <Label fx:id="evenOrOddDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="EVENORODD_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
                      <font>
                         <Font name="Candara" size="18.0" />
                      </font>

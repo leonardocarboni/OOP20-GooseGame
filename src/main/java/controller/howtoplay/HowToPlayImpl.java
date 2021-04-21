@@ -1,6 +1,6 @@
 package controller.howtoplay;
 
-import view.HowToPlayView;
+import view.howtoplay.HowToPlayView;
 
 public class HowToPlayImpl implements HowToPlay {
 
