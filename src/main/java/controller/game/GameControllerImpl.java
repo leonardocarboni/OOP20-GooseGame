@@ -102,7 +102,7 @@ public class GameControllerImpl {
             } else if (p.getColor() == PlayerColor.RED) {
                 color = Color.RED;
             } else {
-                color = Color.YELLOW;
+                color = Color.GREEN;
             }
             map.put(color, p.getBoardPosition());
         });
