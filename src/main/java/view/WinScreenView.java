@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
+import model.duration.GameDuration;
 import model.player.Player;
 import model.player.PlayerImpl;
 
@@ -20,7 +21,7 @@ public class WinScreenView extends NormalView {
     @FXML
     private Button playAgainButton, exitButton;
     @FXML
-    private Label firstNameLabel, secondNameLabel, thirdNameLabel, fourthNameLabel;
+    private Label firstNameLabel, secondNameLabel, thirdNameLabel, fourthNameLabel, durationLabel;
     @FXML
     private HBox firstPlayer, secondPlayer, thirdPlayer, fourthPlayer;
 
@@ -98,4 +99,7 @@ public class WinScreenView extends NormalView {
     }
 
 
+    public void setDuration(GameDuration duration) {
+        durationLabel.setText(duration.getDuration());
+    }
 }

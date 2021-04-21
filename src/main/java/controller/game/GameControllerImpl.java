@@ -15,8 +15,8 @@ import controller.winscreen.WinScreen;
 import controller.winscreen.WinScreenImpl;
 import javafx.scene.paint.Color;
 import model.box.Box;
-import model.duration.Duration;
-import model.duration.DurationImpl;
+import model.duration.GameDuration;
+import model.duration.GameDurationImpl;
 import model.game.GameImpl;
 import model.game.StateGame;
 import model.player.PlayerColor;
@@ -136,11 +136,11 @@ public class GameControllerImpl {
      */
     private void endGamefunction() {
         stopwatch.stop();
-        final Duration duration = new DurationImpl(stopwatch.getTime());
+        final GameDuration duration = new GameDurationImpl(stopwatch.getTime());
         view.changeGameStateLabel("END_GAME - TIME: " + duration.getDuration());
         game.saveResultGame();
         view.close();
         final WinScreen winScreen = new WinScreenImpl();
-        winScreen.start(game.getScoreBoard());
+        winScreen.start(game.getScoreBoard(), duration);
     }
 }

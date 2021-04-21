@@ -1,5 +1,5 @@
 package model.duration;
 
-public interface Duration {
+public interface GameDuration {
     String getDuration();
 }
