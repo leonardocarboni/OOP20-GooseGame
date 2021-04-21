@@ -1,72 +1,53 @@
 package application.minigame.tictactoe.mainGame;
 
 import application.minigame.tictactoe.fxItem.BackgroundLoader;
-import application.minigame.tictactoe.fxItem.ItemFactoryImpl;
+import application.minigame.tictactoe.fxItem.ButtonDropper;
 import application.minigame.tictactoe.mvc.GettersMVC;
+import application.minigame.tictactoe.mvc.TTTController;
+import application.minigame.tictactoe.mvc.TTTView;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.scene.Scene;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 
-/**
- * Final thread.
- */
-public class EndgameThread extends Thread {
+import java.util.Optional;
 
-    private final GettersMVC getters = new GettersMVC();
+public class EndgameThread extends Thread{
+
     private final String winner;
-    /**
-     * Duration of animation.
-     */
-    private final int msOfAnimation = 2000;
-    /**
-     * It print the winner.
-     * @param winner
-     */
-    public EndgameThread(final String winner) {
+
+    public EndgameThread(String winner){
         this.winner = winner;
     }
 
-    private Task<Void> sleep = new Task<Void>() {
-        @Override
-        public Void call() {
-            try {
-                Thread.sleep(1000);
-                Platform.runLater(() -> {
-                    getters.getView().getStage().close();
-                });
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    /* thread che viene creato dopo che la partita a tris finisce */
+    public void run(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                final StackPane pane = new StackPane();
+                final ButtonDropper button = new ButtonDropper();
+                final TTTController handler = new TTTController();
+                final GettersMVC getters = new GettersMVC();
+
+                pane.getChildren().add(button.endGameButton(Optional.empty(), winner));
+                if(!getters.getView().isDark){
+                    pane.setBackground(new Background(BackgroundLoader.endGameButtonBackground));
+                } else{
+                    pane.setBackground(new Background(BackgroundLoader.endGameButtonBackgroundBlack));
+                }
+
+                FadeTransition ft = new FadeTransition(Duration.millis(2000), pane);
+                ft.setFromValue(0.0);
+                ft.setToValue(1.0);
+                ft.play();
+
+                getters.getView().stage.setScene(new Scene(pane,600,480));
             }
-            return null;
-        }
-    };
-
-    /**
-     * Create the pane and close it after 1 sec.
-     */
-    public void run() {
-        Platform.runLater(() -> {
-            final StackPane pane = new StackPane();
-            final ItemFactoryImpl button = new ItemFactoryImpl();
-
-            pane.getChildren().add(button.endGameButton(winner));
-            if (!getters.getView().isDark()) {
-                pane.setBackground(new Background(BackgroundLoader.END_GAME_BUTTON_BACKGROUND));
-            } else {
-                pane.setBackground(new Background(BackgroundLoader.END_GAME_BUTTON_BACKGROUND_BLACK));
-            }
-
-            FadeTransition ft = new FadeTransition(Duration.millis(msOfAnimation), pane);
-            ft.setFromValue(0.0);
-            ft.setToValue(1.0);
-            ft.play();
-
-            getters.getView().getStage().setScene(new Scene(pane, 600, 480));
-            new Thread(sleep).start();
         });
+
+
     }
+
 }

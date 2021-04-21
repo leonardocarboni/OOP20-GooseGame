@@ -6,7 +6,7 @@ import controller.playerchooser.PlayerChooserControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.ViewType;
-import view.menu.MenuView;
+import view.MenuView;
 
 public class MenuController {
 

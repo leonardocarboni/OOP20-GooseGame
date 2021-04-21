@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import model.game.GameImpl;
@@ -26,7 +27,6 @@ class GameTest {
         list.add(new PlayerImpl("Ciao2", PlayerColor.PINK));
         list.add(new PlayerImpl("Ciao4", PlayerColor.PINK));
     }
-
     @Test
     void test() {
         g.start(list);
@@ -38,21 +38,20 @@ class GameTest {
         assertEquals(g.getScoreBoard().get(0).getBoardPosition(), BOARD_SIZE);
         assertNotSame(g.getScoreBoard().get(1).getBoardPosition(), BOARD_SIZE);
         assertNotSame(g.getScoreBoard().get(2).getBoardPosition(), BOARD_SIZE);
+
+        g.start(list);
+
+        assertEquals(g.getScoreBoard().get(0).getBoardPosition(), 0);
+        assertNotSame(g.getScoreBoard().get(1).getBoardPosition(), 0);
+        assertNotSame(g.getScoreBoard().get(2).getBoardPosition(), 0);
     }
 
-    @Test
-    void chechNewGame() {
-        g.start(list);
-        while (true) {
-            g.rollCurrentPlayer();
-            if (g.endGame()) {
-                break;
-            }
-            g.nextPlayer();
-        }
-        g.start(list);
-        assertEquals(g.getScoreBoard().get(0).getBoardPosition(), 0);
-        assertEquals(g.getScoreBoard().get(1).getBoardPosition(), 0);
-        assertEquals(g.getScoreBoard().get(2).getBoardPosition(), 0);
+    @RepeatedTest(3)
+    void checkBoardLimit() {
+        int total = 0;
+        do {
+            total += g.rollCurrentPlayer();
+        } while (!g.endGame() || total < BOARD_SIZE);
+        assertEquals(g.getScoreBoard().get(0).getBoardPosition(), total - BOARD_SIZE);
     }
 }

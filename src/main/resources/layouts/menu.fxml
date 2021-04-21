@@ -31,7 +31,7 @@
                         <Font name="Candara Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Button fx:id="howToPlayButton" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-pref-width: 120; -fx-pref-height: 50;"  text="How To Play" textAlignment="CENTER" textFill="#f2f2f2">
+                  <Button fx:id="howToPlayButton" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-pref-width: 120; -fx-pref-height: 50;"  text="Credits" textAlignment="CENTER" textFill="#f2f2f2">
                      <font>
                         <Font size="16.0" />
                      </font>

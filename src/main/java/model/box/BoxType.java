@@ -9,5 +9,9 @@ public enum BoxType {
     /**
      * A Minigames Box.
      */
-    MINIGAMES;
+    MINIGAMES,
+    /**
+     *  A Luck Box.
+     */
+    LUCK;
 }

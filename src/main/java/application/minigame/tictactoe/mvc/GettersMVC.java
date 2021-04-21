@@ -2,32 +2,29 @@ package application.minigame.tictactoe.mvc;
 
 import application.minigame.tictactoe.mainGame.TicTacToe;
 
-/**
- * Method that return view, MODEL and controller.
- */
 public class GettersMVC {
 
-    private TTTViewImpl view;
-    private TTTControllerImpl controller;
-    private TTTModelImpl model;
+    private TTTView view;
+    private TTTController controller;
+    private TTTModel model;
 
-    public TTTViewImpl getView() {
-        this.view = TicTacToe.getView();
+    public TTTView getView() {
+        this.view = TicTacToe.view;
         return this.view;
     }
 
-    public TTTControllerImpl getController() {
-        this.controller = TTTViewImpl.HANDLER;
+    public TTTController getController() {
+        this.controller = TTTView.handler;
         return this.controller;
     }
 
-    public TTTModelImpl getModel() {
-        this.model = TTTViewImpl.MODEL;
+    public TTTModel getModel() {
+        this.model = TTTView.model;
         return this.model;
     }
 
-    public int getSize() {
-        return TicTacToe.getGridDim();
+    public int getSize(){
+        return TicTacToe.GRID_DIM;
     }
 
 }
