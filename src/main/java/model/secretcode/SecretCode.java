@@ -23,11 +23,13 @@ public interface SecretCode {
 
     /**
      * Is use for Testing.
+     * Creates a list of hypothetical computer choice
      */
     List<Integer> setCode();
 
     /**
      * IS use for Testing.
+     * Creates a list of hypothetical user input.
      */
     List<Integer> setInputCode();
 }
