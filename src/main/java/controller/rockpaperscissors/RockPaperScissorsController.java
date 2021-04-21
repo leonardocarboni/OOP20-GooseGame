@@ -36,7 +36,7 @@ public class RockPaperScissorsController implements MinigameController {
         if (numTurns == 3) {
             if (getWinner(playerChoice, getComputerChoice()) == RockPaperScissorsGameState.DRAW) {
                 return 0;
-            } else if (getWinner(playerChoice, getComputerChoice()) == RockPaperScissorsGameState.COMPUTER_WIN) {
+            } else if (getWinner(playerChoice, getComputerChoice()) == RockPaperScissorsGameState.PLAYER_WIN) {
                 return PROGRESS_IN_GAME;
             } else {
                 return COME_BACK_IN_GAME;
