@@ -29,7 +29,7 @@ public class ThreeCardView {
     private static final String LAYOUT_LOCATION = "layouts/three-card.fxml";
     private static final String LOGO_LOCATION = "logo.png";
     private static final String BACK_IMAGE = "logo.png";
-    private static final String RIGHT_IMAGE = "threeCard/right.jpg";
+    private static final String RIGHT_IMAGE = "threeCard/right.png";
     private static final String WRONG_IMAGE = "threeCard/wrong.png";
 
     private final Stage primaryStage = new Stage();

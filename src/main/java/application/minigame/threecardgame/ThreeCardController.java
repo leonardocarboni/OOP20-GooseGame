@@ -30,7 +30,7 @@ public class ThreeCardController implements MinigameController {
     }
 
     /**
-     * An inner class for the event catching in the minigame view
+     * An inner class for the event catching in the minigame view.
      */
     public class SxClickHandler implements EventHandler<ActionEvent> {
         @Override
@@ -45,7 +45,7 @@ public class ThreeCardController implements MinigameController {
     }
 
     /**
-     * An inner class for the event catching in the minigame view
+     * An inner class for the event catching in the minigame view.
      */
     public class CenterClickHandler implements EventHandler<ActionEvent> {
         @Override
@@ -60,7 +60,7 @@ public class ThreeCardController implements MinigameController {
     }
 
     /**
-     * An inner class for the event catching in the minigame view
+     * An inner class for the event catching in the minigame view.
      */
     public class DxClickHandler implements EventHandler<ActionEvent> {
         @Override
@@ -74,6 +74,9 @@ public class ThreeCardController implements MinigameController {
         }
     }
 
+    /**
+     * An inner class for the event catching in the minigame view.
+     */
     public class ContinueHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -87,8 +90,8 @@ public class ThreeCardController implements MinigameController {
     }
 
     /**
-     * @param playerChoice
-     * @param computerChoice
+     * @param playerChoice user choice
+     * @param computerChoice random choice made by the computer
      * @return true if playerChoice is equal of computerChoice
      */
     private boolean getWin(Choice playerChoice, Choice computerChoice) {
@@ -102,6 +105,9 @@ public class ThreeCardController implements MinigameController {
         return numTurns < 3 && numPlayerWin < 2 && numComputerWin < 2;
     }
 
+    /**
+     * Update the round number and check who to assign the point to.
+     */
     private void setWin() {
         numTurns++;
 
