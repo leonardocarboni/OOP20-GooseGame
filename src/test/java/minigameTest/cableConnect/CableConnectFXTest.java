@@ -1,4 +1,4 @@
-package minigameTest.cableConnect;
+package minigameTest.cableconnect;
 
 import application.minigame.cableconnect.CableConnectView;
 import application.minigame.cableconnect.CableColor;
