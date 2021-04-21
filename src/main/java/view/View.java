@@ -12,13 +12,12 @@ public class View {
 
     private final Stage primaryStage = new Stage();
     private static final String LOGO_LOCATION = "logo.png";
-    private Scene scene;
 
     public void createStage(final ViewType gameType) {
         try {
             final FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(gameType.getLayoutLocation()));
             loader.setController(this);
-            scene = new Scene(loader.load());
+            final Scene scene = new Scene(loader.load());
             primaryStage.setTitle("[GooseGame] " + gameType.getTitle());
             primaryStage.initModality(Modality.APPLICATION_MODAL);
             primaryStage.getIcons().add(new Image(LOGO_LOCATION));
@@ -31,15 +30,16 @@ public class View {
         }
     }
 
+    public void showAndWait() {
+        primaryStage.showAndWait();
+    }
+
+    public void show() {
+        primaryStage.show();
+    }
+
     public void close() {
         primaryStage.close();
     }
 
-    public Stage getStage() {
-        return this.primaryStage;
-    }
-
-    public Scene getScene() {
-        return this.scene;
-    }
 }

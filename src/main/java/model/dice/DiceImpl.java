@@ -9,6 +9,7 @@ public class DiceImpl implements Dice {
 
     @Override
     public int roll() {
-        return new Random().nextInt((MAX_VALUE_DICE - MIN_VALUE_DICE) + 1) + MIN_VALUE_DICE;
+        final Random rand = new Random();
+        return rand.nextInt((MAX_VALUE_DICE - MIN_VALUE_DICE) + 1) + MIN_VALUE_DICE;
     }
 }

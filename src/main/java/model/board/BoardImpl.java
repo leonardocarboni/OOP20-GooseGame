@@ -2,6 +2,7 @@ package model.board;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import model.box.Box;
 import model.box.BoxType;
@@ -12,7 +13,7 @@ public class BoardImpl implements Board {
     private final int size;
     private final List<Box> boxes;
     private static final int BOARD_LIMIT = 2;
-    private static final int MINIGAME_INTERVAL = 5;
+
     public BoardImpl(final int size) {
         this.size = size;
         this.boxes = new ArrayList<>(size);
@@ -23,14 +24,20 @@ public class BoardImpl implements Board {
         checkSize(size);
         final List<Box> minigames = getAllBoxesByType(BoxType.MINIGAMES);
         boxes.add(Box.START);
-        int minigameNumber = 0;
+        int addSpecial = 0;
+        boolean addMinigames = false;
         for (int i = 0; i < size - 1; i++) {
-            if (i % MINIGAME_INTERVAL == 0) {
-               minigameNumber = minigameNumber == minigames.size() ? 0 : minigameNumber;
-               boxes.add(minigames.get(minigameNumber));
-               minigameNumber++;
+            if (addSpecial == 2) {
+                if (addMinigames) {
+                    boxes.add(minigames.get(randomValue(0, minigames.size() - 1)));
+                } else {
+                    boxes.add(Box.BONUS);
+                }
+                addMinigames = addMinigames ? false : true;
+                addSpecial = 0;
             } else {
                 boxes.add(Box.NORMAL);
+                addSpecial++;
             }
         }
         boxes.add(Box.END);
@@ -51,6 +58,18 @@ public class BoardImpl implements Board {
         if (size < BOARD_LIMIT) {
             throw new IllegalArgumentException();
         }
+    }
+
+    /*
+     * @param minValue
+     * 
+     * @param maxValue
+     * 
+     * @return number between min and max (inclusive)
+     */
+    private int randomValue(final int minValue, final int maxValue) {
+        final Random rand = new Random();
+        return rand.nextInt((maxValue - minValue) + 1) + minValue;
     }
 
     /*
