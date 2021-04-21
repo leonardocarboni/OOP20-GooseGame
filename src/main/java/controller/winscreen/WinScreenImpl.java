@@ -4,7 +4,7 @@ import controller.playerchooser.PlayerChooserControllerImpl;
 
 import model.duration.GameDuration;
 import model.player.PlayerImpl;
-import view.WinScreenView;
+import view.winscreen.WinScreenView;
 
 import java.util.List;
 

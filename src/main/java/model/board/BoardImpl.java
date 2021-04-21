@@ -2,7 +2,6 @@ package model.board;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import model.box.Box;
 import model.box.BoxType;
@@ -24,13 +23,14 @@ public class BoardImpl implements Board {
         checkSize(size);
         final List<Box> minigames = getAllBoxesByType(BoxType.MINIGAMES);
         boxes.add(Box.START);
-        int addMinigame = 0;
+        int minigameNumber = 0;
         for (int i = 0; i < size - 1; i++) {
-            if (addMinigame == MINIGAME_INTERVAL) {
-               boxes.add(minigames.get(randomValue(0, minigames.size() - 1)));
+            if (i % MINIGAME_INTERVAL == 0) {
+               minigameNumber = minigameNumber == minigames.size() ? 0 : minigameNumber;
+               boxes.add(minigames.get(minigameNumber));
+               minigameNumber++;
             } else {
                 boxes.add(Box.NORMAL);
-                addMinigame++;
             }
         }
         boxes.add(Box.END);
@@ -51,18 +51,6 @@ public class BoardImpl implements Board {
         if (size < BOARD_LIMIT) {
             throw new IllegalArgumentException();
         }
-    }
-
-    /*
-     * @param minValue
-     * 
-     * @param maxValue
-     * 
-     * @return number between min and max (inclusive)
-     */
-    private int randomValue(final int minValue, final int maxValue) {
-        final Random rand = new Random();
-        return rand.nextInt((maxValue - minValue) + 1) + minValue;
     }
 
     /*

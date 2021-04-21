@@ -1,14 +1,9 @@
-package minigameTest.memory;
+package minigametest.memory;
 
 
 
-import application.minigame.memory.MemoryView;
-import application.minigame.memory.SecretCode;
-import application.minigame.memory.SecretCodeImpl;
-import com.sun.glass.ui.Size;
+import view.memory.MemoryView;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
