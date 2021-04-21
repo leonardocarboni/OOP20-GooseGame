@@ -29,12 +29,10 @@ public class RPSView extends MinigameView {
 
     public void playerWin() {
         resultLabel.setText("You Win");
-        playerScoreLabel.setText(String.valueOf(Integer.parseInt(playerScoreLabel.getText()) + 1));
     }
 
     public void computerWin() {
         resultLabel.setText("You Lose");
-        playerScoreLabel.setText(String.valueOf(Integer.parseInt(computerScoreLabel.getText()) + 1));
     }
 
     public void draw() {
@@ -53,11 +51,11 @@ public class RPSView extends MinigameView {
         scissorsButton.setOnAction(e);
     }
 
-    public void setPlayerScoreLabel(final int score) {
+    public void setPlayerScoreLabel(int score) {
         playerScoreLabel.setText(" " + score);
     }
 
-    public void setComputerScoreLabel(final int score) {
+    public void setComputerScoreLabel(int score) {
         computerScoreLabel.setText(" " + score);
     }
 
