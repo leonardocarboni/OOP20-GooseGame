@@ -1,4 +1,4 @@
-package minigametest.tictactoe;
+package minigame.ticTacToe;
 
 
 

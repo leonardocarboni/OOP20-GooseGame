@@ -1,4 +1,4 @@
-package minigametest.spaceshooter;
+package minigame.spaceShooter;
 
 import application.minigame.spaceshooter.info.InfoGame;
 import org.junit.jupiter.api.DisplayName;

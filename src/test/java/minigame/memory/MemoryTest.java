@@ -1,4 +1,4 @@
-package minigameTest.memory;
+package minigame.memory;
 
 import model.secretcode.SecretCode;
 import model.secretcode.SecretCodeImpl;

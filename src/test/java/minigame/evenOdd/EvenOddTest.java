@@ -1,4 +1,4 @@
-package minigametest.evenodd;
+package minigame.evenOdd;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
