@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import application.minigame.cableconnect.CableConnectController;
+import controller.cableconnect.CableConnectController;
 import application.minigame.evenodd.mainGame.EvenOdd;
-import application.minigame.phrasecatch.PhraseCatchController;
-import application.minigame.rockpaparscissors.RPSController;
+import controller.phrasecatch.PhraseCatchController;
+import controller.rockpaperscissors.RockPaperScissorsController;
 import application.minigame.spaceshooter.mainGame.SpaceShooter;
 import controller.minigame.MinigameController;
 import controller.winscreen.WinScreen;
@@ -65,7 +65,7 @@ public class GameControllerImpl {
             minigameScene = new EvenOdd();
             break;
         case ROCK_PAPER_SCISSORS:
-            minigameScene = new RPSController();
+            minigameScene = new RockPaperScissorsController();
             break;
         case CABLE_CONNECT:
             minigameScene = new CableConnectController();
