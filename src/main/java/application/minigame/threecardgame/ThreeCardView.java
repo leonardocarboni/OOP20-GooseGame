@@ -65,6 +65,18 @@ public class ThreeCardView {
         this.dxButton.setOnAction(e);
     }
 
+    public void setDisableButton() {
+        this.sxButton.setDisable(true);
+        this.centerImage.setDisable(true);
+        this.dxButton.setDisable(true);
+    }
+
+    public void setEnableButton() {
+        this.sxButton.setDisable(false);
+        this.centerImage.setDisable(false);
+        this.dxButton.setDisable(false);
+    }
+
     public void setContinueButton(EventHandler<ActionEvent> e) {
         this.nextRoundButton.setOnAction(e);
     }
