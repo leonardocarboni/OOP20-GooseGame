@@ -5,8 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class ThreeCardController implements MinigameController {
-
-    private static final int PROGRESS_IN_GAME = 5;
+    
     private final ThreeCardView view;
     private Choice playerChoice, computerChoice;
 
