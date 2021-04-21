@@ -38,7 +38,9 @@ public class ThreeCardController implements MinigameController {
                 playerChoice = Choice.SX_POS;
                 setWin();
                 view.setImages(computerChoice);
-                view.setEnableNextRoundButton();
+                if (checkTurns()) {
+                    view.setEnableNextRoundButton();
+                }
                 view.setDisableButton();
             }
         }
@@ -54,7 +56,9 @@ public class ThreeCardController implements MinigameController {
                 playerChoice = Choice.CENTER_POS;
                 setWin();
                 view.setImages(computerChoice);
-                view.setEnableNextRoundButton();
+                if (checkTurns()) {
+                    view.setEnableNextRoundButton();
+                }
                 view.setDisableButton();
             }
         }
@@ -70,7 +74,9 @@ public class ThreeCardController implements MinigameController {
                 playerChoice = Choice.DX_POS;
                 setWin();
                 view.setImages(computerChoice);
-                view.setEnableNextRoundButton();
+                if (checkTurns()) {
+                    view.setEnableNextRoundButton();
+                }
                 view.setDisableButton();
             }
         }
