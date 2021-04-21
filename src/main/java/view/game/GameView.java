@@ -55,4 +55,9 @@ public interface GameView {
      */
     void changeAllBoxes(Map<Color, Integer> position);
 
+    /**
+     * Shows the latest mini game result on a label.
+     * @param result - the latest minigame result
+     */
+    void showResult(int result);
 }

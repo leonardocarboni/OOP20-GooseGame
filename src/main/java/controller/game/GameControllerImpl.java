@@ -5,19 +5,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import application.minigame.cableconnect.CableConnectController;
+import controller.cableconnect.CableConnectController;
 import application.minigame.evenodd.mainGame.EvenOdd;
-import application.minigame.phrasecatch.PhraseCatchController;
-import application.minigame.rockpaparscissors.RPSController;
+import controller.phrasecatch.PhraseCatchController;
+import controller.rockpaperscissors.RockPaperScissorsController;
 import application.minigame.spaceshooter.mainGame.SpaceShooter;
-import application.minigame.tictactoe.mainGame.TicTacToe;
 import controller.minigame.MinigameController;
 import controller.winscreen.WinScreen;
 import controller.winscreen.WinScreenImpl;
 import javafx.scene.paint.Color;
 import model.box.Box;
-import model.duration.Duration;
-import model.duration.DurationImpl;
+import model.duration.GameDuration;
+import model.duration.GameDurationImpl;
 import model.game.GameImpl;
 import model.game.StateGame;
 import model.player.PlayerColor;
@@ -60,16 +59,13 @@ public class GameControllerImpl {
     public int checkMinigames(final Box box) {
         MinigameController minigameScene = null;
         switch (box) {
-        case BONUS:
-            break;
         case TICTACTOE:
-            minigameScene = new TicTacToe();
             break;
         case EVEN_OR_ODD:
             minigameScene = new EvenOdd();
             break;
         case ROCK_PAPER_SCISSORS:
-            minigameScene = new RPSController();
+            minigameScene = new RockPaperScissorsController();
             break;
         case CABLE_CONNECT:
             minigameScene = new CableConnectController();
@@ -86,7 +82,6 @@ public class GameControllerImpl {
         default:
             break;
         }
-        System.out.println( minigameScene.getResult());
         return minigameScene != null ? minigameScene.getResult() : 0;
     }
 
@@ -115,19 +110,21 @@ public class GameControllerImpl {
     }
 
     /**
-     * Change view and call model method according the game state.
+     * Change view and call MODEL method according the game state.
      */
     public void changeViewGameState() {
         if (game.getStateGame().equals(StateGame.CHOOSE_STARTING_QUEUE)) {
-            view.changeGameStateLabel("Initial PHASE");
+            //view.changeGameStateLabel("Initial PHASE");
             view.changeImageDice(game.choosePlayersQueue());
         } else if (game.getStateGame().equals(StateGame.CONTINUE)) {
-            view.changeGameStateLabel("GAME");
+            //view.changeGameStateLabel("GAME");
             view.changeImageDice(game.rollCurrentPlayer());
             if (game.endGame()) {
                 endGamefunction();
             }
-            game.movePlayer(checkMinigames(game.playCurrentPlayer()));
+            final int miniGameResult = checkMinigames(game.playCurrentPlayer());
+            game.movePlayer(miniGameResult);
+            view.showResult(miniGameResult);
             view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
             view.changeAllBoxes(createMap(game.getScoreBoard()));
         }
@@ -139,11 +136,11 @@ public class GameControllerImpl {
      */
     private void endGamefunction() {
         stopwatch.stop();
-        final Duration duration = new DurationImpl(stopwatch.getTime());
+        final GameDuration duration = new GameDurationImpl(stopwatch.getTime());
         view.changeGameStateLabel("END_GAME - TIME: " + duration.getDuration());
         game.saveResultGame();
         view.close();
         final WinScreen winScreen = new WinScreenImpl();
-        winScreen.start(game.getScoreBoard());
+        winScreen.start(game.getScoreBoard(), duration);
     }
 }

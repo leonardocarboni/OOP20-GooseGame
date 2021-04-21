@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import view.View;
+import view.NormalView;
 import view.ViewType;
 
 import java.net.URL;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class PlayersChooserViewImpl extends View implements Initializable, PlayersChooserView {
+public class PlayersChooserViewImpl extends NormalView implements Initializable, PlayersChooserView {
     @FXML
     private Button startButton;
     @FXML
@@ -32,7 +32,7 @@ public class PlayersChooserViewImpl extends View implements Initializable, Playe
     private Label errorLabel;
 
     public PlayersChooserViewImpl() {
-        super.createStage(ViewType.CHOOSE_PLAYER);
+        super(ViewType.CHOOSE_PLAYER);
     }
 
     @Override
