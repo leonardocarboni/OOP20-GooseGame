@@ -29,7 +29,7 @@ public class SecretCodeImpl implements SecretCode {
             errors = SIZE;
         } else {
             for (int i = 0; i < SIZE; i++) {
-                if (secretCode.get(i) != inputCode.get(i)) {
+                if (!secretCode.get(i).equals(inputCode.get(i))) {
                     errors++;
                 }
             }
@@ -40,5 +40,15 @@ public class SecretCodeImpl implements SecretCode {
     @Override
     public String getCode() {
         return secretCode.stream().map(String::valueOf).collect(Collectors.joining(""));
+    }
+
+    @Override
+    public List<Integer> setCode() {
+        return List.of(1,1,1,1,1);
+    }
+
+    @Override
+    public List<Integer> setInputCode() {
+        return List.of(9,9,9,9,9);
     }
 }

@@ -17,7 +17,17 @@ public interface SecretCode {
     int checkCode(List<Integer> inputCode);
 
     /**
-     * @return code as a string
+     * @return code as a string.
      */
     String getCode();
+
+    /**
+     * Is use for Testing.
+     */
+    List<Integer> setCode();
+
+    /**
+     * IS use for Testing.
+     */
+    List<Integer> setInputCode();
 }
