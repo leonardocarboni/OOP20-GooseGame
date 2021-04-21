@@ -29,9 +29,9 @@ public class CableConnectView extends MinigameView {
 
     private Line currentLine;
 
-    private final Map<Button, Colors> startButtonsMap = new HashMap<>();
-    private final Map<Button, Colors> endButtonsMap = new HashMap<>();
-    private final Set<Colors> colorsDone = new HashSet<>();
+    private final Map<Button, CableColor> startButtonsMap = new HashMap<>();
+    private final Map<Button, CableColor> endButtonsMap = new HashMap<>();
+    private final Set<CableColor> colorsDone = new HashSet<>();
 
     private static final String CSS_BG_COLOR = "-fx-background-color: ";
     private static final String CSS_LINE_STROKE = "-fx-stroke: ";
@@ -47,7 +47,7 @@ public class CableConnectView extends MinigameView {
      * @param startColorsArray - the array of the first four colors.
      * @param endColorsArray - the array of the last four colors.
      */
-    public void initializeButtonsMap(final Colors[] startColorsArray, final Colors[] endColorsArray) {
+    public void initializeButtonsMap(final CableColor[] startColorsArray, final CableColor[] endColorsArray) {
         startButtonsMap.put(startButton0, startColorsArray[0]);
         startButtonsMap.put(startButton1, startColorsArray[1]);
         startButtonsMap.put(startButton2, startColorsArray[2]);
@@ -90,7 +90,7 @@ public class CableConnectView extends MinigameView {
      * @param x - x coordinate of the scene
      * @param y - y coordinate of the scene
      */
-    private void createLine(final Colors color, final double x, final double y) {
+    private void createLine(final CableColor color, final double x, final double y) {
         if (currentLine == null) {
             currentLine = new Line(x, y, x, y);
             currentLine.setStrokeWidth(LINE_STROKE);
@@ -143,7 +143,7 @@ public class CableConnectView extends MinigameView {
      * disable the buttons with a different color.
      * @param color - the color which doesn't need to be disabled.
      */
-    private void disableOtherButtons(final Colors color) {
+    private void disableOtherButtons(final CableColor color) {
         startButtonsMap.keySet().forEach(b -> b.setDisable(true));
         endButtonsMap.forEach((b, c) -> {
             b.setDisable(!c.equals(color));
@@ -159,7 +159,7 @@ public class CableConnectView extends MinigameView {
         endButtonsMap.forEach((button, color) -> button.addEventHandler(ActionEvent.ACTION, cableConnectedHandler));
     }
 
-    public Set<Colors> getColorsDone() {
+    public Set<CableColor> getColorsDone() {
         return this.colorsDone;
     }
 }

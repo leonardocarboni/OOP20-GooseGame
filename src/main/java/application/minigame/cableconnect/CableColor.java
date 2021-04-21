@@ -2,7 +2,7 @@ package application.minigame.cableconnect;
 
 import java.util.Random;
 
-public enum Colors {
+public enum CableColor {
     /**
      * Red color (#CF0000).
      */
@@ -22,30 +22,26 @@ public enum Colors {
 
     private String colorHex;
 
-    Colors(final String color) {
+    CableColor(final String color) {
         this.colorHex = color;
     }
 
-    public String getColorHex() {
-        return this.colorHex;
-    }
-
-    static Colors[] getColors() {
-        return new Colors[]{RED, BLUE, GREEN, YELLOW};
+    static CableColor[] getColors() {
+        return new CableColor[]{RED, BLUE, GREEN, YELLOW};
     }
 
     /**
      * Generates a random ordered array of colors.
      * @return a random ordered array of colors.
      */
-    static Colors[] getRandomColors() {
+    static CableColor[] getRandomColors() {
         final Random rand = new Random();
-        Colors[] randomColorsArray = getColors();
+        CableColor[] randomColorsArray = getColors();
 
         //shuffle end colors array
         for (int i = 0; i < randomColorsArray.length; i++) {
             final int randomIndexToSwap = rand.nextInt(randomColorsArray.length);
-            final Colors temp = randomColorsArray[randomIndexToSwap];
+            final CableColor temp = randomColorsArray[randomIndexToSwap];
             randomColorsArray[randomIndexToSwap] = randomColorsArray[i];
             randomColorsArray[i] = temp;
         }

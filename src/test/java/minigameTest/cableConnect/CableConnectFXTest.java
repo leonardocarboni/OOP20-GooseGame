@@ -1,7 +1,7 @@
 package minigameTest.cableConnect;
 
 import application.minigame.cableconnect.CableConnectView;
-import application.minigame.cableconnect.Colors;
+import application.minigame.cableconnect.CableColor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -22,7 +22,7 @@ public class CableConnectFXTest {
     public void start(Stage stage) throws Exception {
         cableconnect = new CableConnectView();
         stage = cableconnect.getStage();
-        Colors[] colorsArray = {Colors.RED, Colors.BLUE, Colors.YELLOW, Colors.GREEN};
+        CableColor[] colorsArray = {CableColor.RED, CableColor.BLUE, CableColor.YELLOW, CableColor.GREEN};
         cableconnect.initializeButtonsMap(colorsArray, colorsArray);
         cableconnect.initializeStartButtons();
         cableconnect.initializeEndButtons();

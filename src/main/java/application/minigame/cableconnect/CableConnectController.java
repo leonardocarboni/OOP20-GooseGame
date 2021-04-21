@@ -16,16 +16,16 @@ public class CableConnectController implements MinigameController {
     private final Countdown countdown;
     private int secondsLeft;
 
-    private Set<Colors> colorsDone;
+    private Set<CableColor> colorsDone;
 
     public CableConnectController() {
         view = new CableConnectView();
 
-        final Colors[] startColorsArray;
-        final Colors[] endColorsArray;
+        final CableColor[] startColorsArray;
+        final CableColor[] endColorsArray;
 
-        startColorsArray = Colors.getRandomColors();
-        endColorsArray = Colors.getRandomColors();
+        startColorsArray = CableColor.getRandomColors();
+        endColorsArray = CableColor.getRandomColors();
 
         view.initializeButtonsMap(startColorsArray, endColorsArray);
         view.initializeStartButtons();
