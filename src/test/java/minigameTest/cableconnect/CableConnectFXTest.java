@@ -1,7 +1,7 @@
 package minigametest.cableconnect;
 
-import application.minigame.cableconnect.CableConnectView;
-import application.minigame.cableconnect.CableColor;
+import model.cablecolor.CableColor;
+import view.cableconnect.CableConnectView;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
