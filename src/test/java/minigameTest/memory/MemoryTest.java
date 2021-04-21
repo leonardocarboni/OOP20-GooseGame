@@ -35,7 +35,7 @@ public class MemoryTest {
         List<Integer> inputCode = secretCode.setInputCode();
 
        for (int i = 0; i < code.size(); i++) {
-           if (code.get(i).equals(inputCode.get(i))) {
+           if (!code.get(i).equals(inputCode.get(i))) {
                errors++;
            }
        }
