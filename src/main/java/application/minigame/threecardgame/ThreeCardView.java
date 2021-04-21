@@ -67,13 +67,13 @@ public class ThreeCardView {
 
     public void setDisableButton() {
         this.sxButton.setDisable(true);
-        this.centerImage.setDisable(true);
+        this.centerButton.setDisable(true);
         this.dxButton.setDisable(true);
     }
 
     public void setEnableButton() {
         this.sxButton.setDisable(false);
-        this.centerImage.setDisable(false);
+        this.centerButton.setDisable(false);
         this.dxButton.setDisable(false);
     }
 
