@@ -14,7 +14,7 @@ public class PlayerImpl implements Player {
     /**
      * Increment of the speed.
      */
-    private static int incrementOfSpeed = 5;
+    private static final int INCREMENT_OF_SPEED = 5;
     /**
      * I manage positions with a 2D vector.
      */
@@ -85,7 +85,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public ShotImpl shot() {
-        return new ShotImpl((int) positionPlayer.getX() + incrementOfSpeed, (int) positionPlayer.getY() + incrementOfSpeed, InfoGame.SIZE_SHOT);
+        return new ShotImpl((int) positionPlayer.getX() + INCREMENT_OF_SPEED, (int) positionPlayer.getY() + INCREMENT_OF_SPEED, InfoGame.SIZE_SHOT);
     }
 
     @Override

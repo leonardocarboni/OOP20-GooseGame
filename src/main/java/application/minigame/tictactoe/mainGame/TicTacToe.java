@@ -11,7 +11,7 @@ public class TicTacToe extends Application implements MinigameController {
     /**
      * Dimension of the grid.
      */
-    private static int gridDim = (int) Math.floor(Math.random()*(6-3+1)+3);
+    private static int gridDim = (int) Math.floor(Math.random() * 4 + 3);
 
     /**
      * Width and Height of the game.
@@ -27,7 +27,7 @@ public class TicTacToe extends Application implements MinigameController {
     /**
      * Create an instance of the view.
      */
-    public static TTTViewImpl VIEW = new TTTViewImpl();
+    private static TTTViewImpl view = new TTTViewImpl();
     /**
      * Set the primary stage.
      */
@@ -50,14 +50,14 @@ public class TicTacToe extends Application implements MinigameController {
          * Set the principal Stage
          */
 
-        VIEW.setStage(primaryStage);
+        view.setStage(primaryStage);
 
         primaryStage.setTitle("TicTacToe");
 
         /**
          * The view return the grid panel with buttons in it
          */
-        GridPane root = VIEW.createButton();
+        GridPane root = view.createButton();
 
         primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
         primaryStage.setResizable(false);
@@ -97,5 +97,9 @@ public class TicTacToe extends Application implements MinigameController {
 
     public static int getSceneHeight() {
         return SCENE_HEIGHT;
+    }
+
+    public static TTTViewImpl getView() {
+        return view;
     }
 }

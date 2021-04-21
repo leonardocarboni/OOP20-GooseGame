@@ -12,7 +12,7 @@ public class GettersMVC {
     private TTTModelImpl model;
 
     public TTTViewImpl getView() {
-        this.view = TicTacToe.VIEW;
+        this.view = TicTacToe.getView();
         return this.view;
     }
 

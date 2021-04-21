@@ -5,7 +5,9 @@ import javafx.scene.image.Image;
 /**
  * Information about the game.
  */
-public class InfoGame {
+public final class InfoGame {
+    private InfoGame() {
+    }
     /**
      * Max shot on the game.
      */

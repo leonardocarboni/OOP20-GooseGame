@@ -33,11 +33,6 @@ public class EOViewImpl implements EOView {
      */
     private List<Button> listButton = new ArrayList<>();
     /**
-     * Questa imageView verrà assegnata qualora la MODEL deciderà chi ha vinto.
-     */
-    private ImageView imgView = null;
-
-    /**
      * Esito finale. True se ha vinto il player. False se ha perso.
      */
     private boolean result;
@@ -116,7 +111,6 @@ public class EOViewImpl implements EOView {
         ImageView viewImage = new ImageView(imgIcon);
         viewImage.setFitHeight(200);
         viewImage.setFitWidth(400);
-        this.imgView = viewImage;
         viewImage.setTranslateY(-100);
         addElementToStackPane(viewImage);
     }

@@ -18,7 +18,17 @@ public class EvenOdd extends Application implements MinigameController {
      * Main stage of the game.
      */
     public static final Stage PRIMARY_STAGE = new Stage();
-
+    /**
+     * Width of the application.
+     */
+    public static final int EO_WIDTH = 600;
+    /**
+     * Height of the application.
+     */
+    public static final int EO_HEIGHT = 480;
+    /**
+     * Constructor of the EO class.
+     */
     public EvenOdd() {
         start(PRIMARY_STAGE);
     }
@@ -42,7 +52,7 @@ public class EvenOdd extends Application implements MinigameController {
 
         EvenOdd.PRIMARY_STAGE.setTitle("Even or Odd");
 
-        EvenOdd.PRIMARY_STAGE.setScene(new Scene(pane, 600, 480));
+        EvenOdd.PRIMARY_STAGE.setScene(new Scene(pane, EO_WIDTH, EO_HEIGHT));
         EvenOdd.PRIMARY_STAGE.setResizable(false);
         EvenOdd.PRIMARY_STAGE.show();
 
