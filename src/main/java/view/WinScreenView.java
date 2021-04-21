@@ -99,7 +99,7 @@ public class WinScreenView extends NormalView {
     }
 
 
-    public void setDuration(GameDuration duration) {
+    public void setDuration(final GameDuration duration) {
         durationLabel.setText(duration.getDuration());
     }
 }

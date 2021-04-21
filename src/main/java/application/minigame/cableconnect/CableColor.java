@@ -23,7 +23,7 @@ public enum CableColor {
     private String colorHex;
 
     CableColor(final String color) {
-        this.colorHex = color;
+        this.setColorHex(color);
     }
 
     static CableColor[] getColors() {
@@ -46,5 +46,13 @@ public enum CableColor {
             randomColorsArray[i] = temp;
         }
         return randomColorsArray;
+    }
+
+    public String getColorHex() {
+        return colorHex;
+    }
+
+    public void setColorHex(final String colorHex) {
+        this.colorHex = colorHex;
     }
 }

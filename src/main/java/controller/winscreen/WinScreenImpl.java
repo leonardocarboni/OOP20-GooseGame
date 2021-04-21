@@ -16,7 +16,7 @@ public class WinScreenImpl implements WinScreen {
         view = new WinScreenView();
     }
 
-    public void start(final List<PlayerImpl> playersList, GameDuration duration) {
+    public void start(final List<PlayerImpl> playersList, final GameDuration duration) {
         view.addButtonListener(e -> {
             final PlayerChooserControllerImpl pc = new PlayerChooserControllerImpl();
             pc.start();

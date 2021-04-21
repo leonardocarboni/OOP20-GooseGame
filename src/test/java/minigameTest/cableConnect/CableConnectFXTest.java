@@ -19,10 +19,10 @@ public class CableConnectFXTest {
     private CableConnectView cableconnect;
 
     @Start
-    public void start(final Stage mainStage) throws Exception {
+    public void start() {
         cableconnect = new CableConnectView();
-        mainStage = cableconnect.getStage();
-        final CableColor[] colorsArray = {CableColor.RED, CableColor.BLUE, CableColor.YELLOW, CableColor.GREEN};
+        final Stage mainStage = cableconnect.getStage();
+        final CableColor[] colorsArray = { CableColor.RED, CableColor.BLUE, CableColor.YELLOW, CableColor.GREEN };
         cableconnect.initializeButtonsMap(colorsArray, colorsArray);
         cableconnect.initializeStartButtons();
         cableconnect.initializeEndButtons();
@@ -33,6 +33,7 @@ public class CableConnectFXTest {
 
     /**
      * Tests the basic color to same color connection.
+     * 
      * @param robot
      */
     @Test
@@ -40,21 +41,22 @@ public class CableConnectFXTest {
         final Scene scene = cableconnect.getScene();
         final Button redStart = (Button) scene.lookup("#startButton0");
         final Button redEnd = (Button) scene.lookup("#endButton0");
-        //START PHASE: assert that only the "start" buttons are enabled.
+        // START PHASE: assert that only the "start" buttons are enabled.
         Assertions.assertThat(redEnd.isDisable());
         Assertions.assertThat(!redStart.isDisable());
-        //Click on red start button.
+        // Click on red start button.
         robot.clickOn(redStart);
-        //MIDDLE PHASE: assert that the red end button isn't disabled.
+        // MIDDLE PHASE: assert that the red end button isn't disabled.
         Assertions.assertThat(!redEnd.isDisable());
-        //Click on red end button
+        // Click on red end button
         robot.clickOn(redEnd);
-        //FINAL PHASE: assert that red end button is now disabled.
+        // FINAL PHASE: assert that red end button is now disabled.
         Assertions.assertThat(redEnd.isDisable());
     }
 
     /**
      * Test the connection between two different colors.
+     * 
      * @param robot
      */
     @Test
@@ -63,20 +65,21 @@ public class CableConnectFXTest {
         final Button greenStart = (Button) scene.lookup("#startButton3");
         final Button greenEnd = (Button) scene.lookup("#endButton3");
         final Button blueEnd = (Button) scene.lookup("#endButton1");
-        //START PHASE: assert that only the "start" buttons are enabled.
+        // START PHASE: assert that only the "start" buttons are enabled.
         Assertions.assertThat(blueEnd.isDisable());
         Assertions.assertThat(greenEnd.isDisable());
         Assertions.assertThat(!greenStart.isDisable());
-        //Click on the green start button.
+        // Click on the green start button.
         robot.clickOn(greenStart);
-        //MIDDLE PHASE: assert that the blue end button is disabled and the green one isn't.
+        // MIDDLE PHASE: assert that the blue end button is disabled and the green one
+        // isn't.
         Assertions.assertThat(blueEnd.isDisable());
         Assertions.assertThat(!greenEnd.isDisable());
-        //Click on blue end button [Unsuccessful].
+        // Click on blue end button [Unsuccessful].
         robot.clickOn(blueEnd);
-        //Click on green end button [Successful].
+        // Click on green end button [Successful].
         robot.clickOn(greenEnd);
-        //FINAL PHASE: assert that the blue and green end button are disabled.
+        // FINAL PHASE: assert that the blue and green end button are disabled.
         Assertions.assertThat(blueEnd.isDisable());
         Assertions.assertThat(greenEnd.isDisable());
 
