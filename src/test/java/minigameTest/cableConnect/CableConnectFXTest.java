@@ -19,16 +19,16 @@ public class CableConnectFXTest {
     private CableConnectView cableconnect;
 
     @Start
-    public void start(Stage stage) throws Exception {
+    public void start(final Stage mainStage) throws Exception {
         cableconnect = new CableConnectView();
-        stage = cableconnect.getStage();
-        CableColor[] colorsArray = {CableColor.RED, CableColor.BLUE, CableColor.YELLOW, CableColor.GREEN};
+        mainStage = cableconnect.getStage();
+        final CableColor[] colorsArray = {CableColor.RED, CableColor.BLUE, CableColor.YELLOW, CableColor.GREEN};
         cableconnect.initializeButtonsMap(colorsArray, colorsArray);
         cableconnect.initializeStartButtons();
         cableconnect.initializeEndButtons();
         cableconnect.initializeEventHandlers();
-        stage.show();
-        stage.toFront();
+        mainStage.show();
+        mainStage.toFront();
     }
 
     /**
@@ -36,10 +36,10 @@ public class CableConnectFXTest {
      * @param robot
      */
     @Test
-    public void testRedToRed(FxRobot robot) {
-        Scene scene = cableconnect.getScene();
-        Button redStart = (Button) scene.lookup("#startButton0");
-        Button redEnd = (Button) scene.lookup("#endButton0");
+    public void testRedToRed(final FxRobot robot) {
+        final Scene scene = cableconnect.getScene();
+        final Button redStart = (Button) scene.lookup("#startButton0");
+        final Button redEnd = (Button) scene.lookup("#endButton0");
         //START PHASE: assert that only the "start" buttons are enabled.
         Assertions.assertThat(redEnd.isDisable());
         Assertions.assertThat(!redStart.isDisable());
@@ -58,11 +58,11 @@ public class CableConnectFXTest {
      * @param robot
      */
     @Test
-    public void testGreenToBlue(FxRobot robot) {
-        Scene scene = cableconnect.getScene();
-        Button greenStart = (Button) scene.lookup("#startButton3");
-        Button greenEnd = (Button) scene.lookup("#endButton3");
-        Button blueEnd = (Button) scene.lookup("#endButton1");
+    public void testGreenToBlue(final FxRobot robot) {
+        final Scene scene = cableconnect.getScene();
+        final Button greenStart = (Button) scene.lookup("#startButton3");
+        final Button greenEnd = (Button) scene.lookup("#endButton3");
+        final Button blueEnd = (Button) scene.lookup("#endButton1");
         //START PHASE: assert that only the "start" buttons are enabled.
         Assertions.assertThat(blueEnd.isDisable());
         Assertions.assertThat(greenEnd.isDisable());
@@ -81,5 +81,4 @@ public class CableConnectFXTest {
         Assertions.assertThat(greenEnd.isDisable());
 
     }
-    
 }
