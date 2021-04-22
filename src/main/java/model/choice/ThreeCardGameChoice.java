@@ -4,8 +4,17 @@ import java.util.List;
 import java.util.Random;
 
 public enum ThreeCardGameChoice {
+    /**
+     * SX_POS.
+     */
     SX_POS,
+    /**
+     * CENTER_POS.
+     */
     CENTER_POS,
+    /**
+     * DX_POS.
+     */
     DX_POS;
 
     /**

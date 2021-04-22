@@ -62,11 +62,11 @@ public class ThreeCardView extends MinigameView {
     }
 
     public void setPlayerScoreLabel(int score) {
-        playerScoreLabel.setText("" + score);
+        playerScoreLabel.setText(" " + score);
     }
 
     public void setComputerScoreLabel(int score) {
-        computerScoreLabel.setText("" + score);
+        computerScoreLabel.setText(" " + score);
     }
 
     public void setImages(ThreeCardGameChoice choice) {
@@ -86,6 +86,8 @@ public class ThreeCardView extends MinigameView {
                 sxImage.setImage(new Image(WRONG_IMAGE));
                 centerImage.setImage(new Image(WRONG_IMAGE));
                 break;
+        default:
+            break;
         }
     }
 

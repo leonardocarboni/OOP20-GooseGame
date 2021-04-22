@@ -11,9 +11,9 @@ public class ThreeCardController implements MinigameController {
     private final ThreeCardView view;
     private ThreeCardGameChoice playerChoice, computerChoice;
 
-    private int numPlayerWin = 0;
-    private int numComputerWin = 0;
-    private int numTurns = 0;
+    private int numPlayerWin;
+    private int numComputerWin;
+    private int numTurns;
 
     public ThreeCardController() {
         view = new ThreeCardView();

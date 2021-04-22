@@ -24,12 +24,14 @@ public interface SecretCode {
     /**
      * Is use for Testing.
      * Creates a list of hypothetical computer choice
+     * @return code.
      */
     List<Integer> setCode();
 
     /**
      * IS use for Testing.
      * Creates a list of hypothetical user input.
+     * @return code.
      */
     List<Integer> setInputCode();
 }
