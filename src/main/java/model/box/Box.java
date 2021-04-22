@@ -35,7 +35,8 @@ public enum Box {
      * Phrase Catch Box.
      */
     PHRASE_CATCH(BoxType.MINIGAMES, "In this minigame you have to write the sentence that is proposed to\n" 
-     + "you in the shortest possible time, making the minimum number of mistakes possible."),
+     + "you in the shortest possible time, making the minimum number of mistakes possible.\n" +
+            "Remember to click the submit button to stop the timer!"),
     /**
      * Space Shooter Box.
      */
@@ -43,7 +44,11 @@ public enum Box {
     /**
      * Memory Box.
      */
-    MEMORY(BoxType.MINIGAMES, "Memory");
+    MEMORY(BoxType.MINIGAMES, "Memory"),
+    /**
+     * Three card game Box.
+     */
+    THREE_CARD_GAME (BoxType.MINIGAMES, "Three Card Game");
 
     private BoxType type;
     private String description;
