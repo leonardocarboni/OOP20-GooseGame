@@ -121,17 +121,21 @@ public class GameControllerImpl {
      */
     public void changeViewGameState() {
         if (game.getStateGame().equals(StateGame.CHOOSE_STARTING_QUEUE)) {
-            //view.changeGameStateLabel("Initial PHASE");
             view.changeImageDice(game.choosePlayersQueue());
         } else if (game.getStateGame().equals(StateGame.CONTINUE)) {
-            //view.changeGameStateLabel("GAME");
+            view.changeGameStateLabel("GAME");
             view.changeImageDice(game.rollCurrentPlayer());
             if (game.endGame()) {
+                view.changeAllBoxes(createMap(game.getScoreBoard()));
                 endGamefunction();
             }
+            view.changeAllBoxes(createMap(game.getScoreBoard()));
             final int miniGameResult = checkMinigames(game.playCurrentPlayer());
             game.movePlayer(miniGameResult);
             view.showResult(miniGameResult);
+            if (game.endGame()) {
+                endGamefunction();
+            }
             view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
             view.changeAllBoxes(createMap(game.getScoreBoard()));
         }

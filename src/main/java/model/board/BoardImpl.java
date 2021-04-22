@@ -34,7 +34,6 @@ public class BoardImpl implements Board {
             }
         }
         boxes.add(Box.END);
-        System.out.println(boxes);
         return boxes;
     }
 
