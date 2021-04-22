@@ -7,6 +7,7 @@ out/
 
 #Ranking File 
 GooseRanking.json
+NamePlayers.json
 
 # Compiled class file
 *.class
