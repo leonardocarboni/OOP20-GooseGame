@@ -19,9 +19,9 @@ public class CableConnectFXTest {
     private CableConnectView cableconnect;
 
     @Start
-    public void start() {
+    public void start(Stage mainStage) {
         cableconnect = new CableConnectView();
-        final Stage mainStage = cableconnect.getStage();
+        mainStage = cableconnect.getStage();
         final CableColor[] colorsArray = { CableColor.RED, CableColor.BLUE, CableColor.YELLOW, CableColor.GREEN };
         cableconnect.initializeButtonsMap(colorsArray, colorsArray);
         cableconnect.initializeStartButtons();
