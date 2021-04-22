@@ -25,6 +25,7 @@ public class CountdownImpl implements Countdown {
         this.timeLabel = timeLabel;
         this.timer = new Timer();
         this.updateLabelTask = new UpdateLabel();
+        this.labelToHide = Optional.empty();
     }
 
     @Override
