@@ -84,7 +84,7 @@
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Space Invaders">
+      <Tab text="Space Shooter">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
                <children>

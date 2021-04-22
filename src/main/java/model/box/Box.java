@@ -17,11 +17,15 @@ public enum Box {
     /**
      * Tic Tac Toe Box.
      */
-    TICTACTOE(BoxType.MINIGAMES, "Tic Tac Toe"),
+    TICTACTOE(BoxType.MINIGAMES, "Tic-Tac-Toe is a two players game in a 3x3 grid. \n"
+            + "One player puts the X, the other the O, alternating each other.\nThe winner is whoever puts their mark"
+            + "lined up in: oblique, vertical and horizontal.\nIn the hope of making it competitive, it can be played "
+            + "in 4x4,5x5,6x6."),
     /**
      * Even Or Odd Box.
      */
-    EVEN_OR_ODD(BoxType.MINIGAMES, "Even Or Odd"),
+    EVEN_OR_ODD(BoxType.MINIGAMES, "Even or Odd is a very simple game, you choose whether to bet on EVEN"
+            + " or ODD.\nIf your choice matches the computer's one you win, otherwise you loose..."),
     /**
      * Rock Paper Scissors Box.
      */
@@ -40,7 +44,8 @@ public enum Box {
     /**
      * Space Shooter Box.
      */
-    SPACESHOOTER(BoxType.MINIGAMES, "Space Shooter"),
+    SPACESHOOTER(BoxType.MINIGAMES, "Space shooter is a mini-game in which a player must shoot at\n"
+            + "rockets while preventing them from destroying him."),
     /**
      * Memory Box.
      */
