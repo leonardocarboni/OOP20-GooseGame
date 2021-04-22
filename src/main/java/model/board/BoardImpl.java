@@ -27,7 +27,7 @@ public class BoardImpl implements Board {
         for (int i = 1; i < size; i++) {
             if (i % MINIGAME_INTERVAL == 0) {
                minigameNumber = minigameNumber == minigames.size() ? 0 : minigameNumber;
-               boxes.add(minigames.get(minigameNumber));
+               boxes.add(minigames.get(0));
                minigameNumber++;
             } else {
                 boxes.add(Box.NORMAL);
