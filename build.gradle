@@ -40,4 +40,13 @@ test {
 
 mainClassName = "application.AppLauncher"
 
-//da implementare le robe per il jar
+jar {
+    manifest {
+        attributes "Main-Class": 'application.AppLauncher'
+    }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
