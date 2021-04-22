@@ -15,18 +15,18 @@ import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import utility.file.FileUtilityImpl;
 import view.ViewType;
-import view.playerchooser.PlayersChooserViewImpl;
+import view.playerchooser.PlayersChooserView;
 
 public class PlayerChooserControllerImpl implements PlayerChooser {
 
     private static final String FILE_NAME = "NamePlayers.json";
 
-    private final PlayersChooserViewImpl view;
+    private final PlayersChooserView view;
     private final List<Player> playersList = new ArrayList<>();
     private final FileUtilityImpl<String> s = new FileUtilityImpl<>(FILE_NAME);
 
     public PlayerChooserControllerImpl() {
-        view = new PlayersChooserViewImpl();
+        view = new PlayersChooserView();
     }
 
     public void start() {

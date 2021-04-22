@@ -27,16 +27,16 @@ import model.player.PlayerColor;
 import org.apache.commons.lang3.time.StopWatch;
 
 import view.ViewType;
-import view.game.GameViewImpl;
+import view.game.GameView;
 
 public class GameControllerImpl {
 
-    private final GameViewImpl view;
+    private final GameView view;
     private final GameImpl game;
     private final StopWatch stopwatch;
 
     public GameControllerImpl() {
-        view = new GameViewImpl();
+        view = new GameView();
         game = new GameImpl();
         stopwatch = new StopWatch();
     }
