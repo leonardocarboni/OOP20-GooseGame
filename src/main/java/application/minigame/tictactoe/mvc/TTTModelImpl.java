@@ -13,19 +13,24 @@ import javafx.scene.control.Button;
  */
 public class TTTModelImpl implements TTTModel {
 
-    private int numberOfClick = 0;
+    private int numberOfClick;
     private final GettersMVC getters = new GettersMVC();
 
     /**
      * This is the grid dim, used for algorithm.
      */
-    private final int bound = getters.getSize();
+    private int bound;
 
     /**
      * Button of the grid.
      */
     private List<Button> listButtonGrid;
     private final List<String> sign = List.of("X", "O");
+
+    public TTTModelImpl(){
+        this.numberOfClick = 0;
+        this.bound = getters.getSize();
+    }
 
     @Override
     public String checkWin() {
@@ -39,6 +44,7 @@ public class TTTModelImpl implements TTTModel {
                         counter++;
                     }
                     if (counter == bound) {
+                        clear();
                         return sign.get(j);
                     }
                 }
@@ -52,6 +58,7 @@ public class TTTModelImpl implements TTTModel {
                         counter++;
                     }
                     if (counter == bound) {
+                        clear();
                         return sign.get(j);
                     }
                 }
@@ -64,6 +71,7 @@ public class TTTModelImpl implements TTTModel {
                     counter++;
                 }
                 if (counter == bound) {
+                    clear();
                     return sign.get(j);
                 }
             }
@@ -75,12 +83,14 @@ public class TTTModelImpl implements TTTModel {
                     counter++;
                 }
                 if (counter == bound) {
+                    clear();
                     return sign.get(j);
                 }
             }
         }
 
         if (numberOfClick >= bound * bound) {
+            clear();
             return "No one";
         }
         return "";
@@ -92,11 +102,14 @@ public class TTTModelImpl implements TTTModel {
     private final Consumer<String> winCondition = winner -> {
         if (!winner.equals("")) {
             TicTacToe.setWin(true);
-
             EndgameThread my = new EndgameThread(winner);
             my.start();
         }
     };
+
+    private void clear(){
+        this.numberOfClick = 0;
+    }
 
     public Consumer<String> getWinCondition() {
         return winCondition;

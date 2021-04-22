@@ -1,12 +1,12 @@
 [
   {
-    "name": "dfsdf",
-    "color": "PINK",
-    "boardPosition": 41
+    "name": "s",
+    "color": "RED",
+    "boardPosition": 39
   },
   {
-    "name": "sfs",
-    "color": "RED",
-    "boardPosition": 38
+    "name": "d",
+    "color": "PINK",
+    "boardPosition": 41
   }
 ]
