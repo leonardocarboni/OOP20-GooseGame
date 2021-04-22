@@ -33,7 +33,7 @@ public class RockPaperScissorsController implements MinigameController {
 
     @Override
     public int getResult() {
-        if (numTurns == 3) {
+        if (checkTurns()) {
             if (getWinner(playerChoice, getComputerChoice()) == RockPaperScissorsGameState.DRAW) {
                 return 0;
             } else if (getWinner(playerChoice, getComputerChoice()) == RockPaperScissorsGameState.PLAYER_WIN) {
