@@ -24,6 +24,10 @@ public class RockPaperScissorsView extends MinigameView {
     @FXML
     private ImageView playerImage, computerImage;
 
+    private static final Image ROCK_IMAGE = new Image("rockPaperScissors/rock.png");
+    private static final Image PAPER_IMAGE = new Image("rockPaperScissors/paper.png");
+    private static final Image SCISSORS_IMAGE = new Image("rockPaperScissors/scissors.png");
+
     public RockPaperScissorsView() {
         super(ViewType.ROCK_PAPER_SCISSORS);
     }
@@ -61,23 +65,21 @@ public class RockPaperScissorsView extends MinigameView {
     }
 
     public void setPlayerChoiceImage(final RockPaperScissorsChoice choice) {
-        playerImage.setImage(new Image(parseChoiceImagePath(choice)));
+        playerImage.setImage(parseChoiceImagePath(choice));
     }
 
     public void setComputerChoiceImage(final RockPaperScissorsChoice choice) {
-        computerImage.setImage(new Image(parseChoiceImagePath(choice)));
+        computerImage.setImage(parseChoiceImagePath(choice));
     }
 
-    private String parseChoiceImagePath(final RockPaperScissorsChoice choice) {
-        String imagePath;
+    private Image parseChoiceImagePath(final RockPaperScissorsChoice choice) {
         if (choice == RockPaperScissorsChoice.ROCK) {
-            imagePath = "rockpaperscissors/rock.png";
+            return ROCK_IMAGE;
         } else if (choice == RockPaperScissorsChoice.PAPER) {
-            imagePath = "rockpaperscissors/paper.png";
+            return PAPER_IMAGE;
         } else {
-            imagePath = "rockpaperscissors/scissors.png";
+            return SCISSORS_IMAGE;
         }
-        return imagePath;
     }
 
 }
