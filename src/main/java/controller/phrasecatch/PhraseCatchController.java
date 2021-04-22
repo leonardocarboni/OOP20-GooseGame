@@ -30,6 +30,7 @@ public class PhraseCatchController implements MinigameController {
         view.setPhrase(sentence);
 
         countdown = new CountdownImpl(SECONDS, view.getTimeLabel());
+        countdown.enableQuitButtonOnEnd(view.getQuitButton());
         countdown.start();
 
         view.showAndWaitResult();

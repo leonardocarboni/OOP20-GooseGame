@@ -29,7 +29,8 @@ public enum Box {
     /**
      * Rock Paper Scissors Box.
      */
-    ROCK_PAPER_SCISSORS(BoxType.MINIGAMES, "Rock Paper Scissors"),
+    ROCK_PAPER_SCISSORS(BoxType.MINIGAMES, "Rock beats scissors, Scissors beats paper, paper beats rock.\n"
+            + "The mini-game is composed of 3 rounds, whoever wins 2 of them wins the game.\n"),
     /**
      * Cable Connect Box.
      */
@@ -49,11 +50,16 @@ public enum Box {
     /**
      * Memory Box.
      */
-    MEMORY(BoxType.MINIGAMES, "Memory"),
+    MEMORY(BoxType.MINIGAMES, "The aim of the game is to remember and enter, using the appropriate buttons,\n"
+            + "a sequence of 5 numbers that after a short time will be blacked out.\n"
+            + "Remember to click Check when you finished!"),
     /**
      * Three card game Box.
      */
-    THREE_CARD_GAME(BoxType.MINIGAMES, "Three Card Game");
+    THREE_CARD_GAME(BoxType.MINIGAMES, "The aim of the game is to guess where the \"queen\""
+            + "(represented by a green tick) is.\nThere are three cards: one of them will be the \"queen\", while the"
+            + "others will be the \"two\" (represented by a red X).\nAt the end of each turn a \"continue\" button"
+            + "will be enabled, which will allow a new turn to be taken.\nThe game is played to the best of three.");
 
     private BoxType type;
     private String description;

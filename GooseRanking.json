@@ -1,12 +1,22 @@
 [
   {
-    "name": "s",
-    "color": "RED",
-    "boardPosition": 39
+    "name": "endri",
+    "color": "GREEN",
+    "boardPosition": 41
   },
   {
-    "name": "d",
+    "name": "carbo",
+    "color": "BLUE",
+    "boardPosition": 37
+  },
+  {
+    "name": "davide",
+    "color": "RED",
+    "boardPosition": 33
+  },
+  {
+    "name": "onga",
     "color": "PINK",
-    "boardPosition": 41
+    "boardPosition": 28
   }
 ]

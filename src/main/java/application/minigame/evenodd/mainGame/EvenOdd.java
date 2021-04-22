@@ -65,9 +65,9 @@ public class EvenOdd extends Application implements MinigameController {
     @Override
     public int getResult() {
         if (new GettersMVC().getView().isResult()) {
-            return 1;
+            return 5;
         } else {
-            return 2;
+            return -5;
         }
     }
 

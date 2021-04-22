@@ -127,14 +127,14 @@ public class GameControllerImpl {
             view.changeImageDice(game.rollCurrentPlayer());
             if (game.endGame()) {
                 view.changeAllBoxes(createMap(game.getScoreBoard()));
-                endGamefunction();
+                endGameFunction();
             }
             view.changeAllBoxes(createMap(game.getScoreBoard()));
             final int miniGameResult = checkMinigames(game.playCurrentPlayer());
             game.movePlayer(miniGameResult);
             view.showResult(miniGameResult);
             if (game.endGame()) {
-                endGamefunction();
+                endGameFunction();
             }
             view.changeScoreboard(game.getScoreBoard().stream().map(Player::getName).collect(Collectors.toList()));
             view.changeAllBoxes(createMap(game.getScoreBoard()));
@@ -145,10 +145,9 @@ public class GameControllerImpl {
     /**
      * Method groups all the things to do at the end of the game.
      */
-    private void endGamefunction() {
-        stopwatch.stop();
+    private void endGameFunction() {
         final GameDuration duration = new GameDurationImpl(stopwatch.getTime());
-        view.changeGameStateLabel("END_GAME - TIME: " + duration.getDuration());
+        stopwatch.reset();
         game.saveResultGame();
         view.close();
         final WinScreen winScreen = new WinScreenImpl();

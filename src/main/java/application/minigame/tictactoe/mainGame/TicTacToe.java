@@ -75,9 +75,9 @@ public class TicTacToe extends Application implements MinigameController {
     public int getResult() {
         TTTViewImpl.clear();
         if (isWin) {
-            return 1;
+            return 5;
         } else {
-            return 0;
+            return -5;
         }
     }
 

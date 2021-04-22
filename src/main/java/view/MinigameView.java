@@ -23,4 +23,8 @@ public class MinigameView extends View {
     public void enableQuitButton() {
         this.quitButton.setDisable(false);
     }
+
+    public Button getQuitButton() {
+        return this.quitButton;
+    }
 }

@@ -41,5 +41,4 @@ public class PhraseCatchView extends MinigameView {
     public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
         submitButton.setOnAction(eventHandler);
     }
-
 }
