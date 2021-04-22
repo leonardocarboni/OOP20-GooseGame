@@ -1,6 +1,5 @@
 package model.game;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import model.box.Box;
 import model.dice.Dice;
 import model.dice.DiceImpl;
 import model.player.Player;
+import model.queue.Queue;
 import model.queue.QueueImpl;
 import model.rank.Rank;
 import model.rank.RankImpl;
@@ -21,27 +21,29 @@ public class GameImpl implements Game {
     private static final int BOARD_SIZE = 41;
     private static final String FILE_NAME = "GooseRanking.json";
     private final Dice dice;
-    private final QueueImpl playerQueue = new QueueImpl();
+    private final Queue playerQueue;
     private final Rank rank;
     private final Board gameBoard;
-    private final Map<Player, Integer> throwDice = new HashMap<>();
-    private List<Player> pl = new ArrayList<>();
+    private final Map<Player, Integer> throwDice;
+    private List<Player> playerList;
     private StateGame stateGame;
 
     public GameImpl() {
+        playerQueue = new QueueImpl();
         dice = new DiceImpl();
         rank = new RankImpl();
+        throwDice = new HashMap<>();
         gameBoard = new BoardImpl(BOARD_SIZE);
         stateGame = StateGame.START;
     }
 
     @Override
     public void start(final List<Player> playerList) {
-        gameBoard.generateBoard();
-        stateGame = StateGame.CHOOSE_STARTING_QUEUE;
-        pl = playerList;
+        this.playerList = playerList;
         initPlayers(playerList);
-        playerQueue.setStartingQueue(pl);
+        stateGame = StateGame.CHOOSE_STARTING_QUEUE;
+        gameBoard.generateBoard();
+        playerQueue.setStartingQueue(playerList);
         playerQueue.resetIterator();
         rank.setRanking(playerList);
     }
@@ -117,10 +119,10 @@ public class GameImpl implements Game {
     }
 
     /**
-     * Check if all players have rolled the die once.
+     * Check if all players have rolled the dice once.
     */
     private void checkEndChoosePhase() {
-        if (throwDice.size() == pl.size()) {
+        if (throwDice.size() == playerList.size()) {
             playerQueue.orderPlayerQueue(throwDice);
             playerQueue.resetIterator();
             stateGame = StateGame.CONTINUE;

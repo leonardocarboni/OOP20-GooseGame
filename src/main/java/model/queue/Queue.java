@@ -40,4 +40,10 @@ public interface Queue {
      */
     void resetIterator();
 
+    /**
+     * Get next player in the iterator. 
+     * @return a player
+     */
+    Player next();
+
 }
