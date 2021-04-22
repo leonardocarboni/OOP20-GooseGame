@@ -7,11 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class TicTacToe extends Application implements MinigameController {
     /**
      * Dimension of the grid.
      */
-    private static int gridDim = (int) Math.floor(Math.random() * 4 + 3);
+    private static int gridDim = roll();
 
     /**
      * Width and Height of the game.
@@ -101,5 +103,9 @@ public class TicTacToe extends Application implements MinigameController {
 
     public static TTTViewImpl getView() {
         return view;
+    }
+
+    private static int roll() {
+        return new Random().nextInt(4) + 3;
     }
 }

@@ -34,7 +34,7 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
     /**
      * Y position of the final button that say the winner.
      */
-    private static final int TRANSLATE_Y_OF_ENDGAMEBUTTON = 130;
+    private static final int TRANSLATE_Y_OF_ENDGAMEBUTTON = 13;
     /**
      * Font of the text in the final button.
      */
