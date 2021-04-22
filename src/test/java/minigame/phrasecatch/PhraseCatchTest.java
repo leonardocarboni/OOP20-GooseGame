@@ -1,4 +1,4 @@
-package minigame.phraseCatch;
+package minigame.phrasecatch;
 
 import model.phrase.Phrase;
 import model.phrase.PhraseImpl;
