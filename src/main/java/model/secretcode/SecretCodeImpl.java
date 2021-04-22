@@ -11,8 +11,8 @@ public class SecretCodeImpl implements SecretCode {
     private static final int MIN_VALUE_CODE = 1;
     private static final int MAX_VALUE_CODE = 9;
 
-    private final List<Integer> secretCode = new ArrayList<>();
     private final Random r = new Random();
+    private List<Integer> secretCode = new ArrayList<>();
 
     @Override
     public void generateSecretCode() {
@@ -43,12 +43,7 @@ public class SecretCodeImpl implements SecretCode {
     }
 
     @Override
-    public List<Integer> setCode() {
-        return List.of(1,1,1,1,1);
-    }
-
-    @Override
-    public List<Integer> setInputCode() {
-        return List.of(9,9,9,9,9);
+    public void setCode(final List<Integer> code) {
+        secretCode = code;
     }
 }
