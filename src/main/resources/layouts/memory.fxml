@@ -12,7 +12,7 @@
 <?import java.util.ArrayList?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="785.0" styleClass="background-image" stylesheets="@memoryStyle.css" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: linear-gradient(#D9965B, #D98452);">
    <center>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <GridPane alignment="CENTER">
