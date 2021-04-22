@@ -46,17 +46,20 @@ public class PhraseCatchController implements MinigameController {
     public class PhraseSubmitHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
-            final double remainingTime = countdown.getSecondsLeft();
-            countdown.shutdown();
-            view.enableQuitButton();
             final String textRead = view.getInputText();
-            final int errorsMade = phrase.checkText(textRead);
-            if (remainingTime == 0.0 || errorsMade >= MAX_ERRORS) {
-                secondsLeft = -MAX_ERRORS;
-                errors = 0;
-            } else {
-                secondsLeft = (int) remainingTime;
-                errors = errorsMade;
+            if (textRead != ""){
+                final double remainingTime = countdown.getSecondsLeft();
+                countdown.shutdown();
+                view.enableQuitButton();
+
+                final int errorsMade = phrase.checkText(textRead);
+                if (remainingTime == 0.0 || errorsMade >= MAX_ERRORS) {
+                    secondsLeft = -MAX_ERRORS;
+                    errors = 0;
+                } else {
+                    secondsLeft = (int) remainingTime;
+                    errors = errorsMade;
+                }
             }
         }
     }
