@@ -37,6 +37,7 @@ public class CableConnectController implements MinigameController {
         view.addButtonListener(new LastCableConnectedHandler());
 
         countdown = new CountdownImpl(SECONDS, view.getTimeLabel());
+        countdown.enableQuitButtonOnEnd(view.getQuitButton());
         countdown.start();
 
         view.showAndWaitResult();
