@@ -128,16 +128,18 @@ public class GameControllerImpl {
             if (game.endGame()) {
                 view.changeAllBoxes(createMap(game.getScoreBoard()));
                 endGameFunction();
+            } else {
+                view.changeAllBoxes(createMap(game.getScoreBoard()));
+                final int miniGameResult = checkMinigames(game.playCurrentPlayer());
+                game.movePlayer(miniGameResult);
+                view.showResult(miniGameResult);
+                if (game.endGame()) {
+                    endGameFunction();
+                    return;
+                }
+                view.changeScoreboard(game.getScoreBoard().stream().map(Player::getName).collect(Collectors.toList()));
+                view.changeAllBoxes(createMap(game.getScoreBoard()));
             }
-            view.changeAllBoxes(createMap(game.getScoreBoard()));
-            final int miniGameResult = checkMinigames(game.playCurrentPlayer());
-            game.movePlayer(miniGameResult);
-            view.showResult(miniGameResult);
-            if (game.endGame()) {
-                endGameFunction();
-            }
-            view.changeScoreboard(game.getScoreBoard().stream().map(Player::getName).collect(Collectors.toList()));
-            view.changeAllBoxes(createMap(game.getScoreBoard()));
         }
         view.changePlayerLabel(game.nextPlayer().getName());
     }
@@ -147,7 +149,7 @@ public class GameControllerImpl {
      */
     private void endGameFunction() {
         final GameDuration duration = new GameDurationImpl(stopwatch.getTime());
-        stopwatch.reset();
+        stopwatch.stop();
         game.saveResultGame();
         view.close();
         final WinScreen winScreen = new WinScreenImpl();
