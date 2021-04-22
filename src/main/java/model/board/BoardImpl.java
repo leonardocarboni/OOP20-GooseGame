@@ -24,7 +24,7 @@ public class BoardImpl implements Board {
         final List<Box> minigames = getAllBoxesByType(BoxType.MINIGAMES);
         boxes.add(Box.START);
         int minigameNumber = 0;
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 1; i < size; i++) {
             if (i % MINIGAME_INTERVAL == 0) {
                minigameNumber = minigameNumber == minigames.size() ? 0 : minigameNumber;
                boxes.add(minigames.get(minigameNumber));
@@ -34,6 +34,7 @@ public class BoardImpl implements Board {
             }
         }
         boxes.add(Box.END);
+        System.out.println(boxes);
         return boxes;
     }
 
