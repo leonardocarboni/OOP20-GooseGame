@@ -110,5 +110,18 @@
             </AnchorPane>
         </content>
       </Tab>
+      <Tab text="Three Card Game">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="threeCardDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="THREECARD_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
   </tabs>
 </TabPane>
