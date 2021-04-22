@@ -31,11 +31,11 @@ public enum RockPaperScissorsChoice {
 
     /**
      * Is use for testing.
-     * Creates a list of hypothetical computer choices
-     * @return list of choice.
+     * Creates hypothetical computer choices
+     * @return choice.
      */
-    public List<RockPaperScissorsChoice> setComputerChoice() {
-        return List.of(PAPER, SCISSORS, ROCK);
+    public static RockPaperScissorsChoice setComputerChoice() {
+        return RockPaperScissorsChoice.ROCK;
     }
 
     /**
@@ -43,7 +43,7 @@ public enum RockPaperScissorsChoice {
      * Creates a list of hypothetical user choices
      * @return list of choice;
      */
-    public List<RockPaperScissorsChoice> setInputChoice() {
+    public static List<RockPaperScissorsChoice> setInputChoice() {
         return List.of(ROCK, PAPER, SCISSORS);
     }
 }
