@@ -24,14 +24,7 @@ public interface SecretCode {
     /**
      * Is use for Testing.
      * Creates a list of hypothetical computer choice
-     * @return code.
+     * @param code code use for testing.
      */
-    List<Integer> setCode();
-
-    /**
-     * IS use for Testing.
-     * Creates a list of hypothetical user input.
-     * @return code.
-     */
-    List<Integer> setInputCode();
+    void setCode(List<Integer> code);
 }
