@@ -17,7 +17,7 @@
   <p align="center">
     [ITA]
     GooseGame è un gioco copia del "Gioco dell'oca", dove ogni giocatore deve completare
-    il percorso di 44 caselle prima degli altri per vincere. Il percorso è composto da
+    il percorso di 42 caselle prima degli altri per vincere. Il percorso è composto da
     vari minigiochi che possono mandare avanti o far tornare indietro il giocatore.
     <br />
   </p>
@@ -79,8 +79,11 @@
 
 ### Built With
 * [Intellij Idea Community Edition](https://www.jetbrains.com/idea/)
+* [Eclipse](https://www.eclipse.org/downloads/)
 * [SceneBuilder](https://gluonhq.com/products/scene-builder/)
 * [JavaFX](https://openjfx.io/)
+* [JUnit 5](https://junit.org/junit5/)
+* [TestFX](https://github.com/TestFX/TestFX)
 
 
 
@@ -99,7 +102,7 @@ Per ottenere una copia del prodotto, scaricare l'ultima release.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
-_Please refer to the [Documentation](https://example.com)_
+_Please refer to the [Documentation](https://github.com/leonardocarboni/OOP20-GooseGame/blob/main/report.pdf)_
 
 
 <!-- LICENSE -->
