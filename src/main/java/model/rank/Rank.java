@@ -22,7 +22,7 @@ public interface Rank {
      * Set ranking using the parameter passed.
      * 
      * @param list - list of players. This list must contain at least one element.
-     * @throws IllegalStateException caused by a list with 0 element.
+     * @throws IllegalStateException caused by a list with 0 elements.
      */
     void setRanking(List<PlayerImpl> list);
 }

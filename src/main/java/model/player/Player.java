@@ -4,6 +4,7 @@ public interface Player {
 
     /**
      * Get name of player.
+     * 
      * @return name of player.
      */
     String getName();
@@ -11,7 +12,7 @@ public interface Player {
     /**
      * Set player name.
      * 
-     * @param name
+     * @param name of player
      */
     void setName(String name);
 
@@ -25,9 +26,9 @@ public interface Player {
     /**
      * Add dice result to current position of the player.
      * 
-     * @param diceValue
+     * @param value 
      */
-    void addPosition(int diceValue);
+    void addPosition(int value);
 
     /**
      * Set position of the player to 0.
@@ -37,7 +38,7 @@ public interface Player {
     /**
      * Get color of the player.
      * 
-     * @return PlayerColor
+     * @return color of the player
      */
     PlayerColor getColor();
 }

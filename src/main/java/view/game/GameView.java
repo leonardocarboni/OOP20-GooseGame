@@ -17,7 +17,7 @@ public interface GameView {
     void changeImageDice(int value);
 
     /**
-     * Change text of every label of scoreboard using param.
+     * Change text of every label of score board using list.
      * 
      * @param list
      */
@@ -56,7 +56,7 @@ public interface GameView {
     void changeAllBoxes(Map<Color, Integer> position);
 
     /**
-     * Shows the latest mini game result on a label.
+     * Shows the latest minigame result on a label.
      * @param result - the latest minigame result
      */
     void showResult(int result);

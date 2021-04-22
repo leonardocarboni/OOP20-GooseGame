@@ -112,7 +112,6 @@ public class GameViewImpl extends NormalView implements Initializable, GameView 
     public void changeAllBoxes(final Map<Color, Integer> position) {
         resetAllBoxes();
         for (final Entry<Color, Integer> p : position.entrySet()) {
-            System.out.println(p.getValue());
             gameboard.get(p.getValue()).getChildren().add(createCircle(p.getKey()));
         }
     }

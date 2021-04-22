@@ -103,7 +103,7 @@ public class GameImpl implements Game {
     }
 
     /**
-     * 
+     * Check if player went above the board limit.
      * @param p
      */
     private void goBeyoundLimit(final PlayerImpl p) {
@@ -115,7 +115,7 @@ public class GameImpl implements Game {
     }
 
     /**
-     * Check end phase.
+     * Check if all players have rolled the die once.
     */
     private void checkEndChoosePhase() {
         if (throwDice.size() == pl.size()) {
@@ -127,7 +127,8 @@ public class GameImpl implements Game {
 
     /**
      * Reset all players position.
-     * Usefull with a second new game with same players.
+     * Useful with a second new game with same players.
+     * 
      * @param players
      */
     private void initPlayers(final List<PlayerImpl> players) {

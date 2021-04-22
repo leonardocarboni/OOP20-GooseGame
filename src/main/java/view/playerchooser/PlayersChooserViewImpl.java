@@ -42,7 +42,7 @@ public class PlayersChooserViewImpl extends NormalView implements Initializable,
             playersComboBox.get(i).valueProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(final ObservableValue<? extends String> ob, final String ol,
-                        final String currentValue) {
+                    final String currentValue) {
                     if ("No Selection".equals(currentValue)) {
                         currentPlayerText.setDisable(false);
                     } else {
@@ -59,7 +59,7 @@ public class PlayersChooserViewImpl extends NormalView implements Initializable,
         for (int i = 0; i < playersComboBox.size(); i++) {
             final TextField txtPlayer = playersName.get(i);
             final ComboBox<String> cb = playersComboBox.get(i);
-            System.out.println(cb.getValue());
+
             if ("No Selection".equals(cb.getValue()) || cb.getValue() == null) {
                 playersInfo.put(txtPlayer.getId(), txtPlayer.getText());
             } else {
