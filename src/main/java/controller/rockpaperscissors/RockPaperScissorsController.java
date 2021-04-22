@@ -40,7 +40,7 @@ public class RockPaperScissorsController implements MinigameController {
     public class RockClickHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
-            if (numTurns < 3) {
+            if (checkTurns()) {
                 numTurns++;
                 playerChoice = RockPaperScissorsChoice.ROCK;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
@@ -49,10 +49,12 @@ public class RockPaperScissorsController implements MinigameController {
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
+
+                if (checkTurns()) {
+                    view.enableQuitButton();
+                }
             }
-            if (checkTurns()) {
-                view.enableQuitButton();
-            }
+
         }
     }
 
@@ -62,7 +64,7 @@ public class RockPaperScissorsController implements MinigameController {
     public class PaperClickHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
-            if (numTurns < 3) {
+            if (checkTurns()) {
                 numTurns++;
                 playerChoice = RockPaperScissorsChoice.PAPER;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
@@ -71,9 +73,10 @@ public class RockPaperScissorsController implements MinigameController {
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
-            }
-            if (checkTurns()) {
-                view.enableQuitButton();
+
+                if (checkTurns()) {
+                    view.enableQuitButton();
+                }
             }
         }
     }
@@ -84,7 +87,7 @@ public class RockPaperScissorsController implements MinigameController {
     public class  ScissorsClickHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
-            if (numTurns < 3) {
+            if (checkTurns()) {
                 numTurns++;
                 playerChoice = RockPaperScissorsChoice.SCISSORS;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
@@ -93,21 +96,22 @@ public class RockPaperScissorsController implements MinigameController {
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
                 view.setComputerScoreLabel(numComputerWin);
-            }
-            if (checkTurns()) {
-                view.enableQuitButton();
+
+                if (checkTurns()) {
+                    view.enableQuitButton();
+                }
             }
         }
     }
 
     private boolean checkTurns() {
-        return numTurns == 3 || numPlayerWin == 2 || numComputerWin == 2;
+        return numTurns < 3 && numPlayerWin < 2 && numComputerWin < 2;
     }
 
     public void getWinner(final RockPaperScissorsChoice playerChoice, final RockPaperScissorsChoice computerChoice) {
         if (playerChoice.equals(computerChoice)) {
             view.draw();
-            numTurns--;
+            --numTurns;
         }
         if (playerChoice.equals(RockPaperScissorsChoice.ROCK)) {
             if (computerChoice.equals(RockPaperScissorsChoice.PAPER)) {
