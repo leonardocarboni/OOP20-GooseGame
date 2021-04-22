@@ -3,7 +3,7 @@ package model.queue;
 import java.util.List;
 import java.util.Map;
 
-import model.player.PlayerImpl;
+import model.player.Player;
 
 public interface Queue {
 
@@ -12,31 +12,31 @@ public interface Queue {
      * 
      * @param diceThrowing
      */
-    void orderPlayerQueue(Map<PlayerImpl, Integer> diceThrowing);
+    void orderPlayerQueue(Map<Player, Integer> diceThrowing);
 
     /**
      * Set starting player queue.
      * 
      * @param list
      */
-    void setStartingQueue(List<PlayerImpl> list);
+    void setStartingQueue(List<Player> list);
 
     /**
      * Get current player.
      * 
      * @return current player
      */
-    PlayerImpl getCurrent();
+    Player getCurrent();
 
     /**
      * Get starting queue.
      * 
      * @return list of players
      */
-    List<PlayerImpl> getStartingQueue();
+    List<Player> getStartingQueue();
 
     /**
-     * Reset the queue at the starting point. Usefull when change the player queue
+     * Reset the queue at the starting point. Useful when change the player queue
      */
     void resetIterator();
 

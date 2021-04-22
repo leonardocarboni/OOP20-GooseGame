@@ -5,7 +5,7 @@ import java.util.List;
 
 import model.box.Box;
 import model.box.BoxType;
-import model.player.PlayerImpl;
+import model.player.Player;
 
 public class BoardImpl implements Board {
 
@@ -13,6 +13,7 @@ public class BoardImpl implements Board {
     private final List<Box> boxes;
     private static final int BOARD_LIMIT = 2;
     private static final int MINIGAME_INTERVAL = 5;
+
     public BoardImpl(final int size) {
         this.size = size;
         this.boxes = new ArrayList<>(size);
@@ -38,7 +39,7 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public Box getBox(final PlayerImpl p) {
+    public Box getBox(final Player p) {
         return boxes.get(p.getBoardPosition());
     }
 

@@ -10,15 +10,17 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.game.Game;
 import model.game.GameImpl;
+import model.player.Player;
 import model.player.PlayerColor;
 import model.player.PlayerImpl;
 
 class GameTest {
 
     private static final int BOARD_SIZE = 41;
-    private final GameImpl g = new GameImpl();
-    private final List<PlayerImpl> list = new ArrayList<>();
+    private final Game g = new GameImpl();
+    private final List<Player> list = new ArrayList<>();
 
     @BeforeEach 
     void initListPlayers() {

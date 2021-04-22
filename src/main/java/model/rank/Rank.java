@@ -2,7 +2,7 @@ package model.rank;
 
 import java.util.List;
 
-import model.player.PlayerImpl;
+import model.player.Player;
 
 public interface Rank {
 
@@ -14,9 +14,9 @@ public interface Rank {
     /**
      * Get the current rank of players.
      * 
-     * @return List<PlayerImpl>
+     * @return list of players
      */
-    List<PlayerImpl> getRanking();
+    List<Player> getRanking();
 
     /**
      * Set ranking using the parameter passed.
@@ -24,5 +24,5 @@ public interface Rank {
      * @param list - list of players. This list must contain at least one element.
      * @throws IllegalStateException caused by a list with 0 elements.
      */
-    void setRanking(List<PlayerImpl> list);
+    void setRanking(List<Player> list);
 }

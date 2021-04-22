@@ -3,7 +3,7 @@ package model.board;
 import java.util.List;
 
 import model.box.Box;
-import model.player.PlayerImpl;
+import model.player.Player;
 
 public interface Board {
 
@@ -20,5 +20,5 @@ public interface Board {
      * @param player
      * @return type of the box
      */
-    Box getBox(PlayerImpl player);
+    Box getBox(Player player);
 }

@@ -9,49 +9,49 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import model.player.PlayerImpl;
+import model.player.Player;
 
-public class QueueImpl implements Iterator<PlayerImpl>, Queue {
+public class QueueImpl implements Queue, Iterator<Player> {
 
-    private List<PlayerImpl> startingQueue;
-    private PlayerImpl current;
-    private Iterator<PlayerImpl> playerIterator;
+    private List<Player> startingQueue;
+    private Player current;
+    private Iterator<Player> playerIterator;
 
     public QueueImpl() {
         this.startingQueue = new ArrayList<>();
     }
 
     @Override
-    public void orderPlayerQueue(final Map<PlayerImpl, Integer> diceThrowing) {
+    public void orderPlayerQueue(final Map<Player, Integer> diceThrowing) {
         startingQueue = new ArrayList<>();
-        final List<Entry<PlayerImpl, Integer>> list = new LinkedList<>(diceThrowing.entrySet());
+        final List<Entry<Player, Integer>> list = new LinkedList<>(diceThrowing.entrySet());
 
         // Sorting the list based on value
-        Collections.sort(list, new Comparator<Entry<PlayerImpl, Integer>>() {
+        Collections.sort(list, new Comparator<Entry<Player, Integer>>() {
 
             @Override
-            public int compare(final Entry<PlayerImpl, Integer> o1, final Entry<PlayerImpl, Integer> o2) {
+            public int compare(final Entry<Player, Integer> o1, final Entry<Player, Integer> o2) {
                 return -1 * o1.getValue().compareTo(o2.getValue());
             }
 
         });
-        for (final Entry<PlayerImpl, Integer> entry : list) {
+        for (final Entry<Player, Integer> entry : list) {
             startingQueue.add(entry.getKey());
         }
     }
 
     @Override
-    public void setStartingQueue(final List<PlayerImpl> list) {
+    public void setStartingQueue(final List<Player> list) {
         this.startingQueue = getDeepCopy(list);
     }
 
     @Override
-    public List<PlayerImpl> getStartingQueue() {
+    public List<Player> getStartingQueue() {
         return startingQueue;
     }
 
     @Override
-    public PlayerImpl getCurrent() {
+    public Player getCurrent() {
         return current;
     }
 
@@ -64,7 +64,7 @@ public class QueueImpl implements Iterator<PlayerImpl>, Queue {
     }
 
     @Override
-    public PlayerImpl next() {
+    public Player next() {
         if (!playerIterator.hasNext()) {
             playerIterator = startingQueue.iterator();
         }
@@ -84,9 +84,9 @@ public class QueueImpl implements Iterator<PlayerImpl>, Queue {
      * @param list
      * @return list of players
      */
-    private List<PlayerImpl> getDeepCopy(final List<PlayerImpl> list) {
-        final Iterator<PlayerImpl> iterator = list.iterator();
-        final List<PlayerImpl> deepCopy = new ArrayList<>();
+    private List<Player> getDeepCopy(final List<Player> list) {
+        final Iterator<Player> iterator = list.iterator();
+        final List<Player> deepCopy = new ArrayList<>();
         while (iterator.hasNext()) {
             deepCopy.add(iterator.next());
         }

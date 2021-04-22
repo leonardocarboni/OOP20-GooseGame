@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import model.player.Player;
 import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import model.queue.QueueImpl;
@@ -20,7 +21,7 @@ class QueueTest {
     @Test
     void iterate() {
         ql = new QueueImpl();
-        final List<PlayerImpl> list = new ArrayList<>();
+        final List<Player> list = new ArrayList<>();
         list.add(new PlayerImpl("Ciao", PlayerColor.PINK));
         list.add(new PlayerImpl("Ciao2", PlayerColor.PINK));
         list.add(new PlayerImpl("Ciao4", PlayerColor.PINK));
@@ -41,11 +42,11 @@ class QueueTest {
     @Test
     void checkOrdering() {
         ql = new QueueImpl();
-        final Map<PlayerImpl, Integer> mapResult = new HashMap<>();
-        final List<PlayerImpl> listExpected = new ArrayList<>();
-        final PlayerImpl p = new PlayerImpl("Ciao", PlayerColor.PINK);
-        final PlayerImpl p1 = new PlayerImpl("Ciao2", PlayerColor.PINK);
-        final PlayerImpl p2 = new PlayerImpl("Ciao4", PlayerColor.PINK);
+        final Map<Player, Integer> mapResult = new HashMap<>();
+        final List<Player> listExpected = new ArrayList<>();
+        final Player p = new PlayerImpl("Ciao", PlayerColor.PINK);
+        final Player p1 = new PlayerImpl("Ciao2", PlayerColor.PINK);
+        final Player p2 = new PlayerImpl("Ciao4", PlayerColor.PINK);
 
         mapResult.put(p, 4);
         mapResult.put(p1, 0);

@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import controller.game.GameControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import model.player.Player;
 import model.player.PlayerColor;
 import model.player.PlayerImpl;
 import utility.file.FileUtilityImpl;
@@ -18,10 +19,10 @@ import view.playerchooser.PlayersChooserViewImpl;
 
 public class PlayerChooserControllerImpl implements PlayerChooser {
 
-    private static final  String FILE_NAME = "NamePlayers.json";
+    private static final String FILE_NAME = "NamePlayers.json";
 
     private final PlayersChooserViewImpl view;
-    private final List<PlayerImpl> playersList = new ArrayList<>();
+    private final List<Player> playersList = new ArrayList<>();
     private final FileUtilityImpl<String> s = new FileUtilityImpl<>(FILE_NAME);
 
     public PlayerChooserControllerImpl() {
@@ -72,9 +73,9 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
     }
 
     /**
-     * Function to convert a string to an enum.
+     * Function to convert a string to an enumeration.
      * 
-     * @param s color name passed as string.
+     * @param s color name passed as string
      * @return PlayerColor
      */
     private PlayerColor stringToEnum(final String s) {

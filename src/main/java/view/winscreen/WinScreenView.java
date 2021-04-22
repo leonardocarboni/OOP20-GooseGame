@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 import model.duration.GameDuration;
 import model.player.Player;
-import model.player.PlayerImpl;
 import view.NormalView;
 import view.ViewType;
 
@@ -38,10 +37,10 @@ public class WinScreenView extends NormalView {
     }
 
     /**
-     * sets the players names in the lable ordered by their score and shows them by fading.
+     * sets the players names in the label ordered by their score and shows them by fading.
      * @param playersList - the list of players (may be unordered).
      */
-    public void setPlayers(final List<PlayerImpl> playersList) {
+    public void setPlayers(final List<Player> playersList) {
 
         final List<Player> sortedPlayersList = playersList.stream()
                 .sorted((p1, p2) -> p2.getBoardPosition() - p1.getBoardPosition()).collect(Collectors.toList());

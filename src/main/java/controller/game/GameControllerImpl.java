@@ -22,8 +22,8 @@ import model.duration.GameDuration;
 import model.duration.GameDurationImpl;
 import model.game.GameImpl;
 import model.game.StateGame;
+import model.player.Player;
 import model.player.PlayerColor;
-import model.player.PlayerImpl;
 import org.apache.commons.lang3.time.StopWatch;
 
 import view.ViewType;
@@ -41,7 +41,7 @@ public class GameControllerImpl {
         stopwatch = new StopWatch();
     }
 
-    public void startGame(final List<PlayerImpl> playersList) {
+    public void startGame(final List<Player> playersList) {
         view.createStage(ViewType.GAME);
         game.start(playersList);
         stopwatch.start();
@@ -98,7 +98,7 @@ public class GameControllerImpl {
      * @param list - players list
      * @return map
      */
-    private Map<Color, Integer> createMap(final List<PlayerImpl> list) {
+    private Map<Color, Integer> createMap(final List<Player> list) {
         final Map<Color, Integer> map = new HashMap<>();
         list.forEach(p -> {
             Color color;
@@ -136,7 +136,7 @@ public class GameControllerImpl {
             if (game.endGame()) {
                 endGamefunction();
             }
-            view.changeScoreboard(game.getScoreBoard().stream().map(PlayerImpl::getName).collect(Collectors.toList()));
+            view.changeScoreboard(game.getScoreBoard().stream().map(Player::getName).collect(Collectors.toList()));
             view.changeAllBoxes(createMap(game.getScoreBoard()));
         }
         view.changePlayerLabel(game.nextPlayer().getName());

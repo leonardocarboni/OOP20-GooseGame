@@ -3,7 +3,7 @@ package model.game;
 import java.util.List;
 
 import model.box.Box;
-import model.player.PlayerImpl;
+import model.player.Player;
 
 public interface Game {
 
@@ -12,7 +12,7 @@ public interface Game {
      * 
      * @param playerList
      */
-    void start(List<PlayerImpl> playerList);
+    void start(List<Player> playerList);
 
     /**
      * Create the starting queue.
@@ -40,14 +40,14 @@ public interface Game {
      * 
      * @return list of player
      */
-    List<PlayerImpl> getScoreBoard();
+    List<Player> getScoreBoard();
 
     /**
      * Get next player.
      * 
      * @return player
      */
-    PlayerImpl nextPlayer();
+    Player nextPlayer();
 
     /**
      * Check if the game is ended.

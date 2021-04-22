@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import model.board.Board;
 import model.board.BoardImpl;
 import model.box.Box;
+import model.dice.Dice;
 import model.dice.DiceImpl;
-import model.player.PlayerImpl;
+import model.player.Player;
 import model.queue.QueueImpl;
+import model.rank.Rank;
 import model.rank.RankImpl;
 import utility.file.FileUtilityImpl;
 
@@ -17,24 +20,23 @@ public class GameImpl implements Game {
 
     private static final int BOARD_SIZE = 41;
     private static final String FILE_NAME = "GooseRanking.json";
-    private final DiceImpl dice;
-    private final QueueImpl playerQueue;
-    private final RankImpl rank;
-    private final BoardImpl gameBoard;
-    private final Map<PlayerImpl, Integer> throwDice = new HashMap<>();
-    private List<PlayerImpl> pl = new ArrayList<>();
+    private final Dice dice;
+    private final QueueImpl playerQueue = new QueueImpl();
+    private final Rank rank;
+    private final Board gameBoard;
+    private final Map<Player, Integer> throwDice = new HashMap<>();
+    private List<Player> pl = new ArrayList<>();
     private StateGame stateGame;
 
     public GameImpl() {
         dice = new DiceImpl();
-        playerQueue = new QueueImpl();
         rank = new RankImpl();
         gameBoard = new BoardImpl(BOARD_SIZE);
         stateGame = StateGame.START;
     }
 
     @Override
-    public void start(final List<PlayerImpl> playerList) {
+    public void start(final List<Player> playerList) {
         gameBoard.generateBoard();
         stateGame = StateGame.CHOOSE_STARTING_QUEUE;
         pl = playerList;
@@ -70,13 +72,13 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public List<PlayerImpl> getScoreBoard() {
+    public List<Player> getScoreBoard() {
         rank.updateRanking();
         return rank.getRanking();
     }
 
     @Override
-    public PlayerImpl nextPlayer() {
+    public Player nextPlayer() {
         return playerQueue.next();
     }
 
@@ -93,8 +95,8 @@ public class GameImpl implements Game {
 
     @Override
     public void saveResultGame() {
-        final FileUtilityImpl<PlayerImpl> fu = new FileUtilityImpl<>(FILE_NAME);
-        fu.saveInformation(rank.getRanking(), false, PlayerImpl.class);
+        final FileUtilityImpl<Player> fu = new FileUtilityImpl<>(FILE_NAME);
+        fu.saveInformation(rank.getRanking(), false, Player.class);
     }
 
     @Override
@@ -106,7 +108,7 @@ public class GameImpl implements Game {
      * Check if player went above the board limit.
      * @param p
      */
-    private void goBeyoundLimit(final PlayerImpl p) {
+    private void goBeyoundLimit(final Player p) {
         if (p.getBoardPosition() > BOARD_SIZE) {
             p.addPosition(-(p.getBoardPosition() - BOARD_SIZE) * 2);
         } else if (p.getBoardPosition() < 0) {
@@ -131,8 +133,8 @@ public class GameImpl implements Game {
      * 
      * @param players
      */
-    private void initPlayers(final List<PlayerImpl> players) {
-        for (final PlayerImpl p : players) {
+    private void initPlayers(final List<Player> players) {
+        for (final Player p : players) {
             p.resetPosition();
         }
     }
