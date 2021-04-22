@@ -8,9 +8,7 @@ import javafx.event.EventHandler;
 import view.rockpaperscissors.RockPaperScissorsView;
 
 public class RockPaperScissorsController implements MinigameController {
-
-    private static final int PROGRESS_IN_GAME = 3;
-    private static final int COME_BACK_IN_GAME = -3;
+    
     private final RockPaperScissorsView view;
 
     private int numPlayerWin;
