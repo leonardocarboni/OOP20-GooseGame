@@ -31,6 +31,10 @@ public enum ViewType {
      */
     PHRASE_CATCH("Phrase Catch", "layouts/phrasecatch.fxml"),
     /**
+     * Three card Type.
+     */
+    THREE_CARD_GAME("Three Card Game", "layouts/threecard.fxml"),
+    /**
      * WinScreen Type.
      */
     WINSCREEN("Final Scoreboard", "layouts/winscreen.fxml"),
@@ -38,6 +42,7 @@ public enum ViewType {
      * How to play Type.
      */
     HOWTOPLAY("How To Play", "layouts/howtoplay.fxml");
+
 
     private String title;
     private String layoutLocation;
