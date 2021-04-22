@@ -1,7 +1,6 @@
 package controller.rockpaperscissors;
 
 import model.choice.RockPaperScissorsChoice;
-import model.gamestate.RockPaperScissorsGameState;
 import controller.minigame.MinigameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
