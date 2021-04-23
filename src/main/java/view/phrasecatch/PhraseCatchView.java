@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import view.MinigameView;
 import view.ViewType;
 
@@ -39,6 +40,7 @@ public class PhraseCatchView extends MinigameView {
     }
 
     public void addButtonListener(final EventHandler<ActionEvent> eventHandler) {
+        submitButton.setDefaultButton(true);
         submitButton.setOnAction(eventHandler);
     }
 }
