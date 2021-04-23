@@ -4,9 +4,11 @@ import model.secretcode.SecretCode;
 import model.secretcode.SecretCodeImpl;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class MemoryTest {
 
@@ -21,22 +23,29 @@ public class MemoryTest {
 
     @Test
     public void checkSize() {
-        int codeSize = Integer.parseInt(secretCode.getCode());
-        assertEquals(SIZE, codeSize);
-        assertNotEquals(4, codeSize);
+        secretCode.generateSecretCode();
+        var sc = secretCode.getCode();
+        var size = sc.length();
+
+        assertEquals(SIZE, size);
     }
 
     @Test
     public void checkError() {
-        int errors = 0;
-        List<Integer> code = secretCode.setCode();
-        List<Integer> inputCode = secretCode.setInputCode();
+        var errors = 0;
+        var inputCode = List.of(5, 4, 3, 2, 1);
+        secretCode.setCode(List.of(1, 2, 3, 4, 5));
+        var sc = secretCode.getCode();
 
-       for (int i = 0; i < code.size(); i++) {
-           if (!code.get(i).equals(inputCode.get(i))) {
-               errors++;
-           }
-       }
-       assertEquals(EXPECTED_ERRORS, errors);
+        List<Integer> code = sc.chars()
+                               .mapToObj(e -> e)
+                               .collect(Collectors.toList());
+
+        for (int i = 0; i < code.size(); i++) {
+            if (!code.get(i).equals(inputCode.get(i))) {
+                errors++;
+            }
+        }
+        assertEquals(EXPECTED_ERRORS, errors);
     }
 }
