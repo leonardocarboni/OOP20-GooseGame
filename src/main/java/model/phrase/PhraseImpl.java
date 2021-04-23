@@ -15,13 +15,13 @@ public class PhraseImpl implements Phrase {
     private String phrase;
 
     public String generatePhrase() {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PHRASES_FILENAME);
+        final InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PHRASES_FILENAME);
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             final Random random = new Random();
-            List<String> lines = reader.lines().collect(Collectors.toList());
+            final List<String> lines = reader.lines().collect(Collectors.toList());
             phrase = lines.get(random.nextInt(lines.size()));
-        }catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();

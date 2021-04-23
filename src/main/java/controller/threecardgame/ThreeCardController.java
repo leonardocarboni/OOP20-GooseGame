@@ -35,7 +35,7 @@ public class ThreeCardController implements MinigameController {
      */
     public class SxClickHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event) {
+        public void handle(final ActionEvent event) {
             if (checkTurns()) {
                 playerChoice = ThreeCardGameChoice.SX_POS;
                 setWin();
@@ -55,7 +55,7 @@ public class ThreeCardController implements MinigameController {
      */
     public class CenterClickHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event) {
+        public void handle(final ActionEvent event) {
             if (checkTurns()) {
                 playerChoice = ThreeCardGameChoice.CENTER_POS;
                 setWin();
@@ -75,7 +75,7 @@ public class ThreeCardController implements MinigameController {
      */
     public class DxClickHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event) {
+        public void handle(final ActionEvent event) {
             if (checkTurns()) {
                 playerChoice = ThreeCardGameChoice.DX_POS;
                 setWin();
@@ -95,7 +95,7 @@ public class ThreeCardController implements MinigameController {
      */
     public class ContinueHandler implements EventHandler<ActionEvent> {
         @Override
-        public void handle(ActionEvent event) {
+        public void handle(final ActionEvent event) {
             view.setBackImage();
             if (checkTurns()) {
                 computerChoice = ThreeCardGameChoice.getRandomChoice();
@@ -110,7 +110,7 @@ public class ThreeCardController implements MinigameController {
      * @param computerChoice random choice made by the computer
      * @return true if playerChoice is equal of computerChoice
      */
-    private boolean getWin(ThreeCardGameChoice playerChoice, ThreeCardGameChoice computerChoice) {
+    private boolean getWin(final ThreeCardGameChoice playerChoice, final ThreeCardGameChoice computerChoice) {
         return playerChoice.equals(computerChoice);
     }
 

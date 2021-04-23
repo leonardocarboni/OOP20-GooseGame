@@ -24,12 +24,12 @@ public class TTTViewImpl implements TTTView {
     /**
      * Dimension of the grid.
      */
-    private int gridDim = TicTacToe.getGridDim();
+    private final int gridDim = TicTacToe.getGridDim();
 
     /**
      * Number of the button in the grid.
      */
-    private int numberOfButtons;
+    private final int numberOfButtons;
 
     /**
      * Create an instance of the controller.
@@ -109,7 +109,7 @@ public class TTTViewImpl implements TTTView {
         for (int i = 0; i < numberOfButtons; i++) {
             final Random rnd = new Random();
             final int numCase = rnd.nextInt(gridDim * gridDim);
-            if (LIST_BUTTON_GRID.get(numCase).getText().equals("")) {
+            if ("".equals(LIST_BUTTON_GRID.get(numCase).getText())) {
                 LIST_BUTTON_GRID.get(numCase).setText("O");
                 MODEL.getWinCondition().accept(MODEL.checkWin());
                 return;
@@ -120,7 +120,7 @@ public class TTTViewImpl implements TTTView {
     @Override
     public void drawX(final Event evt, final Consumer<String> winCondition) {
         for (int i = 0; i < numberOfButtons; i++) {
-            if (evt.getSource().equals(LIST_BUTTON_GRID.get(i)) && LIST_BUTTON_GRID.get(i).getText().equals("")) {
+            if (evt.getSource().equals(LIST_BUTTON_GRID.get(i)) && "".equals(LIST_BUTTON_GRID.get(i).getText())) {
                 LIST_BUTTON_GRID.get(i).setText("X");
                 winCondition.accept(MODEL.checkWin());
                 drawO();
@@ -142,7 +142,7 @@ public class TTTViewImpl implements TTTView {
     @Override
     public void releaseButton(final Event event) {
         for (int i = 0; i < numberOfButtons; i++) {
-            if (event.getSource().equals(LIST_BUTTON_GRID.get(i)) && LIST_BUTTON_GRID.get(i).getText().equals("")) {
+            if (event.getSource().equals(LIST_BUTTON_GRID.get(i)) && "".equals(LIST_BUTTON_GRID.get(i).getText())) {
                 if (!isDark) {
                 } else {
                     LIST_BUTTON_GRID.get(i).setBackground(new Background(BackgroundLoader.GAME_BUTTON_BACKGROUND_BLACK));

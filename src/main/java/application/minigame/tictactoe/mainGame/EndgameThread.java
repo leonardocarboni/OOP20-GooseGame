@@ -60,7 +60,7 @@ public class EndgameThread extends Thread {
                 pane.setBackground(new Background(BackgroundLoader.END_GAME_BUTTON_BACKGROUND_BLACK));
             }
 
-            FadeTransition ft = new FadeTransition(Duration.millis(msOfAnimation), pane);
+            final FadeTransition ft = new FadeTransition(Duration.millis(msOfAnimation), pane);
             ft.setFromValue(0.0);
             ft.setToValue(1.0);
             ft.play();

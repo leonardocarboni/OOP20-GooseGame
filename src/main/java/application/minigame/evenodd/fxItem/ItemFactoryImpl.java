@@ -50,7 +50,7 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
 
     @Override
     public Text createText(final String string, final String resultValue, final int positionY) {
-        Text text = new Text();
+        final Text text = new Text();
         text.setText(string + resultValue.toString());
         text.setTranslateY(positionY);
         text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));

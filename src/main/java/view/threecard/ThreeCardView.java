@@ -33,15 +33,15 @@ public class ThreeCardView extends MinigameView {
         setDisableNextRoundButton();
     }
 
-    public void setSxButton(EventHandler<ActionEvent> e) {
+    public void setSxButton(final EventHandler<ActionEvent> e) {
         this.sxButton.setOnAction(e);
     }
 
-    public void setCenterButton(EventHandler<ActionEvent> e) {
+    public void setCenterButton(final EventHandler<ActionEvent> e) {
         this.centerButton.setOnAction(e);
     }
 
-    public void setDxButton(EventHandler<ActionEvent> e) {
+    public void setDxButton(final EventHandler<ActionEvent> e) {
         this.dxButton.setOnAction(e);
     }
 
@@ -57,19 +57,19 @@ public class ThreeCardView extends MinigameView {
         this.dxButton.setDisable(false);
     }
 
-    public void setContinueButton(EventHandler<ActionEvent> e) {
+    public void setContinueButton(final EventHandler<ActionEvent> e) {
         this.nextRoundButton.setOnAction(e);
     }
 
-    public void setPlayerScoreLabel(int score) {
+    public void setPlayerScoreLabel(final int score) {
         playerScoreLabel.setText(" " + score);
     }
 
-    public void setComputerScoreLabel(int score) {
+    public void setComputerScoreLabel(final int score) {
         computerScoreLabel.setText(" " + score);
     }
 
-    public void setImages(ThreeCardGameChoice choice) {
+    public void setImages(final ThreeCardGameChoice choice) {
         switch (choice) {
             case SX_POS:
                 sxImage.setImage(new Image(RIGHT_IMAGE));

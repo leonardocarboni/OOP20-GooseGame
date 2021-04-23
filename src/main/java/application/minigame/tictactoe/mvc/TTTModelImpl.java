@@ -19,7 +19,7 @@ public class TTTModelImpl implements TTTModel {
     /**
      * This is the grid dim, used for algorithm.
      */
-    private int bound;
+    private final int bound;
 
     /**
      * Button of the grid.
@@ -27,7 +27,7 @@ public class TTTModelImpl implements TTTModel {
     private List<Button> listButtonGrid;
     private final List<String> sign = List.of("X", "O");
 
-    public TTTModelImpl(){
+    public TTTModelImpl() {
         this.numberOfClick = 0;
         this.bound = getters.getSize();
     }
@@ -100,14 +100,14 @@ public class TTTModelImpl implements TTTModel {
      * Used for check the winner and start the end game thread.
      */
     private final Consumer<String> winCondition = winner -> {
-        if (!winner.equals("")) {
+        if (!"".equals(winner)) {
             TicTacToe.setWin(true);
-            EndgameThread my = new EndgameThread(winner);
+            final EndgameThread my = new EndgameThread(winner);
             my.start();
         }
     };
 
-    private void clear(){
+    private void clear() {
         this.numberOfClick = 0;
     }
 

@@ -12,26 +12,29 @@ import javafx.scene.layout.BackgroundSize;
  * Class that gives images.
  */
 public final class BackgroundLoader {
-    private BackgroundLoader() {
-    }
-    private final static GettersMVC getters = new GettersMVC();
-    private final static int factor = getters.getSize();
+    
+    private static final  GettersMVC getters = new GettersMVC();
+    private static final  int factor = getters.getSize();
     /**
      * Maximum grid size is 6x6.
      */
-    private final static int MAX_GRID_DIM = 6;
+    private static final  int MAX_GRID_DIM = 6;
     /**
      * Minimum grid size is 3x3.
      */
-    private final static int MIN_GRID_DIM = 3;
+    private static final  int MIN_GRID_DIM = 3;
     /**
      * Multiplier used for resise X.
      */
-    private final static int RESIZE_MULTIPLIER_X = 200;
+    private static final  int RESIZE_MULTIPLIER_X = 200;
     /**
      * Multiplier used for resise Y.
      */
-    private final static int resizeMultiplierY = 200;
+    private static final  int resizeMultiplierY = 200;
+
+    private BackgroundLoader() {
+    }
+
     /**
      * Background image of the game.
      */

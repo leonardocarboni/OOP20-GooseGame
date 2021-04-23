@@ -4,7 +4,6 @@ import java.util.function.Consumer;
 
 import javafx.event.Event;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 public interface TTTView {
 

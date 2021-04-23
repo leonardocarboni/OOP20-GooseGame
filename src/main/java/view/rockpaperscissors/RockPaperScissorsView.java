@@ -56,11 +56,11 @@ public class RockPaperScissorsView extends MinigameView {
         scissorsButton.setOnAction(e);
     }
 
-    public void setPlayerScoreLabel(int score) {
+    public void setPlayerScoreLabel(final int score) {
         playerScoreLabel.setText(" " + score);
     }
 
-    public void setComputerScoreLabel(int score) {
+    public void setComputerScoreLabel(final int score) {
         computerScoreLabel.setText(" " + score);
     }
 

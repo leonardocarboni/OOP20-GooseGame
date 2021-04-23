@@ -6,8 +6,6 @@ import javafx.scene.image.Image;
  * Information about the game.
  */
 public final class InfoGame {
-    private InfoGame() {
-    }
     /**
      * Max shot on the game.
      */
@@ -79,6 +77,8 @@ public final class InfoGame {
      */
     private static boolean isOver = false;
 
+    private InfoGame() {
+    }
     /**
      * Used for check the distance.
      * 
@@ -89,7 +89,7 @@ public final class InfoGame {
      * @return the distance.
      */
     public static double distance(final double x1, final double y1, final double x2, final double y2) {
-        return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
     }
 
     public static int getScore() {

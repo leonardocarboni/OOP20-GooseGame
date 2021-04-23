@@ -55,7 +55,7 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
     }
 
     public Button endGameButton(final String winner) {
-        Button btn = new Button();
+        final Button btn = new Button();
         btn.setBackground(new Background(BackgroundLoader.END_GAME_BACKGROUND));
         btn.setText("The winner is: " + winner);
         btn.setTranslateY(TRANSLATE_Y_OF_ENDGAMEBUTTON);
@@ -65,7 +65,7 @@ public class ItemFactoryImpl extends Button implements ItemFactory {
     }
 
     public Button gameDarkModeIcon(final TTTControllerImpl handler) {
-        Button btn = new Button();
+        final Button btn = new Button();
         btn.setMinSize(WIDTH_OF_GAMEDARKMODEICON, HEIGHT_OF_GAMEDARKMODEICON);
         btn.setBackground(new Background(BackgroundLoader.CHANGE_COLOR_BUTTON));
         btn.addEventFilter(MouseEvent.MOUSE_CLICKED, handler.getChangeDarkModeButton());

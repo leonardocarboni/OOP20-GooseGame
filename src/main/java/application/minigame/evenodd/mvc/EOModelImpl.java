@@ -22,7 +22,7 @@ public class EOModelImpl implements EOModel {
          * Creo i valori random.
          */
         final Random rnd = new Random();
-        int rndValue = rnd.nextInt(10);
+        final int rndValue = rnd.nextInt(10);
         if ((value == 2 && rndValue % 2 == 0) || (value == 1 && rndValue % 2 != 0)) {
             getters.getView().setResult(true);
         }

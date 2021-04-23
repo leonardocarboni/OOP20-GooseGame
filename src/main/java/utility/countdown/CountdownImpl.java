@@ -54,7 +54,7 @@ public class CountdownImpl implements Countdown {
     }
 
     @Override
-    public void enableQuitButtonOnEnd(Button quitButton) {
+    public void enableQuitButtonOnEnd(final Button quitButton) {
         this.quitButton = Optional.of(quitButton);
     }
 
@@ -77,7 +77,7 @@ public class CountdownImpl implements Countdown {
                     if (labelToHide.isPresent()) {
                         labelToHide.get().setText(labelText);
                     }
-                    if (quitButton.isPresent()){
+                    if (quitButton.isPresent()) {
                         quitButton.get().setDisable(false);
                     }
                 }

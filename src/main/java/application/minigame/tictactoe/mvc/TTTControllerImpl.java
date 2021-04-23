@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 
 public class TTTControllerImpl {
 
-    private GettersMVC getters = new GettersMVC();
+    private final GettersMVC getters = new GettersMVC();
 
     /**
      * This is the HANDLER of the button in the grid.

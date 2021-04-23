@@ -53,7 +53,7 @@ public class SpaceShooter extends Application implements MinigameController {
     /**
      * Stage of the main game.
      */
-    private Stage primaryStage;
+    private final Stage primaryStage;
 
     public SpaceShooter() {
         primaryStage = new Stage();
@@ -73,7 +73,7 @@ public class SpaceShooter extends Application implements MinigameController {
          * Create a timeline for the animation. Every 60millis run(gc) is executed
          */
         Platform.runLater(() -> {
-            Timeline animation = new Timeline(new KeyFrame(Duration.millis(InfoGame.FRAME), e -> run(SpaceShooter.gc)));
+            final Timeline animation = new Timeline(new KeyFrame(Duration.millis(InfoGame.FRAME), e -> run(SpaceShooter.gc)));
             animation.setCycleCount(Timeline.INDEFINITE);
             animation.play();
         });
@@ -147,8 +147,8 @@ public class SpaceShooter extends Application implements MinigameController {
             SpaceShooter.gc.fillText("Esci", 250, 396, 100);
 
             canvas.setOnMouseClicked(event -> {
-                double x = event.getX();
-                double y = event.getY();
+                final double x = event.getX();
+                final double y = event.getY();
                 if (x < 350 && x > 250 && y > 350 && y < 450) {
                     InfoGame.setOver(false);
                     clear();
@@ -186,14 +186,14 @@ public class SpaceShooter extends Application implements MinigameController {
          * increase the score.
          */
         for (int i = shots.size() - 1; i >= 0; i--) {
-            ShotImpl shot = shots.get(i);
+            final ShotImpl shot = shots.get(i);
             if (shot.getPositionShot().getY() < 0 || shot.isNoShot()) {
                 shots.remove(i);
                 continue;
             }
             shot.update();
             shot.draw();
-            for (Enemy enemy : enemies) {
+            for (final Enemy enemy : enemies) {
                 if (shot.collide(enemy) && !enemy.isExploding()) {
                     InfoGame.setScore(InfoGame.getScore() + 1);
                     enemy.explode();
@@ -223,7 +223,7 @@ public class SpaceShooter extends Application implements MinigameController {
 
     @Override
     public int getResult() {
-        int score = InfoGame.getScore();
+        final int score = InfoGame.getScore();
         InfoGame.setScore(0);
         return score;
     }

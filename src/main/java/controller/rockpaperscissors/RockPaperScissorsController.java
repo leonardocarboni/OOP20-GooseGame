@@ -7,7 +7,7 @@ import javafx.event.EventHandler;
 import view.rockpaperscissors.RockPaperScissorsView;
 
 public class RockPaperScissorsController implements MinigameController {
-    
+
     private final RockPaperScissorsView view;
 
     private int numPlayerWin;
