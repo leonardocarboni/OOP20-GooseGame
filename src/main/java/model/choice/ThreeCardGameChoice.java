@@ -17,6 +17,8 @@ public enum ThreeCardGameChoice {
      */
     DX_POS;
 
+    private static List<ThreeCardGameChoice> computerChoice;
+
     /**
      * Gets a random choice.
      * @return choice
@@ -28,18 +30,18 @@ public enum ThreeCardGameChoice {
 
     /**
      * Is use for testing.
-     * Creates a list of hypothetical  choices
-     * @return list of choice;
+     * Creates a list of hypothetical  choices.
+     * @param choices of position.
      */
-    public static List<ThreeCardGameChoice> setComputerChoice() {
-        return List.of(SX_POS, CENTER_POS, DX_POS);
+    public static void setComputerChoice(List<ThreeCardGameChoice> choices) {
+        computerChoice = choices;
     }
+
     /**
      * Is use for testing.
-     * Creates a list of hypothetical user choices
-     * @return list of choice;
+     * @return choices set in setComputerChoice.
      */
-    public static List<ThreeCardGameChoice> setInputChoice() {
-        return List.of(DX_POS, SX_POS, CENTER_POS);
+    public static List<ThreeCardGameChoice> getComputerChoice() {
+        return computerChoice;
     }
 }
