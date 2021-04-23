@@ -41,11 +41,11 @@ public enum Box {
      */
     PHRASE_CATCH(BoxType.MINIGAMES, "In this minigame you have to write the sentence that is proposed to\n" 
      + "you in the shortest possible time, making the minimum number of mistakes possible.\n" 
-     + "Remember to click the submit button to stop the timer!"),
+     + "Remember to click the submit button to stop the timer or click the Enter Button!"),
     /**
      * Space Shooter Box.
      */
-    SPACESHOOTER(BoxType.MINIGAMES, "Space shooter is a mini-game in which a player must shoot at\n"
+    SPACESHOOTER(BoxType.MINIGAMES, "Space shooter is a minigame in which a player must shoot at\n"
             + "rockets while preventing them from destroying him."),
     /**
      * Memory Box.
@@ -57,8 +57,8 @@ public enum Box {
      * Three card game Box.
      */
     THREE_CARD_GAME(BoxType.MINIGAMES, "The aim of the game is to guess where the \"queen\""
-            + "(represented by a green tick) is.\nThere are three cards: one of them will be the \"queen\", while the"
-            + "others will be the \"two\" (represented by a red X).\nAt the end of each turn a \"continue\" button"
+            + "(represented by a green tick) is.\nThere are three cards: one of them will be the \"queen\", while the "
+            + "others will be the \"two\" (represented by a red X).\nAt the end of each turn a \"continue\" button "
             + "will be enabled, which will allow a new turn to be taken.\nThe game is played to the best of three.");
 
     private BoxType type;
