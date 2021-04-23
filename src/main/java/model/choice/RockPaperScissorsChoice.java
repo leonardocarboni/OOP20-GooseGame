@@ -7,6 +7,7 @@ import java.util.Random;
 
 
 public enum RockPaperScissorsChoice {
+
     /**
      * ROCK.
      */
@@ -20,6 +21,8 @@ public enum RockPaperScissorsChoice {
      */
     SCISSORS;
 
+    private static RockPaperScissorsChoice rps;
+
     /**
      * Gets a random choice.
      * @return choice
@@ -31,19 +34,19 @@ public enum RockPaperScissorsChoice {
 
     /**
      * Is use for testing.
-     * Creates hypothetical computer choices
-     * @return choice.
+     * Creates hypothetical computer choice.
+     * @param choice between rock, paper and scissors.
      */
-    public static RockPaperScissorsChoice setComputerChoice() {
-        return RockPaperScissorsChoice.ROCK;
+    public static void setComputerChoice(RockPaperScissorsChoice choice) {
+        rps  = choice;
     }
 
     /**
      * Is use for testing.
-     * Creates a list of hypothetical user choices
-     * @return list of choice;
+     * @return returns the choice set in the setComputerChoice.
      */
-    public static List<RockPaperScissorsChoice> setInputChoice() {
-        return List.of(ROCK, PAPER, SCISSORS);
+    public static RockPaperScissorsChoice getComputerChoice() {
+        return rps;
     }
+
 }
