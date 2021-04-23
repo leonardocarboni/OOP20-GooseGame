@@ -1,6 +1,5 @@
 package model.choice;
 
-import java.util.List;
 import java.util.Random;
 
 
@@ -37,7 +36,7 @@ public enum RockPaperScissorsChoice {
      * Creates hypothetical computer choice.
      * @param choice between rock, paper and scissors.
      */
-    public static void setComputerChoice(RockPaperScissorsChoice choice) {
+    public static void setComputerChoice(final RockPaperScissorsChoice choice) {
         rps  = choice;
     }
 

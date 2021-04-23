@@ -43,7 +43,7 @@ public class RockPaperScissorsController implements MinigameController {
                 numTurns++;
                 playerChoice = RockPaperScissorsChoice.ROCK;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
-                getWinner(RockPaperScissorsChoice.ROCK, computerChoice);
+                winner(RockPaperScissorsChoice.ROCK, computerChoice);
                 view.setPlayerChoiceImage(RockPaperScissorsChoice.ROCK);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
@@ -67,7 +67,7 @@ public class RockPaperScissorsController implements MinigameController {
                 numTurns++;
                 playerChoice = RockPaperScissorsChoice.PAPER;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
-                getWinner(RockPaperScissorsChoice.PAPER, computerChoice);
+                winner(RockPaperScissorsChoice.PAPER, computerChoice);
                 view.setPlayerChoiceImage(RockPaperScissorsChoice.PAPER);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
@@ -90,7 +90,7 @@ public class RockPaperScissorsController implements MinigameController {
                 numTurns++;
                 playerChoice = RockPaperScissorsChoice.SCISSORS;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
-                getWinner(RockPaperScissorsChoice.SCISSORS, computerChoice);
+                winner(RockPaperScissorsChoice.SCISSORS, computerChoice);
                 view.setPlayerChoiceImage(RockPaperScissorsChoice.SCISSORS);
                 view.setComputerChoiceImage(computerChoice);
                 view.setPlayerScoreLabel(numPlayerWin);
@@ -107,7 +107,7 @@ public class RockPaperScissorsController implements MinigameController {
         return numTurns < 3 && numPlayerWin < 2 && numComputerWin < 2;
     }
 
-    public void getWinner(final RockPaperScissorsChoice playerChoice, final RockPaperScissorsChoice computerChoice) {
+    public void winner(final RockPaperScissorsChoice playerChoice, final RockPaperScissorsChoice computerChoice) {
         if (playerChoice.equals(computerChoice)) {
             view.draw();
             --numTurns;

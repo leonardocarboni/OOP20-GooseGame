@@ -33,7 +33,7 @@ public enum ThreeCardGameChoice {
      * Creates a list of hypothetical  choices.
      * @param choices of position.
      */
-    public static void setComputerChoice(List<ThreeCardGameChoice> choices) {
+    public static void setComputerChoice(final List<ThreeCardGameChoice> choices) {
         computerChoice = choices;
     }
 

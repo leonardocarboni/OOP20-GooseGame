@@ -34,7 +34,7 @@ public class ThreeCardTest {
     public void checkWin() {
         populateLists();
         ThreeCardGameChoice.setComputerChoice(hypotheticalChoices);
-        var choices = ThreeCardGameChoice.getComputerChoice();
+        final var choices = ThreeCardGameChoice.getComputerChoice();
 
         assertEquals(RIGHT_CHOISE, choices.get(0));
         assertNotEquals(RIGHT_CHOISE, choices.get(1));
@@ -45,7 +45,7 @@ public class ThreeCardTest {
     public void checkLose() {
         populateLists();
         ThreeCardGameChoice.setComputerChoice(hypotheticalChoices);
-        var choices = ThreeCardGameChoice.getComputerChoice();
+        final var choices = ThreeCardGameChoice.getComputerChoice();
 
         assertNotEquals(WRONG_CHOISE_1, choices.get(0));
         assertNotEquals(WRONG_CHOISE_2, choices.get(0));

@@ -24,8 +24,8 @@ public class MemoryTest {
     @Test
     public void checkSize() {
         secretCode.generateSecretCode();
-        var sc = secretCode.getCode();
-        var size = sc.length();
+        final var sc = secretCode.getCode();
+        final var size = sc.length();
 
         assertEquals(SIZE, size);
     }
@@ -33,11 +33,11 @@ public class MemoryTest {
     @Test
     public void checkError() {
         var errors = 0;
-        var inputCode = List.of(5, 4, 3, 2, 1);
+        var inputCode = List.of(7, 4, 3, 2, 1);
         secretCode.setCode(List.of(1, 2, 3, 4, 5));
-        var sc = secretCode.getCode();
+        final var sc = secretCode.getCode();
 
-        List<Integer> code = sc.chars()
+        final List<Integer> code = sc.chars()
                                .mapToObj(e -> e)
                                .collect(Collectors.toList());
 
