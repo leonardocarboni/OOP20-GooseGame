@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.player.Player;
 
-public class RankImpl implements Rank {
+public final class RankImpl implements Rank {
 
     private List<Player> ranking;
 

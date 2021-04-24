@@ -54,10 +54,10 @@ public class GameControllerImpl {
         view.show();
     }
     /**
-     * Load Minigames .
+     * Load Mini games.
      * 
      * @param box - type of box where the player is now.
-     * @return minigame result or 0 if is not a minigame
+     * @return mini game result or 0 if is not a mini game
      */
     public int checkMinigames(final Box box) {
         MinigameController minigameScene = null;

@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 
-public class FileUtilityImpl<B> implements FileUtility<B> {
+public final class FileUtilityImpl<B> implements FileUtility<B> {
 
     private final String fileName;
     private final File file;

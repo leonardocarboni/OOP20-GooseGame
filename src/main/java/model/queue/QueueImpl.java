@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 
 import model.player.Player;
 
-public class QueueImpl implements Queue, Iterator<Player> {
+public final class QueueImpl implements Queue, Iterator<Player> {
 
     private List<Player> startingQueue;
     private Player current;
