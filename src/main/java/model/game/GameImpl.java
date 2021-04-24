@@ -16,9 +16,9 @@ import model.rank.Rank;
 import model.rank.RankImpl;
 import utility.file.FileUtilityImpl;
 
-public class GameImpl implements Game {
+public final class GameImpl implements Game {
 
-    private static final int BOARD_SIZE = 41;
+    private static final int BOARD_SIZE = 42;
     private static final String FILE_NAME = "GooseRanking.json";
     private final Dice dice;
     private final Queue playerQueue;
@@ -33,7 +33,7 @@ public class GameImpl implements Game {
         dice = new DiceImpl();
         rank = new RankImpl();
         throwDice = new HashMap<>();
-        gameBoard = new BoardImpl(BOARD_SIZE);
+        gameBoard = new BoardImpl();
         stateGame = StateGame.START;
     }
 
@@ -42,6 +42,7 @@ public class GameImpl implements Game {
         this.playerList = playerList;
         initPlayers(playerList);
         stateGame = StateGame.CHOOSE_STARTING_QUEUE;
+        gameBoard.setSize(BOARD_SIZE);
         gameBoard.generateBoard();
         playerQueue.setStartingQueue(playerList);
         playerQueue.resetIterator();
@@ -86,7 +87,7 @@ public class GameImpl implements Game {
 
     @Override
     public boolean endGame() {
-        if (playerQueue.getCurrent().getBoardPosition() == BOARD_SIZE) {
+        if (playerQueue.getCurrent().getBoardPosition() == BOARD_SIZE - 1) {
             stateGame = StateGame.END;
         } else {
             goBeyoundLimit(playerQueue.getCurrent());
@@ -111,8 +112,8 @@ public class GameImpl implements Game {
      * @param p
      */
     private void goBeyoundLimit(final Player p) {
-        if (p.getBoardPosition() > BOARD_SIZE) {
-            p.addPosition(-(p.getBoardPosition() - BOARD_SIZE) * 2);
+        if (p.getBoardPosition() > BOARD_SIZE - 1) {
+            p.addPosition(-(p.getBoardPosition() - (BOARD_SIZE - 1)) * 2);
         } else if (p.getBoardPosition() < 0) {
             p.resetPosition();
         }

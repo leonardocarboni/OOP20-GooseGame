@@ -7,25 +7,29 @@ import model.box.Box;
 import model.box.BoxType;
 import model.player.Player;
 
-public class BoardImpl implements Board {
+public final class BoardImpl implements Board {
 
-    private final int size;
-    private final List<Box> boxes;
     private static final int BOARD_LIMIT = 2;
     private static final int MINIGAME_INTERVAL = 5;
 
-    public BoardImpl(final int size) {
+    private int size;
+    private List<Box> boxes;
+
+    @Override
+    public void setSize(final int size) {
+        if (size < BOARD_LIMIT) {
+            throw new IllegalArgumentException();
+        }
         this.size = size;
-        this.boxes = new ArrayList<>(size);
+        this.boxes = new ArrayList<>();
     }
 
     @Override
     public List<Box> generateBoard() {
-        checkSize(size);
         final List<Box> minigames = getAllBoxesByType(BoxType.MINIGAMES);
         boxes.add(Box.START);
         int minigameNumber = 0;
-        for (int i = 1; i < size; i++) {
+        for (int i = 1; i < size - 1; i++) {
             if (i % MINIGAME_INTERVAL == 0) {
                minigameNumber = minigameNumber == minigames.size() ? 0 : minigameNumber;
                boxes.add(minigames.get(minigameNumber));
@@ -35,23 +39,13 @@ public class BoardImpl implements Board {
             }
         }
         boxes.add(Box.END);
+        System.out.println(boxes);
         return boxes;
     }
 
     @Override
     public Box getBox(final Player p) {
         return boxes.get(p.getBoardPosition());
-    }
-
-    /*
-     * @param size of board
-     * 
-     * @throw exception in case the number inserted is too small to create a board
-     */
-    private void checkSize(final int size) {
-        if (size < BOARD_LIMIT) {
-            throw new IllegalArgumentException();
-        }
     }
 
     /*

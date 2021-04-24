@@ -8,6 +8,12 @@ import model.player.Player;
 public interface Board {
 
     /**
+     * Set size of board.
+     * @throws IllegalArgumentException when size is less then 2
+     * @param size
+     */
+    void setSize(int size);
+    /**
      * Create the board of game.
      * 
      * @return list of boxes that equals to the game board
