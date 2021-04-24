@@ -48,7 +48,7 @@ public class PhraseCatchController implements MinigameController {
         @Override
         public void handle(final ActionEvent event) {
             final String textRead = view.getInputText();
-            if ("".equals(textRead)) {
+            if (!"".equals(textRead)) {
                 final double remainingTime = countdown.getSecondsLeft();
                 countdown.shutdown();
                 view.enableQuitButton();
