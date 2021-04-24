@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-import controller.game.GameControllerImpl;
+import controller.game.GameController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.player.Player;
@@ -17,7 +17,7 @@ import utility.file.FileUtilityImpl;
 import view.ViewType;
 import view.playerchooser.PlayersChooserView;
 
-public class PlayerChooserControllerImpl implements PlayerChooser {
+public class PlayerChooserController {
 
     private static final String FILE_NAME = "NamePlayers.json";
 
@@ -25,7 +25,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
     private final List<Player> playersList = new ArrayList<>();
     private final FileUtilityImpl<String> s = new FileUtilityImpl<>(FILE_NAME);
 
-    public PlayerChooserControllerImpl() {
+    public PlayerChooserController() {
         view = new PlayersChooserView();
     }
 
@@ -65,7 +65,7 @@ public class PlayerChooserControllerImpl implements PlayerChooser {
             }
             view.close();
             saveNamesBox(playerNames);
-            final GameControllerImpl c = new GameControllerImpl();
+            final GameController c = new GameController();
             c.startGame(playersList);
         } else {
             view.setErrorLabelText("EVERY PLAYER MUST HAVE AN UNIQUE NAME");

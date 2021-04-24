@@ -1,6 +1,6 @@
 package controller.winscreen;
 
-import controller.playerchooser.PlayerChooserControllerImpl;
+import controller.playerchooser.PlayerChooserController;
 
 import model.duration.GameDuration;
 import model.player.Player;
@@ -19,7 +19,7 @@ public class WinScreenImpl implements WinScreen {
     @Override
     public void start(final List<Player> playersList, final GameDuration duration) {
         view.addButtonListener(e -> {
-            final PlayerChooserControllerImpl pc = new PlayerChooserControllerImpl();
+            final PlayerChooserController pc = new PlayerChooserController();
             pc.start();
             view.close();
         });

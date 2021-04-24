@@ -2,7 +2,7 @@ package controller.menu;
 
 import controller.howtoplay.HowToPlay;
 import controller.howtoplay.HowToPlayImpl;
-import controller.playerchooser.PlayerChooserControllerImpl;
+import controller.playerchooser.PlayerChooserController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.ViewType;
@@ -23,7 +23,7 @@ public class MenuController {
     public class PlayClicked implements EventHandler<ActionEvent> {
         @Override
         public void handle(final ActionEvent event) {
-            final PlayerChooserControllerImpl playerChooser = new PlayerChooserControllerImpl();
+            final PlayerChooserController playerChooser = new PlayerChooserController();
             playerChooser.start();
             view.close();
         }
