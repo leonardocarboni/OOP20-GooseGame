@@ -15,7 +15,7 @@ public class PhraseImpl implements Phrase {
     private String phrase;
 
     public String generatePhrase() {
-        final InputStream inputStream = getClass().getClassLoader().getResourceAsStream(PHRASES_FILENAME);
+        final InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(PHRASES_FILENAME);
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             final Random random = new Random();
@@ -25,6 +25,7 @@ public class PhraseImpl implements Phrase {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.print("Generic Exception!");
         }
         return phrase;
     }
