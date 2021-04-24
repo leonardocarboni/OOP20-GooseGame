@@ -18,6 +18,7 @@ public class CableConnectFXTest {
 
     private CableConnectView cableconnect;
 
+    //TestFX need to have a Stage variable in arguments to work. (Creates PMD warning).
     @Start
     public void start(Stage mainStage) {
         cableconnect = new CableConnectView();
