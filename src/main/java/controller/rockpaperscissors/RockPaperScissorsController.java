@@ -13,9 +13,6 @@ public class RockPaperScissorsController implements MinigameController {
     private int numPlayerWin;
     private int numComputerWin;
     private int numTurns;
-    private RockPaperScissorsChoice playerChoice;
-
-
     public RockPaperScissorsController() {
         view = new RockPaperScissorsView();
         view.setPaperButtonHandler(new PaperClickHandler());
@@ -41,7 +38,6 @@ public class RockPaperScissorsController implements MinigameController {
         public void handle(final ActionEvent event) {
             if (checkTurns()) {
                 numTurns++;
-                playerChoice = RockPaperScissorsChoice.ROCK;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
                 winner(RockPaperScissorsChoice.ROCK, computerChoice);
                 view.setPlayerChoiceImage(RockPaperScissorsChoice.ROCK);
@@ -65,7 +61,6 @@ public class RockPaperScissorsController implements MinigameController {
         public void handle(final ActionEvent event) {
             if (checkTurns()) {
                 numTurns++;
-                playerChoice = RockPaperScissorsChoice.PAPER;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
                 winner(RockPaperScissorsChoice.PAPER, computerChoice);
                 view.setPlayerChoiceImage(RockPaperScissorsChoice.PAPER);
@@ -88,7 +83,6 @@ public class RockPaperScissorsController implements MinigameController {
         public void handle(final ActionEvent event) {
             if (checkTurns()) {
                 numTurns++;
-                playerChoice = RockPaperScissorsChoice.SCISSORS;
                 final RockPaperScissorsChoice computerChoice = getComputerChoice();
                 winner(RockPaperScissorsChoice.SCISSORS, computerChoice);
                 view.setPlayerChoiceImage(RockPaperScissorsChoice.SCISSORS);

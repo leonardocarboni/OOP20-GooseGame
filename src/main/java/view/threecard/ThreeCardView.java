@@ -30,7 +30,7 @@ public class ThreeCardView extends MinigameView {
 
     public ThreeCardView() {
         super(ViewType.THREE_CARD_GAME);
-        setDisableNextRoundButton();
+        nextRoundButton.setDisable(true);
     }
 
     public void setSxButton(final EventHandler<ActionEvent> e) {
