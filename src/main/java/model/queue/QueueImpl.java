@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 
 import model.player.Player;
 
-public final class QueueImpl implements Queue, Iterator<Player> {
+public final class QueueImpl implements Queue {
 
     private List<Player> startingQueue;
     private Player current;
@@ -56,14 +56,6 @@ public final class QueueImpl implements Queue, Iterator<Player> {
     }
 
     @Override
-    public boolean hasNext() {
-        if (!playerIterator.hasNext()) {
-            playerIterator = startingQueue.iterator();
-        }
-        return playerIterator.hasNext();
-    }
-
-    @Override
     public Player next() {
         if (!playerIterator.hasNext()) {
             playerIterator = startingQueue.iterator();
@@ -79,7 +71,7 @@ public final class QueueImpl implements Queue, Iterator<Player> {
     }
 
     /**
-     * Create a deep copy of the list to avoid problem when list passed in params
+     * Create a deep copy of the list to avoid problem when list passed as parameter
      * will change.
      * @param list
      * @return list of players

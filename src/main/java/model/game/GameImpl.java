@@ -14,6 +14,7 @@ import model.queue.Queue;
 import model.queue.QueueImpl;
 import model.rank.Rank;
 import model.rank.RankImpl;
+import utility.file.FileUtility;
 import utility.file.FileUtilityImpl;
 
 public final class GameImpl implements Game {
@@ -98,7 +99,7 @@ public final class GameImpl implements Game {
 
     @Override
     public void saveResultGame() {
-        final FileUtilityImpl<Player> fu = new FileUtilityImpl<>(FILE_NAME);
+        final FileUtility<Player> fu = new FileUtilityImpl<>(FILE_NAME);
         fu.saveInformation(rank.getRanking(), false, Player.class);
     }
 

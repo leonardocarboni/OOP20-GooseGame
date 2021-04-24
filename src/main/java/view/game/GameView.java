@@ -129,9 +129,7 @@ public class GameView extends NormalView {
      */
     public void changeAllBoxes(final Map<Color, Integer> position) {
         resetAllBoxes();
-        System.out.println(gameboard.size());
         for (final Entry<Color, Integer> p : position.entrySet()) {
-            System.out.println(p.getValue());
             gameboard.get(p.getValue()).getChildren().add(createCircle(p.getKey()));
         }
     }
