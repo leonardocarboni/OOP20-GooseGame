@@ -14,12 +14,12 @@ public class MenuController {
 
     public MenuController() {
         view = new MenuView();
-        view.createStage(ViewType.STARTING_MENU);
-        view.addPlayButtonListener(new PlayClicked());
-        view.addHowToPlayButtonListener(new HowToPlayClicked());
     }
 
     public void start() {
+        view.createStage(ViewType.STARTING_MENU);
+        view.addPlayButtonListener(new PlayClicked());
+        view.addHowToPlayButtonListener(new HowToPlayClicked());
         view.show();
     }
 
