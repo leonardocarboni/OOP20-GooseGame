@@ -30,7 +30,7 @@ class GameTest {
     }
 
     @Test
-    void test() {
+    void checkEndGame() {
         g.start(list);
         assertFalse(g.endGame());
         do {
