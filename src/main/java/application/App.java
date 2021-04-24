@@ -9,6 +9,7 @@ public class App extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
        final MenuController menu = new MenuController();
+       menu.start();
     }
 
     public static void main(final String[] args) {

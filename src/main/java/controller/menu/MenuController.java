@@ -17,6 +17,9 @@ public class MenuController {
         view.createStage(ViewType.STARTING_MENU);
         view.addPlayButtonListener(new PlayClicked());
         view.addHowToPlayButtonListener(new HowToPlayClicked());
+    }
+
+    public void start() {
         view.show();
     }
 
