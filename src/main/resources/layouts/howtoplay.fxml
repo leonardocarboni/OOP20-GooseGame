@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="1177.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);" stylesheets="@howtoplaystyle.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
+  <tabs>
+    <Tab text="How To Play">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@howtoplaystyle.css">
+               <children>
+                  <Label fx:id="howToPlayDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="MAIN_GAME_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font></Label>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Cable Connect">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="cableConnectDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="CABLECONNECT_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Tic Tac Toe">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="ticTacToeDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="TICTACTOE_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Phrase Catch">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="phraseCatchDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="PHRASECATCH_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Memory">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="memoryDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="MEMORY_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Rock, Paper, Scissors">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="432.0" prefWidth="767.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="rockPaperScissorsDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="ROCKPAPERSCISSORS_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Space Shooter">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="spaceShooterDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="SPACEINVADERS_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Even or Odd">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="evenOrOddDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="EVENORODD_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Three Card Game">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#D9D9D9, #F2F2F2);">
+               <children>
+                  <Label fx:id="threeCardDescLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="19.0" prefHeight="400.0" prefWidth="1132.0" text="THREECARD_DESC" textAlignment="CENTER" AnchorPane.bottomAnchor="19.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="19.0">
+                     <font>
+                        <Font name="Candara" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+  </tabs>
+</TabPane>

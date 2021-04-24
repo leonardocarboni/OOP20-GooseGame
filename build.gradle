@@ -11,7 +11,16 @@ repositories {
 }
 
 dependencies {
+
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'junit:junit:4.12'
+    implementation 'org.junit.jupiter:junit-jupiter:5.4.2'
+    implementation 'com.github.spotbugs:spotbugs-annotations:4.0.1'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
     runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:win"
@@ -21,7 +30,7 @@ dependencies {
 
 javafx {
     version = "14"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = [ 'javafx.controls', 'javafx.fxml','javafx.media']
 }
 
 test {
@@ -31,4 +40,13 @@ test {
 
 mainClassName = "application.AppLauncher"
 
-//da implementare le robe per il jar
+jar {
+    manifest {
+        attributes "Main-Class": 'application.AppLauncher'
+    }
+    from {
+        configurations.runtimeClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}

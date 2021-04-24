@@ -5,6 +5,10 @@ build/
 bin/
 out/
 
+#Ranking File 
+GooseRanking.json
+NamePlayers.json
+
 # Compiled class file
 *.class
 
@@ -32,3 +36,5 @@ hs_err_pid*
 
 # Ignored, as Gradle Buildship generates it on import / refresh
 .classpath
+.DS_Store
+.DS_Store

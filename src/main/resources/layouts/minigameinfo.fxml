@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="610.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="nameLabel" alignment="CENTER" layoutX="18.0" layoutY="14.0" prefHeight="110.0" prefWidth="574.0" text="MINIGAME_NAME">
+         <font>
+            <Font name="Candara" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="descriptionLabel" alignment="CENTER" layoutX="28.0" layoutY="124.0" prefHeight="317.0" prefWidth="554.0" text="Minigame Desciption">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="startButton" layoutX="275.0" layoutY="461.0" mnemonicParsing="false" stylesheets="@minigamestyle.css" text="Start!">
+         <font>
+            <Font name="Candara" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

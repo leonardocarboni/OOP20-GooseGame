@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="530.0" minWidth="610.0" prefHeight="530.0" prefWidth="610.0" style="-fx-background-color: linear-gradient(#D9965B, #D98452);" xmlns="http://javafx.com/javafx/14" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="textLabel" alignment="CENTER" layoutX="22.0" layoutY="176.0" prefHeight="60.0" prefWidth="566.0" text="Testo da copiare qua">
+         <font>
+            <Font name="Candara" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="inputTextField" layoutX="22.0" layoutY="316.0" prefHeight="51.0" prefWidth="566.0">
+         <font>
+            <Font name="Candara" size="16.0" />
+         </font>
+      </TextField>
+      <Label fx:id="timeLabel" alignment="CENTER" layoutX="204.0" layoutY="53.0" prefHeight="51.0" prefWidth="202.0" text="6.000">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="submitButton" layoutX="279.0" layoutY="419.0" mnemonicParsing="false" stylesheets="@minigamestyle.css" text="Submit" />
+      <Button fx:id="quitButton" layoutX="549.0" layoutY="491.0" mnemonicParsing="false" stylesheets="@minigamestyle.css" text="Quit" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="22.0" />
+   </children>
+</AnchorPane>
