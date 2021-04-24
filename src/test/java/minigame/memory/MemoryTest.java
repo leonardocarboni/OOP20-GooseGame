@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MemoryTest {
 
-    private static final int SIZE = 5;
     private static final int EXPECTED_ERRORS = 5;
     private static final int NUM_1 = 1;
     private static final int NUM_2 = 2;
