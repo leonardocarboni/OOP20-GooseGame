@@ -116,7 +116,7 @@ public class GameView extends NormalView {
     /**
      * Remove all elements inside of the HBoxes.
      */
-    public void resetAllBoxes() {
+    private void resetAllBoxes() {
         for (final HBox hb : gameboard) {
             hb.getChildren().clear();
         }

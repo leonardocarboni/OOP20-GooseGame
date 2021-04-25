@@ -59,7 +59,7 @@ public class GameController {
      * @param box - type of box where the player is now.
      * @return mini game result or 0 if is not a mini game
      */
-    public int checkMinigames(final Box box) {
+    private int checkMinigames(final Box box) {
         MinigameController minigameScene = null;
         switch (box) {
         case TICTACTOE:
@@ -119,7 +119,7 @@ public class GameController {
     /**
      * Change view and call MODEL method according the game state.
      */
-    public void changeViewGameState() {
+    private void changeViewGameState() {
         if (game.getStateGame().equals(StateGame.CHOOSE_STARTING_QUEUE)) {
             view.changeImageDice(game.choosePlayersQueue());
         } else if (game.getStateGame().equals(StateGame.CONTINUE)) {

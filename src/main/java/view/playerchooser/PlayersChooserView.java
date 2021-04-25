@@ -34,7 +34,7 @@ public class PlayersChooserView extends NormalView {
     }
 
     /**
-     * Create a Map.
+     * Create a Map with player information.
      * @return player info
      */
     public Map<String, String> getPlayersInfo() {
@@ -69,7 +69,7 @@ public class PlayersChooserView extends NormalView {
     }
 
     /*
-     * Add text to combo box.
+     * Set text to combo box.
      * @param text
      */
     public void setTextComboBox(final List<String> listNames) {
@@ -80,7 +80,7 @@ public class PlayersChooserView extends NormalView {
     }
 
     /**
-     * 
+     * Function to add a listener combo box.
      */
     private void addComboboxListeners() {
         for (int i = 0; i < playersComboBox.size(); i++) {
